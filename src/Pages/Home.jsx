@@ -3,6 +3,7 @@ import Hero from '../Components/Hero'
 import Courses from '../Components/Courses'
 import Testimonial from '../Components/Testimonial'
 import Categories from '../Components/Categories'
+import Featured from '../Components/Featured'
 
 function Home() {
   return (
@@ -11,7 +12,7 @@ function Home() {
         <Courses />
         <Testimonial />
         <Categories/>
-        <Features/>
+        <Featured/>
     </>
   )
 }
