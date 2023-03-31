@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from '../Components/Hero'
 import Courses from '../Components/Courses'
 import Testimonial from '../Components/Testimonial'
+import Categories from '../Components/Categories'
 
 function Home() {
   return (
@@ -9,6 +10,8 @@ function Home() {
         <Hero/>
         <Courses />
         <Testimonial />
+        <Categories/>
+        <Features/>
     </>
   )
 }

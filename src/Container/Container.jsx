@@ -9,7 +9,6 @@ function Container() {
     <div className="container">
         <Navbar/>
         <Outlet />
-        {/* <Home /> */}
         <Footer />
     </div>
   )
