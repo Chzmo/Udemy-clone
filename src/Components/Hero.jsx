@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import { HashLink } from "react-router-hash-link";
 
 const randomImage1 = "https://source.unsplash.com/1700x502/?education"
-const randomImage2 = "https://source.unsplash.com/1700x499/?graduation"
+const randomImage2 = "https://source.unsplash.com/1700x499/?learing"
 
 function Hero() {
   return (
@@ -38,7 +38,7 @@ function Hero() {
       >
         <SwiperSlide className="">
           <div className="swiperImage relative">
-            <div className="cover "></div>
+            <div className="cover absolute h-full w-full"></div>
             <img src={randomImage1} />
             <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
               <h2 className="text-3xl font-bold ">Learning that gets you</h2>
@@ -49,17 +49,17 @@ function Hero() {
 
         <SwiperSlide className="">
           <div className="swiperImage relative">
-            <div className="cover "></div>
-            <img src={randomImage1} />
+            <div className="cover absolute h-full w-full"></div>
+            <img src={randomImage2} />
             <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
               <h2 className="text-3xl font-bold ">Learning that gets you</h2>
               <p className="pt-4 text-lg">Skills for your present (and your future). Get started with us.</p>
             </div>
           </div>
         </SwiperSlide>
-        
-        <div className="button-prev"><HiOutlineArrowLeft /></div>
-        <div className="button-next"><HiOutlineArrowRight/></div>
+
+        <div className="button-prev absolute inset-y-1/2 left-10 bg-black text-white z-10"><HiOutlineArrowLeft /></div>
+        <div className="button-next absolute inset-y-1/2 right-10 bg-black text-white z-10"><HiOutlineArrowRight/></div>
       </Swiper>
     </div>
   )
