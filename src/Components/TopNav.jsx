@@ -13,7 +13,7 @@ function TopNav() {
         <p>Categories</p>
         <label 
             htmlFor="search"
-            className='flex-1 flex gap-3 items-center rounded-full border border-black p-2 px-4' 
+            className='flex-1 flex gap-3 items-center rounded-full border border-black p-3 px-4' 
         >
            < AiOutlineSearch />
            <input 
@@ -26,9 +26,11 @@ function TopNav() {
         <Link >Udemy Business</Link>
         <Link>Teach on Udemy</Link>
         <AiOutlineShoppingCart />
-        <Link className='border border-black py-2 px-4'>Log In</Link>
-        <Link className='border border-black py-2 px-4'>Sign Up</Link>
-        <button className='border border-black p-3'><AiOutlineGlobal /></button>
+        <div className="flex gap-2 items-center">
+            <Link className='border border-black py-1.5 px-4'>Log In</Link>
+            <Link className='border border-black py-1.5 px-4 bg-black font-semibold text-white'>Sign Up</Link>
+            <button className='border border-black p-2.5'><AiOutlineGlobal /></button>
+        </div>
     </div>
   )
 }
