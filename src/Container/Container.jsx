@@ -1,12 +1,13 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
-import Footer from '../Components/Footer'
 import { Outlet } from 'react-router-dom';
+
+import Footer from '../Components/Footer'
+import TopNav from '../Components/TopNav';
 
 function Container() {
   return (
     <div className="container">
-        <Navbar/>
+        <TopNav />
         <Outlet />
         <Footer />
     </div>
