@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 
 import "swiper/css";
 import "swiper/css/navigation";
-import './Hero.css'
 import { HashLink } from "react-router-hash-link";
 
 const randomImage1 = "https://source.unsplash.com/1700x602/?technology"
