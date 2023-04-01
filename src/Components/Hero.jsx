@@ -67,34 +67,6 @@ function Hero() {
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide >
-          <div className="swiperImage">
-            <div className="cover"></div>
-            <img src={randomImage3} />
-            <div className="titleContent">
-              <h2>Your Global Trade facilitation and Supply partner</h2>
-              <p>Jeffries and Madison makes sure you have the best attorneys on your side.</p>
-              <div className="contacts">
-                <Link className="cta">Book a meeting</Link>
-                <Link className="cta">Learn More</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className="swiperImage">
-            <div className="cover"></div>
-            <img src={randomImage4} />
-            <div className="titleContent">
-              <h2>Your Global Trade facilitation and Supply partner</h2>
-              <p>Jeffries and Madison makes sure you have the best attorneys on your side.</p>
-              <div className="contacts">
-                <HashLink to="#footer" className="cta">Book a meeting</HashLink>
-                <HashLink to="#footer" className="cta">Learn More</HashLink>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
         <div className="button-prev"><HiOutlineArrowLeft /></div>
         <div className="button-next"><HiOutlineArrowRight/></div>
       </Swiper>
