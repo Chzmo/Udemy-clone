@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Courses() {
   const [course, setCourse] = useState('Python')
@@ -22,12 +23,13 @@ function Courses() {
       </div>
       <div className="border border-slate-500 mt-3 p-7 ">
         <h2 className="text-2xl font-bold">Expand your career opportunities with {course}</h2>
-        <p className='pt-4 text-lg'>
+        <p className='py-4 text-lg'>
           Take one of Udemy’s range of Python courses and learn how to code using this 
           incredibly useful language. Its simple syntax and readability makes Python perfect for Flask, 
           Django, data science, and machine learning. You’ll learn how to build everything from games to 
           sites to apps. Choose from a range of courses that will appeal to
         </p>
+        <Link className='border border-black py-2 font-semibold px-4 font-bold'>Explore {course}</Link>
       </div>
     </div>
   )
