@@ -8,10 +8,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { HashLink } from "react-router-hash-link";
 
-const randomImage1 = "https://source.unsplash.com/1700x602/?technology"
-const randomImage2 = "https://source.unsplash.com/1700x599/?agriculture"
-const randomImage3 = "https://source.unsplash.com/1700x601/?medicine"
-const randomImage4 = "https://source.unsplash.com/1700x600/?mining"
+const randomImage1 = "https://source.unsplash.com/1700x502/?technology"
+const randomImage2 = "https://source.unsplash.com/1700x499/?programming"
+const randomImage3 = "https://source.unsplash.com/1700x501/?coding"
+const randomImage4 = "https://source.unsplash.com/1700x500/?mining"
 
 function Hero() {
   return (
@@ -22,7 +22,7 @@ function Hero() {
         loop={true}
         // onSlideChange={}
         autoplay={{
-          delay: 5000,
+          delay: 7000,
           disableOnInteraction: false,
         }}
         navigation={{
