@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CiStar } from 'react-icons/ci'
 
 const randomImage2 = "https://source.unsplash.com/600x500/?learing"
 
@@ -9,6 +10,20 @@ function Courses() {
   useEffect(() => {
     console.log(course)
   }, [course])
+
+  const Stars = (props) =>{
+    let stars = [];
+
+    for (let i = 0; i < parseInt(props.stars); i++){
+        stars.push(< CiStar key={i}/>);
+    }
+    
+    return(
+        <div className="flex items-center text-slate-500">
+            {stars}
+        </div>
+    );
+  }
   
   return (
     <div id='courses' className='py-12 px-7'>
@@ -41,7 +56,7 @@ function Courses() {
             />
             <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
             <p>Jose Name</p>
-            <div className="flex gap-2"><h2>4.6</h2><p>stars</p><p>(12,004)</p></div>
+            <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
             <p>$182.99</p>
           </div>
         </div>
