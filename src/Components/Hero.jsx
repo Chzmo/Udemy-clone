@@ -58,8 +58,18 @@ function Hero() {
           </div>
         </SwiperSlide>
 
-        <div className="button-prev absolute inset-y-1/2 left-10 bg-black text-white z-10"><HiOutlineArrowLeft /></div>
-        <div className="button-next absolute inset-y-1/2 right-10 bg-black text-white z-10"><HiOutlineArrowRight/></div>
+        <div 
+          className="button-prev absolute inset-y-1/2 left-10 \
+            bg-black h-10 w-10 text-white z-10 rounded-full flex items-center justify-center"
+          >
+            <HiOutlineArrowLeft />
+        </div>
+        <div 
+          className="button-next absolute inset-y-1/2 right-10 \
+            bg-black h-10 w-10 text-white z-10 rounded-full flex items-center justify-center"
+          >
+            <HiOutlineArrowRight/>
+        </div>
       </Swiper>
     </div>
   )
