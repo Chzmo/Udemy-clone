@@ -59,13 +59,13 @@ function Hero() {
         </SwiperSlide>
 
         <div 
-          className="button-prev absolute inset-y-1/2 left-10 \
+          className="button-prev absolute inset-y-1/2 left-7 \
             bg-black h-10 w-10 text-white z-10 rounded-full flex items-center justify-center"
           >
             <HiOutlineArrowLeft />
         </div>
         <div 
-          className="button-next absolute inset-y-1/2 right-10 \
+          className="button-next absolute inset-y-1/2 right-7 \
             bg-black h-10 w-10 text-white z-10 rounded-full flex items-center justify-center"
           >
             <HiOutlineArrowRight/>
