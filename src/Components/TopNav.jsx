@@ -7,7 +7,7 @@ import logo from '../assets/logo/logo-udemy.svg'
 function TopNav() {
   return (
     <div 
-        className="w-full flex py-3 px-6 gap-5 items-center space-between shadow-md"
+        className="w-full flex py-3 px-6 gap-5 items-center space-between shadow-lg"
     >
         <img className='h-8' src={logo} alt="logo" />
         <p>Categories</p>

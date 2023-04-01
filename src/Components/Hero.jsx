@@ -35,21 +35,29 @@ function Hero() {
         // }}
         modules={[Autoplay, Navigation, Pagination, History]}
         className="mySwiper"
-    >
+      >
         <SwiperSlide className="">
           <div className="swiperImage relative">
-            <div className="cover position "></div>
+            <div className="cover "></div>
             <img src={randomImage1} />
-            <div className="titleContent absolute top-0">
-              <h2>Your Global Trade facilitation and Supply partner</h2>
-              <p>Jeffries and Madison makes sure you have the best attorneys on your side.</p>
-              <div className="contacts">
-                <HashLink to="#footer" className="cta">Book a meeting</HashLink>
-                <HashLink to="#footer" className="cta">Learn More</HashLink>
-              </div>
+            <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
+              <h2 className="text-3xl font-bold ">Learning that gets you</h2>
+              <p className="pt-4 text-lg">Skills for your present (and your future). Get started with us.</p>
             </div>
           </div>
         </SwiperSlide>
+
+        <SwiperSlide className="">
+          <div className="swiperImage relative">
+            <div className="cover "></div>
+            <img src={randomImage1} />
+            <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
+              <h2 className="text-3xl font-bold ">Learning that gets you</h2>
+              <p className="pt-4 text-lg">Skills for your present (and your future). Get started with us.</p>
+            </div>
+          </div>
+        </SwiperSlide>
+        
         <div className="button-prev"><HiOutlineArrowLeft /></div>
         <div className="button-next"><HiOutlineArrowRight/></div>
       </Swiper>
