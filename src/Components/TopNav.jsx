@@ -12,10 +12,8 @@ function TopNav() {
         <img className='h-8' src={logo} alt="logo" />
         <p>Categories</p>
         <label 
-            htmlFor="search" 
-            tabIndex={1}
+            htmlFor="search"
             className='flex-1 flex gap-3 items-center rounded-full border border-black p-2 px-4' 
-            onFocus
         >
            < AiOutlineSearch />
            <input 
@@ -25,12 +23,12 @@ function TopNav() {
                 className=' flex-1 border-transparent outline-white'
             />
         </label>
-        <Link>Udemy Business</Link>
+        <Link >Udemy Business</Link>
         <Link>Teach on Udemy</Link>
         <AiOutlineShoppingCart />
-        <Link>Log In</Link>
-        <Link>Sign Up</Link>
-        <button><AiOutlineGlobal /></button>
+        <Link className='border border-black py-2 px-4'>Log In</Link>
+        <Link className='border border-black py-2 px-4'>Sign Up</Link>
+        <button className='border border-black p-3'><AiOutlineGlobal /></button>
     </div>
   )
 }
