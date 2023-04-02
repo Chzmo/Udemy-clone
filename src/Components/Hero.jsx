@@ -39,7 +39,9 @@ function Hero() {
         <SwiperSlide className="">
           <div className="swiperImage relative">
             <div className="cover absolute h-full w-full"></div>
-            <img src={randomImage1} />
+            <div className="h-124">
+              <img src={randomImage1} alt="slider"/>
+            </div>
             <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
               <h2 className="text-3xl font-bold">Learning that gets you</h2>
               <p className="pt-4 text-lg">Skills for your present (and your future). Get started with us.</p>
@@ -50,7 +52,9 @@ function Hero() {
         <SwiperSlide className="">
           <div className="swiperImage relative">
             <div className="cover absolute h-full w-full"></div>
-            <img src={randomImage2} />
+            <div className="h-124">
+              <img src={randomImage1} alt='slider'/>
+            </div>
             <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
               <h2 className="text-3xl font-bold ">Learning that gets you</h2>
               <p className="pt-4 text-lg">Skills for your present (and your future). Get started with us.</p>

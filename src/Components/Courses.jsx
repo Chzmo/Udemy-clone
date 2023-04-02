@@ -49,11 +49,13 @@ function Courses() {
         <Link className='border border-black py-2 px-4 font-bold'>Explore {course}</Link>
         <div className="flex gap-5 mt-7">
           <div>
-            <img 
-              src={randomImage2} 
-              alt={course} 
-              className='h-40 w-72'
-            />
+            <div className="h-40 w-72">
+              <img 
+                src={randomImage2} 
+                alt={course} 
+                className='h-40 w-72 bg-slate-100'
+              />
+            </div>
             <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
             <p>Jose Name</p>
             <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
