@@ -6,7 +6,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import logo from '../assets/logo/logo-udemy.svg'
 
 function TopNav() {
-    const matches = useMediaQuery('(max-width: 1600px)');
+    const matches = useMediaQuery('(min-width: 1600px)');
     return (
         <div 
             className="w-full flex py-3 px-6 gap-5 items-center space-between shadow-lg"
@@ -25,8 +25,8 @@ function TopNav() {
                     className=' flex-1 border-transparent outline-white'
                 />
             </label>
-            {/* <Link >Udemy Business</Link>
-            {matches ? <Link>Teach on Udemy</Link> : <></>} */}
+            <Link className='hidden lg:flex'>Udemy Business</Link>
+            <Link className='hidden lg:flex'> Teach on Udemy</Link>
             <AiOutlineShoppingCart size={23} className='font-semibold'/>
             <div className="flex gap-2 items-center">
                 <Link className='border border-black py-1.5 font-semibold px-4'>Log In</Link>
