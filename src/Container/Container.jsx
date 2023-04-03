@@ -7,7 +7,7 @@ import TopNav from '../Components/TopNav';
 function Container() {
   return (
     <div >
-        {/* <TopNav /> */}
+        <TopNav />
         <Outlet />
         <Footer />
     </div>

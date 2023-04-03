@@ -21,7 +21,7 @@ const categoriesData = [
   {'image':musicImg, 'category':'Music'},
 ]
 
-function Categories() {
+function Featured() {
   return (
     <div id='testimonial' className='p-7 bg-white relative'>
       <h2 className='font-bold text-xl pt-6'>Top Categories</h2>
@@ -41,4 +41,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default Featured
