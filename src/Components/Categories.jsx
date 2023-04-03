@@ -25,7 +25,7 @@ function Categories() {
   return (
     <div id='testimonial' className='p-7 bg-white relative'>
       <h2 className='font-bold text-xl pt-6'>Top Categories</h2>
-      <div className='mt-7   lg:columns-4 gap-4 hover:cursor-pointer'>
+      <div className='mt-7 columns-4 gap-4 hover:cursor-pointer'>
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
