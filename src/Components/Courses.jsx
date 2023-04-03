@@ -61,6 +61,45 @@ function Courses() {
             <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
             <p>$182.99</p>
           </div>
+          <div>
+            <div className="h-40 w-72">
+              <img 
+                src={randomImage2} 
+                alt={course} 
+                className='h-40 w-72 bg-slate-100'
+              />
+            </div>
+            <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
+            <p>Jose Name</p>
+            <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
+            <p>$182.99</p>
+          </div>
+          <div>
+            <div className="h-40 w-72">
+              <img 
+                src={randomImage2} 
+                alt={course} 
+                className='h-40 w-72 bg-slate-100'
+              />
+            </div>
+            <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
+            <p>Jose Name</p>
+            <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
+            <p>$182.99</p>
+          </div>
+          <div>
+            <div className="h-40 w-72">
+              <img 
+                src={randomImage2} 
+                alt={course} 
+                className='h-40 w-72 bg-slate-100'
+              />
+            </div>
+            <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
+            <p>Jose Name</p>
+            <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
+            <p>$182.99</p>
+          </div>
         </div>
       </div>
     </div>
