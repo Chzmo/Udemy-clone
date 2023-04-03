@@ -45,7 +45,7 @@ function Featured() {
         })}
       </div>
       <div className="mt-7">
-        <Link className='border border-black py-1.5 font-semibold px-4'>Explore more topics</Link>
+        <Link className='border border-black py-2 font-bold text-sm px-4'>Explore more topics</Link>
       </div>
     </div>
   )
