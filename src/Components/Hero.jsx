@@ -53,7 +53,7 @@ function Hero() {
           <div className="swiperImage relative">
             <div className="cover absolute h-full w-full"></div>
             <div className="h-124">
-              <img src={randomImage1} alt='slider'/>
+              <img src={randomImage2} alt='slider'/>
             </div>
             <div className="titleContent absolute top-16 left-20 w-96 p-8 bg-white shadow-xl" >
               <h2 className="text-3xl font-bold ">Learning that gets you</h2>
