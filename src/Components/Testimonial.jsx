@@ -1,14 +1,14 @@
 import React from 'react'
-import { AiFillPlayCircle, AiOutlineLeft } from 'react-icons/ai'
+import { AiFillPlayCircle, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
 import quote from '../assets/icons/quote.svg'
 import { Link } from 'react-router-dom'
 
 function Testimonial() {
   return (
-    <div id='testimonial' className='p-7 bg-slate-100 h-32rem '>
+    <div id='testimonial' className='p-7 bg-slate-100 h-32rem relative'>
       <h2 className='font-bold text-xl pt-6'>How learners like you are achieving their goals</h2>
-        <div className='mt-7 h-full relative overflow-x-hidden z-50'>
+      <div className='mt-7 h-full w-full relative overflow-x-hidden'>
           <div className="flex gap-3 absolute top-0 left-0">
             <div className="p-5 border border-slate-400 bg-white">
               <div className='w-5 h-5'><img src={quote} alt="icon" /></div>
@@ -79,11 +79,11 @@ function Testimonial() {
               </Link>
             </div>
           </div>
-          <div 
-            className="flex items-center justify-center absolute z-20 top-36 -left-4 bg-black text-white font-bold rounded-full p-2 text-lg"
-            >
-            <AiOutlineLeft size={20} />
-          </div>
+      </div>
+      <div 
+        className="flex items-center justify-center absolute z-50 top-60 right-3 bg-black text-white font-bold rounded-full p-2 text-lg"
+        >
+        <AiOutlineRight className='hover:cursor-pointer' size={20} />
       </div>
     </div>
   )
