@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { CiStar } from 'react-icons/ci'
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
-const randomImage2 = "https://source.unsplash.com/600x501/?learing"
-const randomImage3 = "https://source.unsplash.com/600x500/?learing"
+const randomImage2 = "https://source.unsplash.com/601x500/?learing"
+const randomImage3 = "https://source.unsplash.com/600x501/?learing"
 const randomImage4 = "https://source.unsplash.com/600x502/?learing"
 const randomImage5 = "https://source.unsplash.com/600x498/?learing"
 
@@ -62,7 +62,7 @@ function Courses() {
             </div>
             <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
             <p>Jose Name</p>
-            <div className="flex gap-2"><h2>4.6</h2><Stars stars={4}/><p>(12,004)</p></div>
+            <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
             <p>$182.99</p>
           </div>
           <div>

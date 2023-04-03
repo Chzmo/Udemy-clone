@@ -21,7 +21,7 @@ const categoriesData = [
   {'image':musicImg, 'category':'Music'},
 ]
 
-function Featured() {
+function Categories() {
   return (
     <div id='testimonial' className='p-7 bg-white relative'>
       <h2 className='font-bold text-xl pt-6'>Top Categories</h2>
@@ -29,7 +29,7 @@ function Featured() {
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
-              <Link key={index} className="pb-7">
+              <Link key={index} className="pb-9">
                 <img src={item.image} alt="design" />
                 <h2 className='font-bold pt-2'>{item.category}</h2>
               </Link>
@@ -41,4 +41,4 @@ function Featured() {
   )
 }
 
-export default Featured
+export default Categories
