@@ -27,11 +27,11 @@ function Featured() {
   return (
     <div id='featured' className='p-7 bg-slate-100'>
       <h2 className='font-bold text-xl pt-6'>Featured topics by category</h2>
-      <div className='mt-7 columns-2 sm:columns-4 '>
+      <div className='mt-7 grid grid-cols-2 gap-12 md:grid-cols-4'>
         {featuredData && featuredData.map((item, index) => {
           return(
-            <div key={index} className='flex flex-col gap-4 mt-2'>
-              <h2 className="font-bold mb-6 text-lg">{item.title}</h2>
+            <div key={index} className='flex flex-col gap-4'>
+              <h2 className="font-bold text-lg">{item.title}</h2>
               {item.courses.map((course)=>{
                 return (
                   <div key={course.course}>
