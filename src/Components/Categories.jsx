@@ -25,13 +25,30 @@ function Categories() {
   return (
     <div id='testimonial' className='p-7 bg-white relative'>
       <h2 className='font-bold text-xl pt-6'>Top Categories</h2>
-      <div className='mt-7 columns-4 gap-4 hover:cursor-pointer'>
+      <div className='flex flex-wrap gap-3 mt-7 gap-4 hover:cursor-pointer md:columns-4'>
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
-              <Link key={index} className="pb-9">
-                <img src={item.image} alt="design" />
-                <h2 className='font-bold pt-2'>{item.category}</h2>
+              <Link key={index} className="">
+                <img 
+                  src={item.image} 
+                  alt="design" 
+                  className='
+                    hidden
+                  '
+                />
+                <h2 
+                  className='
+                    font-bold 
+                    py-2 
+                    px-4
+                    border
+                    border-slate-900
+                    rounded-full
+                  '
+                >
+                  {item.category}
+                </h2>
               </Link>
             )
           })

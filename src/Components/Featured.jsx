@@ -34,7 +34,7 @@ function Featured() {
               <h2 className="font-bold mb-6 text-lg">{item.title}</h2>
               {item.courses.map((course)=>{
                 return (
-                  <div>
+                  <div key={course.course}>
                     <Link className='text-purple-700 font-semibold'>{course.course}</Link>
                     <p className='text-slate-700 mt-1'>{course.studentsNum} students</p>
                   </div>
