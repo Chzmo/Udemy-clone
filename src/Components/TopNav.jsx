@@ -25,7 +25,7 @@ function TopNav() {
         </label>
         <Link >Udemy Business</Link>
         <Link>Teach on Udemy</Link>
-        <AiOutlineShoppingCart />
+        <AiOutlineShoppingCart size={23} className='font-semibold'/>
         <div className="flex gap-2 items-center">
             <Link className='border border-black py-1.5 font-semibold px-4'>Log In</Link>
             <Link className='border border-black py-1.5 px-4 bg-black font-semibold text-white'>Sign Up</Link>

@@ -1,8 +1,36 @@
 import React from 'react'
+import { AiOutlineGlobal } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <div className='px-7 pt-6 pb-9 bg-black text-white'>
+      <div className="flex justify-between">
+        <div className="grid-cols-3 grid gap-12">
+        <div className="flex flex-col gap-2">
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+            <div><Link>Udemy Business</Link></div>
+          </div>
+        </div>
+        <div className="">
+          <Link className='border border-white py-2 font-bold text-sm px-4 pr-6 flex gap-2 items-center'> <AiOutlineGlobal size={20}/> English</Link>
+      </div>
+      </div>
+    </div>
   )
 }
 
