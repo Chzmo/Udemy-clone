@@ -25,7 +25,7 @@ function Categories() {
   return (
     <div id='testimonial' className='p-7 bg-white relative'>
       <h2 className='font-bold text-xl pt-6'>Top Categories</h2>
-      <div className='flex flex-wrap gap-3 mt-7 gap-4 hover:cursor-pointer md:columns-4'>
+      <div className='flex flex-wrap gap-3 mt-7 gap-4 hover:cursor-pointer md:grid md:grid-cols-4'>
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
@@ -35,6 +35,9 @@ function Categories() {
                   alt="design" 
                   className='
                     hidden
+                    md:flex
+                    items-center
+                    justify-center
                   '
                 />
                 <h2 
@@ -45,6 +48,8 @@ function Categories() {
                     border
                     border-slate-900
                     rounded-full
+                    md:border-none
+                    md:pl-0
                   '
                 >
                   {item.category}
