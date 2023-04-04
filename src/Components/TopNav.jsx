@@ -1,5 +1,7 @@
 import React from 'react'
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineGlobal } from 'react-icons/ai'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { MdOutlineShoppingCart } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -9,13 +11,26 @@ function TopNav() {
     const matches = useMediaQuery('(min-width: 1600px)');
     return (
         <div 
-            className="w-full flex py-3 px-6 gap-5 items-center space-between shadow-lg"
+            className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg"
         >
-            <img className='h-8' src={logo} alt="logo" />
-            <p>Categories</p>
+            <div className='sm:hidden'>
+                <RxHamburgerMenu />
+            </div>
+            <img className='h-6' src={logo} alt="logo" />
+            <p className='hidden sm:flex'>Categories</p>
             <label 
                 htmlFor="search"
-                className='flex-1 flex gap-3 items-center rounded-full border border-black p-3 px-4' 
+                className='
+                hidden sm:flex
+                flex-1 
+                flex 
+                gap-3 
+                items-center 
+                rounded-full 
+                border 
+                border-black 
+                py-2 
+                px-4' 
             >
             < AiOutlineSearch />
             <input 
@@ -27,11 +42,17 @@ function TopNav() {
             </label>
             <Link className='hidden md:flex'>Udemy Business</Link>
             <Link className='hidden lg:flex'> Teach on Udemy</Link>
-            <AiOutlineShoppingCart size={23} className='font-semibold'/>
-            <div className="flex gap-2 items-center">
+            <MdOutlineShoppingCart size={23} className='hidden font-semibold sm:flex'/>
+            <div className="flex gap-2 items-center hidden sm:flex">
                 <Link className='border border-black py-1.5 font-semibold px-4'>Log In</Link>
                 <Link className='border border-black py-1.5 px-4 bg-black font-semibold text-white'>Sign Up</Link>
                 <button className='border border-black p-2.5'><AiOutlineGlobal /></button>
+            </div>
+            <div className="flex items-center gap-2 sm:hidden">
+                <AiOutlineSearch size={20}/>
+                <div className="flex items-center">
+                    <MdOutlineShoppingCart size={23} className='font-semibold'/>
+                </div>
             </div>
         </div>
     )

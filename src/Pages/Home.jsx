@@ -8,11 +8,13 @@ import Featured from '../Components/Featured'
 function Home() {
   return (
     <>
+    {/*
         <Hero/>
         <Courses />
         <Testimonial />
         <Categories/>
         <Featured/>
+*/}
     </>
   )
 }
