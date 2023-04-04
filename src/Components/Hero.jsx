@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { HashLink } from "react-router-hash-link";
 
 const randomImage1 = "https://source.unsplash.com/1700x502/?education"
+const randomImage3 = "https://source.unsplash.com/100x502/?education"
 const randomImage2 = "https://source.unsplash.com/1700x499/?learing"
 
 function Hero() {
@@ -41,7 +42,7 @@ function Hero() {
             <div className="cover "></div>
             <div className="">
               <img 
-                src={randomImage1} alt="slider"
+                src={randomImage3} alt="slider"
                 className="h-60"
               />
             </div>
