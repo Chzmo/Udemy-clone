@@ -107,7 +107,7 @@ function Courses(props) {
   
   return (
     <>
-      <div id='courses' className='py-12 px-7 hidden'>
+      <div id='courses' className='py-12 px-7 hidden md:flex md:flex-col'>
         <h2 className="text-3xl font-bold " >A broad selection of courses</h2>
         <p className='pt-4 text-lg'>Choose from 213,000 online video courses with new additions published every month</p>
         <div className="flex gap-3 mt-3">
@@ -119,7 +119,7 @@ function Courses(props) {
           <p onClick={(e) => setCourse(e.target.innerText)} className='font-bold text-lg hover:text-black text-slate-500 cursor-pointer'>AWS Certification</p>
           <p onClick={(e) => setCourse(e.target.innerText)} className='font-bold text-lg hover:text-black text-slate-500 cursor-pointer'>Drawing</p>
         </div>
-        <div className="border border-slate-500 mt-3 p-7 hidden">
+        <div className="border border-slate-500 mt-3 p-7">
           <h2 className="hidden md:flex text-2xl font-bold">Expand your career opportunities with {course}</h2>
           <p className='hidden md:flex py-4 text-lg max-w-screen-lg'>
             Take one of Udemy’s range of Python courses and learn how to code using this 
@@ -133,7 +133,7 @@ function Courses(props) {
           </div>
         </div>
       </div>
-      <div id='courses' className='py-3 px-7'>
+      <div id='courses' className='py-3 px-7 md:hidden'>
         <h2 className="text-2xl font-bold " >A broad selection of courses</h2>
         {sample?.map((item, index) => (
           <AccordionItem 
