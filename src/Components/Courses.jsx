@@ -5,7 +5,7 @@ import CourseDetails from './CourseDetails'
 
 
 function AccordionItem(props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(props.defaultOpen);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -136,7 +136,12 @@ function Courses(props) {
       <div id='courses' className='py-3 px-7'>
         <h2 className="text-2xl font-bold " >A broad selection of courses</h2>
         {sample?.map((item, index) => (
-          <AccordionItem key={index} title={item.title} content={item.content} />
+          <AccordionItem 
+            key={index} 
+            title={item.title} 
+            content={item.content}
+            defaultOpen={index === 0}
+          />
         ))}
       </div>
     </>
