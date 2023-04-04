@@ -16,21 +16,24 @@ function Footer() {
       >
           <div className="flex flex-col gap-1 sm:gap-2">
             <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
+            <div><Link>Teach on Udemy</Link></div>
+            <div><Link>Get The app</Link></div>
+            <div><Link>About Us</Link></div>
+            <div><Link>Contact Us</Link></div>
           </div>
           <div className="flex flex-col gap-1 sm:gap-2">
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
+            <div><Link>Careers</Link></div>
+            <div><Link>Blog</Link></div>
+            <div><Link>Help and Support</Link></div>
+            <div><Link>Affiliate</Link></div>
+            <div><Link>Investors</Link></div>
           </div>
           <div className="flex flex-col gap-1 sm:gap-2">
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
-            <div><Link>Udemy Business</Link></div>
+            <div><Link>Terms</Link></div>
+            <div><Link>Privacey policy</Link></div>
+            <div><Link>Cookie settings</Link></div>
+            <div><Link>Sitemap</Link></div>
+            <div><Link>Accessibility statement</Link></div>
           </div>
         </div>
         <div className=" flex-none">
