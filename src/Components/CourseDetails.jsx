@@ -36,7 +36,6 @@ function CourseDetails() {
                 data-tooltip-id="my-tooltip" 
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
-                data-tooltip-delay-hide={6000}
             >
                 <div className="h-40 w-72">
                 <img 
