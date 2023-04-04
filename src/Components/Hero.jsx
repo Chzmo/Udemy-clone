@@ -87,7 +87,7 @@ function Hero() {
 
         <div 
           className="
-            hidden sm:flex
+            hidden hover:cursor-pointer sm:flex
             button-prev absolute inset-y-1/2 left-7 \
             bg-black h-10 w-10 text-white z-10 
             rounded-full items-center justify-center
@@ -97,7 +97,7 @@ function Hero() {
         </div>
         <div 
           className="
-          hidden sm:flex
+          hidden hover:cursor-pointer sm:flex
           button-next absolute inset-y-1/2 right-7 \
           bg-black h-10 w-10 text-white z-10 
           rounded-full items-center justify-center"
