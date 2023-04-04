@@ -3,7 +3,30 @@ import { Link } from 'react-router-dom'
 import { CiStar } from 'react-icons/ci'
 import CourseDetails from './CourseDetails'
 
-function Courses() {
+
+function AccordionItem(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div>
+      <button onClick={handleToggle}>{props.title}</button>
+      {/* {isOpen && <div>{props.content}</div>} */}
+      {isOpen && 
+        <div className='flex gap-5 mt-7 overflow-x-scroll'>
+          <CourseDetails />
+          <CourseDetails />
+          <CourseDetails />
+        </div>
+      }
+    </div>
+  );
+}
+
+function Courses(props) {
   const [course, setCourse] = useState('Python')
   const data =  [
     { 
@@ -72,12 +95,11 @@ function Courses() {
     },
   ]
 
-  const [activeIndex, setActiveIndex] = useState(data);
-  const items = data;
-
-  const handleClick = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  }
+  const sample = [
+    {'title': 'Python', 'content':'testing1'},
+    {'title': 'Web', 'content':'testing2'},
+    {'title': 'Hello', 'content':'testing3'},
+  ]
 
   useEffect(() => {
     // console.log(course)
@@ -113,22 +135,9 @@ function Courses() {
       </div>
       <div id='courses' className='py-3 px-7'>
         <h2 className="text-3xl font-bold " >A broad selection of courses</h2>
-        <div id='FAQ' className='accordion '>
-          {items?.map((item, index) => (
-            <div key={item.title} className="accordion__item">
-              <div onClick={() => handleClick(index)}>
-                <h3>{item.title}</h3>
-              </div>
-              {activeIndex === index && 
-                <div className="flex gap-5 overflow-x-scroll">
-                  <CourseDetails />
-                  <CourseDetails />
-                  <CourseDetails />
-                </div>
-              }
-            </div>
-          ))}
-        </div>
+        {sample?.map((item, index) => (
+          <AccordionItem key={index} title={item.title} content={item.content} />
+        ))}
       </div>
     </>
   )
