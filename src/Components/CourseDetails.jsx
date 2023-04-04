@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CiStar } from 'react-icons/ci';
 import { BiCheck } from 'react-icons/bi';
 import { BsHeart } from 'react-icons/bs';
@@ -13,6 +13,8 @@ const randomImage4 = "https://source.unsplash.com/600x502/?learing"
 const randomImage5 = "https://source.unsplash.com/600x498/?learing"
 
 function CourseDetails() {
+
+    const [isOpen, setIsOpen] = useState(false)
 
     const Stars = (props) =>{
         let stars = [];
@@ -30,7 +32,12 @@ function CourseDetails() {
 
     return (
         <>
-            <div data-tooltip-id="my-tooltip">
+            <div 
+                data-tooltip-id="my-tooltip" 
+                onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={() => setIsOpen(false)}
+                data-tooltip-delay-hide={6000}
+            >
                 <div className="h-40 w-72">
                 <img 
                     src={randomImage1} 
@@ -50,10 +57,15 @@ function CourseDetails() {
                 hidden
                 md:flex
                 p-5 bg-white border border-slate-300
-                absolute z-10
+                absolute z-10 -left-4
                 '
-            >
-                <div className='flex flex-col gap-1'>
+                isOpen={isOpen}
+                >
+                <div 
+                    onMouseEnter={() => setIsOpen(true)}
+                    onMouseLeave={() => setIsOpen(false)}
+                    className='flex flex-col gap-1'
+                >
                     <h2 className='w-72 font-bold text-lg text-slate-600'>Automate the boring stuff with Python Programming</h2>
                     <small className='text-xsm text-emerald-700'>Updated <span className='font-bold'>February 2023</span></small>
                     <small className='text-xsm text-slate-600'>42.5 total hours All Levels Subtitles</small>
@@ -63,13 +75,13 @@ function CourseDetails() {
                     <div className="div flex w-72">
                         <BiCheck size={24} className='w-9'/>
                         <p className="text-md w-60">
-                            You will master the Python programming language by building 100 unique projects over 100 days
+                            You will master the Python  language by building 100 unique projects over 100 days
                         </p>
                     </div>
                     <div className="div flex w-72">
                         <BiCheck size={24} className='w-9'/>
                         <p className="text-md w-60">
-                            You will master the Python programming language by 
+                            You will master the programming language by 
                         </p>
                     </div>
                     <div className="div flex w-72">

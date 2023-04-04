@@ -24,8 +24,8 @@ function Hero() {
           disableOnInteraction: false,
         }}
         navigation={{
-          prevEl :".button-prev",
           nextEl :".button-next",
+          prevEl :".button-prev",
         }}
         keyboard={{
           enabled: true,
@@ -98,7 +98,7 @@ function Hero() {
         <div 
           className="
           hidden sm:flex
-          button-next absolute inset-y-1/2 right-7
+          button-next absolute inset-y-1/2 right-7 \
           bg-black h-10 w-10 text-white z-10 
           rounded-full items-center justify-center"
           >
