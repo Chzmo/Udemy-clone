@@ -9,9 +9,7 @@ function Home() {
   return (
     <>
     <Hero/>
-    {/*
         <Courses />
-      */}
         <Testimonial />
         <Categories/>
         <Featured/>

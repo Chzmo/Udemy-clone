@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CiStar } from 'react-icons/ci'
-
-const randomImage1 = "https://source.unsplash.com/600x499/?learing"
-const randomImage2 = "https://source.unsplash.com/601x500/?learing"
-const randomImage3 = "https://source.unsplash.com/600x501/?learing"
-const randomImage4 = "https://source.unsplash.com/600x502/?learing"
-const randomImage5 = "https://source.unsplash.com/600x498/?learing"
+import CourseDetails from './CourseDetails'
 
 function Courses() {
   const [course, setCourse] = useState('Python')
@@ -52,19 +47,7 @@ function Courses() {
         </p>
         <Link className='hidden md:inline-block border border-black py-2 px-4 font-bold'>Explore {course}</Link>
         <div className="flex gap-5 mt-7">
-          <div>
-            <div className="h-40 w-72">
-              <img 
-                src={randomImage1} 
-                alt={course} 
-                className='h-40 w-72 bg-slate-100'
-              />
-            </div>
-            <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
-            <p>Jose Name</p>
-            <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
-            <p>$182.99</p>
-          </div>
+          <CourseDetails />
         </div>
       </div>
     </div>
