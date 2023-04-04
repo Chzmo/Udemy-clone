@@ -8,13 +8,13 @@ import Featured from '../Components/Featured'
 function Home() {
   return (
     <>
+    <Hero/>
     {/*
-        <Hero/>
         <Courses />
+      */}
         <Testimonial />
         <Categories/>
         <Featured/>
-*/}
     </>
   )
 }
