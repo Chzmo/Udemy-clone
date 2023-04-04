@@ -55,8 +55,8 @@ function CourseDetails() {
             >
                 <div className='flex flex-col gap-1'>
                     <h2 className='w-72 font-bold text-lg text-slate-600'>Automate the boring stuff with Python Programming</h2>
-                    <small className='text-xsm'>Updated <span className='font-semibold'>February 2023</span></small>
-                    <small className='text-xsm'>42.5 total hours All Levels Subtitles</small>
+                    <small className='text-xsm text-emerald-700'>Updated <span className='font-bold'>February 2023</span></small>
+                    <small className='text-xsm text-slate-600'>42.5 total hours All Levels Subtitles</small>
                     <p className='text-md w-72'>
                         Learn to create Machine Learning Algorithms in Python and R 
                     </p>

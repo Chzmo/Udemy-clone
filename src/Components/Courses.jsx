@@ -26,7 +26,7 @@ function Courses() {
   
   return (
     <div id='courses' className='py-12 px-7'>
-      <h2 className="text-3xl font-bold">A broad selection of courses</h2>
+      <h2 className="text-3xl font-bold " >A broad selection of courses</h2>
       <p className='pt-4 text-lg'>Choose from 213,000 online video courses with new additions published every month</p>
       <div className="flex gap-3 mt-3">
         <p onClick={(e) => setCourse(e.target.innerText)} className='font-bold text-lg text-black '>Python</p>
