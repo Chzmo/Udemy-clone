@@ -36,7 +36,7 @@ function Footer() {
             <div><Link>Accessibility statement</Link></div>
           </div>
         </div>
-        <div className=" flex-none">
+        <div className="w-32">
           <Link className='border border-white py-2 font-bold text-sm px-4 pr-6 flex gap-2 items-center'> <AiOutlineGlobal size={20}/> English</Link>
       </div>
       </div>
