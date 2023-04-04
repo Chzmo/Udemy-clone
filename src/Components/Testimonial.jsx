@@ -8,7 +8,7 @@ function Testimonial() {
   return (
     <div id='testimonial' className='p-7 bg-slate-100 h-32rem relative'>
       <h2 className='font-bold text-xl pt-6'>How learners like you are achieving their goals</h2>
-      <div className='mt-7 h-full w-full relative overflow-x-hidden'>
+      <div className='mt-7 h-full w-full relative overflow-x-scroll'>
           <div className="flex gap-3 absolute top-0 left-0">
             <div className="p-5 border border-slate-400 bg-white">
               <div className='w-5 h-5'><img src={quote} alt="icon" /></div>
@@ -24,7 +24,7 @@ function Testimonial() {
               <hr />
               <Link className="flex gap-2 text-violet-600 pt-6 items-center">
                 <div className="flex"><AiFillPlayCircle size={30}/></div>
-                <p className='w-72 font-bold'>[NEW] Ultimate AWS Certified Cloud Practitioner - 2023</p>
+                <p className='w-60 font-bold'>[NEW] Ultimate AWS Certified Cloud Practitioner - 2023</p>
               </Link>
             </div>
             <div className="p-5 border border-slate-400 bg-white">
@@ -81,7 +81,7 @@ function Testimonial() {
           </div>
       </div>
       <div 
-        className="flex items-center justify-center absolute z-50 top-60 right-3 bg-black text-white font-bold rounded-full p-2 text-lg"
+        className="hidden flex items-center justify-center absolute z-50 top-60 right-3 bg-black text-white font-bold rounded-full p-2 text-lg"
         >
         <AiOutlineRight className='hover:cursor-pointer' size={20} />
       </div>
