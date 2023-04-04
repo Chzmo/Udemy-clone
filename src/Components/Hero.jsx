@@ -43,7 +43,7 @@ function Hero() {
             <div className="">
               <img 
                 src={randomImage3} alt="slider"
-                className="h-60"
+                className="h-60 w-full object-cover"
               />
             </div>
             <div className="titleContent px-5 py-5 bg-white shadow-xl" >

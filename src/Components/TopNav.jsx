@@ -16,7 +16,9 @@ function TopNav() {
             <div className='sm:hidden'>
                 <RxHamburgerMenu />
             </div>
-            <img className='h-6' src={logo} alt="logo" />
+            <img className='h-6' 
+                src={logo} alt="logo" 
+            />
             <p className='hidden sm:flex'>Categories</p>
             <label 
                 htmlFor="search"

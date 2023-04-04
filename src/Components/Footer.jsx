@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <div className='px-7 pt-6 pb-9 bg-black text-white'>
+    <div className='px-7 pt-6 pb-9 bg-black text-slate-300'>
       <div className="
         flex flex-col-reverse gap-7 
         sm:flex sm:flex-row sm:justify-between sm:gap-2/3
@@ -37,7 +37,9 @@ function Footer() {
           </div>
         </div>
         <div className="w-32">
-          <Link className='border border-white py-2 font-bold text-sm px-4 pr-6 flex gap-2 items-center'> <AiOutlineGlobal size={20}/> English</Link>
+          <Link className='border border-white text-white py-2 font-bold text-sm px-4 pr-6 flex gap-2 items-center'> 
+          <AiOutlineGlobal size={20}/> English
+          </Link>
       </div>
       </div>
     </div>
