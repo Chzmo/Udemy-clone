@@ -16,7 +16,7 @@ function AccordionItem(props) {
       <button onClick={handleToggle}>{props.title}</button>
       {/* {isOpen && <div>{props.content}</div>} */}
       {isOpen && 
-        <div className='flex gap-5 mt-7 overflow-x-scroll'>
+        <div className='flex gap-3 mt-7 overflow-x-scroll'>
           <CourseDetails />
           <CourseDetails />
           <CourseDetails />
