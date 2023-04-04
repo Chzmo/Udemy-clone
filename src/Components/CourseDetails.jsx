@@ -41,7 +41,7 @@ function CourseDetails() {
                 <img 
                     src={randomImage1} 
                     alt={`course`} 
-                    className='h-40 w-72 bg-slate-100 object-cover'
+                    className='h-40 w-64 bg-slate-100 object-cover'
                 />
                 </div>
                 <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
@@ -53,10 +53,10 @@ function CourseDetails() {
                 id="my-tooltip" 
                 place="right"
                 className='
-                hidden
-                md:flex
-                p-5 bg-white border border-slate-300
-                absolute z-10 -left-4
+                    hidden
+                    md:flex
+                    p-5 bg-white border border-slate-300
+                    absolute z-10 -left-4
                 '
                 isOpen={isOpen}
                 >
