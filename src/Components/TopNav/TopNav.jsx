@@ -16,10 +16,10 @@ function TopNav() {
     }
     return (
         <>
-            <SideNav />
             <div 
-                className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg"
+                className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
             >
+                <SideNav />
                 <div className='sm:hidden'>
                     <RxHamburgerMenu />
                 </div>
