@@ -8,7 +8,6 @@ function SideNav(props) {
   return (
     <>
       <div
-        style={{height:"100svh"}}
         // onScroll={e => e.stopPropagation()}
         // onTouchMove={e => e.stopPropagation()}
         className='static bg-black opacity-40 top-0 left-0 right-0 h-screen
@@ -16,11 +15,17 @@ function SideNav(props) {
       >
       </div>
 
+      {/* Close icon */}
       <div 
-        style={{height:"100svh"}}
+        className='static fixed bg-white top-3 right-3 rounded-full flex items-center justify-center z-20 p-3'
+      >
+        <RiCloseFill size={20}/>
+      </div>
+
+      <div 
         className='
-          static bg-white h-screen top-0 left-0 z-20 overflow-hidden overflow-y-scroll fixed
-          w-4/5
+          static bg-white h-screen top-0 -left-3/4 z-20 overflow-hidden overflow-y-scroll fixed
+          w-4/5 
         '
         onScroll={e => e.stopPropagation()}
         onTouchMove={e => e.stopPropagation()}
@@ -88,13 +93,6 @@ function SideNav(props) {
             <AiOutlineGlobal size={20}/> English
             </Link>
           </div>
-      </div>
-
-      {/* Close icon */}
-      <div 
-        className='static fixed bg-white top-3 right-3 rounded-full flex items-center justify-center z-20 p-3'
-      >
-        <RiCloseFill size={20}/>
       </div>
     </>
   )

@@ -9,6 +9,9 @@ module.exports = {
       height: {
         '32rem': '32rem',
       },
+      width:{
+        '4/5':'80%',
+      }
     },
     screens: {
       'xsm':'500px',
