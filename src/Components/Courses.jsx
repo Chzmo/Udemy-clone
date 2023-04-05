@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CiStar } from 'react-icons/ci'
+import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
 import CourseDetails from './CourseDetails'
 
 
@@ -13,10 +13,16 @@ function AccordionItem(props) {
 
   return (
     <div>
-      <button onClick={handleToggle}>{props.title}</button>
+      <div 
+        onClick={handleToggle}
+        className='flex justify-between'
+      >
+       <p> {props.title}</p>
+       <div>{isOpen ? <BiChevronUp size={15}/> : <BiChevronDown size={15}/>}</div>
+      </div>
       {/* {isOpen && <div>{props.content}</div>} */}
       {isOpen && 
-        <div className='flex gap-3 mt-7 overflow-x-scroll'>
+        <div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden'>
           <CourseDetails />
           <CourseDetails />
           <CourseDetails />
@@ -135,13 +141,17 @@ function Courses(props) {
       </div>
       <div id='courses' className='py-3 px-7 md:hidden'>
         <h2 className="text-2xl font-bold " >A broad selection of courses</h2>
+        <hr className='mt-3 mb-2'/>
         {sample?.map((item, index) => (
-          <AccordionItem 
-            key={index} 
-            title={item.title} 
-            content={item.content}
-            defaultOpen={index === 0}
-          />
+          <>
+            <AccordionItem 
+              key={index} 
+              title={item.title} 
+              content={item.content}
+              defaultOpen={index === 0}
+            />
+            <hr className='my-3'/>
+          </>
         ))}
       </div>
     </>

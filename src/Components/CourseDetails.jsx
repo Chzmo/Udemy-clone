@@ -5,7 +5,6 @@ import { BsHeart } from 'react-icons/bs';
 import { Tooltip } from 'react-tooltip';
 // import 'react-tooltip/dist/react-tooltip.css'
 
-
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 const randomImage2 = "https://source.unsplash.com/601x500/?learing"
 const randomImage3 = "https://source.unsplash.com/600x501/?learing"
@@ -59,7 +58,7 @@ function CourseDetails() {
                     absolute z-10
                 '
                 isOpen={isOpen}
-                >
+            >
                 <div 
                     onMouseEnter={() => setIsOpen(true)}
                     onMouseLeave={() => setIsOpen(false)}
@@ -80,13 +79,13 @@ function CourseDetails() {
                     <div className="div flex w-72">
                         <BiCheck size={24} className='w-9'/>
                         <p className="text-md w-60">
-                            You will master the programming language by 
+                            You will master the programming language by
                         </p>
                     </div>
                     <div className="div flex w-72">
                         <BiCheck size={24} className='w-9'/>
                         <p className="text-md w-60">
-                            You will master the Python programming 
+                            You will master the Python programming
                         </p>
                     </div>
                     <div className="flex gap-2 mt-2">
