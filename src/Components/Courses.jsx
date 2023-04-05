@@ -17,7 +17,7 @@ function AccordionItem(props) {
         onClick={handleToggle}
         className='flex justify-between'
       >
-       <p> {props.title}</p>
+       <p className='font-bold'> {props.title}</p>
        <div>{isOpen ? <BiChevronUp size={15}/> : <BiChevronDown size={15}/>}</div>
       </div>
       {/* {isOpen && <div>{props.content}</div>} */}
