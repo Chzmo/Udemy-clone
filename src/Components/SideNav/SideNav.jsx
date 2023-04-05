@@ -10,7 +10,7 @@ function SideNav(props) {
       <div
         // onScroll={e => e.stopPropagation()}
         // onTouchMove={e => e.stopPropagation()}
-        className='static bg-black top-0 left-0 right-0 bottom-0
+        className='static bg-black top-0 left-0 right-0 h-screen
          z-20 opacity-40 fixed' 
       >
       </div>
@@ -25,7 +25,7 @@ function SideNav(props) {
         >
           <div className="flex flex-col gap-2 px-3 mt-4 mb-3">
             <Link to='/login' >Log in</Link>
-            <Link to='/login' >Sign Up</Link>
+            <Link to='/register' >Sign Up</Link>
           </div>
           <hr />
           
@@ -63,7 +63,9 @@ function SideNav(props) {
             </div>
           </div>
           <hr />
-    {/* 4dr5 */}
+
+          {/* 4dr5 */}
+
           <div className="flex flex-col gap-2 my-3 px-3">
             <small className='text-slate-600 font-bold'>Most popular</small>
             <div className="flex justify-between">
