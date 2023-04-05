@@ -37,7 +37,7 @@ function CourseDetails() {
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
             >
-                <div className="h-40 w-72">
+                <div className="h-40 w-64">
                 <img 
                     src={randomImage1} 
                     alt={`course`} 
@@ -56,7 +56,7 @@ function CourseDetails() {
                     hidden
                     md:flex
                     p-5 bg-white border border-slate-300
-                    absolute z-10 -left-4
+                    absolute z-10
                 '
                 isOpen={isOpen}
                 >

@@ -8,7 +8,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import logo from '../assets/logo/logo-udemy.svg'
 
 function TopNav() {
-    const matches = useMediaQuery('(min-width: 1600px)');
+    // const matches = useMediaQuery('(min-width: 1600px)');
+    const handleSearchSubmit = (e) =>{
+        e.preventDefault()
+        alert()
+    }
     return (
         <div 
             className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg"
@@ -30,17 +34,23 @@ function TopNav() {
                 items-center 
                 rounded-full 
                 border 
-                border-black 
-                py-2 
-                px-4' 
+                border-slate-700 
+                py-2 px-4
+                bg-slate-100' 
             >
-            < AiOutlineSearch />
-            <input 
-                    type="text" 
-                    name='search' 
-                    placeholder='Seach for anything'
-                    className=' flex-1 border-transparent outline-white'
-                />
+                < AiOutlineSearch />
+                <form 
+                    onSubmit={handleSearchSubmit}
+                    className='w-full'
+                >
+                    <input 
+                        type="text" 
+                        name='search' 
+                        placeholder='Seach for anything'
+                        className=' flex-1 border-none outline-none w-full bg-transparent text-sm'
+                        tabIndex={1}
+                    />
+                </form>
             </label>
             <Link className='hidden md:flex'>Udemy Business</Link>
             <Link className='hidden lg:flex'> Teach on Udemy</Link>
