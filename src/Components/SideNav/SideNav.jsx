@@ -8,16 +8,18 @@ function SideNav(props) {
   return (
     <>
       <div
+        style={{height:"100svh"}}
         // onScroll={e => e.stopPropagation()}
         // onTouchMove={e => e.stopPropagation()}
-        className='static bg-black top-0 left-0 right-0 h-screen
-         z-20 opacity-40 fixed' 
+        className='static bg-black opacity-40 top-0 left-0 right-0 h-screen
+         z-20 fixed' 
       >
       </div>
 
       <div 
+        style={{height:"100svh"}}
         className='
-          static bg-white h-screen top-0 left-0 z-20 overflow-y-scroll fixed
+          static bg-white h-screen top-0 left-0 z-20 overflow-hidden overflow-y-scroll fixed
           w-4/5
         '
         onScroll={e => e.stopPropagation()}
