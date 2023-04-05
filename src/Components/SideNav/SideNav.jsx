@@ -24,8 +24,8 @@ function SideNav(props) {
         onTouchMove={e => e.stopPropagation()}
         >
           <div className="flex flex-col gap-2 px-3 mt-4 mb-3">
-            <Link to='/login' >Log in</Link>
-            <Link to='/register' >Sign Up</Link>
+            <Link to='/login' className='text-purple-800'>Log in</Link>
+            <Link to='/register' className='text-purple-800'>Sign up</Link>
           </div>
           <hr />
           
