@@ -2,6 +2,7 @@ import React from 'react'
 import { RiCloseFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
+import { AiOutlineGlobal } from 'react-icons/ai'
 
 function SideNav(props) {
   return (
@@ -9,7 +10,8 @@ function SideNav(props) {
       <div
         // onScroll={e => e.stopPropagation()}
         // onTouchMove={e => e.stopPropagation()}
-        className='static bg-black top-0 left-0 right-0 bottom-0 z-20 opacity-40 fixed' 
+        className='static bg-black top-0 left-0 right-0 bottom-0
+         z-20 opacity-40 fixed' 
       >
       </div>
 
@@ -18,6 +20,8 @@ function SideNav(props) {
           static bg-white h-screen top-0 left-0 z-20 overflow-y-scroll fixed
           w-4/5
         '
+        onScroll={e => e.stopPropagation()}
+        onTouchMove={e => e.stopPropagation()}
         >
           <div className="flex flex-col gap-2 px-3 mt-4 mb-3">
             <Link to='/login' >Log in</Link>
@@ -59,7 +63,7 @@ function SideNav(props) {
             </div>
           </div>
           <hr />
-
+    {/* 4dr5 */}
           <div className="flex flex-col gap-2 my-3 px-3">
             <small className='text-slate-600 font-bold'>Most popular</small>
             <div className="flex justify-between">
@@ -74,6 +78,11 @@ function SideNav(props) {
             <div className="flex justify-between">
               <p className='w-3/4'>Help</p> <BiChevronRight />
             </div>
+          </div>
+          <div className="ml-3 mb-3 w-32">
+            <Link className='border border-black text-black py-2 text-sm px-4 pr-6 flex gap-1 items-center'> 
+            <AiOutlineGlobal size={20}/> English
+            </Link>
           </div>
       </div>
 
