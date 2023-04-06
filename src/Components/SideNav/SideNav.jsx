@@ -3,20 +3,12 @@ import { RiCloseFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
-import { slideInLeft, StyleSheet, Keyframe } from 'react-animations'
-
 
 function SideNav({isSideNavOpen, setIsSideNavOpen}) {
-  // const slideInAnimation = Keyframes`
-  //   from{
-  //     transform: trans
-  //   }
-  // `
+ 
   return (
     <>
       <div
-        // onScroll={e => e.stopPropagation()}
-        // onTouchMove={e => e.stopPropagation()}
         className= {
           `static bg-black opacity-40 top-0 left-0 right-0 h-screen
           z-20 fixed ${isSideNavOpen ? '' : 'hidden'}`
