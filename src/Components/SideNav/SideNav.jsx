@@ -21,10 +21,10 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
       {/* Close icon */}
       <div 
         className={
-          `static fixed bg-white top-3 
+          `static fixed bg-white  
           right-3 rounded-full flex items-center 
           justify-center z-20 p-3 duration-500
-           ${ isSideNavOpen ? '' : ' -top-36'}`
+           ${ isSideNavOpen ? 'top-3' : ' -top-12'}`
         }
         onClick={() => setIsSideNavOpen(!isSideNavOpen)}
       >
