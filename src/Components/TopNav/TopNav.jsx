@@ -42,16 +42,16 @@ function TopNav() {
                 <label 
                     htmlFor="search"
                     className='
-                    hidden sm:flex
-                    flex-1 
-                    flex 
-                    gap-3 
-                    items-center 
-                    rounded-full 
-                    border 
-                    border-slate-700 
-                    py-2 px-4
-                    bg-slate-100' 
+                        hidden sm:flex
+                        flex-1 
+                        flex 
+                        gap-3 
+                        items-center 
+                        rounded-full 
+                        border 
+                        border-slate-700 
+                        py-2 px-4
+                        bg-slate-100' 
                 >
                     < AiOutlineSearch />
                     <form 
