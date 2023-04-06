@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
 
-function SideNav({isSideNavOpen}) {
+function SideNav({isSideNavOpen, setIsSideNavOpen}) {
   
   return (
     <>
@@ -25,6 +25,7 @@ function SideNav({isSideNavOpen}) {
           right-3 rounded-full flex items-center 
           justify-center z-20 p-3 ${isSideNavOpen ? '' : 'hidden'}`
         }
+        onClick={() => setIsSideNavOpen(!isSideNavOpen)}
       >
         <RiCloseFill size={20}/>
       </div>

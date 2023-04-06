@@ -25,7 +25,10 @@ function TopNav() {
             <div 
                 className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
             >
-                <SideNav isSideNavOpen={isSideNavOpen}/>
+                <SideNav 
+                    isSideNavOpen={isSideNavOpen}
+                    setIsSideNavOpen={setIsSideNavOpen}
+                />
                 <div 
                     className='sm:hidden'
                     onClick={() => setIsSideNavOpen(!isSideNavOpen)}
