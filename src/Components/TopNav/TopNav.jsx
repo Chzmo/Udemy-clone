@@ -9,16 +9,12 @@ import logo from '../../assets/logo/logo-udemy.svg'
 import SideNav from '../SideNav/SideNav'
 
 function TopNav() {
-    // const matches = useMediaQuery('(min-width: 1600px)');
-
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
 
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
-        alert()
+        alert() 
     }
-
-
 
     return (
         <>
@@ -31,7 +27,7 @@ function TopNav() {
                 />
                 <div 
                     className='sm:hidden'
-                    onClick={() => setIsSideNavOpen(true)}
+                    onClick={() => {setIsSideNavOpen(true)}}
                 >
                     < RxHamburgerMenu />
                 </div>
