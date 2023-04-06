@@ -13,7 +13,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           `static bg-black opacity-40 top-0 left-0 right-0 h-screen
           z-20 fixed ${isSideNavOpen ? '' : 'hidden'}`
          }
-         onClick={() => setIsSideNavOpen(!isSideNavOpen)}
+         onClick={() => setIsSideNavOpen(false)}
       >
       </div>
 
@@ -22,10 +22,10 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
         className={
           `static fixed bg-white top-3 
           right-3 rounded-full flex items-center 
-          justify-center z-20 p-3 duration-700
-           ${isSideNavOpen ? '' : '-top-12'}`
+          justify-center z-20 p-3 duration-500
+           ${ isSideNavOpen ? '' : '-top-40'}`
         }
-        onClick={() => setIsSideNavOpen(!isSideNavOpen)}
+        onClick={() => setIsSideNavOpen(false)}
       >
         <RiCloseFill size={20}/>
       </div>
@@ -36,7 +36,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
         className={
           `static bg-white h-screen top-0 left-0 z-20 overflow-hidden overflow-y-scroll fixed
             w-4/5 duration-500
-            ${isSideNavOpen ? '' : '-left-[80%]'}
+            ${isSideNavOpen ? '' : '-left-3/4'}
           ` 
         }
         onScroll={e => e.stopPropagation()}

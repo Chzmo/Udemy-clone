@@ -31,7 +31,7 @@ function TopNav() {
                 />
                 <div 
                     className='sm:hidden'
-                    onClick={() => setIsSideNavOpen(!isSideNavOpen)}
+                    onClick={() => setIsSideNavOpen(true)}
                 >
                     < RxHamburgerMenu />
                 </div>

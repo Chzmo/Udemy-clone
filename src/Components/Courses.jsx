@@ -145,7 +145,7 @@ function Courses(props) {
         {sample?.map((item, index) => (
           <>
             <AccordionItem 
-              key={index} 
+              key={item.title} 
               title={item.title} 
               content={item.content}
               defaultOpen={index === 0}
