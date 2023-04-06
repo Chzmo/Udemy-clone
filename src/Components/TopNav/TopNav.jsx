@@ -11,7 +11,7 @@ import SideNav from '../SideNav/SideNav'
 function TopNav() {
     // const matches = useMediaQuery('(min-width: 1600px)');
 
-    const [isSideNavOpen, setIsSideNavOpen] = useState(true)
+    const [isSideNavOpen, setIsSideNavOpen] = useState(false)
 
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
