@@ -4,29 +4,36 @@ import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
 
-function SideNav(props) {
+function SideNav({setIsSideNavOpen}) {
   return (
     <>
       <div
         // onScroll={e => e.stopPropagation()}
         // onTouchMove={e => e.stopPropagation()}
-        className='static bg-black opacity-40 top-0 left-0 right-0 h-screen
-         z-20 fixed' 
+        className= {
+          `static bg-black opacity-40 top-0 left-0 right-0 h-screen
+         z-20 fixed ${setIsSideNavOpen ? '': 'hidden'}`
+         }
       >
       </div>
 
       {/* Close icon */}
       <div 
-        className='static fixed bg-white top-3 right-3 rounded-full flex items-center justify-center z-20 p-3'
+        className={
+          `static fixed bg-white top-3 
+          right-3 rounded-full flex items-center 
+          justify-center z-20 p-3 ${setIsSideNavOpen ? '': 'hidden'}`
+        }
       >
         <RiCloseFill size={20}/>
       </div>
 
       <div 
-        className='
-          static bg-white h-screen top-0 -left-3/4 z-20 overflow-hidden overflow-y-scroll fixed
-          w-4/5 
-        '
+        // style={{left:'-80%'}}
+        className={
+          `static bg-white h-screen top-0 -left-4/5 z-20 overflow-hidden overflow-y-scroll fixed
+          w-4/5 ${setIsSideNavOpen ? '': 'hidden'}` 
+        }
         onScroll={e => e.stopPropagation()}
         onTouchMove={e => e.stopPropagation()}
         >

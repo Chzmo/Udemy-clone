@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
@@ -10,18 +10,27 @@ import SideNav from '../SideNav/SideNav'
 
 function TopNav() {
     // const matches = useMediaQuery('(min-width: 1600px)');
+
+    const [isSideNavOpen, setIsSideNavOpen] = useState(true)
+
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
         alert()
     }
+
+
+
     return (
         <>
             <div 
-                className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative overflow-hidden"
+                className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
             >
-                <SideNav />
-                <div className='sm:hidden'>
-                    <RxHamburgerMenu />
+                <SideNav isSideNavOpen={isSideNavOpen}/>
+                <div 
+                    className='sm:hidden'
+                    onClick={() => setIsSideNavOpen(!isSideNavOpen)}
+                >
+                    < RxHamburgerMenu />
                 </div>
                 <img className='h-6' 
                     src={logo} alt="logo" 
