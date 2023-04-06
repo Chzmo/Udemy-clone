@@ -3,9 +3,15 @@ import { RiCloseFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
+import { slideInLeft, StyleSheet, Keyframe } from 'react-animations'
+
 
 function SideNav({isSideNavOpen, setIsSideNavOpen}) {
-  
+  // const slideInAnimation = Keyframes`
+  //   from{
+  //     transform: trans
+  //   }
+  // `
   return (
     <>
       <div
@@ -15,6 +21,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           `static bg-black opacity-40 top-0 left-0 right-0 h-screen
           z-20 fixed ${isSideNavOpen ? '' : 'hidden'}`
          }
+         onClick={() => setIsSideNavOpen(!isSideNavOpen)}
       >
       </div>
 
@@ -23,18 +30,22 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
         className={
           `static fixed bg-white top-3 
           right-3 rounded-full flex items-center 
-          justify-center z-20 p-3 ${isSideNavOpen ? '' : 'hidden'}`
+          justify-center z-20 p-3 duration-700
+           ${isSideNavOpen ? '' : '-top-12'}`
         }
         onClick={() => setIsSideNavOpen(!isSideNavOpen)}
       >
         <RiCloseFill size={20}/>
       </div>
 
+      {/* Side Nav */}
       <div 
         // style={{left:'-80%'}}
         className={
           `static bg-white h-screen top-0 left-0 z-20 overflow-hidden overflow-y-scroll fixed
-          w-4/5 ${isSideNavOpen ? '' : 'hidden'}` 
+            w-4/5 duration-700
+            ${isSideNavOpen ? '' : '-left-[80%]'}
+          ` 
         }
         onScroll={e => e.stopPropagation()}
         onTouchMove={e => e.stopPropagation()}
