@@ -36,7 +36,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
         className={
           `static bg-white h-screen top-0 left-0 z-20 overflow-hidden overflow-y-scroll fixed
             w-4/5 duration-500
-            ${isSideNavOpen ? '' : '-left-3/4'}
+            ${isSideNavOpen ? '' : '-left-full'}
           ` 
         }
         onScroll={e => e.stopPropagation()}
