@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiCloseFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
+import SideMenu from './SideMenu'
 
+const categories = [
+  {'category':'Web Development'},
+  {'category':'Personal Transformation'},
+  {'category':'Game Development'},
+  {'category':'Entrepreneurship'},
+  {'category':'Business Analytics & Intellience'},
+  {'category':'Digital Marketing'},
+  {'category':'Graphic Design & Illustration'},
+  {'category':'IT Certifications'},
+  {'category':'Personal Transformation'},
+  {'category':'All Categories'},
+]
 function SideNav({isSideNavOpen, setIsSideNavOpen}) {
-  console.log(isSideNavOpen)
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   return (
     <>
       {/* Black Opacity */}
@@ -43,43 +56,23 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
         onScroll={e => e.stopPropagation()}
         onTouchMove={e => e.stopPropagation()}
       >
+        <div className="relative">
+          <SideMenu 
+            isSideMenuOpen={isSideMenuOpen}
+            setIsSideMenuOpen={setIsSideMenuOpen}
+        />
           <div className="flex flex-col gap-2 px-3 mt-4 mb-3">
             <Link to='/login' className='text-purple-800'>Log in</Link>
             <Link to='/register' className='text-purple-800'>Sign up</Link>
           </div>
           <hr />
           
-          <div className="flex flex-col gap-2 my-3 px-3">
+          <div className="flex flex-col gap-2 my-3 px-3"
+            onClick={() => setIsSideMenuOpen(true)}
+          >
             <small className='text-slate-600 font-bold'>Most popular</small>
             <div className="flex justify-between">
               <p className='w-4/5'>Web Development</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Mobile Development</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Game Development</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-3/4'>Entrepreneurship</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-3/4'>Business Analytics & Intellience</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Digital Marketing</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Graphic Design & Illustration</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>IT Certifications</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Personal Transformation</p> <BiChevronRight />
-            </div>
-            <div className="flex justify-between">
-              <p className='w-4/5'>All Categories</p> <BiChevronRight />
             </div>
           </div>
           <hr />
@@ -106,6 +99,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
             <AiOutlineGlobal size={20}/> English
             </Link>
           </div>
+        </div>
       </div>
     </>
   )
