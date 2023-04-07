@@ -6,16 +6,16 @@ import { AiOutlineGlobal } from 'react-icons/ai'
 import SideMenu from './SideMenu'
 
 const categories = [
-  {'category':'Web Development'},
-  {'category':'Personal Transformation'},
-  {'category':'Game Development'},
-  {'category':'Entrepreneurship'},
-  {'category':'Business Analytics & Intellience'},
-  {'category':'Digital Marketing'},
-  {'category':'Graphic Design & Illustration'},
-  {'category':'IT Certifications'},
-  {'category':'Personal Transformation'},
-  {'category':'All Categories'},
+  {'name':'Web Development'},
+  {'name':'Personal Transformation'},
+  {'name':'Game Development'},
+  {'name':'Entrepreneurship'},
+  {'name':'Business Analytics & Intellience'},
+  {'name':'Digital Marketing'},
+  {'name':'Graphic Design & Illustration'},
+  {'name':'IT Certifications'},
+  {'name':'Personal Transformation'},
+  {'name':'All Categories'},
 ]
 function SideNav({isSideNavOpen, setIsSideNavOpen}) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
@@ -67,13 +67,21 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           </div>
           <hr />
           
-          <div className="flex flex-col gap-2 my-3 px-3"
-            onClick={() => setIsSideMenuOpen(true)}
-          >
+          <div className="flex flex-col gap-2 my-3 px-3">
             <small className='text-slate-600 font-bold'>Most popular</small>
-            <div className="flex justify-between">
-              <p className='w-4/5'>Web Development</p> <BiChevronRight />
-            </div>
+            {categories && 
+              categories.map((category) => {
+                return (
+                  <div 
+                    key={category.name}
+                    className="flex justify-between"
+                    onClick={() => setIsSideMenuOpen(true)}
+                  >
+                    <p className='w-4/5'>{category.name}</p> <BiChevronRight />
+                  </div>
+                )
+              })
+            }
           </div>
           <hr />
 
