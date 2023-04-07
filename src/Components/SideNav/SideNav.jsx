@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { RiCloseFill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { AiOutlineGlobal } from 'react-icons/ai'
 import SideMenu from './SideMenu'
+
 
 const categories = [
   {'name':'Web Development', 

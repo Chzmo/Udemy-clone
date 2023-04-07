@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import { useMediaQuery } from '@mantine/hooks';
 
 import logo from '../../assets/logo/logo-udemy.svg'
@@ -11,8 +11,14 @@ import SideNav from '../SideNav/SideNav'
 function TopNav() {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
 
+    const [searchTearm, setSearchTearm] = useState('')
+  
+  const navigate = useNavigate()
+
+
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
+        navigate(to, '/search/' + searchTearm);
         alert() 
     }
 
