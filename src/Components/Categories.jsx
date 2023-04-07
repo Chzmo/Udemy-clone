@@ -29,18 +29,23 @@ function Categories() {
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
-              <Link key={index} className="transition-900 group">
+              <Link key={index} className="group">
+                <div className="overflow-hidden">
+
                 <img 
                   src={item.image} 
                   alt="design" 
                   className='
-                    hidden
-                    md:flex
-                    items-center
-                    justify-center
-                    group-hover:scale-105 
+                  hidden
+                  md:flex
+                  items-center
+                  justify-center
+                  group-hover:scale-110 
+                  transition-all
+                  w-full
                   '
-                />
+                  />
+                  </div>
                 <h2 
                   className='
                     font-bold 
