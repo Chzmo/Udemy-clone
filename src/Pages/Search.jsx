@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { TbPointFilled } from 'react-icons/tb'
 import { BsQuote } from 'react-icons/bs';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
+import Spinner from '../Components/Spinner';
 
 function Search() {
   const { searchTerm } = useParams();
@@ -11,7 +12,7 @@ function Search() {
 
   return (
     <>
-      <div className="min-h-screen ">
+      <div className="min-h-[400px] pt-16">
         {(!isLoading && searchResults) && 
           <>
             <h2>849 results for {searchTerm}</h2>
@@ -19,7 +20,7 @@ function Search() {
         }
 
         { (!searchResults && !isLoading) &&
-          <div className="flex flex-col mt-16 px-7 gap-5">
+          <div className="flex flex-col px-7 gap-5">
             <div className="flex flex-col">
               <p className='text-[1.7rem] font-bold text-slate-800'>Sorry, we couldn't find any results for </p>
               <p className='text-[1.7rem] font-bold text-slate-800 flex items-center'>
@@ -44,6 +45,8 @@ function Search() {
             </div>
           </div>
         }
+
+        {isLoading && <Spinner size={50}/>}
         
       </div>
     </>

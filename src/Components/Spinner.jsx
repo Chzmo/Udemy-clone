@@ -1,15 +1,16 @@
 import React from 'react'
+import ClipLoader from "react-spinners/ClipLoader";
 
-function Spinner({size}) {
+
+function Spinner({size, message}) {
   return (
-    <ClipLoader
-        color={color}
-        loading={loading}
-        cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-    />
+    <div className="flex justify-center flex-col w-full items-center h-full">
+        <ClipLoader
+            color="black"
+            size={size || 75}
+            aria-label={message || "Loading..."}
+        />
+    </div>
   )
 }
 
