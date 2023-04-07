@@ -12,22 +12,19 @@ function TopNav() {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
 
     const [searchTearm, setSearchTearm] = useState('')
-  
-  const navigate = useNavigate()
-
+    const navigate = useNavigate()
 
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
-        navigate(to, '/search/' + searchTearm);
-        alert() 
+        if(searchTearm) navigate('/search/' + searchTearm);
     }
 
     return (
         <>
-                <SideNav 
-                    isSideNavOpen={isSideNavOpen}
-                    setIsSideNavOpen={setIsSideNavOpen}
-                />
+            <SideNav 
+                isSideNavOpen={isSideNavOpen}
+                setIsSideNavOpen={setIsSideNavOpen}
+            />
             <div 
                 className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
             >
@@ -61,11 +58,13 @@ function TopNav() {
                         className='w-full'
                     >
                         <input 
+                        
                             type="text" 
                             name='search' 
                             placeholder='Seach for anything'
                             className=' flex-1 border-none outline-none w-full bg-transparent text-sm'
-                            tabIndex={1}
+                            value={searchTearm}
+                            onChange={e => setSearchTearm(e.target.value)}
                         />
                     </form>
                 </label>
