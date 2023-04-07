@@ -6,7 +6,7 @@ function SideMenu({isSideMenuOpen, setIsSideMenuOpen, subCategories}) {
     <div 
       className={
         `absolute bg-white h-screen -top-5 overflow-hidden overflow-y-scroll
-          w-full duration-500
+          w-full h-full duration-500
           ${isSideMenuOpen ? ' left-0' : ' left-full'}
         ` 
       }
