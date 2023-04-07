@@ -2,7 +2,11 @@ import React from 'react'
 
 function Search() {
   return (
-    <div>Search</div>
+    <>
+      <div className="min-h-screen ">
+        
+      </div>
+    </>
   )
 }
 
