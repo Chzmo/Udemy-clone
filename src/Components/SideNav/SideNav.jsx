@@ -6,19 +6,154 @@ import { AiOutlineGlobal } from 'react-icons/ai'
 import SideMenu from './SideMenu'
 
 const categories = [
-  {'name':'Web Development'},
-  {'name':'Personal Transformation'},
-  {'name':'Game Development'},
-  {'name':'Entrepreneurship'},
-  {'name':'Business Analytics & Intellience'},
-  {'name':'Digital Marketing'},
-  {'name':'Graphic Design & Illustration'},
-  {'name':'IT Certifications'},
-  {'name':'Personal Transformation'},
-  {'name':'All Categories'},
+  {'name':'Web Development', 
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'Mobile Development',
+    'subCategories':[
+      {'name':'Google Flutter'},
+      {'name':'Android Development'},
+      {'name':'iOS Development'},
+      {'name':'React Native'},
+      {'name':'Dart (programming Language)'},
+      {'name':'Swift'},
+      {'name':'SwiftUI'},
+      {'name':'Kotlin'},
+      {'name':'Mobile App Development'},
+    ]
+  },
+  {'name':'Game Development',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'Personal Transformation',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'Entrepreneurship',
+  'subCategories':[
+    {'name':'Web Development'},
+    {'name':'JacaScript'},
+    {'name':'React Js'},
+    {'name':'CSS'},
+    {'name':'Angular'},
+    {'name':'Node.js'},
+    {'name':'ASP.NET Core'},
+    {'name':'Typescript'},
+    {'name':'HTML5'},
+  ]
+  },
+  {'name':'Business Analytics & Intellience',
+  'subCategories':[
+    {'name':'Web Development'},
+    {'name':'JacaScript'},
+    {'name':'React Js'},
+    {'name':'CSS'},
+    {'name':'Angular'},
+    {'name':'Node.js'},
+    {'name':'ASP.NET Core'},
+    {'name':'Typescript'},
+    {'name':'HTML5'},
+  ]
+  },
+  {'name':'Digital Marketing',
+  'subCategories':[
+    {'name':'Web Development'},
+    {'name':'JacaScript'},
+    {'name':'React Js'},
+    {'name':'CSS'},
+    {'name':'Angular'},
+    {'name':'Node.js'},
+    {'name':'ASP.NET Core'},
+    {'name':'Typescript'},
+    {'name':'HTML5'},
+  ]
+  },
+  {'name':'Graphic Design & Illustration',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'IT Certifications',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'Personal Transformation',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
+  {'name':'All Categories',
+    'subCategories':[
+      {'name':'Web Development'},
+      {'name':'JacaScript'},
+      {'name':'React Js'},
+      {'name':'CSS'},
+      {'name':'Angular'},
+      {'name':'Node.js'},
+      {'name':'ASP.NET Core'},
+      {'name':'Typescript'},
+      {'name':'HTML5'},
+    ]
+  },
 ]
 function SideNav({isSideNavOpen, setIsSideNavOpen}) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+  const [subCategories, setSubCategories] = useState(null);
+
   return (
     <>
       {/* Black Opacity */}
@@ -39,7 +174,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           justify-center z-20 p-3 duration-500
            ${ isSideNavOpen ? 'top-3' : ' -top-12'}`
         }
-        onClick={() => setIsSideNavOpen(!isSideNavOpen)}
+        onClick={() => {setIsSideNavOpen(!isSideNavOpen);} }
       >
         <RiCloseFill size={20}/>
       </div>
@@ -60,6 +195,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           <SideMenu 
             isSideMenuOpen={isSideMenuOpen}
             setIsSideMenuOpen={setIsSideMenuOpen}
+            subCategories={subCategories}
         />
           <div className="flex flex-col gap-2 px-3 mt-4 mb-3">
             <Link to='/login' className='text-purple-800'>Log in</Link>
@@ -75,7 +211,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
                   <div 
                     key={category.name}
                     className="flex justify-between"
-                    onClick={() => setIsSideMenuOpen(true)}
+                    onClick={() => {setIsSideMenuOpen(true);  setSubCategories(category.subCategories)}}
                   >
                     <p className='w-4/5'>{category.name}</p> <BiChevronRight />
                   </div>

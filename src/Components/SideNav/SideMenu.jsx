@@ -1,7 +1,7 @@
 import React from 'react'
 import { BiChevronLeft } from 'react-icons/bi'
 
-function SideMenu({isSideMenuOpen, setIsSideMenuOpen, categories}) {
+function SideMenu({isSideMenuOpen, setIsSideMenuOpen, subCategories}) {
   return (
     <div 
       className={
@@ -20,18 +20,20 @@ function SideMenu({isSideMenuOpen, setIsSideMenuOpen, categories}) {
         <BiChevronLeft size={20}/><p className='w-4/5'>Menu</p>
       </div>
 
-      {categories && (
-        categories.map((category, index) => {
-          return (
-            <p 
-              key={index}
-              className='w-4/5'
-            >
-              {category}
-            </p>
-          )
-        })
-      )}
+      <div className="flex flex-col gap-2 my-3 px-3">
+        {subCategories && (
+          subCategories?.map((subCategory, index) => {
+            return (
+              <p 
+                key={index}
+                className='w-4/5'
+              >
+                {subCategory.name}
+              </p>
+            )
+          })
+        )}
+      </div>
     </div>
   )
 }
