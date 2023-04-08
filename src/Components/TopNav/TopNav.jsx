@@ -3,7 +3,6 @@ import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
-// import { useMediaQuery } from '@mantine/hooks';
 
 import logo from '../../assets/logo/logo-udemy.svg'
 import SideNav from '../SideNav/SideNav'

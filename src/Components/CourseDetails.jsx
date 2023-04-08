@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CiStar } from 'react-icons/ci';
 import DataTooltip from './DataTooltip';
+import { MdStarRate } from 'react-icons/md';
 // import 'react-tooltip/dist/react-tooltip.css'
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
@@ -17,7 +18,7 @@ function CourseDetails() {
         let stars = [];
     
         for (let i = 0; i < parseInt(props.stars); i++){
-            stars.push(< CiStar key={i}/>);
+            stars.push(< MdStarRate color='red' key={i}/>);
         }
         
         return(

@@ -53,7 +53,7 @@ function SearchCard() {
                 setIsOpen={setIsOpen}
                 data = {
                     [
-                        {'heading':'Automate the boring stuff with Python Programming'},
+                        {'heading':'The Complete Bootcamp From Zero To Hero..'},
                         {'updatedAt':'February 2023'},
                         {'level':'42.5 total hours All Levels Subtitles'},
                         {'subHeading':'You will master the Python  language by building 100 unique projects over 100 days'},
