@@ -13,7 +13,7 @@ function Search() {
 
   return (
     <>
-      <div className="min-h-screen pt-10">
+      <div className=" sm:min-h-screen pt-10">
         {(!isLoading && searchResults) && 
           <>
             <div className="flex flex-col px-5">
