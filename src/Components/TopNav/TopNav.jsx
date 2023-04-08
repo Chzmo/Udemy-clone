@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
@@ -14,6 +14,10 @@ function TopNav() {
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
 
+    const handleSideNav = useCallback(()=>{
+        console.log(2323)
+    }, [isSideNavOpen])
+
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
         if(searchTearm) navigate('/search/' + searchTearm);
@@ -24,6 +28,7 @@ function TopNav() {
             <SideNav 
                 isSideNavOpen={isSideNavOpen}
                 setIsSideNavOpen={setIsSideNavOpen}
+                handleSideNav={handleSideNav}
             />
             <div 
                 className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
