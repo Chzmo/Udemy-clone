@@ -46,19 +46,6 @@ const categories = [
       {'name':'HTML5'},
     ]
   },
-  {'name':'Personal Transformation',
-    'subCategories':[
-      {'name':'Web Development'},
-      {'name':'JacaScript'},
-      {'name':'React Js'},
-      {'name':'CSS'},
-      {'name':'Angular'},
-      {'name':'Node.js'},
-      {'name':'ASP.NET Core'},
-      {'name':'Typescript'},
-      {'name':'HTML5'},
-    ]
-  },
   {'name':'Entrepreneurship',
   'subCategories':[
     {'name':'Web Development'},
@@ -151,7 +138,7 @@ const categories = [
     ]
   },
 ]
-function SideNav({isSideNavOpen, setIsSideNavOpen}) {
+function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   const [subCategories, setSubCategories] = useState(null);
 
@@ -175,7 +162,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen}) {
           justify-center z-20 p-3 duration-500
            ${ isSideNavOpen ? 'top-3' : ' -top-12'}`
         }
-        onClick={() => {setIsSideNavOpen(!isSideNavOpen);} }
+        onClick={() => {setIsSideNavOpen(!isSideNavOpen); handleSideNav();} }
       >
         <RiCloseFill size={20}/>
       </div>

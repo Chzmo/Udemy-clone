@@ -15,8 +15,11 @@ function TopNav() {
     const navigate = useNavigate()
 
     const handleSideNav = useCallback(()=>{
-        console.log(2323)
-    }, [isSideNavOpen])
+        if (isSideNavOpen){
+            document.body.style.overflow = 'hidden'
+        }
+        document.body.style.overflow = 'unset'
+    }, [])
 
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
