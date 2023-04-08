@@ -18,8 +18,9 @@ function Search() {
           <>
             <div className="flex flex-col px-5">
               <p className=' flex items-center text-[2rem] font-bold text-slate-900 gap-3'>
-                10, 000 result for <span className='flex '><FaQuoteLeft size={13}/> {searchTerm} <FaQuoteRight size={13}/> </span> 
+                10, 000 result for 
               </p>
+              <p className='flex items-center text-[2rem] font-bold text-slate-900'><FaQuoteLeft size={13}/> {searchTerm} <FaQuoteRight size={13}/></p>
               <div className="flex justify-between mt-5">
                 <div className="flex gap-2 w-full sm:w-auto">
                   <button className='flex p-3 border border-slate-800 gap-1 items-center font-bold hover:bg-slate-50'>
