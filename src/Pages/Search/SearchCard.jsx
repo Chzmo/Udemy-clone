@@ -48,7 +48,7 @@ function SearchCard() {
             </div>
             <DataTooltip 
                 tooltipID="my-tooltip2" 
-                place="bottom"
+                place="left"
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 data = {
