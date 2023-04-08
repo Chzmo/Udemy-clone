@@ -20,20 +20,30 @@ function Search() {
                 10, 000 result for <span className='flex '><FaQuoteLeft size={13}/> {searchTerm} <FaQuoteRight size={13}/> </span> 
               </p>
               <div className="flex justify-between mt-5">
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto">
                   <button className='flex p-3 border border-slate-800 gap-1 items-center font-bold hover:bg-slate-50'>
                     <BiFilter size={24}/>
                     <span>Filter</span>
                   </button>
-                  <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50'>
-                    <div className="flex flex-col items-start">
-                      <small className='font-semibold text-slate-700'>Sorted by</small>
+                  <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50 w-full  sm:w-auto'>
+                    <div className="flex flex-col items-start flex-1">
+                      <small className='font-semibold text-slate-700 '>Sorted by</small>
                       <span>Most reviewd</span>
                     </div>
                     <BiChevronDown size={24}/>
                   </button>
                 </div>
-                <p className='font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
+                <p className='hidden md:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
+              </div>
+              <div 
+                className="flex gap-2"
+              >
+                <div className="hidden sm:flex">
+                  Filter
+                </div>
+                <div className="flex fle">
+                  
+                </div>
               </div>
             </div>
           </>

@@ -16,7 +16,7 @@ function TopNav() {
 
     const handleSideNav = useCallback(()=>{
         if (isSideNavOpen){
-            document.body.style.overflow = 'hidden'
+            return document.body.style.display = 'none'
         }
         document.body.style.overflow = 'unset'
     }, [])
@@ -38,13 +38,15 @@ function TopNav() {
             >
                 <div 
                     className='sm:hidden'
-                    onClick={() => {setIsSideNavOpen(true)}}
+                    onClick={() => {setIsSideNavOpen(true); handleSideNav()}}
                 >
                     < RxHamburgerMenu />
                 </div>
-                <img className='h-6' 
-                    src={logo} alt="logo" 
-                />
+                <Link to={`/`}>
+                    <img className='h-6' 
+                        src={logo} alt="logo" 
+                    />
+                </Link>
                 <p className='hidden sm:flex'>Categories</p>
                 <label 
                     htmlFor="search"

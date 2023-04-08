@@ -179,7 +179,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
         onScroll={e => e.stopPropagation()}
         onTouchMove={e => e.stopPropagation()}
       >
-        <div className="relative">
+        <div className="relative h-screen pb-[100px]">
           <SideMenu 
             isSideMenuOpen={isSideMenuOpen}
             setIsSideMenuOpen={setIsSideMenuOpen}
