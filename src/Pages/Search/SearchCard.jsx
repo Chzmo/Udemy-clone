@@ -27,17 +27,17 @@ function SearchCard() {
                 data-tooltip-id="my-tooltip2" 
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
-                className='flex gap-3 flex-1 w-full justify-between'
+                className='flex gap-3 flex-1 w-full justify-between h-auto'
             >
-                <div className="flex gap-4">
-                    <div className="w-20 h-20 sm:h-40 sm:w-64">
+                <div className="flex gap-4 h-auto">
+                    <div className="w-20 h-20 sm:h-40 sm:w-64 ">
                         <img 
                             src={randomImage1} 
                             alt={`course`} 
                             className='w-20 h-20 sm:h-40 sm:w-64 bg-slate-100 object-cover'
                         />
                     </div>
-                    <div className="fex flex-1 flex-col">
+                    <div className="flex-1 ">
                         <h2 className='w-full sm:w-4/5 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
                         <p>Jose Name</p>
                         <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>

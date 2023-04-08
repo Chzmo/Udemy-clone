@@ -5,6 +5,7 @@ import { BiChevronDown, BiFilter } from 'react-icons/bi';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Spinner from '../../Components/Spinner';
 import SearchCard from './SearchCard';
+import Filter from '../../Components/Filter/Filter';
 
 function Search() {
   const { searchTerm } = useParams();
@@ -38,12 +39,14 @@ function Search() {
                 <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
               </div>
               <div 
-                className="flex gap-6 py-7"
+                className="flex gap-3 py-7 items-start"
               >
-                <div className="hidden sm:flex w-1/5">
-                  Filter
+                <div className="hidden sm:flex w-1/4">
+                  <Filter />
                 </div>
-                <SearchCard />
+                <div className="flex flex-col gap-4">
+                  <SearchCard />
+                </div>
               </div>
             </div>
           </>
