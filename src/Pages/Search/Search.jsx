@@ -13,7 +13,7 @@ function Search() {
 
   return (
     <>
-      <div className=" sm:min-h-screen pt-10">
+      <div className=" sm:min-h-screen pt-12">
         {(!isLoading && searchResults) && 
           <>
             <div className="flex flex-col px-5">
@@ -40,7 +40,7 @@ function Search() {
               <div 
                 className="flex gap-6 py-7"
               >
-                <div className="hidden sm:flex">
+                <div className="hidden sm:flex w-1/5">
                   Filter
                 </div>
                 <SearchCard />
