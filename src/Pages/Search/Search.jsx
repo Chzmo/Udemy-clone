@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { TbPointFilled } from 'react-icons/tb'
 import { BiChevronDown, BiFilter } from 'react-icons/bi';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
-import Spinner from '../Components/Spinner';
+import Spinner from '../../Components/Spinner';
+import SearchCard from './SearchCard';
 
 function Search() {
   const { searchTerm } = useParams();
@@ -12,7 +13,7 @@ function Search() {
 
   return (
     <>
-      <div className="min-h-[400px] pt-10">
+      <div className="min-h-screen pt-10">
         {(!isLoading && searchResults) && 
           <>
             <div className="flex flex-col px-5">
@@ -33,17 +34,15 @@ function Search() {
                     <BiChevronDown size={24}/>
                   </button>
                 </div>
-                <p className='hidden md:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
+                <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
               </div>
               <div 
-                className="flex gap-2"
+                className="flex gap-6 py-7"
               >
                 <div className="hidden sm:flex">
                   Filter
                 </div>
-                <div className="flex fle">
-                  
-                </div>
+                <SearchCard />
               </div>
             </div>
           </>

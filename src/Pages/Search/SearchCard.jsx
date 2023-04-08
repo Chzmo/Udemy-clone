@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import { CiStar } from 'react-icons/ci';
-import DataTooltip from './DataTooltip';
-// import 'react-tooltip/dist/react-tooltip.css'
+import DataTooltip from '../../Components/DataTooltip';
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
-const randomImage2 = "https://source.unsplash.com/601x500/?learing"
-const randomImage3 = "https://source.unsplash.com/600x501/?learing"
-const randomImage4 = "https://source.unsplash.com/600x502/?learing"
-const randomImage5 = "https://source.unsplash.com/600x498/?learing"
 
-function CourseDetails() {
-
+function SearchCard() {
     const [isOpen, setIsOpen] = useState(false)
 
     const Stars = (props) =>{
@@ -30,25 +24,31 @@ function CourseDetails() {
     return (
         <>
             <div 
-                data-tooltip-id="my-tooltip" 
+                data-tooltip-id="my-tooltip2" 
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
+                className='flex gap-3 flex-1 w-full justify-between'
             >
-                <div className="h-40 w-64">
-                <img 
-                    src={randomImage1} 
-                    alt={`course`} 
-                    className='h-40 w-64 bg-slate-100 object-cover'
-                />
+                <div className="flex gap-4">
+                    <div className="sm:h-40 sm:w-64">
+                        <img 
+                            src={randomImage1} 
+                            alt={`course`} 
+                            className='w-20 h-20 sm:h-40 sm:w-64 bg-slate-100 object-cover'
+                        />
+                    </div>
+                    <div className="fex flex-col">
+                        <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
+                        <p>Jose Name</p>
+                        <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
+                        <p className='sm:hidden'>$182.99</p>
+                    </div>
                 </div>
-                <h2 className='w-64 font-bold text-xl'>The Complete Bootcamp From Zero To Hero..</h2>
-                <p>Jose Name</p>
-                <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
-                <p>$182.99</p>
+                <p className='hidden sm:flex'>$182.99</p>
             </div>
             <DataTooltip 
-                tooltipID="my-tooltip" 
-                place="right"
+                tooltipID="my-tooltip2" 
+                place="bottom"
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 data = {
@@ -68,4 +68,4 @@ function CourseDetails() {
     )
 }
 
-export default CourseDetails
+export default SearchCard

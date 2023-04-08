@@ -14,6 +14,9 @@ function DataTooltip({tooltipID, place, isOpen, setIsOpen, data}) {
             p-5 bg-white border border-slate-300
             absolute z-10
         '
+        classNameArrow='hello'
+        noArrow="true"
+        
         isOpen={isOpen}
     >
         <div 
@@ -23,14 +26,14 @@ function DataTooltip({tooltipID, place, isOpen, setIsOpen, data}) {
         >
           {data && (
             <>
-              <h2 className='w-72 font-bold text-lg text-slate-600'>Automate the boring stuff with Python Programming</h2>
-              <small className='text-xsm text-emerald-700'>Updated <span className='font-bold'>February 2023</span></small>
-              <small className='text-xsm text-slate-600'>42.5 total hours All Levels Subtitles</small>
+              <h2 className='w-72 font-bold text-lg text-slate-600'>{data[0]?.heading}</h2>
+              <small className='text-xsm text-emerald-700'>Updated <span className='font-bold'>{data[1]?.updatedAt}</span></small>
+              <small className='text-xsm text-slate-600'>{data[2]?.level}</small>
               <p className='text-md w-72'>
-                  Learn to create Machine Learning Algorithms in Python and R 
+                {data[3]?.subHeading}
               </p>
 
-              {data?.objectives.map((objective) => {
+              {data[4]?.objectives?.map((objective) => {
                 return (
                     <div className="div flex w-72">
                       <BiCheck size={24} className='w-9'/>
