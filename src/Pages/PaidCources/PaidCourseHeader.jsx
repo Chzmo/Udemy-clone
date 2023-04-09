@@ -6,7 +6,12 @@ import Rating from '../../Components/Rating'
 function PaidCourseHeader() {
   return (
     <>
-        <div className="bg-black ">
+        <div 
+            className="fixed flex flex-col justify-center px-4 top-0 static h-[66px] w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
+        >
+
+        </div>
+        <div className="bg-[#1c1d1f] relative -z-20">
             <div className="flex gap-12 m-auto w-[81%] text-white py-7">
                 <div 
                     className={`
@@ -32,9 +37,9 @@ function PaidCourseHeader() {
                         <p>1,702,710 students</p>
                     </div>
                     <div className="flex gap-2"><p>Created by </p><Link className='text-purple-300'><small>Zaliro</small></Link></div>
-                    <div className="flex gap-4">
-                    <p> Last updated 03/2021 </p>
-                    <p> English</p>
+                    <div className="flex gap-4 items-center">
+                    <small> Last updated 03/2021 </small>
+                    <small> English</small>
                     </div>
                 </div>
 
@@ -44,6 +49,7 @@ function PaidCourseHeader() {
                 </div>
             </div>
         </div>
+        <div className="flex h-screen"></div>
     </>
   )
 }

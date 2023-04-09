@@ -41,7 +41,7 @@ function TopNav() {
             />
 
             <div 
-                className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
+                className="w-full bg-white flex py-3 px-6 gap-5 items-center justify-between shadow-lg z-30"
             >
                 <div 
                     className='sm:hidden'
