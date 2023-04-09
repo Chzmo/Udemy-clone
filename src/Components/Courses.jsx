@@ -22,7 +22,7 @@ function AccordionItem(props) {
       </div>
       {/* {isOpen && <div>{props.content}</div>} */}
       {isOpen && 
-        <div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden'>
+        <div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden pb-3'>
           <CourseDetails />
           <CourseDetails />
           <CourseDetails />

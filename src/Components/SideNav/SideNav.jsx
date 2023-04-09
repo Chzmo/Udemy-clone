@@ -169,7 +169,6 @@ function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
 
       {/* Side Nav */}
       <div 
-        // style={{left:'-80%'}}
         className={
           `static bg-white h-screen top-0 z-20 overflow-hidden overflow-y-scroll fixed
             w-4/5 duration-500

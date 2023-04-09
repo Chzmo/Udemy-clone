@@ -81,7 +81,7 @@ function Search() {
                   <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50 w-full  sm:w-auto'>
                     <div className="flex flex-col items-start flex-1">
                       <small className='font-semibold text-slate-700 '>Sorted by</small>
-                      <span>Most reviewd</span>
+                      <span>Most reviewed</span>
                     </div>
                     <BiChevronDown size={24}/>
                   </button>
