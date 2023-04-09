@@ -3,6 +3,7 @@ import { CiStar } from 'react-icons/ci';
 import DataTooltip from './DataTooltip';
 import { MdStarRate } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 // import 'react-tooltip/dist/react-tooltip.css'
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
@@ -31,8 +32,8 @@ function CourseDetails() {
 
     return (
         <>
-            <Link 
-                to={`/paid-course/python`}
+            <HashLink 
+                to={`/paid-course/python#`}
                 data-tooltip-id="my-tooltip" 
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
@@ -48,7 +49,7 @@ function CourseDetails() {
                 <p>Jose Name</p>
                 <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
                 <p>$182.99</p>
-            </Link>
+            </HashLink>
             <DataTooltip 
                 tooltipID="my-tooltip" 
                 place="right"
