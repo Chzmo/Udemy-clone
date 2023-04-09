@@ -7,11 +7,20 @@ function PaidCourseHeader() {
   return (
     <>
         <div 
-            className="fixed flex flex-col justify-center px-4 top-0 static h-[66px] w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
+            className="fixed flex flex-col justify-center px-6 top-0 static py-3 w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
         >
-
+            <div className="flex flex-col gap">
+                <p className='font-bold'>The Complete Python Bootcamp From Zero to Hero in Python</p>
+                <div className="flex gap-1">
+                    <Rating 
+                        gap={1}
+                    />
+                    <Link className='text-purple-300'>(458,574 ratings)</Link>
+                    <p>1,702,710 students</p>
+                </div>
+            </div>
         </div>
-        <div className="bg-[#1c1d1f] relative -z-20">
+        <div className="bg-[#1c1d1f] -z-20">
             <div className="flex gap-12 m-auto w-[81%] text-white py-7">
                 <div 
                     className={`

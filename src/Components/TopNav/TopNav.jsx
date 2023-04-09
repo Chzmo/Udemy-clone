@@ -50,7 +50,7 @@ function TopNav() {
                     < RxHamburgerMenu />
                 </div>
                 <Link to={`/`}>
-                    <img className='h-6' 
+                    <img className='h-6 sm:h-10' 
                         src={logo} alt="logo" 
                     />
                 </Link>
