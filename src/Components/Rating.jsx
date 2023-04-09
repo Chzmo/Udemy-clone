@@ -16,8 +16,9 @@ function Rating({starNum, color, size, gap}) {
     }
     
     return(
-        <div className={`flex items-center text-slate-500 gap-${gap || 2}`}>
-            <p>starNum</p> <p>{stars}</p>
+        <div className={`flex items-center text-slate-500 gap-${gap || 2} font-bold`}>
+            <p className='text-[#f3ca8c]'>{starNum || 4.7}</p>
+            <p className={`flex items-center text-slate-500 gap-${gap || 2}`}>{stars}</p>
         </div>
     );
 }
