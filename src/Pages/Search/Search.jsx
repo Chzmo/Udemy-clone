@@ -11,50 +11,11 @@ function Search() {
   const { searchTerm } = useParams();
   const [searchResults, setSearchResults] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isFilterOpen, setIsFilterOpen] = useState(true)
+  
   return (
     <>
       <div className=" sm:min-h-screen pt-12">
-        {(!isLoading && searchResults) && 
-          <>
-            <div className="flex flex-col px-5">
-              <p className=' flex items-center text-[2rem] font-bold text-slate-900 gap-3'>
-                10, 000 result for 
-              </p>
-              <p className='flex items-center text-[2rem] font-bold text-slate-900'><FaQuoteLeft size={13}/> {searchTerm} <FaQuoteRight size={13}/></p>
-              <div className="flex justify-between mt-5">
-                <div className="flex gap-2 w-full sm:w-auto">
-                  <button className='flex p-3 border border-slate-800 gap-1 items-center font-bold sm:hidden hover:bg-slate-50'>
-                    <BiFilter size={24}/>
-                    <span>Filter</span>
-                  </button>
-                  <button className='p-3 border border-slate-800 gap-1 items-center font-bold hidden sm:flex hover:bg-slate-50'>
-                    <BiFilter size={24}/>
-                    <span>Filter</span>
-                  </button>
-                  <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50 w-full  sm:w-auto'>
-                    <div className="flex flex-col items-start flex-1">
-                      <small className='font-semibold text-slate-700 '>Sorted by</small>
-                      <span>Most reviewd</span>
-                    </div>
-                    <BiChevronDown size={24}/>
-                  </button>
-                </div>
-                <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
-              </div>
-              <div 
-                className="flex gap-3 py-7 items-start"
-              >
-                <div className="hidden sm:flex w-1/4">
-                  <Filter />
-                </div>
-                <div className="flex flex-col gap-4">
-                  <SearchCard />
-                </div>
-              </div>
-            </div>
-          </>
-        }
 
         { (!searchResults && !isLoading) &&
           <div className="flex flex-col px-7 gap-5">
@@ -85,6 +46,53 @@ function Search() {
 
         {isLoading && <Spinner size={50}/>}
         
+        {(!isLoading && searchResults) && 
+          <>
+            <div className="flex flex-col px-5">
+              <p className=' flex items-center text-[2rem] font-bold text-slate-900 gap-3'>
+                10, 000 result for 
+              </p>
+              <p className='flex items-center text-[2rem] font-bold text-slate-900'>
+                <FaQuoteLeft size={13}/> {searchTerm} <FaQuoteRight size={13}/>
+              </p>
+              <div className="flex justify-between mt-5">
+                <div className="flex gap-2 w-full sm:w-auto">
+
+                  {/* Desktop View */}
+                  <button className='flex p-3 border border-slate-800 gap-1 items-center font-bold sm:hidden hover:bg-slate-50'>
+                    <BiFilter size={24}/>
+                    <span>Filter</span>
+                  </button>
+
+                  {/* Mobile View */}
+                  <button className='p-3 border border-slate-800 gap-1 items-center font-bold hidden sm:flex hover:bg-slate-50'>
+                    <BiFilter size={24}/>
+                    <span>Filter</span>
+                  </button>
+
+                  <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50 w-full  sm:w-auto'>
+                    <div className="flex flex-col items-start flex-1">
+                      <small className='font-semibold text-slate-700 '>Sorted by</small>
+                      <span>Most reviewd</span>
+                    </div>
+                    <BiChevronDown size={24}/>
+                  </button>
+                </div>
+                <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
+              </div>
+              <div 
+                className="flex gap-3 py-7 items-start"
+              >
+                <div className="hidden sm:flex w-1/4">
+                  <Filter />
+                </div>
+                <div className="flex flex-col gap-4 w-full">
+                  <SearchCard />
+                </div>
+              </div>
+            </div>
+          </>
+        }
       </div>
     </>
   )

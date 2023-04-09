@@ -46,9 +46,9 @@ function SearchCard() {
                 </div>
                 <p className='hidden sm:flex'>$182.99</p>
             </div>
-            <DataTooltip 
+            {/* <DataTooltip 
                 tooltipID="my-tooltip2" 
-                place="left"
+                place="bottom"
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 data = {
@@ -63,7 +63,7 @@ function SearchCard() {
                         ]},
                     ]
                 }
-            />
+            /> */}
         </>
     )
 }
