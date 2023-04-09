@@ -88,14 +88,14 @@ function Search() {
                 <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
               </div>
               <div 
-                className={`flex py-7 transition duration-500 items-start ${isFilterOpen ?'gap-3':'gap-0'}`}
+                className={`flex py-7 w-full transition duration-500 items-start ${isFilterOpen ?'gap-3':'gap-0'}`}
               >
                 <div 
-                  className={`hidden duration-500 w-2/5 md:1/4 ${isFilterOpen ? 'sm:flex' : 'sm:flex h-0 over w-0 overflow-hidden'}`}
+                  className={`hidden duration-500  w-2/5 md:1/4 sm:flex ${isFilterOpen ? '' : ' h-0 over w-0 overflow-hidden'}`}
                 >
                   <Filter />
                 </div>
-                <div className="flex duration-500 flex-col gap-4 w-full">
+                <div className="flex duration-500 flex-col gap-4 w-full flex-2">
                   <SearchCard />
                 </div>
               </div>
