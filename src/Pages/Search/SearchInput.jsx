@@ -25,15 +25,17 @@ function SearchInput({isSeachInputOpen, seIsSeachInputOpen}) {
                 <label 
                     htmlFor="search"
                     className='
-                        flex-1 
-                        flex 
-                        gap-3 
-                        items-center 
-                        py-2 px-4
+                        flex-1 flex gap-3 items-center py-2
                     ' 
                 >
-                    < AiOutlineSearch 
-                        onClick={()=> {handleSearchSubmit; seIsSeachInputOpen(false)}}
+                    < AiOutlineSearch
+                        size={17} 
+                        color='grey'
+                        onClick={()=> {
+                            handleSearchSubmit; 
+                            navigate('/search/' + searchTearm); 
+                            seIsSeachInputOpen(false)
+                        }}
                     />
                     <form 
                         onSubmit={handleSearchSubmit}
@@ -43,7 +45,7 @@ function SearchInput({isSeachInputOpen, seIsSeachInputOpen}) {
                             required
                             type="text" 
                             name='search' 
-                            placeholder='Seach for anything'
+                            placeholder='Search for anything'
                             className=' flex-1 border-none outline-none w-full bg-transparent text-sm'
                             value={searchTearm}
                             onChange={e => setSearchTearm(e.target.value)}
