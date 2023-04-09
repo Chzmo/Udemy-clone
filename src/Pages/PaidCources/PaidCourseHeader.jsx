@@ -41,19 +41,19 @@ function PaidCourseHeader() {
                         <Link>Python</Link>
                     </small>
                     <h1 
-                        className='font-bold text-[2rem]'
+                        className='font-bold text-[1.3rem] md:text-[2rem]'
                     >
                         The Complete Python Bootcamp From Zero to Hero in Python
                     </h1>
-                    <h2 className='text-[1.4rem] pr-5 '>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
-                    <div className="flex gap-1 py-2">
+                    <h2 className='text-[1rem] md:text-[1.4rem] pr-5 '>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
+                    <div className="text-[.9rem] md:text-[1rem] flex gap-1 py-2 flex-wrap">
                         <Rating 
                             gap={1}
                         />
                         <Link className='text-purple-300'>(458,574 ratings)</Link>
                         <p>1,702,710 students</p>
                     </div>
-                    <div className="flex gap-2"><p>Created by </p><Link className='text-purple-300'><small>Zaliro</small></Link></div>
+                    <div className="flex gap-2"><p className='text-[.8rem] md:text-1rem]'>Created by </p><Link className='text-purple-300'><small>Zaliro</small></Link></div>
                     <div className="flex gap-4 items-center">
                     <small> Last updated 03/2021 </small>
                     <small> English</small>
