@@ -6,13 +6,13 @@ function PaidCourseHeader() {
   return (
     <>
         <div className="bg-black ">
-            <div className="flex gap-12 m-auto w-4/5 text-white py-5">
+            <div className="flex gap-12 m-auto w-[81%] text-white py-7">
                 <div 
                     className={`
                     w-4/5 m-auto 
                     `}
                 >
-                    <div className="flex w-3/4 gap-2 items-center">
+                    <div className="flex w-3/4 gap-2 items-center text-purple-300 font-bold">
                         <Link>Development</Link><BiChevronRight/>   
                         <Link>Programming Languages</Link><BiChevronRight/>     
                         <Link>Python</Link>
@@ -22,7 +22,7 @@ function PaidCourseHeader() {
                     >
                         The Complete Python Bootcamp From Zero to Hero in Python
                     </h1>
-                    <h2 className='text-[1.5rem]'>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
+                    <h2 className='text-[1.4rem] pr-5 '>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
                 </div>
                 <div className="w-1/4">
                     <p>The Complete Python Bootcamp From Zero to Hero in Python</p>
