@@ -19,7 +19,7 @@ function CourseDetails() {
         let stars = [];
     
         for (let i = 0; i < parseInt(props.stars); i++){
-            stars.push(< MdStarRate color='red' key={i}/>);
+            stars.push(< MdStarRate color='#f3ca8c' key={i}/>);
         }
         
         return(
