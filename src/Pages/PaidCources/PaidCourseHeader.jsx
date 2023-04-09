@@ -2,6 +2,7 @@ import React from 'react'
 import { BiChevronRight } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import Rating from '../../Components/Rating'
+const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 
 function PaidCourseHeader() {
   return (
@@ -61,8 +62,14 @@ function PaidCourseHeader() {
                 </div>
 
 
-                <div className="w-full md:w-2/5 bg-black">
-                    <p>The Complete Python Bootcamp From Zero to Hero in Python</p>
+                <div className="w-full md:w-2/5  ">
+                    <div className=" w-full">
+                    <img 
+                        src={randomImage1} 
+                        alt={`course`} 
+                        className='h-40 w-full sm:h-[13rem] md:h-40 bg-slate-100 object-cover'
+                    />
+                    </div>
                 </div>
             </div>
         </div>
