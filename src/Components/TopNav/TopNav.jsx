@@ -6,9 +6,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import logo from '../../assets/logo/logo-udemy.svg'
 import SideNav from '../SideNav/SideNav'
+import SearchInput from '../../Pages/Search/SearchInput'
 
 function TopNav() {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
+    const [isSeachInputOpen, seIsSeachInputOpen] = useState(false)
 
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
@@ -32,6 +34,12 @@ function TopNav() {
                 setIsSideNavOpen={setIsSideNavOpen}
                 handleSideNav={handleSideNav}
             />
+
+            <SearchInput 
+                isSeachInputOpen={isSeachInputOpen}
+                seIsSeachInputOpen={seIsSeachInputOpen}
+            />
+
             <div 
                 className="w-full flex py-3 px-6 gap-5 items-center justify-between shadow-lg relative"
             >
@@ -86,7 +94,10 @@ function TopNav() {
                     <button className='border border-black p-2.5'><AiOutlineGlobal /></button>
                 </div>
                 <div className="flex items-center gap-2 sm:hidden">
-                    <AiOutlineSearch size={20}/>
+                    <AiOutlineSearch 
+                        size={20}
+                        onClick={() => {seIsSeachInputOpen(true);}}
+                    />
                     <div className="flex items-center">
                         <MdOutlineShoppingCart size={23} className='font-semibold'/>
                     </div>
