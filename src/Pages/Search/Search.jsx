@@ -6,6 +6,7 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Spinner from '../../Components/Spinner';
 import SearchCard from './SearchCard';
 import Filter from '../../Components/Filter/Filter';
+import RightSideNav from '../../Components/SideNav/RightSideNav';
 
 function Search() {
   const { searchTerm } = useParams();
@@ -91,11 +92,12 @@ function Search() {
                 className={`flex py-7 w-full transition duration-500 items-start ${isFilterOpen ?'gap-3':'gap-0'}`}
               >
                 <div 
-                  className={`hidden duration-500  w-2/5 md:1/4 sm:flex ${isFilterOpen ? '' : ' h-0 over w-0 overflow-hidden'}`}
+                  className={`hidden duration-500 w-2/5 md:1/4 sm:flex ${isFilterOpen ? '' : ' h-0 over w-0 overflow-hidden'}`}
                 >
+                  <RightSideNav />
                   <Filter />
                 </div>
-                <div className="flex duration-500 flex-col gap-4 w-full flex-2">
+                <div className="flex duration-500 flex-col gap-4 w-full">
                   <SearchCard />
                 </div>
               </div>
