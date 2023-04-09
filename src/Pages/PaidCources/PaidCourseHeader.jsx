@@ -7,9 +7,9 @@ function PaidCourseHeader() {
   return (
     <>
         <div 
-            className="fixed hidden sm:flex flex-col justify-center px-6 top-0 static py-3 w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
+            className="fixed hidden md:flex flex-col justify-center px-6 top-0 static py-3 w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
         >
-            <div className="hidden sm:flex flex-col gap">
+            <div className="hidden md:flex flex-col gap">
                 <p className='font-bold'>The Complete Python Bootcamp From Zero to Hero in Python</p>
                 <small className="flex gap-1">
                     <Rating 
@@ -24,18 +24,18 @@ function PaidCourseHeader() {
             <div 
                 className="flex flex-col justify-center px-6 top-0 py-3 w-full bg-[#1c1d1f] -z-10 text-white"
             >
-                <small className="flex sm:hidden gap-2 items-center text-purple-300 font-bold">
+                <small className="flex md:hidden gap-2 items-center text-purple-300 font-bold">
                     <Link>Programming Languages</Link><BiChevronRight/> 
                     <Link>Python</Link>
                 </small>
             </div>
-            <div className="flex flex-col-reverse w-[90%] sm:flex sm:gap-12 m-auto sm:w-[81%] text-white py-7">
+            <div className="flex md:flex-row flex-col-reverse w-[90%] md:flex md:gap-6 m-auto md:w-[81%] text-white py-7">
                 <div 
                     className={`
-                        w-full sm:w-4/5 m-auto gap-2
+                        w-full md:w-4/5 m-auto gap-2
                     `}
                 >
-                    <small className="sm:flex hidden w-3/4 gap-2 items-center text-purple-300 font-bold">
+                    <small className="md:flex hidden w-3/4 gap-2 items-center text-purple-300 font-bold">
                         <Link>Development</Link><BiChevronRight/>   
                         <Link>Programming Languages</Link><BiChevronRight/>     
                         <Link>Python</Link>
@@ -61,7 +61,7 @@ function PaidCourseHeader() {
                 </div>
 
 
-                <div className="w-1/4">
+                <div className="w-full md:w-2/5 bg-black">
                     <p>The Complete Python Bootcamp From Zero to Hero in Python</p>
                 </div>
             </div>
