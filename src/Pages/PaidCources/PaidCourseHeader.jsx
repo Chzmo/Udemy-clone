@@ -23,10 +23,14 @@ function PaidCourseHeader() {
                     >
                         The Complete Python Bootcamp From Zero to Hero in Python
                     </h1>
-                    <h2 className='text-[1.4rem] pr-5 '>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
-                    <Rating 
-                        
-                    />
+                    <h2 className='text-[1.4rem] pr-5 pb-2'>Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</h2>
+                    <div className="flex gap-1 ">
+                        <Rating 
+                            gap={1}
+                        />
+                        <Link className='text-purple-300'>(458,574 ratings)</Link>
+                        <p>1,702,710 students</p>
+                    </div>
                 </div>
 
 
