@@ -11,7 +11,8 @@ function Search() {
   const { searchTerm } = useParams();
   const [searchResults, setSearchResults] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(true)
+  const [isFilterOpen, setIsFilterOpen] = useState(true);
+  const [isRightNavOpen, setIsRightNavOpen] = useState(false)
   
   return (
     <>
@@ -58,16 +59,22 @@ function Search() {
               <div className="flex justify-between mt-5">
                 <div className="flex gap-2 w-full sm:w-auto">
 
-                  {/* Desktop View */}
-                  <button className='flex p-3 border border-slate-800 gap-1 items-center font-bold sm:hidden hover:bg-slate-50'>
-                    <BiFilter size={24}/>
-                    <span>Filter</span>
+                  {/* Mobile View */}
+                  <button 
+                    className='flex p-3 border border-slate-800 gap-1 items-center font-bold sm:hidden hover:bg-slate-50'
+                    onClick={()=>{setIsRightNavOpen(!isRightNavOpen)}}
+                  >
+                      <BiFilter size={24}/>
+                      <span>Filter</span>
                   </button>
 
-                  {/* Mobile View */}
-                  <button className='p-3 border border-slate-800 gap-1 items-center font-bold hidden sm:flex hover:bg-slate-50'>
-                    <BiFilter size={24}/>
-                    <span>Filter</span>
+                  {/* Desktop View */}
+                  <button 
+                    className='p-3 border border-slate-800 gap-1 items-center font-bold hidden sm:flex hover:bg-slate-50'
+                    onClick={()=>{setIsFilterOpen(!isFilterOpen);}}
+                  >
+                      <BiFilter size={24}/>
+                      <span>Filter</span>
                   </button>
 
                   <button className='flex p-3 border border-slate-800 gap-4 items-center hover:bg-slate-50 w-full  sm:w-auto'>
@@ -81,12 +88,14 @@ function Search() {
                 <p className='hidden sm:flex font-bold text-slate-700 self-end text-[1.2rem]'>10,000 results</p>
               </div>
               <div 
-                className="flex gap-3 py-7 items-start"
+                className={`flex py-7 transition duration-500 items-start ${isFilterOpen ?'gap-3':'gap-0'}`}
               >
-                <div className="hidden sm:flex w-1/4">
+                <div 
+                  className={`hidden duration-500 w-2/5 md:1/4 ${isFilterOpen ? 'sm:flex' : 'sm:flex h-0 over w-0 overflow-hidden'}`}
+                >
                   <Filter />
                 </div>
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex duration-500 flex-col gap-4 w-full">
                   <SearchCard />
                 </div>
               </div>
