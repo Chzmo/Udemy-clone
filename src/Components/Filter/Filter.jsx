@@ -107,7 +107,6 @@ function Filter() {
     return (
         <>
             <div id='courses' className='px-1 h-full w-full'>
-                <h2 className="text-2xl font-bold " >A broad selection of courses</h2>
                 <hr className='mt-3 mb-2'/>
                 {sample?.map((item, index) => (
                 <>

@@ -101,7 +101,10 @@ function Search() {
                 </div>
               </div>
             </div>
-            <RightSideNav />
+            <RightSideNav 
+              isRightNavOpen={isRightNavOpen} 
+              setIsRightNavOpen={setIsRightNavOpen}
+            />
           </>
         }
       </div>
