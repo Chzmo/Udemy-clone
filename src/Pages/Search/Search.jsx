@@ -94,7 +94,6 @@ function Search() {
                 <div 
                   className={`hidden duration-500 w-2/5 md:1/4 sm:flex ${isFilterOpen ? '' : ' h-0 over w-0 overflow-hidden'}`}
                 >
-                  <RightSideNav />
                   <Filter />
                 </div>
                 <div className="flex duration-500 flex-col gap-4 w-full">
@@ -102,6 +101,7 @@ function Search() {
                 </div>
               </div>
             </div>
+            <RightSideNav />
           </>
         }
       </div>
