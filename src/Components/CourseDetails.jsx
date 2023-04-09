@@ -34,6 +34,7 @@ function CourseDetails() {
         <>
             <HashLink 
                 to={`/paid-course/python#`}
+                scroll={'smooth'}
                 data-tooltip-id="my-tooltip" 
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}

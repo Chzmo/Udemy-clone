@@ -54,7 +54,7 @@ function PaidCourseHeader() {
                         <Link className='text-purple-300'>(458,574 ratings)</Link>
                         <p>1,702,710 students</p>
                     </div>
-                    <div className="flex gap-2"><p className='text-[.8rem] md:text-1rem]'>Created by </p><Link className='text-purple-300'><small>Zaliro</small></Link></div>
+                    <div className="flex gap-2 items-center"><p className='text-[.8rem] md:text-1rem]'>Created by </p ><Link className='text-purple-300'><small>Zaliro</small></Link></div>
                     <div className="flex gap-4 items-center">
                     <small> Last updated 03/2021 </small>
                     <small> English</small>
