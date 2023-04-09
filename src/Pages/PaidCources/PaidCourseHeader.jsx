@@ -30,7 +30,7 @@ function PaidCourseHeader() {
                     <Link>Python</Link>
                 </small>
             </div>
-            <div className="flex md:flex-row flex-col-reverse w-[90%] md:flex md:gap-6 m-auto md:w-[81%] text-white py-7">
+            <div className="flex md:flex-row flex-col-reverse gap-4 w-[90%] md:flex md:gap-6 m-auto md:w-[81%] text-white py-7">
                 <div 
                     className={`
                         w-full md:w-4/5 m-auto gap-2
