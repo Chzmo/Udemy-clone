@@ -1,7 +1,8 @@
-import React from 'react'
-import { BiChevronRight } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
-import Rating from '../../Components/Rating'
+import React from 'react';
+import { BiChevronRight } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
+import Rating from '../../Components/Rating';
+
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 
 function PaidCourseHeader() {
