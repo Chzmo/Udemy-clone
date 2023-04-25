@@ -19,5 +19,5 @@ app.use(express.json());
 app.use("/api/authors", authorRouter)
 
 app.listen(PORT, ()=>{
-    console.log('Listening on port ', PORT)
+    console.log('Listening on port ', PORT || 5000)
 })

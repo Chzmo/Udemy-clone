@@ -74,7 +74,6 @@ authorRouter.put(
     }
 );
 
-
 // DELETE: Delete an Author
 // Params: id
 authorRouter.delete(
@@ -85,7 +84,7 @@ authorRouter.delete(
 
         try {
             await authorService.deleteAuthor(id);
-            return response.status(204).json("Author has been successfully deleted");
+            return response.status(204).json({message:"Author has been successfully deleted"});
         } catch(error: any){
             return response.status(500).json(error.message);
         }
