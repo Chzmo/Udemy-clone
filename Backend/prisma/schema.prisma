@@ -10,22 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Author{
+model User{
   id            Int       @id @default(autoincrement())
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @default(now())
   firstName     String
   lastName      String
-  Book          Book[]
+  course        Course[]
 }
 
-model Book {
+model Course {
   id            Int        @id @default(autoincrement())
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
   tittle        String  
-  isFinction    Boolean
   datePublished DateTime
-  author        Author  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author        User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
 }
