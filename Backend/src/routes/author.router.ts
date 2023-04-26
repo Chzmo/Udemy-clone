@@ -2,7 +2,7 @@ import { Request, Response, response } from 'express';
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 
-import * as authorService from './author.service';
+import * as authorService from '../controllers/author/author.service';
 
 export const authorRouter = express.Router();
 

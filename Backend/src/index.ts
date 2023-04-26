@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
-import { authorRouter } from './author/author.router';
+import { authorRouter } from './routes/author.router';
 
 dotenv.config();
 

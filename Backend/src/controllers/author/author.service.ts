@@ -1,4 +1,4 @@
-import { db } from "../utils/db.server";
+import { db } from "../../utils/db.server";
 
 type Author = {
     id: Number;
