@@ -1,13 +1,13 @@
 import { db } from "../../utils/db.server";
 
-type Author = {
+type User = {
     id: Number;
     firstName: string;
     lastName: string;
 };
 
-export const listAuthors = async (): Promise<Author[]> =>{
-    return db.author.findMany({
+export const listUsers = async (): Promise<User[]> =>{
+    return db.user.findMany({
         select:{
             id: true,
             firstName: true,
@@ -16,8 +16,8 @@ export const listAuthors = async (): Promise<Author[]> =>{
     });
 };
 
-export const getAuthor = async (id: number): Promise<Author | null> =>{
-    return await db.author.findUnique({
+export const getUser = async (id: number): Promise<User | null> =>{
+    return await db.user.findUnique({
         where:{
             id,
         },
@@ -29,12 +29,12 @@ export const getAuthor = async (id: number): Promise<Author | null> =>{
     });
 };
 
-export const createAuthor = async (
-    author: Omit<Author, "id">
-): Promise<Author> => {
-    const { firstName, lastName } = author
+export const registerUser = async (
+    user: Omit<User, "id">
+): Promise<User> => {
+    const { firstName, lastName } = user
     
-    return db.author.create({
+    return db.user.create({
         data:{
             lastName,
             firstName,            
@@ -48,11 +48,11 @@ export const createAuthor = async (
     });
 };
 
-export const updatedAuthor = async (
-    author: Omit<Author, "id">, id: number, 
-): Promise<Author> =>{
-    const {firstName, lastName} = author
-    return db.author.update({
+export const updatedUser = async (
+    user: Omit<User, "id">, id: number, 
+): Promise<User> =>{
+    const {firstName, lastName} = user
+    return db.user.update({
         where:{
             id,
         },
@@ -68,10 +68,10 @@ export const updatedAuthor = async (
     });
 }
 
-export const deleteAuthor = async (
+export const deleteUser = async (
     id:number
 ): Promise<void> =>{
-    await db.author.delete({
+    await db.user.delete({
         where:{
             id
         }

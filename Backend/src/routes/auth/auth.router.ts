@@ -2,29 +2,30 @@ import { Request, Response, response } from 'express';
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 
-import * as authorService from '../controllers/author/author.service';
+import * as authorService from '../../controllers/auth/userController';
 
-export const authorRouter = express.Router();
+export const userRouter = express.Router();
+export const usersRouter = express.Router();
 
 // GET: List all Authors
-authorRouter.get('/',async (request:Request, responce:Response) => {
+usersRouter.get('/',async (request:Request, responce:Response) => {
     try {
-        const authors = await authorService.listAuthors()
-        return responce.status(200).json(authors);
+        const users = await authorService.listUsers()
+        return responce.status(200).json(users);
     } catch (error: any) {
         return responce.status(500).json(error.message)
     }    
 })
 
 // GET: an Author by ID
-authorRouter.get('/:id',async (request:Request, responce:Response) => {
+userRouter.get('/:id',async (request:Request, responce:Response) => {
     const id: number = parseInt(request.params.id, 10);
     
     try {
-        const author = await authorService.getAuthor(id)
-        return author ? 
-            responce.status(200).json(author) : 
-            responce.status(404).json("Author not found")
+        const user = await authorService.getUser(id)
+        return user? 
+            responce.status(200).json(user) : 
+            responce.status(404).json("User not found")
     } catch (error: any) {
         return responce.status(500).json(error.message)
     }    
@@ -32,7 +33,7 @@ authorRouter.get('/:id',async (request:Request, responce:Response) => {
 
 // POST: Create an Author
 // Params: lastName, firstName
-authorRouter.post(
+userRouter.post(
     '/', 
     body("firstName").isString(), 
     body("lastName").isString(),
@@ -42,9 +43,9 @@ authorRouter.post(
             return response.status(400).json({errors: errors.array()});
         }
         try {
-            const author = request.body
-            const newAuthor = await authorService.createAuthor(author);
-            return response.status(200).json(newAuthor);
+            const user = request.body
+            const newUser = await authorService.registerUser(user);
+            return response.status(200).json(newUser);
         } catch(error: any){
             return response.status(500).json(error.message);
         }
@@ -53,7 +54,7 @@ authorRouter.post(
 
 // PUT: UPDATE an Author
 // Params: lastName, firstName
-authorRouter.put(
+userRouter.put(
     '/:id', 
     body("firstName").isString(), 
     body("lastName").isString(),
@@ -65,9 +66,9 @@ authorRouter.put(
             return response.status(400).json({errors: errors.array()});
         }
         try {
-            const author = request.body
-            const updatedAuthor = await authorService.updatedAuthor(author, id);
-            return response.status(200).json(updatedAuthor);
+            const user = request.body
+            const updatedUser = await authorService.updatedUser(user, id);
+            return response.status(200).json(updatedUser);
         } catch(error: any){
             return response.status(500).json(error.message);
         }
@@ -76,15 +77,15 @@ authorRouter.put(
 
 // DELETE: Delete an Author
 // Params: id
-authorRouter.delete(
+userRouter.delete(
     '/:id', 
     async (request: Request, response: Response) => {
         
         const id: number = parseInt(request.params.id, 10)
 
         try {
-            await authorService.deleteAuthor(id);
-            return response.status(204).json({message:"Author has been successfully deleted"});
+            await authorService.deleteUser(id);
+            return response.status(204).json({message:"User has been successfully deleted"});
         } catch(error: any){
             return response.status(500).json(error.message);
         }
