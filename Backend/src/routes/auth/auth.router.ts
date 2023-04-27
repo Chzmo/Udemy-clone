@@ -33,7 +33,7 @@ loginRouter.post(
     }  
 })
 
-// GET: List all Authors
+// GET: List all Users
 usersRouter.get('/',async (request:Request, responce:Response) => {
     
     try {
@@ -58,7 +58,7 @@ userRouter.get('/:id',async (request:Request, responce:Response) => {
     }    
 })
 
-// POST: Create an Author
+// POST: Create an Uuser
 // Params: lastName, firstName
 legisterRouter.post(
     '/', 
@@ -107,7 +107,8 @@ userRouter.put(
 // DELETE: Delete an Author
 // Params: id
 userRouter.delete(
-    '/:id', 
+    '/:id',
+    authMiddleware,
     async (request: Request, response: Response) => {
         
         const id: number = parseInt(request.params.id, 10)
