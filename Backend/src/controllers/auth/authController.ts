@@ -64,7 +64,7 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     
-    return db.user.create({
+    const registeredUser: object = await db.user.create({
         data:{
             userName,
             email,
@@ -80,4 +80,6 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
             updatedAt: true
         }
     });
+    const { id }: any = registeredUser;
+    return {...registeredUser, token:generateToken(id)};
 };
