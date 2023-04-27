@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
 import { authMiddleware } from '../middleware/authMiddleware';
+import { Request, Response } from 'express';
 
 dotenv.config();
 
@@ -22,9 +23,9 @@ app.use("/api/user", userRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
-app.use("/api/test", authMiddleware, ()=>{
-    return {hello:"hello"}
-})
+app.use("/api/test", authMiddleware, (requse:Request, responce:Response)=>{
+    return responce.send({message:"hello"})
+}).post('/')
 
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)
