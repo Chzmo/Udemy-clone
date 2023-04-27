@@ -10,6 +10,23 @@ const authMiddleware =  async (request: Request, response: Response, next) => {
     if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
         token = request.headers.authorization.split(' ')[1];
 
-        const decode: string = jwt.verify(token, process.env.JWT_SECRET)
+        const decode: number = jwt.verify(token, process.env.JWT_SECRET)
+
+        try {
+            return await db.user.findUnique({
+                where:{
+                    id : decode
+                },
+                select:{
+                    email:true,
+                }
+            })
+        } catch (error) {
+            response.status(401);
+            throw new Error('Not authorized')
+        }
+    }else{
+        response.status(401);
+        throw new Error()
     }
 }
