@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
-import { userRouter, usersRouter, loginRouter } from './routes/auth/auth.router';
+import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
 
 dotenv.config();
 
@@ -19,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/user", userRouter)
 app.use("/api/users", usersRouter)
+app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
 app.listen(PORT, ()=>{

@@ -8,6 +8,7 @@ import * as authController from '../../controllers/auth/authController';
 export const userRouter = express.Router();
 export const usersRouter = express.Router();
 export const loginRouter = express.Router();
+export const legisterRouter = express.Router();
 
 
 // Auth: Login Routes
@@ -30,7 +31,6 @@ loginRouter.post(
         return response.status(401).json(error.message);
     }  
 })
-
 
 // GET: List all Authors
 usersRouter.get('/',async (request:Request, responce:Response) => {
@@ -59,7 +59,7 @@ userRouter.get('/:id',async (request:Request, responce:Response) => {
 
 // POST: Create an Author
 // Params: lastName, firstName
-userRouter.post(
+legisterRouter.post(
     '/', 
     body("userName").isString(), 
     body("email").isString(), 
@@ -71,7 +71,7 @@ userRouter.post(
         }
         try {
             const user = request.body
-            const newUser = await authorService.registerUser(user);
+            const newUser = await authController.registerUser(user);
             return response.status(200).json(newUser);
         } catch(error: any){
             return response.status(500).json(error.message);
