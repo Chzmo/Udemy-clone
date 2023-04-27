@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { db } from "../src/utils/db.server";
+
 const jwt = require('jsonwebtoken');
 
-
+import { db } from "../src/utils/db.server";
 
 export const authMiddleware =  async (request: Request, response: Response, next:any) => {
+    const userId: number = parseFloat(request.body.userId)
     let token: string
 
     if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
@@ -17,15 +18,15 @@ export const authMiddleware =  async (request: Request, response: Response, next
                     id:parseInt(decodeId)
                 },
                 select:{
-                    email:true
+                    id:true
                 }
             })
 
-            if(user?.email){
+            if(user?.id && (user.id === userId)){
                 next()
             }else{
                 response.status(401);
-                response.send()
+                response.send({message:"Unauthorized"})
             }
             
         } catch (error) {

@@ -4,6 +4,7 @@ import { body, validationResult } from 'express-validator';
 
 import * as authorService from '../../controllers/auth/userController';
 import * as authController from '../../controllers/auth/authController';
+import { authMiddleware } from '../../../middleware/authMiddleware';
 
 export const userRouter = express.Router();
 export const usersRouter = express.Router();
@@ -61,6 +62,7 @@ userRouter.get('/:id',async (request:Request, responce:Response) => {
 // Params: lastName, firstName
 legisterRouter.post(
     '/', 
+    authMiddleware,
     body("userName").isString(), 
     body("email").isString(), 
     body("password").isString(),
