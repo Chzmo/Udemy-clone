@@ -30,3 +30,6 @@ app.use("/api/test", authMiddleware, (requse:Request, responce:Response)=>{
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)
 })
+
+
+

@@ -10,15 +10,14 @@ export const authMiddleware =  async (request: Request, response: Response, next
     if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
         token = request.headers.authorization.split(' ')[1];
 
-        const decodeId: any = jwt.verify(token, process.env.JWT_SECRET).id
-
         try {
+            const decodeId: any = jwt.verify(token, process.env.JWT_SECRET).id
             const user = await db.user.findUnique({
                 where:{
                     id:parseInt(decodeId)
                 },
                 select:{
-                    email:true,
+                    email:true
                 }
             })
 
