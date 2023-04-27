@@ -1,11 +1,36 @@
-import { Request, Response } from 'express';
+import { Request, Response, response } from 'express';
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 
 import * as authorService from '../../controllers/auth/userController';
+import * as authController from '../../controllers/auth/authController';
 
 export const userRouter = express.Router();
 export const usersRouter = express.Router();
+export const loginRouter = express.Router();
+
+
+// Auth: Login Routes
+loginRouter.post(
+    '/', 
+    body("email").isString(), 
+    body("password").isString(),
+    async (request:Request, response: Response) => {
+
+    const errors = validationResult(request);
+    if(!errors.isEmpty()){
+        return response.status(400).json({errors: errors.array()});
+    }
+
+    try {
+        const user = request.body;
+        const newUser = await authController.loginUser(user);
+        return response.status(200).json(newUser);
+    } catch(error: any){
+        return response.status(401).json(error.message);
+    }  
+})
+
 
 // GET: List all Authors
 usersRouter.get('/',async (request:Request, responce:Response) => {

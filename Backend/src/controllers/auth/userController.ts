@@ -1,5 +1,12 @@
 import { db } from "../../utils/db.server";
-import {createUserSchema} from '../../defenitions/userType'
+import { createUserSchema } from '../../defenitions/userType'
+const bcrypt = require('bcryptjs');
+
+type User = {
+    userName: string;
+    email:string;
+    password:string;
+}
 
 export const listUsers = async () =>{
     return db.user.findMany({
@@ -29,7 +36,7 @@ export const getUser = async (id: number) =>{
 export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     const { userName, email,  password} = user;
 
-    const userExists = await db.user.findUnique({
+    const userExists: any = await db.user.findUnique({
         where:{
             email,
         },
@@ -45,12 +52,15 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     if (userExists){
         throw new Error('Email is already taken')
     }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     
     return db.user.create({
         data:{
             userName,
             email,
-            password,           
+            password: hashedPassword,           
         },
 
         select:{
