@@ -51,7 +51,7 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     const userExists: any = await getUserbByEmail(email);
 
     if (userExists){
-        return userExists;
+        console.log(userExists)
         throw new Error('Email is already taken')
     }
 
