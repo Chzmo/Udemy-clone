@@ -9,12 +9,14 @@ type User = {
     password:string;
 }
 
+// GENERATE A LOGIN TOKEN
 const generateToken = (id:string) =>{
     return jwt.sign({id}, process.env.JWT_SECRET, {
         expiresIn:'1d'
     });
 }
 
+// GET UNIQUE USER BY ID
 const getUserbByEmail = async (email:string) => {
     return db.user.findMany({
         where:{
@@ -29,29 +31,30 @@ const getUserbByEmail = async (email:string) => {
     })
 }
 
-
+// LOGIN USER INTO THE SYSTEM
 export const loginUser = async (user: Omit<User, 'userName'>) => {
     const {email, password} = user;
-    const authUser: any = getUserbByEmail(email);
+    const authUser = await getUserbByEmail(email);
 
-    if (authUser && (await bcrypt.compare(password, authUser.password))){
+    if (authUser[0] && (await bcrypt.compare(password, authUser[0].password))){
         return {
-            id: authUser.id,
-            email: authUser.email,
-            token : generateToken(authUser.id)
+            id: authUser[0].id,
+            email: authUser[0].email,
+            token : generateToken(authUser[0].id.toString())
         }
     } else{
         throw new Error("Invalid credentials")
     }
 }
 
+
+// REGISTER NEW USER INTO THE SYSTEM
 export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     const { userName, email,  password} = user;
 
-    const userExists: any = await getUserbByEmail(email);
+    const userExists = await getUserbByEmail(email);
 
-    if (userExists){
-        console.log(userExists)
+    if (userExists.length){
         throw new Error('Email is already taken')
     }
 
