@@ -1,4 +1,4 @@
-import { Request, Response, response } from 'express';
+import { Request, Response } from 'express';
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 
@@ -9,6 +9,7 @@ export const usersRouter = express.Router();
 
 // GET: List all Authors
 usersRouter.get('/',async (request:Request, responce:Response) => {
+    
     try {
         const users = await authorService.listUsers()
         return responce.status(200).json(users);
@@ -35,8 +36,9 @@ userRouter.get('/:id',async (request:Request, responce:Response) => {
 // Params: lastName, firstName
 userRouter.post(
     '/', 
-    body("firstName").isString(), 
-    body("lastName").isString(),
+    body("userName").isString(), 
+    body("email").isString(), 
+    body("password").isString(),
     async (request: Request, response: Response) => {
         const errors = validationResult(request);
         if(!errors.isEmpty()){

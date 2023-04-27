@@ -1,69 +1,85 @@
 import { db } from "../../utils/db.server";
+import {createUserSchema} from '../../defenitions/userType'
 
-type User = {
-    id: Number;
-    firstName: string;
-    lastName: string;
-};
-
-export const listUsers = async (): Promise<User[]> =>{
+export const listUsers = async () =>{
     return db.user.findMany({
         select:{
             id: true,
-            firstName: true,
-            lastName: true,
+            email: true,
+            userName: true,
+            password: false,
         },
     });
 };
 
-export const getUser = async (id: number): Promise<User | null> =>{
+export const getUser = async (id: number) =>{
     return await db.user.findUnique({
         where:{
             id,
         },
         select:{
             id: true,
-            firstName: true,
-            lastName: true,
+            email: true,
+            userName: true,
+            password: false,
         }
     });
 };
 
-export const registerUser = async (
-    user: Omit<User, "id">
-): Promise<User> => {
-    const { firstName, lastName } = user
-    
-    return db.user.create({
-        data:{
-            lastName,
-            firstName,            
+export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
+    const { userName, email,  password} = user;
+
+    const userExists = await db.user.findUnique({
+        where:{
+            email,
         },
 
         select:{
             id: true,
-            firstName: true,
-            lastName: true
+            email: true,
+            userName: true,
+            password: false,
+        }
+    });
+
+    if (userExists){
+        throw new Error('Email is already taken')
+    }
+    
+    return db.user.create({
+        data:{
+            userName,
+            email,
+            password,           
+        },
+
+        select:{
+            id: true,
+            email: true,
+            userName: true,
+            password: false,
         }
     });
 };
 
 export const updatedUser = async (
-    user: Omit<User, "id">, id: number, 
-): Promise<User> =>{
-    const {firstName, lastName} = user
+    user: Omit<createUserSchema, "id">, id: number, 
+) =>{
+    const {email, userName, password} = user
     return db.user.update({
         where:{
             id,
         },
         data:{
-            firstName,
-            lastName,
+            userName,
+            email,
+            password,
         }, 
         select:{
-            id:true,
-            firstName: true,
-            lastName: true
+            id: true,
+            email: true,
+            userName: true,
+            password: false,
         }
     });
 }

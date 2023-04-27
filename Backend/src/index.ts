@@ -20,5 +20,5 @@ app.use("/api/user", userRouter)
 app.use("/api/users", usersRouter)
 
 app.listen(PORT, ()=>{
-    console.log('Listening on port ', PORT || 5000)
+    console.log('Listening on port ', PORT)
 })
