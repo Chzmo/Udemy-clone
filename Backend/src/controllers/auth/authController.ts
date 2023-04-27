@@ -15,20 +15,24 @@ const generateToken = (id:string) =>{
     });
 }
 
-export const loginUser = async (user: Omit<User, 'userName'>) => {
-    const {email, password} = user;
-    const authUser: any = await db.user.findUnique({
+const getUserbByEmail = async (email:string) => {
+    return db.user.findMany({
         where:{
             email,
         },
-
         select:{
             id: true,
             email: true,
             userName: true,
-            password: true,
+            password: true
         }
-    });
+    })
+}
+
+
+export const loginUser = async (user: Omit<User, 'userName'>) => {
+    const {email, password} = user;
+    const authUser: any = getUserbByEmail(email);
 
     if (authUser && (await bcrypt.compare(password, authUser.password))){
         return {
@@ -44,20 +48,10 @@ export const loginUser = async (user: Omit<User, 'userName'>) => {
 export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
     const { userName, email,  password} = user;
 
-    const userExists: any = await db.user.findUnique({
-        where:{
-            email,
-        },
-
-        select:{
-            id: true,
-            email: true,
-            userName: true,
-            password: false,
-        }
-    });
+    const userExists: any = await getUserbByEmail(email);
 
     if (userExists){
+        return userExists;
         throw new Error('Email is already taken')
     }
 
@@ -80,6 +74,7 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
             updatedAt: true
         }
     });
+
     const { id }: any = registeredUser;
     return {...registeredUser, token:generateToken(id)};
 };
