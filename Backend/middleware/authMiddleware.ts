@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { db } from "../src/utils/db.server";
-import { any } from "zod";
 const jwt = require('jsonwebtoken');
 
 
@@ -11,12 +10,12 @@ export const authMiddleware =  async (request: Request, response: Response, next
     if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
         token = request.headers.authorization.split(' ')[1];
 
-        const decode: number = jwt.verify(token, process.env.JWT_SECRET)
+        const decodeId: any = jwt.verify(token, process.env.JWT_SECRET).id
 
         try {
             const user = await db.user.findUnique({
                 where:{
-                    id : decode
+                    id:parseInt(decodeId)
                 },
                 select:{
                     email:true,
@@ -28,7 +27,7 @@ export const authMiddleware =  async (request: Request, response: Response, next
             }
         } catch (error) {
             response.status(401);
-            throw new Error('Not authorized')
+            response.send(error)
         }
     }else{
         response.status(401);

@@ -18,7 +18,7 @@ const generateToken = (id:string) =>{
 
 // GET UNIQUE USER BY ID
 const getUserbByEmail = async (email:string) => {
-    return db.user.findMany({
+    return db.user.findUnique({
         where:{
             email,
         },
@@ -36,11 +36,11 @@ export const loginUser = async (user: Omit<User, 'userName'>) => {
     const {email, password} = user;
     const authUser = await getUserbByEmail(email);
 
-    if (authUser[0] && (await bcrypt.compare(password, authUser[0].password))){
+    if (authUser && (await bcrypt.compare(password, authUser.password))){
         return {
-            id: authUser[0].id,
-            email: authUser[0].email,
-            token : generateToken(authUser[0].id.toString())
+            id: authUser.id,
+            email: authUser.email,
+            token : generateToken(authUser.id.toString())
         }
     } else{
         throw new Error("Invalid credentials")
@@ -54,7 +54,7 @@ export const registerUser = async ( user: Omit<createUserSchema, 'id'>) => {
 
     const userExists = await getUserbByEmail(email);
 
-    if (userExists.length){
+    if (userExists){
         throw new Error('Email is already taken')
     }
 
