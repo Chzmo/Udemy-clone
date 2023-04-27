@@ -24,7 +24,11 @@ export const authMiddleware =  async (request: Request, response: Response, next
 
             if(user?.email){
                 next()
+            }else{
+                response.status(401);
+                response.send()
             }
+            
         } catch (error) {
             response.status(401);
             response.send(error)
