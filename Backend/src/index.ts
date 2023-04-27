@@ -22,7 +22,7 @@ app.use(express.json());
 app.use("/api/user", userRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/register", legisterRouter)
-app.use("/api/login", loginRouter)
+app.use("/api/login", authMiddleware, loginRouter)
 app.use("/api/test", authMiddleware, (requse:Request, responce:Response)=>{
     return responce.send({message:"hello"})
 }).post('/')
