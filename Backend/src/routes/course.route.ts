@@ -41,12 +41,13 @@ courseRouter.post(
 })
 
 // GET: List all Courses in a category
-courseRouter.get('/', body('catgoryId'), async (request:Request, response:Response) => {
+courseRouter.get('/', body("categoryId").isString(), async (request:Request, response:Response) => {
     const errors = validationResult(request);
-    const categoryId: number = parseInt(request.body.categoryId)
-    if(!errors.isEmpty()){
+    
+    if(errors.isEmpty()){
         return response.status(400).json({errors: errors.array()});
     }
+    const categoryId: number = parseInt(request.body.categoryId)
 
     try {
         const users = await courseController.getCoursesCategory(categoryId)

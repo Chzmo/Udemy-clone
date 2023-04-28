@@ -1,3 +1,4 @@
+import { response } from "express";
 import { db } from "../utils/db.server";
 
 type Course = {
@@ -43,46 +44,53 @@ export const createCourse = async (authorId: number, catergoryId: number, course
     return createdCourse
 }
 
-export const getCoursesCategory = async (catgoryId: number) =>{
-    return db.course.findMany({
-        where:{
-            category: {
-                id: catgoryId
-            }
-        },
-        select:{
-            id: true,
-            createdAt: true,
-            updatedAt: true,
-            name: true,
-            title: true,
-            description: true,
-            price: true,
-            revisedPrice: true,     
-            thumbnail: true,
-            author:{
-                select:{
-                    id:true,
-                    userName:true,
+export const getCoursesCategory = async (catgoryId: any) =>{
+    const id = parseInt(catgoryId.toString())
+    return {message:id};
+    try {
+        return await db.course.findMany({
+            where:{
+                category: {
+                    id:1
                 }
             },
-            category: {
-                select:{
-                    title: true
-                }
+            select:{
+                id: true,
+                createdAt: true,
+                updatedAt: true,
+                name: true,
+                title: true,
+                description: true,
+                price: true,
+                revisedPrice: true,     
+                thumbnail: true,
+                author:{
+                    select:{
+                        id:true,
+                        userName:true,
+                    }
+                },
+                category: {
+                    select:{
+                        title: true
+                    }
+                },
+                requirements: true,
+                rating: {
+                    select:{
+                        rating:{
+                            select:{
+                                value:true
+                            }
+                        },
+                    }
+                },
             },
-            requirements: true,
-            rating: {
-                select:{
-                    rating:{
-                        select:{
-                            value:true
-                        }
-                    },
-                }
-            },
-        },
-    });
+        });
+    } catch (error) {
+        response.send(error)
+    }
+    
 };
 
 export const getCourse = async (id: number) =>{
