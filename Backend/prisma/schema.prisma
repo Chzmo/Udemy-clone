@@ -15,6 +15,7 @@ model User {
   email         String   @unique
   password      String
   course        Course[]
+  rating        UserOnCourseRating[]
 }
 
 model Course {
@@ -52,18 +53,22 @@ model Requirements{
 }
 
 model Rating {
-  id    Int                 @id @default(autoincrement())
-  name  String
-  posts UserOnCourseRating[]
+  id          Int                   @id @default(autoincrement())
+  value       Float
+  review      String
+  posts       UserOnCourseRating[]
 }
 
 model UserOnCourseRating {
-  post       Course     @relation(fields: [corseId], references: [id])
-  corseId    Int // relation scalar field (used in the `@relation` attribute above)
-  category   Rating @relation(fields: [ratingId], references: [id])
-  ratingId   Int // relation scalar field (used in the `@relation` attribute above)
-  assignedAt DateTime @default(now())
-  assignedBy String
+  post        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
+  corseId     Int        
+  category    Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+  ratingId    Int         
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int         
+  
+  assignedAt  DateTime    @default(now())
+  ratedBy     Int
 
-  @@id([corseId, ratingId])
+  @@id([corseId, ratingId, userId])
 }
