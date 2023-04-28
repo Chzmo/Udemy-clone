@@ -50,27 +50,27 @@ courseRouter.get('/:categoryId',  async (request:Request, response:Response) => 
     }
 
     try {
-        const users = await courseController.getCoursesCategory(categoryId)
+        const users = await courseController.getCoursesByCategory(categoryId)
         return response.status(200).json(users);
     } catch (error: any) {
-        return response.status(500).json(error.message)
+        return response.status(400).json({message:"Bad request"})
     }    
 })
 
-// // GET: an Author by ID
-// courseRouter.get('/:id',  async (request:Request, responce:Response) => {
+// GET: a Course by ID
+courseRouter.get('/:id',  async (request:Request, responce:Response) => {
 
-//     const id: number = parseInt(request.params.id, 10);
+    const id: number = parseInt(request.params.id, 10);
     
-//     try {
-//         const user = await userController.getUser(id)
-//         return user? 
-//             responce.status(200).json(user) : 
-//             responce.status(404).json("User not found")
-//     } catch (error: any) {
-//         return responce.status(500).json(error.message)
-//     }    
-// })
+    try {
+        const course = await courseController.getCourse(id)
+        return course? 
+            responce.status(200).json(course) : 
+            responce.status(400).json({message:"Bad request"})
+    } catch (error: any) {
+        return responce.status(400).json({message:"Bad request"})
+    }    
+})
 
 // // PUT: UPDATE an Author
 // // Params: lastName, firstName

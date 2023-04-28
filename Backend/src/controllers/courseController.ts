@@ -44,14 +44,14 @@ export const createCourse = async (authorId: number, catergoryId: number, course
     return createdCourse
 }
 
-export const getCoursesCategory = async (catgoryId: any) =>{
+export const getCoursesByCategory = async (catgoryId: any) =>{
     const id = parseInt(catgoryId.toString())
-    return {message:id};
+    
     try {
         return await db.course.findMany({
             where:{
                 category: {
-                    id:1
+                    id
                 }
             },
             select:{
@@ -88,7 +88,7 @@ export const getCoursesCategory = async (catgoryId: any) =>{
             },
         });
     } catch (error) {
-        response.send(error)
+        response.status(500).json().send(error)
     }
     
 };
