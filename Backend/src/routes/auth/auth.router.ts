@@ -1,16 +1,14 @@
-import { Request, Response, response } from 'express';
 import express from 'express';
+import { Request, Response} from 'express';
 import { body, validationResult } from 'express-validator';
 
-import * as authorService from '../../controllers/auth/userController';
+import * as userController from '../../controllers/auth/userController';
 import * as authController from '../../controllers/auth/authController';
-import { authMiddleware } from '../../../middleware/authMiddleware';
 
 export const userRouter = express.Router();
 export const usersRouter = express.Router();
 export const loginRouter = express.Router();
 export const legisterRouter = express.Router();
-
 
 // Auth: Login Routes
 loginRouter.post(
@@ -37,7 +35,7 @@ loginRouter.post(
 usersRouter.get('/',async (request:Request, responce:Response) => {
     
     try {
-        const users = await authorService.listUsers()
+        const users = await userController.listUsers()
         return responce.status(200).json(users);
     } catch (error: any) {
         return responce.status(500).json(error.message)
@@ -45,11 +43,12 @@ usersRouter.get('/',async (request:Request, responce:Response) => {
 })
 
 // GET: an Author by ID
-userRouter.get('/:id',async (request:Request, responce:Response) => {
+userRouter.get('/:id',  async (request:Request, responce:Response) => {
+
     const id: number = parseInt(request.params.id, 10);
     
     try {
-        const user = await authorService.getUser(id)
+        const user = await userController.getUser(id)
         return user? 
             responce.status(200).json(user) : 
             responce.status(404).json("User not found")
@@ -62,10 +61,11 @@ userRouter.get('/:id',async (request:Request, responce:Response) => {
 // Params: lastName, firstName
 legisterRouter.post(
     '/', 
-    authMiddleware,
+    
     body("userName").isString(), 
     body("email").isString(), 
     body("password").isString(),
+
     async (request: Request, response: Response) => {
         const errors = validationResult(request);
         if(!errors.isEmpty()){
@@ -83,10 +83,11 @@ legisterRouter.post(
 
 // PUT: UPDATE an Author
 // Params: lastName, firstName
-userRouter.put(
-    '/:id', 
+userRouter.put('/:id',  
+
     body("firstName").isString(), 
     body("lastName").isString(),
+
     async (request: Request, response: Response) => {
         const errors = validationResult(request);
         const id: number = parseInt(request.params.id, 10)
@@ -96,7 +97,7 @@ userRouter.put(
         }
         try {
             const user = request.body
-            const updatedUser = await authorService.updatedUser(user, id);
+            const updatedUser = await userController.updatedUser(user, id);
             return response.status(200).json(updatedUser);
         } catch(error: any){
             return response.status(500).json(error.message);
@@ -106,15 +107,12 @@ userRouter.put(
 
 // DELETE: Delete an Author
 // Params: id
-userRouter.delete(
-    '/:id',
-    authMiddleware,
-    async (request: Request, response: Response) => {
+userRouter.delete('/:id',  async (request: Request, response: Response) => {
         
         const id: number = parseInt(request.params.id, 10)
 
         try {
-            await authorService.deleteUser(id);
+            await userController.deleteUser(id);
             return response.status(204).json({message:"User has been successfully deleted"});
         } catch(error: any){
             return response.status(500).json(error.message);
