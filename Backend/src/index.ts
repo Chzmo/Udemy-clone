@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
+import { courseRouter } from './routes/course.route'
 import { authMiddleware } from '../middleware/authMiddleware';
 
 dotenv.config();
@@ -24,7 +25,7 @@ app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
 // COURSES REQUESTS
-
+app.use("/api/course", courseRouter)
 
 
 app.listen(PORT, ()=>{

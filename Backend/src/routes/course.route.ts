@@ -26,7 +26,7 @@ courseRouter.post(
     body("categoryId").isString(),
 
     async (request:Request, response: Response) => {
-
+        
         const errors = validationResult(request);
         const userId: number = parseInt(request.body.userId)
         const categoryId: number = parseInt(request.body.categoryId)
