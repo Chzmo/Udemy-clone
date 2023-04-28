@@ -23,7 +23,19 @@ export const createCourse = async (userId: number, catergoryId: number, course: 
             authorId: userId,
             categotyId: catergoryId
         },
-        
+        select:{
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            name:true,
+            title:true,
+            description:true,
+            price:true,
+            revisedPrice:true,
+            thumbnail:true,
+            // authorId: true,
+            // categotyId: true
+        }
     })
 
     return createdCourse
@@ -54,7 +66,7 @@ export const getCoursesCategory = async (catgoryId: number) =>{
             },
             category: {
                 select:{
-                    tittle: true
+                    title: true
                 }
             },
             requirements: true,
@@ -81,7 +93,7 @@ export const getCourse = async (id: number) =>{
             createdAt: true,
             updatedAt: true,
             name: true,
-            tittle: true,
+            title: true,
             description: true,
             price: true,
             revisedPrice: true,     
@@ -94,7 +106,7 @@ export const getCourse = async (id: number) =>{
             },
             category: {
                 select:{
-                    tittle: true
+                    title: true
                 }
             },
             requirements: true,
