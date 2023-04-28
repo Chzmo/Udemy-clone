@@ -18,6 +18,14 @@ model User {
   rating        UserOnCourseRating[]
 }
 
+model Category{
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  tittle        String
+  course        Course[]
+}
+
 model Course {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
@@ -25,11 +33,13 @@ model Course {
   tittle        String
   description   String
   datePublished DateTime
-  authorId      Int
   price         Float       @default(0)
   revisedPrice  Float       
   thumbnail     String
+  authorId      Int
+  categotyId    Int
   author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category      Category    @relation(fields: [categotyId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
@@ -60,15 +70,14 @@ model Rating {
 }
 
 model UserOnCourseRating {
-  post        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
   corseId     Int        
-  category    Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   ratingId    Int         
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int         
-  
-  assignedAt  DateTime    @default(now())
   ratedBy     Int
+  post        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
+  rating      Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedAt  DateTime    @default(now())
 
   @@id([corseId, ratingId, userId])
 }
