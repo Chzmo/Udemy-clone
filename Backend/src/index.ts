@@ -26,7 +26,7 @@ app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
 // COURSES ROUTES
-app.use("/api/course", courseRouter)
+app.use("/api/courses", courseRouter)
 
 // CATEGORIES ROUTES
 app.use("/api/category", categoryRouter)
