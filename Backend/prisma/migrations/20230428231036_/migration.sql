@@ -13,7 +13,7 @@ CREATE TABLE "Category" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    "tittle" TEXT NOT NULL
+    "title" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -25,12 +25,12 @@ CREATE TABLE "Course" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "price" REAL NOT NULL DEFAULT 0,
-    "revisedPrice" REAL NOT NULL,
+    "revisedPrice" REAL NOT NULL DEFAULT 0,
     "thumbnail" TEXT NOT NULL,
     "authorId" INTEGER NOT NULL,
-    "categotyId" INTEGER NOT NULL,
+    "categoryId" INTEGER NOT NULL,
     CONSTRAINT "Course_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "Course_categotyId_fkey" FOREIGN KEY ("categotyId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Course_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -74,6 +74,9 @@ CREATE TABLE "UserOnCourseRating" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_title_key" ON "Category"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Content_courseId_key" ON "Content"("courseId");

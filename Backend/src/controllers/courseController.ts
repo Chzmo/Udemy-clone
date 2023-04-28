@@ -24,7 +24,7 @@ export const createCourse = async (authorId: number, catergoryId: number, course
             revisedPrice,
             thumbnail,
             authorId,
-            categotyId: catergoryId
+            categoryId: catergoryId
         },
         select:{
             id: true,
@@ -44,8 +44,8 @@ export const createCourse = async (authorId: number, catergoryId: number, course
     return createdCourse
 }
 
-export const getCoursesByCategory = async (catgoryId: any) =>{
-    const id = parseInt(catgoryId.toString())
+export const getCoursesByCategory = async (categoryId: any) =>{
+    const id = parseInt(categoryId.toString())
     
     try {
         return await db.course.findMany({
