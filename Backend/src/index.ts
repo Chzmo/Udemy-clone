@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
 import { courseRouter } from './routes/course.route'
+import { categoryRouter } from './routes/category.route'
 import { authMiddleware } from '../middleware/authMiddleware';
 
 dotenv.config();
@@ -24,9 +25,11 @@ app.use("/api/users", authMiddleware, usersRouter)
 app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
-// COURSES REQUESTS
+// COURSES ROUTES
 app.use("/api/course", courseRouter)
 
+// CATEGORIES ROUTES
+app.use("/api/category", courseRouter)
 
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)

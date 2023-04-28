@@ -3,10 +3,10 @@ import { validationResult, body } from 'express-validator';
 
 import * as categoryController from '../controllers/categoryController';
 
-export const courseRouter = express.Router();
+export const categoryRouter = express.Router();
 
 // Auth: Category Routes
-courseRouter.post('/', body("title").isString(),
+categoryRouter.post('/', body("title").isString(),
     async (request:Request, response: Response) => {
         
     const errors = validationResult(request);
