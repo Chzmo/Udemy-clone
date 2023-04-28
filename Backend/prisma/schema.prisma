@@ -31,7 +31,6 @@ model Course {
   name          String
   title        String
   description   String
-  datePublished DateTime
   price         Float       @default(0)
   revisedPrice  Float       
   thumbnail     String

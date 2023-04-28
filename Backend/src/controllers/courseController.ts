@@ -12,12 +12,21 @@ type Course = {
 
 export const createCourse = async (userId: number, catergoryId: number, course: Omit<Course, 'id'>) =>{
     const {name, title, description, price, revisedPrice, thumbnail} = course;
-    const createCourse: object =  db.course.create({
+    const createdCourse: object =  db.course.create({
         data:{
             name,
             title,
-        }
+            description,
+            price,
+            revisedPrice,
+            thumbnail,
+            authorId: userId,
+            categotyId: catergoryId
+        },
+        
     })
+
+    return createdCourse
 }
 
 export const getCoursesCategory = async (catgoryId: number) =>{
@@ -32,7 +41,7 @@ export const getCoursesCategory = async (catgoryId: number) =>{
             createdAt: true,
             updatedAt: true,
             name: true,
-            tittle: true,
+            title: true,
             description: true,
             price: true,
             revisedPrice: true,     
@@ -105,14 +114,14 @@ export const getCourse = async (id: number) =>{
 export const updatedCourse = async (
     Course: Omit<Course, "id">, id: number, 
 ) =>{
-    const {name, tittle, description, price, revisedPrice, thumbnail} = Course;
+    const {name, title, description, price, revisedPrice, thumbnail} = Course;
     return db.course.update({
         where:{
             id,
         },
         data:{
             name,
-            tittle,
+            title,
             description,
             price,
             revisedPrice,
@@ -123,7 +132,7 @@ export const updatedCourse = async (
             createdAt: true,
             updatedAt: true,
             name: true,
-            tittle: true,
+            title: true,
             description: true,
             price: true,
             revisedPrice: true,
@@ -132,12 +141,12 @@ export const updatedCourse = async (
     });
 }
 
-export const deleteCourse = async (
-    id:number
-): Promise<void> =>{
-    await db.course.delete({
-        where:{
-            id
-        }
-    })
-}
+// export const deleteCourse = async (
+//     id:number
+// ): Promise<void> =>{
+//     await db.course.delete({
+//         where:{
+//             id
+//         }
+//     })
+// }
