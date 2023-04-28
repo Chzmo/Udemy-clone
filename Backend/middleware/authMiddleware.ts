@@ -12,7 +12,7 @@ export const authMiddleware =  async (request: Request, response: Response, next
         token = request.headers.authorization.split(' ')[1];
 
         try {
-            const decodeId: any = jwt.verify(token, process.env.JWT_SECRET).id
+            const decodeId: any = await jwt.verify(token, process.env.JWT_SECRET).id
             const user = await db.user.findUnique({
                 where:{
                     id:parseInt(decodeId)

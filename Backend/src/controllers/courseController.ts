@@ -133,10 +133,12 @@ export const getCourse = async (id: number) =>{
     });
 };
 
-export const updatedCourse = async (
-    Course: Omit<Course, "id">, id: number, 
+export const updateCourse = async (
+    course: Omit<Course, "id">, id: number, 
 ) =>{
-    const {name, title, description, price, revisedPrice, thumbnail} = Course;
+    const {name, title, description,  thumbnail} = course;
+    const price = parseInt(course.price.toString());
+    const revisedPrice = parseInt(course.revisedPrice.toString());
     return db.course.update({
         where:{
             id,
@@ -163,12 +165,18 @@ export const updatedCourse = async (
     });
 }
 
-// export const deleteCourse = async (
-//     id:number
-// ): Promise<void> =>{
-//     await db.course.delete({
-//         where:{
-//             id
-//         }
-//     })
-// }
+export const deleteCourse = async (
+    id:number
+) =>{
+    try {
+        return await db.course.delete({
+            where:{
+                id
+            }
+        })
+        
+    } catch (error) {
+        response.send()
+    }
+
+}

@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
-import { courseRouter } from './routes/course.route'
+import { courseRouter, coursesRouter } from './routes/course.route'
 import { categoryRouter } from './routes/category.route'
 import { authMiddleware } from '../middleware/authMiddleware';
 
@@ -26,7 +26,8 @@ app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
 // COURSES ROUTES
-app.use("/api/courses", courseRouter)
+app.use("/api/courses", coursesRouter)
+app.use("/api/course", courseRouter)
 
 // CATEGORIES ROUTES
 app.use("/api/category", categoryRouter)
