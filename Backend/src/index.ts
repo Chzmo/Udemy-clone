@@ -29,7 +29,7 @@ app.use("/api/login", loginRouter)
 app.use("/api/course", courseRouter)
 
 // CATEGORIES ROUTES
-app.use("/api/category", courseRouter)
+app.use("/api/category", categoryRouter)
 
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)

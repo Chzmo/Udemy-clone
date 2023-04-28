@@ -4,15 +4,17 @@ type Course = {
     id: number;
     name: string;
     title: string;
+    price: number;
+    revisedPrice: number;
     description: string;
-    price: number,
-    revisedPrice: number; 
     thumbnail: string;
 }
 
-export const createCourse = async (userId: number, catergoryId: number, course: Omit<Course, 'id'>) =>{
-    const {name, title, description, price, revisedPrice, thumbnail} = course;
-    const createdCourse: object =  db.course.create({
+export const createCourse = async (authorId: number, catergoryId: number, course: Omit<Course, 'id'>) =>{
+    const {name, title, description,  thumbnail} = course;
+    const price = parseInt(course.price.toString());
+    const revisedPrice = parseInt(course.revisedPrice.toString());
+    const createdCourse: object = await db.course.create({
         data:{
             name,
             title,
@@ -20,7 +22,7 @@ export const createCourse = async (userId: number, catergoryId: number, course: 
             price,
             revisedPrice,
             thumbnail,
-            authorId: userId,
+            authorId,
             categotyId: catergoryId
         },
         select:{

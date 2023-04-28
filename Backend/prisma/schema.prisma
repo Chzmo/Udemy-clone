@@ -29,15 +29,15 @@ model Course {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   name          String
-  title        String
+  title         String
   description   String
   price         Float       @default(0)
-  revisedPrice  Float       
+  revisedPrice  Float       @default(0)
   thumbnail     String
   authorId      Int
-  categotyId    Int
+  categoryId    Int
   author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  category      Category    @relation(fields: [categotyId], references: [id], onDelete: Cascade)
+  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
