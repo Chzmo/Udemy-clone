@@ -1,12 +1,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
@@ -74,7 +72,7 @@ model UserOnCourseRating {
   ratingId    Int         
   userId      Int         
   ratedBy     Int
-  course        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
+  course      Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
   rating      Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignedAt  DateTime    @default(now())

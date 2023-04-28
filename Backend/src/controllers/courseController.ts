@@ -7,8 +7,13 @@ type Course = {
     password:string;
 }
 
-export const getCourses = async () =>{
+export const getCoursesCategory = async (catgoryId: number) =>{
     return db.course.findMany({
+        where:{
+            category: {
+                id: catgoryId
+            }
+        },
         select:{
             id: true,
             createdAt: true,
@@ -33,24 +38,54 @@ export const getCourses = async () =>{
             requirements: true,
             rating: {
                 select:{
-                    
+                    rating:{
+                        select:{
+                            value:true
+                        }
+                    },
                 }
             },
         },
     });
 };
 
-export const getUser = async (id: number) =>{
-    return await db.user.findUnique({
+export const getCourse = async (id: number) =>{
+    return await db.course.findUnique({
         where:{
             id,
         },
         select:{
             id: true,
-            email: true,
-            userName: true,
-            password: false,
-        }
+            createdAt: true,
+            updatedAt: true,
+            name: true,
+            tittle: true,
+            description: true,
+            price: true,
+            revisedPrice: true,     
+            thumbnail: true,
+            author:{
+                select:{
+                    id:true,
+                    userName:true,
+                }
+            },
+            category: {
+                select:{
+                    tittle: true
+                }
+            },
+            requirements: true,
+            rating: {
+                select:{
+                    rating:{
+                        select:{
+                            value:true
+                        }
+                    },
+                }
+            },
+        },
     });
 };
 
