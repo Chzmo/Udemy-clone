@@ -9,11 +9,11 @@ datasource db {
 
 model User {
   id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
   userName      String
   email         String   @unique
   password      String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
   course        Course[]
 }
 
@@ -31,6 +31,7 @@ model Course {
   author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
+  rating        UserOnCourseRating[]
 }
 
 model Content {
@@ -48,4 +49,21 @@ model Requirements{
   updatedAt     DateTime    @updatedAt
   course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+}
+
+model Rating {
+  id    Int                 @id @default(autoincrement())
+  name  String
+  posts UserOnCourseRating[]
+}
+
+model UserOnCourseRating {
+  post       Course     @relation(fields: [corseId], references: [id])
+  corseId    Int // relation scalar field (used in the `@relation` attribute above)
+  category   Rating @relation(fields: [ratingId], references: [id])
+  ratingId   Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([corseId, ratingId])
 }
