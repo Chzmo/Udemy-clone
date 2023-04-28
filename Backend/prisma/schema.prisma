@@ -8,21 +8,44 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  userName  String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  course    Course[]
+  id            Int      @id @default(autoincrement())
+  userName      String
+  email         String   @unique
+  password      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+  course        Course[]
 }
 
 model Course {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   tittle        String
+  description   String
   datePublished DateTime
   authorId      Int
-  author        User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  price         Float       @default(0)
+  revisedPrice  Float       
+  thumbnail     String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  content       Content?
+  requirements  Requirements[]
+}
+
+model Content {
+  id            Int         @id @default(autoincrement())
+  courseId      Int         @unique
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model Requirements{
+  id            Int         @id @default(autoincrement())
+  courseId      Int         @unique
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
 }
