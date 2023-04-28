@@ -23,6 +23,10 @@ app.use("/api/users", authMiddleware, usersRouter)
 app.use("/api/register", legisterRouter)
 app.use("/api/login", loginRouter)
 
+// COURSES REQUESTS
+
+
+
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)
 })

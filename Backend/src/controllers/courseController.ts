@@ -10,7 +10,7 @@ type Course = {
     thumbnail: string;
 }
 
-export const createCourse = async (userId: number, catergoryId: number, course: Omit<Course, 'id'>) =>{
+export const createCourse = async (userId: number, catergoryId: number, course: any) =>{
     const {name, title, description, price, revisedPrice, thumbnail} = course;
     const createdCourse: object =  db.course.create({
         data:{
