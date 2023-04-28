@@ -13,7 +13,7 @@ export const usersRouter = express.Router();
 export const loginRouter = express.Router();
 export const legisterRouter = express.Router();
 
-// Auth: Login Routes
+// Auth: Courses Routes
 courseRouter.post(
     '/', 
     body("name").isString(), 

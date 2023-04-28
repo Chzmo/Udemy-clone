@@ -1,6 +1,4 @@
-
 import { db } from "../utils/db.server";
-
 
 export const createCategory = async ( title: string) =>{
     
