@@ -1,6 +1,5 @@
 import { db } from "../../utils/db.server";
 import { createUserSchema } from '../../defenitions/userType'
-const bcrypt = require('bcryptjs');
 
 type User = {
     userName: string;

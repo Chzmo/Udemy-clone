@@ -1,10 +1,23 @@
 import { db } from "../utils/db.server";
-import { createUserSchema } from '../defenitions/userType'
 
 type Course = {
-    userName: string;
-    email:string;
-    password:string;
+    id: number;
+    name: string;
+    title: string;
+    description: string;
+    price: number,
+    revisedPrice: number; 
+    thumbnail: string;
+}
+
+export const createCourse = async (userId: number, catergoryId: number, course: Omit<Course, 'id'>) =>{
+    const {name, title, description, price, revisedPrice, thumbnail} = course;
+    const createCourse: object =  db.course.create({
+        data:{
+            name,
+            title,
+        }
+    })
 }
 
 export const getCoursesCategory = async (catgoryId: number) =>{
@@ -89,32 +102,40 @@ export const getCourse = async (id: number) =>{
     });
 };
 
-export const updatedUser = async (
-    user: Omit<createUserSchema, "id">, id: number, 
+export const updatedCourse = async (
+    Course: Omit<Course, "id">, id: number, 
 ) =>{
-    const {email, userName, password} = user
-    return db.user.update({
+    const {name, tittle, description, price, revisedPrice, thumbnail} = Course;
+    return db.course.update({
         where:{
             id,
         },
         data:{
-            userName,
-            email,
-            password,
+            name,
+            tittle,
+            description,
+            price,
+            revisedPrice,
+            thumbnail
         }, 
         select:{
             id: true,
-            email: true,
-            userName: true,
-            password: false,
+            createdAt: true,
+            updatedAt: true,
+            name: true,
+            tittle: true,
+            description: true,
+            price: true,
+            revisedPrice: true,
+            thumbnail: true,
         }
     });
 }
 
-export const deleteUser = async (
+export const deleteCourse = async (
     id:number
 ): Promise<void> =>{
-    await db.user.delete({
+    await db.course.delete({
         where:{
             id
         }
