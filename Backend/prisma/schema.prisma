@@ -30,6 +30,7 @@ model Course {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  name          String
   tittle        String
   description   String
   datePublished DateTime
@@ -59,7 +60,6 @@ model Requirements{
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
 }
 
 model Rating {
@@ -74,7 +74,7 @@ model UserOnCourseRating {
   ratingId    Int         
   userId      Int         
   ratedBy     Int
-  post        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
+  course        Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
   rating      Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignedAt  DateTime    @default(now())

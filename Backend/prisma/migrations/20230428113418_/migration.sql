@@ -9,18 +9,29 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Category" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "tittle" TEXT NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Course" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
+    "name" TEXT NOT NULL,
     "tittle" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "datePublished" DATETIME NOT NULL,
-    "authorId" INTEGER NOT NULL,
     "price" REAL NOT NULL DEFAULT 0,
     "revisedPrice" REAL NOT NULL,
     "thumbnail" TEXT NOT NULL,
-    CONSTRAINT "Course_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "authorId" INTEGER NOT NULL,
+    "categotyId" INTEGER NOT NULL,
+    CONSTRAINT "Course_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Course_categotyId_fkey" FOREIGN KEY ("categotyId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -53,8 +64,8 @@ CREATE TABLE "UserOnCourseRating" (
     "corseId" INTEGER NOT NULL,
     "ratingId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "assignedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "ratedBy" INTEGER NOT NULL,
+    "assignedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY ("corseId", "ratingId", "userId"),
     CONSTRAINT "UserOnCourseRating_corseId_fkey" FOREIGN KEY ("corseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
