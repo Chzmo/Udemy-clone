@@ -1,4 +1,4 @@
-import { createUserSchema } from "../../utils/userType";
+import { createUserSchema } from "../../utils/customTypes";
 import { db } from "../../utils/db.server";
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')

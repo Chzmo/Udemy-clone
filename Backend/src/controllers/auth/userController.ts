@@ -1,5 +1,5 @@
 import { db } from "../../utils/db.server";
-import { createUserSchema } from '../../utils/userType'
+import { createUserSchema } from '../../utils/customTypes'
 
 type User = {
     userName: string;

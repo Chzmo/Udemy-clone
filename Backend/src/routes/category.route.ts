@@ -2,11 +2,16 @@ import express, { Request, Response } from 'express';
 import { validationResult, body } from 'express-validator';
 
 import * as categoryController from '../controllers/categoryController';
+import { authMiddleware } from '../../middleware/authMiddleware';
 
 export const categoryRouter = express.Router();
 
 // Auth: Category Routes
-categoryRouter.post('/', body("title").isString(),
+categoryRouter.post('/', 
+
+    body("title").isString(),
+    authMiddleware,
+
     async (request:Request, response: Response) => {
         
     const errors = validationResult(request);
