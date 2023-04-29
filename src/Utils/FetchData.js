@@ -1,7 +1,6 @@
 
-export const fetchData = async (endPoint, id) =>{
+export const fetchData = async (endPoint, id ='') =>{
   const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-  const newId = id ? id : '' ;
 
   const myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
@@ -13,7 +12,7 @@ export const fetchData = async (endPoint, id) =>{
     redirect: 'follow'
   };
     
-  const response = await fetch(VITE_APP_BASE_URL + endPoint + newId, requestOptions )
+  const response = await fetch(VITE_APP_BASE_URL + endPoint + id )
   const data = await response.json()
   return data;
 }

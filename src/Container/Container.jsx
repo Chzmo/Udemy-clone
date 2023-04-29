@@ -13,7 +13,7 @@ function Container() {
 
   async function getData(){
     const data = await fetchData('/api/categories')
-    console.log(data)
+    console.log(data[0])
   }
   
   useEffect(() => {
