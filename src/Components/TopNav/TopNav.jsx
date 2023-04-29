@@ -62,19 +62,23 @@ function TopNav({globalState}) {
                             {globalState.categories && 
                                 globalState.categories?.map((category, index)=>{
                                     return (
-                                        <Link key={index} className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
+                                        <Link 
+                                            key={index} 
+                                            className="px-3 hover:text-purple-800 flex items-center justify-between w-full"
+                                            onMouseEnter={() => setCourses(category.course)}
+                                        >
                                             <p>{category?.title}</p> <AiOutlineSearch/>
                                         </Link>
                                     )
                                 })
                             }
                         </div>
-                        <div className={`h-screen w-64 border-l flex flex-col  top-0 py-4 ${!courses && 'hidden'}`}>
-                            {globalState.categories && 
-                                globalState.categories?.map((category, index)=>{
+                        <div className={`h-screen w-64 border-l flex flex-col  top-0 py-4 gap-4 ${!courses && 'hidden'}`}>
+                            {courses && 
+                                courses?.map((course, index)=>{
                                     return (
                                         <Link key={index} className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                            <p>{category?.title}</p> <AiOutlineSearch/>
+                                            <p>{course?.name}</p> <AiOutlineSearch/>
                                         </Link>
                                     )
                                 })
