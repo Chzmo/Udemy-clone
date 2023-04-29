@@ -16,3 +16,18 @@ export const createCategory = async ( title: string) =>{
 
     return createCategory
 }
+
+export const getCategories = async () =>{
+    
+    const createCategory: object =  db.category.findMany({
+        select:{
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            title:true,
+            course: true,
+        }
+    })
+
+    return createCategory
+}

@@ -1,11 +1,12 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import { authMiddleware } from '../middleware/authMiddleware';
 
 import { userRouter, usersRouter, loginRouter, legisterRouter } from './routes/auth/auth.router';
-import { courseRouter, coursesRouter } from './routes/course.route'
+import { courseRouter, coursesRouter } from './routes/course.route';
+
 import { categoryRouter } from './routes/category.route'
-import { authMiddleware } from '../middleware/authMiddleware';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use("/api/course", courseRouter)
 
 // CATEGORIES ROUTES
 app.use("/api/category", categoryRouter)
+app.use("/api/categories", categoryRouter)
 
 app.listen(PORT, ()=>{
     console.log('Listening on port ', PORT)
