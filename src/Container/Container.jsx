@@ -7,13 +7,15 @@ import TopNav from '../Components/TopNav/TopNav';
 
 function Container() {
   const [categories, setCategories] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+  const globalState = {
+    loading, setLoading, categories, setCategories
+  }
 
   async function getData(){
     const data = await fetchData('/api/categories')
-    console.log(data[0])
+    setCategories(data)
   }
   
   useEffect(() => {
@@ -23,9 +25,9 @@ function Container() {
 
   return (
     <div >
-        <TopNav />
-        <Outlet />
-        <Footer />
+        <TopNav globalState={globalState}/>
+        <Outlet globalState={globalState}/>
+        <Footer globalState={globalState}/>
     </div>
   )
 }
