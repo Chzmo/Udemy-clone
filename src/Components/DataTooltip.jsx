@@ -33,9 +33,9 @@ function DataTooltip({tooltipID, place, isOpen, setIsOpen, data}) {
                 {data[3]?.subHeading}
               </p>
 
-              {data[4]?.objectives?.map((objective) => {
+              {data[4]?.objectives?.map((objective, index) => {
                 return (
-                    <div className="div flex w-72">
+                    <div key={index} className="div flex w-72">
                       <BiCheck size={24} className='w-9'/>
                       <p className="text-md w-60">{objective?.name}</p>
                     </div>

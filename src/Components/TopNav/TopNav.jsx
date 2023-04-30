@@ -61,11 +61,15 @@ function TopNav({globalState}) {
                     onMouseEnter={() => {setIsCatergoryNavOpen(true)}}
                 >
                     <p 
-                        className='hover:text-purple-800 hover:cursor-pointer h-full'
+                        className='hover:text-purple-800 hover:cursor-pointer h-full'  
                     >
                         Categories
                     </p>
-                    <CategoryNav isCatergoryNavOpen={isCatergoryNavOpen} setIsCatergoryNavOpen={setIsCatergoryNavOpen}/>
+                    <CategoryNav 
+                        isCatergoryNavOpen={isCatergoryNavOpen} 
+                        setIsCatergoryNavOpen={setIsCatergoryNavOpen}
+                        globalState={globalState}
+                    />
                 </div>
                 <label 
                     htmlFor="search"
