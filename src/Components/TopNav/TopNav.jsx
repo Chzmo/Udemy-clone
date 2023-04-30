@@ -91,19 +91,24 @@ function TopNav({globalState}) {
                             }
                         </div>
 
-                        <div className={`h-screen w-64 border-l flex flex-col  top-0 py-4 ${!topics && 'hidden'}`}>
-                            {isLoadingTopics ? 
-                                <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
+                        <div className={`h-screen px-3 w-64 border-l flex flex-col gap-4 top-0 py-4 ${topics && 'hidden'}`}>
+                            <h2 className='font-semibold text-sm text-slate-600 '>Popular topics</h2>
+                            {!isLoadingTopics ? 
+                                <>
                                     {[1,2,3,4,5,6,6,7].map(index => {
                                         return (
-                                            <div className="w-full "></div>
+                                            <div key={index} className="animate-pulse w-full h-5 bg-slate-200"></div>
                                         )
                                     })}
-                                </div>
+                                </>
                                 :
-                                <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                    
-                                </div>
+                                <>
+                                    {[1,2,3,4,5,6,6,7,8].map(index => {
+                                        return (
+                                            <div className="hover:text-purple-800 flex items-center justify-between w-full"></div>
+                                        )
+                                    })}
+                                </>
                             }
                         </div>
                     </div>
