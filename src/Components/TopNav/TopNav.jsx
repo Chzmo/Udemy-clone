@@ -57,7 +57,10 @@ function TopNav({globalState}) {
                 </Link>
                 <div className='hidden sm:flex relative'>
                     <p className='hover:text-purple-800'>Categories</p>
-                    <div className={`h-screen absolute border border-slate-300 min-w-64 top-12 z-10 bg-white -left-8 flex ${!globalState.categories && 'hidden'}`}>
+                    <div 
+                        className={`h-screen absolute border border-slate-300 min-w-64 top-12 z-10 bg-white -left-8 flex ${!globalState.categories && 'hidden'}`}
+                        // onMouseLeave={() => se} 
+                    >
                         <div className="h-screen w-64 flex flex-col hover:text-black py-4 gap-4">
                             {globalState.categories && 
                                 globalState.categories?.map((category, index)=>{
@@ -87,7 +90,7 @@ function TopNav({globalState}) {
 
                         <div className="hidden h-screen w-64 border-l flex flex-col  top-0 py-4 ">
                             <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                <p>Categories</p><span>icon</span>
+                                
                             </div>
                         </div>
                     </div>
