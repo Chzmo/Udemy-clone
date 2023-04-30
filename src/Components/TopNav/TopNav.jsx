@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
-import { BiChevronRight } from 'react-icons/bi'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
@@ -14,11 +13,7 @@ import CategoryNav from './CategoryNav'
 function TopNav({globalState}) {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
     const [isSeachInputOpen, setIsSeachInputOpen] = useState(false)
-    const [courses, setCourses] = useState(null)
-    const [isLoadingTopics, setIsLoadingTopics] = useState(null)
-    const [topics, setTopics] = useState(null)
     const [isCatergoryNavOpen, setIsCatergoryNavOpen] = useState(false)
-    
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
 
@@ -67,11 +62,10 @@ function TopNav({globalState}) {
                 >
                     <p 
                         className='hover:text-purple-800 hover:cursor-pointer h-full'
-                        
                     >
                         Categories
                     </p>
-                    <CategoryNav isCatergoryNavOpen={isCatergoryNavOpen}/>
+                    <CategoryNav isCatergoryNavOpen={isCatergoryNavOpen} setIsCatergoryNavOpen={setIsCatergoryNavOpen}/>
                 </div>
                 <label 
                     htmlFor="search"
