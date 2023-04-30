@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
+import { BiChevronRight } from 'react-icons/bi'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
@@ -10,8 +11,10 @@ import SearchInput from '../../Pages/Search/SearchInput'
 
 function TopNav({globalState}) {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
-    const [isSeachInputOpen, seIsSeachInputOpen] = useState(false)
+    const [isSeachInputOpen, setIsSeachInputOpen] = useState(false)
     const [courses, setCourses] = useState(null)
+    const [isLoadingTopics, setIsLoadingTopics] = useState(null)
+    const [topics, setTopics] = useState(null)
 
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
@@ -38,7 +41,7 @@ function TopNav({globalState}) {
 
             <SearchInput 
                 isSeachInputOpen={isSeachInputOpen}
-                seIsSeachInputOpen={seIsSeachInputOpen}
+                setIsSeachInputOpen={setIsSeachInputOpen}
             />
 
             <div 
@@ -70,7 +73,7 @@ function TopNav({globalState}) {
                                             className="px-3 hover:text-purple-800 flex items-center justify-between w-full"
                                             onMouseEnter={() => setCourses(category.course)}
                                         >
-                                            <p>{category?.title}</p> <AiOutlineSearch/>
+                                            <p>{category?.title}</p> <BiChevronRight/>
                                         </Link>
                                     )
                                 })
@@ -81,17 +84,27 @@ function TopNav({globalState}) {
                                 courses?.map((course, index)=>{
                                     return (
                                         <Link key={index} className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                            <p>{course?.name}</p> <AiOutlineSearch/>
+                                            <p>{course?.name}</p> <BiChevronRight/>
                                         </Link>
                                     )
                                 })
                             }
                         </div>
 
-                        <div className="hidden h-screen w-64 border-l flex flex-col  top-0 py-4 ">
-                            <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                
-                            </div>
+                        <div className={`h-screen w-64 border-l flex flex-col  top-0 py-4 ${!topics && 'hidden'}`}>
+                            {isLoadingTopics ? 
+                                <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
+                                    {[1,2,3,4,5,6,6,7].map(index => {
+                                        return (
+                                            <div className="w-full "></div>
+                                        )
+                                    })}
+                                </div>
+                                :
+                                <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
+                                    
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -136,7 +149,7 @@ function TopNav({globalState}) {
                 <div className="flex items-center gap-2 sm:hidden">
                     <AiOutlineSearch 
                         size={20}
-                        onClick={() => {seIsSeachInputOpen(true);}}
+                        onClick={() => {setIsSeachInputOpen(true);}}
                     />
                     <div className="flex items-center">
                         <MdOutlineShoppingCart size={23} className='font-semibold'/>
