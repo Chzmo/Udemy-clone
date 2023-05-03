@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DataTooltip from './DataTooltip';
 import { MdStarRate } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,21 @@ const randomImage1 = "https://source.unsplash.com/600x499/?learing/programming"
 // const randomImage4 = "https://source.unsplash.com/600x502/?learing"
 // const randomImage5 = "https://source.unsplash.com/600x498/?learing"
 
-function CourseDetails({course}) {
-
-    const [isOpen, setIsOpen] = useState(false)
-
+function CourseDetails({course, setIsOpen, setTooltipData}) {
+    const data = [
+        {'heading': course?.title},
+        {'updatedAt': course?.updatedAt},
+        {'level':'42.5 total hours All Levels Subtitles'},
+        {'subHeading': course?.description},
+        {'objectives':[
+            {'name':'You will master the programming language by'},
+            {'name':'You will master the Python programming'}
+        ]},
+    ]
+    const rating = course?.rating?.length | 0;
     const Stars = (props) =>{
         let stars = [];
-    
+        
         for (let i = 0; i < parseInt(props.stars); i++){
             stars.push(<MdStarRate color='#f3ca8c' key={i}/>);
         }
@@ -28,45 +36,34 @@ function CourseDetails({course}) {
             </div>
         )
     }
-
+    console.log(course)
     return (
         <>
             <HashLink 
                 to={`/paid-course/python#`}
-                data-tooltip-id={`my-tooltip-${course?.id}`} 
-                onMouseEnter={() => setIsOpen(true)}
+                data-tooltip-id={`my-tooltip`}
+                // data-tooltip-content= {[<p>fdgdgd</p>]}
+                onMouseEnter={() => {
+                    setIsOpen(true) 
+                    setTooltipData(data)}
+                }
                 onMouseLeave={() => setIsOpen(false)}
             >
                 <div className="h-40 w-64">
                 <img 
-                    src={randomImage1} 
+                    src= {`https://source.unsplash.com/600x499/?programming/${course?.title}`} 
                     alt={`course`} 
                     className='h-40 w-64 bg-slate-100 object-cover'
                 />
                 </div>
                 <h2 className='w-64 font-bold text-xl'>{course?.title}</h2>
-                <p>{course?.author?.userName}</p>
-                <div className="flex gap-2"><h2>4.6</h2><Stars stars={5}/><p>(12,004)</p></div>
-                <p>$182.99</p>
+                <small className=' text-slate-500'>{course?.author?.userName}</small>
+                <div className="flex gap-2"><h2>{rating}</h2><Stars stars={rating}/><p>({`${course?.rating?.length}`})</p></div>
+                <p className='flex gap-1'>
+                    <span className='font-bold'>{`${course?.revisedPrice && '$' + course?.revisedPrice}`}</span> 
+                    <span className="line-through text-slate-400">{`${course?.price && '$' + course?.price}`}</span> 
+                </p>
             </HashLink>
-            <DataTooltip 
-                tooltipID={`my-tooltip-${course?.id}`} 
-                place="right"
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                data = {
-                    [
-                        {'heading':'Automate the boring stuff with Python Programming'},
-                        {'updatedAt':'February 2023'},
-                        {'level':'42.5 total hours All Levels Subtitles'},
-                        {'subHeading':'You will master the Python  language by building 100 unique projects over 100 days'},
-                        {'objectives':[
-                            {'name':'You will master the programming language by'},
-                            {'name':'You will master the Python programming'}
-                        ]},
-                    ]
-                }
-            />
         </>
     )
 }

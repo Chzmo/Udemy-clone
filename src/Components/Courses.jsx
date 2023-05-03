@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
 import CourseDetails from './CourseDetails'
-
+import DataTooltip from './DataTooltip'
 
 function AccordionItem(props) {
   const [isOpen, setIsOpen] = useState(props.defaultOpen);
@@ -33,6 +33,9 @@ function AccordionItem(props) {
 function Courses({globalState}) {
   const [course, setCourse] = useState('Python')
   const [searchParam, setSearchParam] = useState(0)
+  const [tooltipData, setTooltipData] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
+  
   const sample = [
     {'title': 'Python', 'content':'testing1'},
     {'title': 'Web', 'content':'testing2'},
@@ -40,7 +43,8 @@ function Courses({globalState}) {
   ]
 
   useEffect(() => {
-    console.log(globalState?.categories && globalState?.categories[0]?.course)
+    // console.log(globalState?.categories && globalState?.categories[0]?.course)
+    
   }, [course])
   
   return (
@@ -82,9 +86,13 @@ function Courses({globalState}) {
                 key={index}
                 globalState={globalState}
                 course={_course}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setTooltipData={setTooltipData}
               />
             })}
           </div>
+          <DataTooltip tooltipData={tooltipData} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
       </div>
       <div id='courses' className='py-3 px-7 md:hidden'>
