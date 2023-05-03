@@ -5,11 +5,11 @@ import Rating from '../../Components/Rating';
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 
-function PaidCourseHeader() {
+function Header() {
   return (
     <>
         <div 
-            className="fixed hidden md:flex flex-col justify-center px-6 top-0 py-3 w-screen bg-[#1c1d1f] -z-10 text-white shadow-lg"
+            className="fixed hidden md:flex flex-col justify-center px-6 top-0 py-3 w-screen bg-[#1c1d1f] text-white shadow-lg"
         >
             <div className="hidden md:flex flex-col gap">
                 <p className='font-bold'>The Complete Python Bootcamp From Zero to Hero in Python</p>
@@ -22,7 +22,7 @@ function PaidCourseHeader() {
                 </small>
             </div>
         </div>
-        <div className="bg-[#1c1d1f] relative -z-20">
+        <div className="bg-[#1c1d1f] relative -z-10">
             <div 
                 className="flex flex-col justify-center px-6 top-0 py-3 w-full bg-[#1c1d1f] -z-10 text-white"
             >
@@ -74,34 +74,9 @@ function PaidCourseHeader() {
                     </div>
                 </div>
             </div>
-
         </div>
-        <div className="flex md:flex-row h-screen mt-3.5 gap-5 w-[90%] md:flex md:gap-6 m-auto md:w-[81%] text-white ">
-            <div 
-                className={`
-                    w-full lg:w-4/5 gap-2 border
-                `}
-            >
-
-            </div>
-
-            <div className="w-full hidden  sticky lg:flex md:w-2/5">
-                <div className="flex flex-col w-full bg-transparent">
-                    <div className="z-30  sticky top-32  bg-white md:w-full text-black">
-                        <div className='-mt-24 z-30 w-full bg-white'>
-                            <p>sdsadadaasdasdad</p>
-                            <p>sdsadadaasdasdad</p>
-                            <p>sdsadadaasdasdad</p>
-                            <p>sdsadadaasdasdad</p>
-                            <p>sdsadadaasdasdad</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="flex h-screen"></div>
     </>
   )
 }
 
-export default PaidCourseHeader
+export default Header
