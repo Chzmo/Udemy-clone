@@ -3,10 +3,10 @@ import { MdOndemandVideo } from 'react-icons/md'
 
 function CartDetails() {
     return (
-        <div className="w-full hidden  sticky lg:flex md:w-2/5">
+        <div className="w-full hidden z-30 sticky lg:flex md:w-2/5">
             <div className="flex flex-col w-full bg-transparent">
-                <div className="z-30  sticky top-32  bg-white md:w-full text-black">
-                    <div className='-mt-24 z-30 w-full h-max border bg-white p-4 px-7 space-y-3'>
+                <div className="z-50  sticky top-32  bg-white md:w-full text-black">
+                    <div className='-mt-24 w-full h-max border bg-white p-4 px-7 space-y-3'>
                         <div className="flex gap-2">
                             <p className='font-bold text-[2rem] '>{`$88.99`}</p>
                         </div>
