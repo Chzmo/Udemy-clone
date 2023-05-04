@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
+import { useState } from "react";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
-function AccordionItem(props) {
-    const [isOpen, setIsOpen] = useState(props.defaultOpen);
+function AccordionItem({defaultOpen, title}) {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
   
     return (
         <div>
             <div  onClick={() => setIsOpen(!isOpen)} className='flex justify-between'>
-                <p className='font-bold'> {props.title}</p>
+                <p className='font-bold'> {title}</p>
                 <div>{isOpen ? <BiChevronUp size={15}/> : <BiChevronDown size={15}/>}</div>
             </div>
             {isOpen && 
@@ -19,13 +19,13 @@ function AccordionItem(props) {
     );
 }
 
-function Filter() {
+function CourseContent() {
     const sample = [
-      {'title': 'Python', 'content':'testing1'},
-      {'title': 'Web', 'content':'testing2'},
-      {'title': 'Hello', 'content':'testing3'},
+        {'title': 'Python', 'content':'testing1'},
+        {'title': 'Web', 'content':'testing2'},
+        {'title': 'Hello', 'content':'testing3'},
     ]
-  
+
     return (
         <>
             <div id='courses' className='px-1 h-full w-full'>
@@ -46,4 +46,4 @@ function Filter() {
     )
 }
 
-export default Filter
+export default CourseContent

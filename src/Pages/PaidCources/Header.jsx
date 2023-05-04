@@ -12,7 +12,7 @@ function Header() {
         <>
             <div 
                 className={`
-                    fixed -z-10 top-0 hidden md:flex flex-col justify-center px-6 py-3 w-full bg-[#1c1d1f] text-white shadow-lg
+                    fixed z-20 top-0 hidden md:flex flex-col justify-center px-6 py-3 w-full bg-[#1c1d1f] text-white shadow-lg
                 `}
             >
                 <div className="hidden md:flex flex-col gap">
