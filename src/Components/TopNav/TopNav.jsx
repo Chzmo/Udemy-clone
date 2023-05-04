@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { AiOutlineSearch, AiOutlineGlobal } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { MdOutlineShoppingCart } from 'react-icons/md'
@@ -7,12 +7,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo/logo-udemy.svg'
 import SideNav from '../SideNav/SideNav'
 import SearchInput from '../../Pages/Search/SearchInput'
+import CategoryNav from './CategoryNav'
+
 
 function TopNav({globalState}) {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false)
-    const [isSeachInputOpen, seIsSeachInputOpen] = useState(false)
-    const [courses, setCourses] = useState(null)
-
+    const [isSeachInputOpen, setIsSeachInputOpen] = useState(false)
+    const [isCatergoryNavOpen, setIsCatergoryNavOpen] = useState(false)
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
 
@@ -38,11 +39,11 @@ function TopNav({globalState}) {
 
             <SearchInput 
                 isSeachInputOpen={isSeachInputOpen}
-                seIsSeachInputOpen={seIsSeachInputOpen}
+                setIsSeachInputOpen={setIsSeachInputOpen}
             />
 
             <div 
-                className="w-full bg-white flex py-3 px-6 gap-5 items-center justify-between shadow-lg z-30"
+                className="w-full bg-white flex py-3 px-6 gap-5 items-center justify-between shadow-lg sticky z-30 "
             >
                 <div 
                     className='sm:hidden'
@@ -55,52 +56,26 @@ function TopNav({globalState}) {
                         src={logo} alt="logo" 
                     />
                 </Link>
-                <div className='hidden sm:flex relative'>
-                    <p className='hover:text-purple-800'>Categories</p>
-                    <div 
-                        className={`h-screen absolute border border-slate-300 min-w-64 top-12 z-10 bg-white -left-8 flex ${!globalState.categories && 'hidden'}`}
-                        // onMouseLeave={() => se} 
+                <div 
+                    className='hidden sm:flex relative'
+                    onMouseEnter={() => {setIsCatergoryNavOpen(true)}}
+                >
+                    <p 
+                        className='hover:text-purple-800 hover:cursor-pointer h-full'  
                     >
-                        <div className="h-screen w-64 flex flex-col hover:text-black py-4 gap-4">
-                            {globalState.categories && 
-                                globalState.categories?.map((category, index)=>{
-                                    return (
-                                        <Link 
-                                            key={index} 
-                                            className="px-3 hover:text-purple-800 flex items-center justify-between w-full"
-                                            onMouseEnter={() => setCourses(category.course)}
-                                        >
-                                            <p>{category?.title}</p> <AiOutlineSearch/>
-                                        </Link>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className={`h-screen w-64 border-l flex flex-col  top-0 py-4 gap-4 ${!courses && 'hidden'}`}>
-                            {courses && 
-                                courses?.map((course, index)=>{
-                                    return (
-                                        <Link key={index} className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                            <p>{course?.name}</p> <AiOutlineSearch/>
-                                        </Link>
-                                    )
-                                })
-                            }
-                        </div>
-
-                        <div className="hidden h-screen w-64 border-l flex flex-col  top-0 py-4 ">
-                            <div className="px-3 hover:text-purple-800 flex items-center justify-between w-full">
-                                
-                            </div>
-                        </div>
-                    </div>
+                        Categories
+                    </p>
+                    <CategoryNav 
+                        isCatergoryNavOpen={isCatergoryNavOpen} 
+                        setIsCatergoryNavOpen={setIsCatergoryNavOpen}
+                        globalState={globalState}
+                    />
                 </div>
                 <label 
                     htmlFor="search"
                     className='
                         hidden sm:flex
                         flex-1 
-                        flex 
                         gap-3 
                         items-center 
                         rounded-full 
@@ -128,7 +103,7 @@ function TopNav({globalState}) {
                 <Link className='hidden md:flex'>Udemy Business</Link>
                 <Link className='hidden lg:flex'> Teach on Udemy</Link>
                 <MdOutlineShoppingCart size={23} className='hidden font-semibold sm:flex'/>
-                <div className="flex gap-2 items-center hidden sm:flex">
+                <div className="gap-2 items-center hidden sm:flex">
                     <Link className='border border-black py-1.5 font-semibold px-4'>Log In</Link>
                     <Link className='border border-black py-1.5 px-4 bg-black font-semibold text-white'>Sign Up</Link>
                     <button className='border border-black p-2.5'><AiOutlineGlobal /></button>
@@ -136,7 +111,7 @@ function TopNav({globalState}) {
                 <div className="flex items-center gap-2 sm:hidden">
                     <AiOutlineSearch 
                         size={20}
-                        onClick={() => {seIsSeachInputOpen(true);}}
+                        onClick={() => {setIsSeachInputOpen(true);}}
                     />
                     <div className="flex items-center">
                         <MdOutlineShoppingCart size={23} className='font-semibold'/>

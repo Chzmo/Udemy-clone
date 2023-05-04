@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { fetchData } from '../Utils/FetchData';
 
 import Footer from '../Components/Footer'
@@ -26,10 +26,14 @@ function Container() {
   return (
     <div >
         <TopNav globalState={globalState}/>
-        <Outlet globalState={globalState}/>
+        <Outlet context={{globalState}}/>
         <Footer globalState={globalState}/>
     </div>
   )
 }
 
 export default Container
+
+export function useGlobalState(){
+  return useOutletContext()
+}

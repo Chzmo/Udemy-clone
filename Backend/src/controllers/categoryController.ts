@@ -25,7 +25,25 @@ export const getCategories = async () =>{
             createdAt: true,
             updatedAt: true,
             title:true,
-            course: true,
+            course:{
+                select:{
+                    id:true,
+                    createdAt:true,
+                    updatedAt:true,
+                    name:true,
+                    title:true,
+                    description :true,
+                    price :true,
+                    revisedPrice :true,
+                    thumbnail :true,
+                    authorId :true,
+                    categoryId :true,
+                    author :true,
+                    rating:true
+                }
+            } 
+            
+            // rating: true
         }
     })
 

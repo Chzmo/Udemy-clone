@@ -24,8 +24,8 @@ function Hero() {
           disableOnInteraction: false,
         }}
         navigation={{
-          nextEl :".button-next",
           prevEl :".button-prev",
+          nextEl :".button-next"
         }}
         keyboard={{
           enabled: true,
@@ -93,16 +93,17 @@ function Hero() {
             rounded-full items-center justify-center
           "
         >
-            <HiOutlineArrowLeft />
+          <HiOutlineArrowLeft />
         </div>
         <div 
           className="
-          hidden hover:cursor-pointer sm:flex
-          button-next absolute inset-y-1/2 right-7 \
-          bg-black h-10 w-10 text-white z-10 
-          rounded-full items-center justify-center"
-          >
-            <HiOutlineArrowRight/>
+            hidden hover:cursor-pointer sm:flex
+            button-next absolute inset-y-1/2 right-7 \
+            bg-black h-10 w-10 text-white z-10 
+            rounded-full items-center justify-center
+          "
+        >
+          <HiOutlineArrowRight/>
         </div>
       </Swiper>
     </div>
