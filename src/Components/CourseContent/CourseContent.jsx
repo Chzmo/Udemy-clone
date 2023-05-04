@@ -11,7 +11,7 @@ function AccordionItem({defaultOpen, title}) {
                     <div>{isOpen ? <BiChevronUp size={20}/> : <BiChevronDown size={20}/>}</div>
                     <p className='font-bold'> {title}</p>
                 </div>
-                <div className="flex items-center gap-2 ">
+                <div className="flex items-center gap-2">
                     <p>12 Lessons</p>
                 </div>
             </div>
