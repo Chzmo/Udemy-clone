@@ -9,7 +9,7 @@ function Requirements() {
                     return (
                         <div key={rec} className="pl-3 flex items-center gap-3">
                             <GoPrimitiveDot /> 
-                            <p>{rec}</p>
+                            <small className='text-sm'>{rec}</small>
                         </div>
                     )
                 })}
