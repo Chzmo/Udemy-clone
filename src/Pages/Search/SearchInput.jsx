@@ -3,14 +3,14 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { RiCloseFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 
-function SearchInput({isSeachInputOpen, seIsSeachInputOpen}) {
+function SearchInput({isSeachInputOpen, setIsSeachInputOpen}) {
 
     const [searchTearm, setSearchTearm] = useState('')
     const navigate = useNavigate()
 
     const handleSearchSubmit = (e) =>{
         e.preventDefault()
-        seIsSeachInputOpen(false)
+        setIsSeachInputOpen(false)
         if(searchTearm) navigate('/search/' + searchTearm);
     }
 
@@ -34,7 +34,7 @@ function SearchInput({isSeachInputOpen, seIsSeachInputOpen}) {
                         onClick={()=> {
                             handleSearchSubmit; 
                             navigate('/search/' + searchTearm); 
-                            seIsSeachInputOpen(false)
+                            setIsSeachInputOpen(false)
                         }}
                     />
                     <form 
@@ -55,7 +55,7 @@ function SearchInput({isSeachInputOpen, seIsSeachInputOpen}) {
                 <div 
                     className={`flex items-center justify-center`
                     }
-                    onClick={() => {seIsSeachInputOpen(false);} }
+                    onClick={() => {setIsSeachInputOpen(false);} }
                 >
                     <RiCloseFill size={20}/>
                 </div>
