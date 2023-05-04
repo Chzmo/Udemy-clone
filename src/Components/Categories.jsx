@@ -29,7 +29,7 @@ function Categories() {
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
-              <Link key={index} className="group">
+              <Link key={index} className="group" to={`/paid-course/${item.category}`}>
                 <div className="overflow-hidden">
 
                 <img 
