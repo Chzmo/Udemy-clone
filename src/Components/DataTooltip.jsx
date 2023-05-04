@@ -17,6 +17,7 @@ function DataTooltip({isOpen, setIsOpen, tooltipData}) {
         '
         classNameArrow='hello'
         isOpen={isOpen}
+        delayShow={5000}
     >
         <div 
             onMouseEnter={() => setIsOpen(true)}

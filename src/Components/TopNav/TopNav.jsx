@@ -43,7 +43,7 @@ function TopNav({globalState}) {
             />
 
             <div 
-                className="w-full bg-white flex py-3 px-6 gap-5 items-center justify-between shadow-lg z-30"
+                className="w-full bg-white flex py-3 px-6 gap-5 items-center justify-between shadow-lg z-10 "
             >
                 <div 
                     className='sm:hidden'
