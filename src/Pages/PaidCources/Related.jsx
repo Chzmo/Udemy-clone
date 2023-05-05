@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsHeart } from 'react-icons/bs';
 import { MdGroup, MdStarRate } from 'react-icons/md';
+
 const courseTitles = [
     { title: "Complete Python Bootcamp: From Zero to Hero in Python 3", language: "Python" },
     { title: "The Complete Web Developer Course 2.0", language: "JavaScript" },
@@ -15,12 +16,13 @@ const courseTitles = [
   ];
   
 function Related() {
+    const [countLimit, setCountLimit] = useState(5)
     return (
         <>
             <h2 className="bold font-bold text-2xl">Students also bought</h2>
             <div className="flex flex-col gap-4 w-full">
                 {courseTitles.map((course, index)=>{
-                    return (
+                    return ((index < countLimit) &&
                         <>  
                             {index ? <hr /> : <div></div> }
                             <div key={`related-${index}`} className="flex gap-2 w-full">
@@ -51,6 +53,12 @@ function Related() {
                         )
                     })
                 }
+            </div>
+            <div 
+                className="border text-center p-3 cursor-pointer"
+                onClick={()=> setCountLimit(9999999)}
+            >
+                <small className="font-bold text-slate-700"><p>{courseTitles?.length - countLimit} more sections</p></small>
             </div>
         </>
     )
