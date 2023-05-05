@@ -92,7 +92,7 @@ function Search() {
                 className={`flex py-7 w-full transition duration-500 items-start ${isFilterOpen ?'gap-3':'gap-0'}`}
               >
                 <div 
-                  className={`hidden duration-500 w-2/5 md:1/4 sm:flex ${isFilterOpen ? '' : ' h-0 over w-0 overflow-hidden'}`}
+                  className={`hidden duration-500 sm:flex ${isFilterOpen ? 'w-2/5 md:1/4' : ' h-0 over w-0 overflow-hidden'}`}
                 >
                   <Filter />
                 </div>

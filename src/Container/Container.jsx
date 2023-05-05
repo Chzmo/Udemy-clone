@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { fetchData } from '../Utils/FetchData';
 
-import Footer from '../Components/Footer'
+import Footer from '../Components/Footer/Footer'
 import TopNav from '../Components/TopNav/TopNav';
 
 function Container() {

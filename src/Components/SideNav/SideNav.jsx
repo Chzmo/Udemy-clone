@@ -148,7 +148,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
       <div
         className= {
           `static bg-black opacity-40 top-0 left-0 right-0 h-screen
-          z-20 fixed ${isSideNavOpen ? '' : 'hidden'}`
+          z-40 fixed ${isSideNavOpen ? '' : 'hidden'}`
          }
          onClick={() => setIsSideNavOpen(false)}
       >
@@ -159,7 +159,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
         className={
           `static fixed bg-white  
           right-3 rounded-full flex items-center 
-          justify-center z-20 p-3 duration-500
+          justify-center z-40 p-3 duration-500
            ${ isSideNavOpen ? 'top-3' : ' -top-12'}`
         }
         onClick={() => {setIsSideNavOpen(!isSideNavOpen); handleSideNav();} }
@@ -170,7 +170,7 @@ function SideNav({isSideNavOpen, setIsSideNavOpen, handleSideNav}) {
       {/* Side Nav */}
       <div 
         className={
-          `static bg-white h-screen top-0 z-20 overflow-hidden overflow-y-scroll fixed
+          `static bg-white h-screen top-0 z-40 overflow-hidden overflow-y-scroll fixed
             w-4/5 duration-500
             ${isSideNavOpen ? ' left-0 ' : ' -left-full'}
           ` 

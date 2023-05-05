@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
-import CourseDetails from './CourseDetails'
-import DataTooltip from './DataTooltip'
+import CourseDetails from '../CourseDetails'
+import DataTooltip from '../DataTooltip'
 
 function AccordionItem(props) {
   const [isOpen, setIsOpen] = useState(props.defaultOpen);

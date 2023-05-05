@@ -1,5 +1,3 @@
-import React from 'react'
-
 import designImg from '../assets/images/category-design.jpg'
 import developmentImg from '../assets/images/category-development.jpg'
 import softwareImg from '../assets/images/category-it-and-software.jpg'
@@ -8,7 +6,7 @@ import personalImg from '../assets/images/category-personal-development.jpg'
 import businessImg from '../assets/images/category-business.jpg'
 import musicImg from '../assets/images/category-music.jpg'
 import photographyImg from '../assets/images/category-photography.jpg'
-import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 const categoriesData = [
   {'image':designImg, 'category':'Designnig'},
@@ -29,7 +27,7 @@ function Categories() {
         {categoriesData && 
           categoriesData.map((item, index) => {
             return (
-              <Link key={index} className="group" to={`/paid-course/${item.category}`}>
+              <HashLink key={index} className="group" to={`/paid-course/${item.category}#`}>
                 <div className="overflow-hidden">
 
                 <img 
@@ -60,7 +58,7 @@ function Categories() {
                 >
                   {item.category}
                 </h2>
-              </Link>
+              </HashLink>
             )
           })
         }
