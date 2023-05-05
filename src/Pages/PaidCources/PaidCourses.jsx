@@ -3,7 +3,8 @@ import CartDetails from './CartDetails'
 import WhatYouLearn from './WhatYouLearn'
 import Companies from '../../Components/Companies/Companies'
 import CourseContent from '../../Components/CourseContent/CourseContent'
-import Requirements from '../../Components/Description/Requirements'
+import Requirements from '../../Components/Requirements/Requirements'
+import Description from '../../Components/Description/Description'
 
 function PaidCourses() {
     return (
@@ -15,6 +16,7 @@ function PaidCourses() {
                     <Companies />
                     <CourseContent />
                     <Requirements />
+                    <Description />
                 </div>  
                 <CartDetails />
             </div>

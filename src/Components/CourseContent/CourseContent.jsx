@@ -23,11 +23,11 @@ function AccordionItem({defaultOpen, title}) {
             <div className='flex flex-col gap-3 p-4 border-t'>
                 {['AWS Account Activation Troubleshooting', 'Important Message', 'About your instructor'].map((intro)=>{
                     return (
-                        <div key={intro} className="flex items-center justify-between">
+                        <div key={intro} className="flex items-start justify-between">
                             <div className="flex gap-3 items-center">
                                 <MdOndemandVideo /> {intro}
                             </div>
-                            <p>12 min</p>
+                            <p className="hidden sm:flex">12 min</p>
                         </div>
                     )
                 })}
