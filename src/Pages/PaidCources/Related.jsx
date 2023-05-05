@@ -22,7 +22,7 @@ function Related() {
                                         <span className=''>Updated 1/2023</span>
                                     </small>
                                 </div>
-                                <div className="flex items-center flex-wrap sm:flex-nowrap sm:items-start md:justify-between md:gap-6">
+                                <div className="flex items-center flex-wrap sm:flex-nowrap sm:items-start justify-between gap-6">
                                     <div className='flex items-center text-[#bb7725]'><p>4.4</p> <p><MdStarRate color='#e69a1d'/></p></div> 
                                     <div className='flex items-center gap-1'><MdGroup size={20}/> <span>3,455</span></div> 
                                     <div className="font-bold">{`$64.99`}</div>
