@@ -18,7 +18,7 @@ function SearchInput({isSeachInputOpen, setIsSeachInputOpen}) {
         <div
             className={`
                 ${isSeachInputOpen? '': 'hidden'}
-                static fixed h-screen z-40 bg-white w-screen
+                fixed h-screen z-40 bg-white w-screen
             `}
         >
             <div className="border border-bottom-slate-600 px-4 flex items-center">
