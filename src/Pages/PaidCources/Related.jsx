@@ -54,12 +54,20 @@ function Related() {
                     })
                 }
             </div>
-            <div 
-                className="border text-center p-3 cursor-pointer"
-                onClick={()=> setCountLimit(9999999)}
-            >
-                <small className="font-bold text-slate-700"><p>{courseTitles?.length - countLimit} more sections</p></small>
-            </div>
+           {(countLimit === 5) ? 
+                 <div 
+                    className="border text-center p-3 cursor-pointer"
+                    onClick={()=> setCountLimit(9999999)}
+                >
+                    <small className="font-bold text-slate-700"><p>show more</p></small>
+                </div>:
+                    <div 
+                    className="border text-center p-3 cursor-pointer"
+                    onClick={()=> setCountLimit(5)}
+                >
+                    <small className="font-bold text-slate-700"><p>show less</p></small>
+                </div>
+            }
         </>
     )
 }
