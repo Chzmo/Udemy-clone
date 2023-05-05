@@ -83,8 +83,8 @@ function Header() {
                             </div>
 
                             <div className="flex items-center justify-between">
-                                <p className='underline font-bold p-1 hover:cursor-pointer'>Share</p>
-                                <p className='underline font-bold p-1 hover:cursor-pointer'>Gift this course</p>
+                                <p className='underline font-bold p-1 hover:cursor-pointer mb-12'>Share</p>
+                                <p className='underline font-bold p-1 hover:cursor-pointer mb-12'>Gift this course</p>
                                 <p className='underline font-bold p-1 hover:cursor-pointer  mb-12'>Apply Coupon</p>
                             </div>
                         </div>
