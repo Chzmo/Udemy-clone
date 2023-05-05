@@ -5,6 +5,7 @@ import { useIntersection } from '@mantine/hooks'
 
 import { useIsDivTop } from '../../Utils/CustomHooks';
 import Rating from '../../Components/Rating';
+import { MdOndemandVideo } from 'react-icons/md';
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 
 function Header() {
@@ -64,6 +65,29 @@ function Header() {
                             <small> Last updated 03/2021 </small>
                             <small> English</small>
                         </div>
+
+                        <div className='md:hidden block w-full h-max space-y-3'>
+                            <div className="flex gap-2">
+                                <p className='font-bold text-[2rem] '>{`$88.99`}</p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <button 
+                                    className='py-3 px-16 bg-purple-600 text-white font-bold'
+                                >
+                                    Add to cart
+                                </button>
+                            </div>
+                            <div className="flex flex-col items-center gap-1">
+                                <small>30-Day Money-Back Guarantee </small>
+                                <small> Full Lifetime Access</small>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                                <p className='underline font-bold p-1 hover:cursor-pointer'>Share</p>
+                                <p className='underline font-bold p-1 hover:cursor-pointer'>Gift this course</p>
+                                <p className='underline font-bold p-1 hover:cursor-pointer  mb-12'>Apply Coupon</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div  className="w-full md:w-2/5  ">
@@ -72,7 +96,7 @@ function Header() {
                                 <img 
                                     src={randomImage1} 
                                     alt={`course`} 
-                                    className='h-40 w-full sm:h-[13rem] md:h-52 bg-slate-100 object-cover'
+                                    className='h-64 w-full sm:h-[19rem] md:h-52 bg-slate-100 object-cover'
                                 />
                             </div>
                         </div>

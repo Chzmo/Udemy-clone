@@ -7,7 +7,7 @@ function Requirements() {
             <div className="flex flex-col ">
                 {["No AWS Cloud experience is necessary, we'll use the AWS Free Tier", "No IT prerequisites required"].map((rec)=>{
                     return (
-                        <div key={rec} className="pl-3 flex items-center gap-3">
+                        <div key={rec} className="pl-3 flex items-start gap-3">
                             <GoPrimitiveDot /> 
                             <small className='text-sm'>{rec}</small>
                         </div>
