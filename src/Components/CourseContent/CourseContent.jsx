@@ -20,12 +20,12 @@ function AccordionItem({defaultOpen, title}) {
                 </div>
             </div>
             {isOpen && 
-            <div className='flex flex-col gap-3 p-4 border-t'>
+            <div className='flex flex-col gap-3 p-4 border-t w-full'>
                 {['AWS Account Activation Troubleshooting', 'Important Message', 'About your instructor'].map((intro)=>{
                     return (
-                        <div key={intro} className="flex items-start justify-between">
-                            <div className="flex gap-3 items-center">
-                                <MdOndemandVideo /> {intro}
+                        <div key={intro} className="flex items-start justify-between w-full">
+                            <div className="flex gap-2 sm:gap-3 items-center">
+                               <div className="w-7 flex-1"> <MdOndemandVideo size={20}/></div> <p>{intro}</p>
                             </div>
                             <p className="hidden sm:flex">12 min</p>
                         </div>

@@ -9,8 +9,8 @@ function WhatYouLearn() {
                 w-full gap-2 border flex flex-col py-7 sticky -z-20
             `}
         >
-            <p className="px-4">What You Will Learn</p>
-            <div className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:gap-4 px-5">
+            <p className="px-4 bold font-bold text-2xl">What You Will Learn</p>
+            <div className="flex flex-col justify-start gap-2 sm:grid sm:grid-cols-2 sm:gap-4 px-5">
                 {[1,2,3,4,5,6,7,8,9,10].map((index)=>{
                     return(
                         <div key={index} className='flex gap-4 items-start'>

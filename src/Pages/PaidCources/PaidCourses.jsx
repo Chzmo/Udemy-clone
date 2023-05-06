@@ -7,6 +7,7 @@ import Requirements from '../../Components/Requirements/Requirements'
 import Description from '../../Components/Description/Description'
 import Related from './Related'
 import Instructor from './Instructor'
+import ReviewCourse from './ReviewCourse'
 
 function PaidCourses() {
     return (
@@ -21,6 +22,7 @@ function PaidCourses() {
                     <Description />
                     <Related />
                     <Instructor />
+                    <ReviewCourse />
                 </div>  
                 <CartDetails />
             </div>
