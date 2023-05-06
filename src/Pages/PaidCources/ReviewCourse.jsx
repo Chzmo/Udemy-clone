@@ -1,15 +1,22 @@
 import React from 'react'
 import { MdStarRate } from 'react-icons/md';
 import Rating from '../../Components/Rating';
+import { GoPrimitiveDot } from 'react-icons/go';
 
 function ReviewCourse() {
     return (
         <>
             <div className="flex gap-2 items-center">
                 <MdStarRate size={25} color='#e59819'/> 
-                <h2 className="bold font-bold text-2xl">4.7 <span className='hidden sm:flex'>course rating</span>Ratings 18K</h2>
+                <h2 className="bold font-bold text-2xl flex">
+                    4.7 
+                    <span className='hidden sm:flex items-center'>
+                        course rating 
+                        <GoPrimitiveDot size={15} className='text-slate-700 mt-2'/> 
+                    </span>Ratings 18K
+                </h2>
             </div>
-            <div className="flex gap-4 overflow-x-scroll sm:grid sm:grid-cols-2 sm:gap-7 w-full">
+            <div className="flex gap-4 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-2 sm:gap-7 w-full">
                 {[0, 1,2,3,4,5,6].map((index)=>{
                     return((index < 4) &&
                         <div className='flex flex-col border sm:border-none w-full p-4 sm:p-0'>
@@ -27,7 +34,8 @@ function ReviewCourse() {
                                 </div>
                                 <MdStarRate className='hidden sm:flex'/>
                             </dvi>
-                            <p className='w-full'>I tried many courses with various instructors, but Jonas is one of the best. I want to thank you for 
+                            <p className='w-full'>
+                                I tried many courses with various instructors, but Jonas is one of the best. I want to thank you for 
                                 all of your amazing courses, in which you provide all the knowledge and information required to build a 
                                 strong foundation to
                             </p>

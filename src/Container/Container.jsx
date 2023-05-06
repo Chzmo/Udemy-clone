@@ -27,7 +27,6 @@ function Container() {
     <div >
         <TopNav globalState={globalState}/>
         <Outlet context={{globalState}}/>
-        <Footer globalState={globalState}/>
     </div>
   )
 }

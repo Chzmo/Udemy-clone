@@ -5,6 +5,7 @@ import Courses from '../Components/Courses/Courses'
 import Testimonial from '../Components/Testimonial'
 import Categories from '../Components/Categories'
 import Featured from '../Components/Featured/Featured'
+import Footer from '../Components/Footer/Footer'
 
 function Home() {
   const {globalState} = useGlobalState()
@@ -15,6 +16,7 @@ function Home() {
       <Testimonial />
       <Categories/>
       <Featured/>
+      <Footer/>
     </>
   )
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <div className='px-7 pt-6 pb-9 bg-black text-slate-300'>
+    <div className='px-7 pt-6 pb-9 bg-[#1c1d1f] text-slate-300'>
       <div className="
         flex flex-col-reverse gap-7 
         sm:flex sm:flex-row sm:justify-between sm:gap-2/3
