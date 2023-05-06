@@ -22,7 +22,7 @@ function Instructor() {
                     <div className="flex gap-3 mt-2">
                         <div className="w-28 h-28 bg-slate-300 rounded-full ">
                             <img 
-                                src="" 
+                                src="https://source.unsplash.com/112x112/?face"
                                 alt={`Instructor`}
                                 className='h-full w-full rounded-full object-cover
                                 '

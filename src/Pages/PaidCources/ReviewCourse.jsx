@@ -7,7 +7,7 @@ function ReviewCourse() {
         <>
             <div className="flex gap-2 items-center">
                 <MdStarRate size={25} color='#e59819'/> 
-                <h2 className="bold font-bold text-2xl">4.7 <span className='hidden sm:flex'>course rating</span> 18K ratings</h2>
+                <h2 className="bold font-bold text-2xl">4.7 <span className='hidden sm:flex'>course rating</span>Ratings 18K</h2>
             </div>
             <div className="flex gap-4 overflow-x-scroll sm:grid sm:grid-cols-2 sm:gap-7 w-full">
                 {[0, 1,2,3,4,5,6].map((index)=>{
