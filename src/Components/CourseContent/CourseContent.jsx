@@ -25,7 +25,8 @@ function AccordionItem({defaultOpen, title}) {
                     return (
                         <div key={intro} className="flex items-start justify-between w-full">
                             <div className="flex gap-2 sm:gap-3 items-center">
-                               <div className="w-7 flex-1"> <MdOndemandVideo size={20}/></div> <p>{intro}</p>
+                               <div className="w-7 flex-1"> <MdOndemandVideo size={20}/></div> 
+                               <small>{intro}</small>
                             </div>
                             <p className="hidden sm:flex">12 min</p>
                         </div>
