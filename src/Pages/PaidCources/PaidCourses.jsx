@@ -16,6 +16,7 @@ import boxd from './../../assets/icons/box-dark.svg'
 import volkswagen from './../../assets/icons/volkswagen-dark.svg'
 import netapp from './../../assets/icons/netapp-dark.svg'
 import nasdaq from './../../assets/icons/nasdaq-dark.svg'
+import logo from './../../assets/logo/logo-udemy-inverted.svg'
 
 function PaidCourses() {
     return (
@@ -48,7 +49,14 @@ function PaidCourses() {
             </div>
             <Footer/>
             <div className="flex flex-col gap-4 md:flex-row justify-between px-7 py-7 bg-[#1c1d1f]">
-                
+                <div className='w-24'>
+                    <img 
+                        src={logo} 
+                        alt="logo"
+                        className='w-full h-full'
+                    />
+                </div>
+                <small className='text-white'>© 2023 chzmo.</small>
             </div>
         </>
     )
