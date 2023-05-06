@@ -6,14 +6,15 @@ function ReviewCourse() {
     return (
         <>
             <div className="flex gap-2 items-center">
-                <MdStarRate size={25} color='#e59819'/> <h2 className="bold font-bold text-2xl">4.7 course rating 18K ratings</h2>
+                <MdStarRate size={25} color='#e59819'/> 
+                <h2 className="bold font-bold text-2xl">4.7 <span className='hidden sm:flex'>course rating</span> 18K ratings</h2>
             </div>
             <div className="flex gap-4 overflow-x-scroll sm:grid sm:grid-cols-2 sm:gap-7 w-full">
                 {[0, 1,2,3,4,5,6].map((index)=>{
                     return((index < 4) &&
                         <div className='flex flex-col border sm:border-none w-full p-4 sm:p-0'>
-                            <dvi className="sm:border-t py-4  gap-3 w-[25rem] sm:w-full flex justify-between items-center">
-                                <div className="flex items-center gap-3 w-full">
+                            <dvi className="sm:border-t py-4  gap-3 min-w-[17rem] sm:w-full flex justify-between items-center">
+                                <div className="flex flex-row-reverse sm:flex-row sm:w-auto justify-between items-center gap-3 w-full">
                                     <div className="rounded-full w-10 h-10 bg-black text-white font-bold flex items-center justify-center">
                                         <p className='text-sm'>WP</p>
                                     </div>
@@ -24,7 +25,7 @@ function ReviewCourse() {
                                         </p>
                                     </div>
                                 </div>
-                                <MdStarRate />
+                                <MdStarRate className='hidden sm:flex'/>
                             </dvi>
                             <p className='w-full'>I tried many courses with various instructors, but Jonas is one of the best. I want to thank you for 
                                 all of your amazing courses, in which you provide all the knowledge and information required to build a 
