@@ -48,7 +48,7 @@ function PaidCourses() {
                 </div>
             </div>
             <Footer/>
-            <div className="flex flex-col gap-4 md:flex-row justify-between px-7 py-7 bg-[#1c1d1f]">
+            <div className="flex flex-col gap-4 md:flex-row justify-between p-7 pb-20 bg-[#1c1d1f]">
                 <div className='w-24'>
                     <img 
                         src={logo} 
@@ -57,6 +57,15 @@ function PaidCourses() {
                     />
                 </div>
                 <small className='text-white'>© 2023 chzmo.</small>
+            </div>
+            {/* BUY NOW */}
+            <div className="flex py-2 px-7 sticky bottom-0 justify-between shadow-lg items-center bg-white md:hidden gap-5">
+                <p className='font-bold text-xl'>{`$88.99`}</p>
+                <button 
+                    className='py-3 border flex-1 border-slate-300 px-16 bg-purple-600 text-white font-bold'
+                >
+                    Buy Now
+                </button>
             </div>
         </>
     )

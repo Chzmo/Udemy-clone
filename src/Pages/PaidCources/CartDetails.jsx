@@ -5,7 +5,7 @@ function CartDetails() {
     return (
         <div className="w-full hidden z-30 sticky lg:flex md:w-2/5">
             <div className="flex flex-col w-full bg-transparent">
-                <div className="z-50  sticky top-32  bg-white md:w-full text-black">
+                <div className="z-50  sticky top-32  bg-white md:w-full text-black shadow-lg">
                     <div className='-mt-24 w-full h-max border bg-white p-4 px-7 space-y-3'>
                         <div className="flex gap-2">
                             <p className='font-bold text-[2rem] '>{`$88.99`}</p>
@@ -44,6 +44,15 @@ function CartDetails() {
                             <p className='underline font-bold p-1 hover:cursor-pointer'>Gift this course</p>
                             <p className='underline font-bold p-1 hover:cursor-pointer'>Apply Coupon</p>
                         </div>
+                    </div>
+                    <div className="border-x border-b px-7 py-4 flex flex-col gap-4 items-center">
+                        <h2>Training 5 or more people?</h2>
+                        <small className='text-sm text-slate-700 font-semibold'>Get your team access to 19,000+ top Udemy courses anytime, anywhere.</small>
+                        <button 
+                                className='border border-slate-700 w-full py-1.5 text-black font-bold'
+                            >
+                                Try Udemy Business
+                            </button>
                     </div>
                 </div>
             </div>
