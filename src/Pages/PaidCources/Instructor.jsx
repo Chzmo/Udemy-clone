@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
+import { HashLink } from 'react-router-hash-link'
 
 function Instructor() {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <>
-            <h2 className="bold font-bold text-2xl">Description</h2>
-            <div className="space-y-2">
-                <div className={`w-full shadow-inner ${!isOpen && 'h-60'}`}>
-                    Hello World
+            <h2 className="bold font-bold text-2xl">Instructor</h2>
+            <div className="space-y-4 ">
+                <div className={`w-full flex flex-col ${!isOpen && 'h-60 overflow-y-hidden'}`}>
+                    <div>
+                        <HashLink 
+                            to={`/user/jonasschmedtmann`} 
+                            className='text-purple-700 border-b w-auto border-b-black font-bold text-lg'
+                        >
+                            Jonas Schmedtmann
+                        </HashLink>
+                    </div>
+                    <h2>Web Developer, Designer, and Teacher</h2>
                 </div>
                 <p className=' flex gap-1 items-center' onClick={ ()=> setIsOpen(!isOpen)}>
                     <small className='font-bold text-purple-700 cursor-pointer'>
