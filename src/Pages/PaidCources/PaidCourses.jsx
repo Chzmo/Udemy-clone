@@ -59,7 +59,7 @@ function PaidCourses() {
                 <small className='text-white'>© 2023 chzmo.</small>
             </div>
             {/* BUY NOW */}
-            <div className="flex py-2 px-7 sticky bottom-0 justify-between shadow-lg items-center bg-white md:hidden gap-5">
+            <div className="flex py-2 px-7 sticky bottom-0 justify-between shadow-lg items-center bg-white sm:hidden gap-5">
                 <p className='font-bold text-xl'>{`$88.99`}</p>
                 <button 
                     className='py-3 border flex-1 border-slate-300 px-16 bg-purple-600 text-white font-bold'
