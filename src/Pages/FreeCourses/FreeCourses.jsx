@@ -14,14 +14,15 @@ import logo from './../../assets/logo/logo-udemy-inverted.svg'
 function FreeCourses() {
   return (
     <>
-        <div 
+        {/* <div 
             className="flex flex-col px-7 py-3 mt-16 w-full bg-[#1c1d1f] text-white"
         >
             <small className="flex md:hidden gap-2 items-center text-purple-300 font-bold">
                 <Link>Programming Languages</Link><BiChevronRight/> 
                 <Link>Python</Link>xzxzxzx
             </small>
-        </div>
+        </div> */}
+
         <div className="h-screen"></div>
         <div className="flex flex-col gap-4 md:flex-row justify-between px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]">
             <p className='text-xl font-bold text-white'>
