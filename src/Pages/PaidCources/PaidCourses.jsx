@@ -6,6 +6,7 @@ import CourseContent from '../../Components/CourseContent/CourseContent'
 import Requirements from '../../Components/Requirements/Requirements'
 import Description from '../../Components/Description/Description'
 import Related from './Related'
+import Instructor from './Instructor'
 
 function PaidCourses() {
     return (
@@ -19,6 +20,7 @@ function PaidCourses() {
                     <Requirements />
                     <Description />
                     <Related />
+                    <Instructor />
                 </div>  
                 <CartDetails />
             </div>

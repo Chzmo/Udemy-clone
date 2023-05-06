@@ -4,7 +4,7 @@ import { MdOndemandVideo } from "react-icons/md";
 
 function AccordionItem({defaultOpen, title}) {
     const [isOpen, setIsOpen] = useState(defaultOpen);
-  
+    
     return (
         <div>
             <div  
@@ -38,19 +38,24 @@ function AccordionItem({defaultOpen, title}) {
 }
 
 function CourseContent() {
-  return (
-    <>
-        <h2 className="bold font-bold text-2xl">Course Content</h2>
-        <div className="flex items-center justify-between">
-            <small className="text-slate-600">23 sections • 273 lectures • 14h 36m total length</small>
-            <small className="text-purple-600 font-bold hover:cursor-pointer">Collapse all sections</small>
-        </div>
-        <div className="flex flex-col border-x border-b">
-            {[0,1,2,3,4,5,6,7].map((index)=>{
-                return <AccordionItem key={index} title='Introduction'  defaultOpen={index === 0}/>
-            })}
-        </div>
-    </>
+    const [isOpen, setIsOpen] = useState(0)
+
+    return (
+        <>
+            <h2 className="bold font-bold text-2xl">Course Content</h2>
+            <div className="flex items-center justify-between">
+                <small className="text-slate-600">23 sections • 273 lectures • 14h 36m total length</small>
+                <small 
+                    className="text-purple-600 font-bold hover:cursor-pointer hidden sm:flex"
+                    onClick={()=> setIsOpen(-1)}
+                >Collapse all sections</small>
+            </div>
+            <div className="flex flex-col border-x border-b">
+                {[0,1,2,3,4,5,6,7].map((index)=>{
+                    return <AccordionItem key={index} title='Introduction'  defaultOpen={index === isOpen} />
+                })}
+            </div>
+        </>
   )
 }
 
