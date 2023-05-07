@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { BiChevronRight } from 'react-icons/bi'
 import { MdOndemandVideo } from "react-icons/md";
-import { Link } from 'react-router-dom'
+import { AiOutlineGlobal } from 'react-icons/ai';
 import Rating from '../../Components/Rating'
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
@@ -40,8 +41,8 @@ function FreeCourseHeader() {
                         </small>
                         <small className='text-sm'>Created by <Link to={`/user/james`} className='text-purple-900 font-semibold'>James Scanlon | Masters Of Cloud</Link></small>
                         <small className='flex gap-2 text-sm'>
-                            <span ><MdOndemandVideo size={20}/></span> English
-                            <span ><MdOndemandVideo size={20}/></span> English [Auto]
+                            <span ><AiOutlineGlobal size={20}/></span> English
+                            <span ><AiOutlineGlobal size={20}/></span> English [Auto]
                         </small>
                     </div>
                     <div className="flex flex-col gap-2">
