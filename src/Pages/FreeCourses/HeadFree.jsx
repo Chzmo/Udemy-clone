@@ -14,8 +14,8 @@ function HeadFree() {
             >
                 <small className="flex text-sm gap-2 items-center font-bold text-purple-900">
                     <Link>IT & Software</Link><BiChevronRight className='mt-1'/> 
-                    <Link>Network & Security</Link><BiChevronRight className='mt-1'/> 
-                    <Link>Amazon AWS</Link>
+                    <Link>Network & Security</Link><BiChevronRight className='mt-1 hidden sm:flex'/> 
+                    <Link className='hidden sm:flex'>Amazon AWS</Link>
                 </small>
             </div>
 
