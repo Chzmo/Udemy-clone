@@ -24,9 +24,11 @@ function FreeCourses() {
             </div>
             
             <div className="flex flex-col gap-4 md:flex-row justify-between mt-7 px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]">
-                <p className='text-xl font-bold text-white'>
-                    Top companies choose <Link className="text-purple-300 hover:underline">Udemy Business</Link> to build in-demand career skills.
-                </p>
+                <div>
+                    <p className='text-xl font-bold text-white'>
+                        Top companies choose <Link className="text-purple-300 hover:underline">Udemy Business</Link> to build in-demand career skills.
+                    </p>
+                </div>
                 <div className="flex flex-1 items-start justify-evenly sm:justify-between flex-wrap">
                     <img src={nasdaq} alt="" />
                     <img src={volkswagen} alt="" />
