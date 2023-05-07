@@ -9,18 +9,20 @@ function FreeContent() {
     const [openIndex, setopenInd] = useState(0)
     return (
         <>
-            <div className="w-full gap-4 flex overflow-x-scroll xsm:overflow-x-hidden mt-5 border-b">
-                {["What you'll learn","Course Content","Reviews","Instructors"].map((item, index)=>{
-                    return(
-                        <h1 
-                            key={index}
-                            onClick={()=>setopenInd(index)}
-                            className={`hover:text-black hover:cursor-pointer tex font-bold py-4 ${(openIndex === index) ? 
-                                'text-black border-b-2 border-black': 
-                                'text-slate-500 '}`}
-                        >{item}</h1>
-                    )
-                })}
+            <div className="overflow-x-scroll w-full  sm:overflow-x-hidden ">
+                <div className="w-[30rem] sm:w-full gap-4 flex mt-5 border-b">
+                    {["What you'll learn","Course Content","Reviews","Instructors"].map((item, index)=>{
+                        return(
+                            <h1 
+                                key={index}
+                                onClick={()=>setopenInd(index)}
+                                className={`hover:text-black hover:cursor-pointer tex font-bold py-4 ${(openIndex === index) ? 
+                                    'text-black border-b-2 border-black': 
+                                    'text-slate-500 '}`}
+                            >{item}</h1>
+                        )
+                    })}
+                </div>
             </div>
             <div className="mt-2 w-full">
                 {(openIndex === 0) && 
