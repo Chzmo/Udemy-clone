@@ -1,9 +1,6 @@
 import { BiChevronRight } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { useEffect, useRef } from 'react'
-import { useIntersection } from '@mantine/hooks'
 
-import { useIsDivTop } from '../../Utils/CustomHooks';
 import Rating from '../../Components/Rating';
 import { MdOndemandVideo } from 'react-icons/md';
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"

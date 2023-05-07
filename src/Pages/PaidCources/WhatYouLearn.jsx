@@ -15,7 +15,7 @@ function WhatYouLearn() {
                     return(
                         <div key={index} className='flex gap-4 items-start'>
                             <BiCheck size={50} className='w-9'/>
-                            <p>Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
+                            <p className='text-sm'> Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
                         </div>
                     )
                 })}
