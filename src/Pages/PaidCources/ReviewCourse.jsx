@@ -2,6 +2,7 @@ import React from 'react'
 import { MdStarRate } from 'react-icons/md';
 import Rating from '../../Components/Rating';
 import { GoPrimitiveDot } from 'react-icons/go';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 function ReviewCourse() {
     return (
@@ -32,7 +33,7 @@ function ReviewCourse() {
                                         </p>
                                     </div>
                                 </div>
-                                <MdStarRate className='hidden sm:flex'/>
+                                <BsThreeDotsVertical className='hidden sm:flex'/>
                             </dvi>
                             <p className='w-full'>
                                 I tried many courses with various instructors, but Jonas is one of the best. I want to thank you for 
