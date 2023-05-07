@@ -1,5 +1,6 @@
 import React from 'react'
 import { BiCheck } from 'react-icons/bi'
+import { RxCross2 } from 'react-icons/rx'
 
 function Advert() {
     return (
@@ -23,16 +24,16 @@ function Advert() {
                     <h2 className="font-bold text-xl">Free courses</h2>
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-3">
-                            <BiCheck size={23} className='w-9'/> <p className="">Online video content</p>
+                            <BiCheck size={23} color='green' className='w-9'/> <p className="">Online video content</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <BiCheck size={23} className='w-9'/><p className="">Certificate of completion</p>
+                            <RxCross2 size={23} color='red' className='w-9'/><p className="">Certificate of completion</p>
+                        </div> 
+                        <div className="flex items-center gap-3">
+                            <RxCross2 size={23} color='red' className='w-9'/><p className="">Instructor Q&A</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <BiCheck size={23} className='w-9'/><p className="">Instructor Q&A</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <BiCheck size={23} className='w-9'/><p className="">Instructor direct message</p>
+                            <RxCross2 size={23} color='red' className='w-9'/><p className="">Instructor direct message</p>
                         </div>
                     </div>
                 </div>
