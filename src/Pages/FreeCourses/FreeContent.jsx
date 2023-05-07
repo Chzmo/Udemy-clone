@@ -26,12 +26,12 @@ function FreeContent() {
             </div>
             <div className="mt-2 w-full">
                 {(openIndex === 0) && 
-                    <div className="flex flex-col justify-start gap-2 sm:grid sm:grid-cols-1 sm:gap-4 px-5">
+                    <div className="flex flex-col justify-start gap-2 sm:grid sm:grid-cols-1 sm:gap-4">
                     {[1,2,3,4,5].map((index)=>{
                         return(
                             <div key={index} className='flex gap-4 items-start'>
                                 <BiCheck size={20} className='w-9'/>
-                                <p>Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
+                                <p className="flex-1">Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
                             </div>
                         )
                     })}
