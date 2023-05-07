@@ -35,7 +35,7 @@ function FreeContent() {
                             </div>
                         )
                     })}
-                </div>
+                </div> 
                 }
                 {(openIndex === 1) && 
                     <div className="flex flex-col gap-4">
