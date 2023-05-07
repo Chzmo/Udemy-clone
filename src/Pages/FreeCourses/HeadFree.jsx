@@ -19,7 +19,7 @@ function HeadFree() {
                 </small>
             </div>
 
-            <div className="flex flex-col sm:w-4/5 xsm:mx-auto xsm:grid xsm:grid-cols-1 gap-3 lg:grid lg:grid-cols-2 lg:w-full lg:gap-6 px-2 mt-1">
+            <div className="flex flex-col sm:w-4/5 xsm:mx-auto xsm:grid xsm:grid-cols-1 gap-3 lg:grid lg:grid-cols-2 lg:w-full lg:gap-6 lg:px-2 mt-1">
                 <div className="w-full  h-full">
                     <img 
                         src={randomImage1} 
