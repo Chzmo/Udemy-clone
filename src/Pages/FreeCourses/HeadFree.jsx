@@ -24,7 +24,7 @@ function HeadFree() {
                     <img 
                         src={randomImage1} 
                         alt={`course`} 
-                        className='h-72 w-full sm:h-[23rem] bg-slate-100 object-cover'
+                        className='h-52 w-full sm:h-[23rem] bg-slate-100 object-cover'
                     />
                 </div>
                 <div className="flex flex-col gap-3">
