@@ -23,7 +23,7 @@ function HeadFree() {
                 <div className="w-full  h-full">
                     <img 
                         src={randomImage1} 
-                        alt={`course`} 
+                        alt={`course`}
                         className='h-52 w-full sm:h-[23rem] bg-slate-100 object-cover'
                     />
                 </div>
