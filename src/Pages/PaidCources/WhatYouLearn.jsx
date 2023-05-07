@@ -14,8 +14,8 @@ function WhatYouLearn() {
                 {[1,2,3,4,5,6,7,8,9,10].map((index)=>{
                     return(
                         <div key={index} className='flex gap-4 items-start'>
-                            <BiCheck size={50} className='w-9'/>
-                            <p className='text-sm'> Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
+                            <BiCheck size={20} className='w-9'/>
+                            <p className='text-sm flex-1'> Master the entire modern back-end stack: Node, Express, MongoDB and Mongoose (MongoDB JS driver)</p>
                         </div>
                     )
                 })}

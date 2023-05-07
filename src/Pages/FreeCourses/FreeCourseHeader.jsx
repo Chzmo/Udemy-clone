@@ -6,7 +6,7 @@ import Rating from '../../Components/Rating'
 
 const randomImage1 = "https://source.unsplash.com/600x499/?learing"
 
-function HeadFree() {
+function FreeCourseHeader() {
     return (
         <>
             <div 
@@ -61,4 +61,4 @@ function HeadFree() {
     )
 }
 
-export default HeadFree
+export default FreeCourseHeader

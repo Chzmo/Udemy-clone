@@ -9,20 +9,23 @@ import volkswagen from './../../assets/icons/volkswagen-dark.svg'
 import netapp from './../../assets/icons/netapp-dark.svg'
 import nasdaq from './../../assets/icons/nasdaq-dark.svg'
 import logo from './../../assets/logo/logo-udemy-inverted.svg'
-import HeadFree from './HeadFree'
+import FreeCourseHeader from './FreeCourseHeader'
 import FreeContent from './FreeContent'
+import Advert from './Advert'
 
 function FreeCourses() {
     return (
         <>
             <div className="px-7">
-                <HeadFree />
-                {/* COOURSE CONTENT */}
+                <FreeCourseHeader />
                 <div className="flex flex-col sm:w-4/5 xsm:mx-auto xsm:grid lg:w-3/5 px-2 lg:mx-0">
                     <FreeContent />
                 </div>
+                <Advert />
             </div>
-            
+
+
+            {/* FOOTER */}
             <div className="flex flex-col gap-4 md:flex-row justify-between mt-7 px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]">
                 <div>
                     <p className='text-xl font-bold text-white'>
