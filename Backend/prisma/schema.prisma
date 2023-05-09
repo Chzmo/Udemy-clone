@@ -63,14 +63,13 @@ model Rating {
   id          Int                   @id @default(autoincrement())
   value       Float
   review      String
-  course       UserOnCourseRating[]
+  course      UserOnCourseRating[]
 }
 
 model UserOnCourseRating {
-  corseId     Int        
+  corseId     Int         
   ratingId    Int         
   userId      Int         
-  ratedBy     Int
   course      Course      @relation(fields: [corseId], references: [id], onDelete: Cascade)
   rating      Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)

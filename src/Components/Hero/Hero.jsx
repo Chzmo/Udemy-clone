@@ -15,7 +15,7 @@ function Hero() {
   return (
     <div className="hero">
       <Swiper
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         loop={true}
         // onSlideChange={}
