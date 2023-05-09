@@ -22,7 +22,7 @@ function Testimonial() {
                 <p>William Pope</p>
               </div>
               <hr />
-              <Link to={`/paid-course/python`} className="flex gap-2 text-violet-600 pt-6 items-center">
+              <Link to={`/free-course/python`} className="flex gap-2 text-violet-600 pt-6 items-center">
                 <div className="flex"><AiFillPlayCircle size={30}/></div>
                 <p className='w-60 font-bold'>[NEW] Ultimate AWS Certified Cloud Practitioner - 2023</p>
               </Link>
