@@ -7,6 +7,7 @@ import Spinner from '../../Components/Spinner';
 import SearchCard from './SearchCard';
 import Filter from '../../Components/Filter/Filter';
 import RightSideNav from '../../Components/SideNav/RightSideNav';
+import Footer from '../../Components/Footer/Footer';
 
 function Search() {
   const { searchTerm } = useParams();
@@ -108,6 +109,7 @@ function Search() {
           </>
         }
       </div>
+      <Footer/>
     </>
   )
 }
