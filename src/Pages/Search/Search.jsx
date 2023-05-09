@@ -144,6 +144,12 @@ function Search() {
 				</div>
 			</div>
 			<Footer />
+			<div className='flex flex-col gap-4 md:flex-row justify-between p-7 bg-[#1c1d1f]'>
+				<div className='w-24'>
+					<img src={logo} alt='logo' className='w-full h-full' />
+				</div>
+				<small className='text-white'>© 2023 chzmo.</small>
+			</div>
 		</>
 	);
 }
