@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	AiFillPlayCircle,
-	AiOutlineLeft,
-	AiOutlineRight,
-} from "react-icons/ai";
+import { AiFillPlayCircle, AiOutlineRight } from "react-icons/ai";
 
 import quote from "../assets/icons/quote.svg";
 import { Link } from "react-router-dom";
