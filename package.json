@@ -20,7 +20,8 @@
     "react-spinners": "^0.13.8",
     "react-tooltip": "^5.10.5",
     "slick-carousel": "^1.8.1",
-    "swiper": "^9.2.0"
+    "swiper": "^9.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

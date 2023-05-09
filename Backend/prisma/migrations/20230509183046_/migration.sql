@@ -60,14 +60,13 @@ CREATE TABLE "Rating" (
 
 -- CreateTable
 CREATE TABLE "UserOnCourseRating" (
-    "corseId" INTEGER NOT NULL,
+    "courseId" INTEGER NOT NULL,
     "ratingId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "ratedBy" INTEGER NOT NULL,
     "assignedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("corseId", "ratingId", "userId"),
-    CONSTRAINT "UserOnCourseRating_corseId_fkey" FOREIGN KEY ("corseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY ("courseId", "ratingId", "userId"),
+    CONSTRAINT "UserOnCourseRating_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "UserOnCourseRating_ratingId_fkey" FOREIGN KEY ("ratingId") REFERENCES "Rating" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "UserOnCourseRating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
