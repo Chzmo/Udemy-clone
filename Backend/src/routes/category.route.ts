@@ -19,7 +19,7 @@ categoryRouter.post(
 		if (!errors.isEmpty()) {
 			return response.status(400).json({ errors: errors.array() });
 		}
-        
+
 		try {
 			const category = await categoryController.createCategory(request.body.title);
 			return response.status(200).json(category);

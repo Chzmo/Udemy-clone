@@ -13,49 +13,41 @@ type CourseRating = {
 export const createRating = async (courseRating: CourseRating) => {
 	const { courseId, userId, ratingScore, review } = courseRating;
 
-	try {
-		return await db.$transaction(async (txt) => {
-			const getRating = await txt.userOnCourseRating.findFirst({
-				where: {
-					AND: [{ userId }, { courseId }],
-				},
-			});
-
-			if (getRating) throw new Error("Cant create a dublicate key");
-
-			const rating = await txt.rating.create({
-				data: {
-					value: ratingScore,
-					review,
-				},
-				select: {
-					id: true,
-				},
-			});
-
-			const courseRating = await txt.userOnCourseRating.create({
-				data: {
-					courseId,
-					userId,
-					ratingId: rating.id,
-				},
-			});
-
-			return courseRating;
+	return await db.$transaction(async (txt) => {
+		const getRating = await txt.userOnCourseRating.findFirst({
+			where: {
+				AND: [{ userId }, { courseId }],
+			},
 		});
-	} catch (error) {
-		return response.status(400).send({ error: error });
-	}
+
+		if (getRating) throw new Error("Cant create a dublicate key");
+
+		const rating = await txt.rating.create({
+			data: {
+				value: ratingScore,
+				review,
+			},
+			select: {
+				id: true,
+			},
+		});
+
+		const courseRating = await txt.userOnCourseRating.create({
+			data: {
+				courseId,
+				userId,
+				ratingId: rating.id,
+			},
+		});
+
+		return courseRating;
+	});
 };
 
 export const deleteRating = async (ratingId: number) => {
-	try {
-		return await db.rating.delete({
-			where: {
-				id: ratingId,
-			},
-		});
-	} catch (error) {
-		response.send({ error });
-	}
+	return await db.rating.delete({
+		where: {
+			id: ratingId,
+		},
+	});
 };

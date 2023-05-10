@@ -13,6 +13,7 @@ import {
 import { courseRouter, coursesRouter } from "./routes/course.route";
 
 import { categoryRouter } from "./routes/category.route";
+
 import { ratingRouter } from "./routes/rating.route";
 
 dotenv.config();

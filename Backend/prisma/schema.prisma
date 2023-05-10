@@ -14,6 +14,7 @@ model User {
   password      String
   course        Course[]
   rating        UserOnCourseRating[]
+  enrolled      UserOnCourse[]
 }
 
 model Category{
@@ -41,6 +42,7 @@ model Course {
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
+  enrolledBy    UserOnCourse[]
 }
 
 model Content {
@@ -73,7 +75,17 @@ model UserOnCourseRating {
   course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
   rating        Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  assignedAt    DateTime    @default(now())
+  createdAt     DateTime    @default(now())
 
   @@id([courseId, ratingId, userId])
+}
+
+model UserOnCourse {
+  courseId      Int         
+  userId        Int         
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime     @default(now())
+
+  @@id([courseId, userId])
 }
