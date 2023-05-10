@@ -14,9 +14,16 @@ model User {
   userName      String
   email         String   @unique
   password      String
-  topic         Topic[]
+  course        Course[]
   rating        UserOnCourseRating[]
-  enrolled      UserOnTopic[]
+  enrolled      UserOnCourse[]
+}
+model TopCategory{
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  title         String      @unique
+  category      Category[]
 }
 
 model Category{
@@ -24,6 +31,8 @@ model Category{
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   title         String      @unique
+  topCategoryId Int
+  topCategory   TopCategory    @relation(fields: [topCategoryId], references: [id], onDelete: Cascade)
   course        Course[]
 }
 
@@ -32,42 +41,35 @@ model Course {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   name          String
-  categoryId    Int
-  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-}
-
-model Topic {
-  id            Int         @id @default(autoincrement())
-  topicId       Int         @unique
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
   title         String
   description   String
   price         Float       @default(0)
   revisedPrice  Float       @default(0)
   thumbnail     String
   authorId      Int
+  categoryId    Int
   author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
-  enrolledBy    UserOnTopic[]
+  enrolledBy    UserOnCourse[]
 }
 
 model Content {
   id            Int         @id @default(autoincrement())
-  topicId       Int         @unique
+  courseId      Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Requirements{
   id            Int         @id @default(autoincrement())
-  topicId       Int         @unique
+  courseId      Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
@@ -78,23 +80,23 @@ model Rating {
 }
 
 model UserOnCourseRating {
-  topicId      Int         
+  courseId      Int         
   ratingId      Int         
   userId        Int         
-  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
   rating        Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt     DateTime    @default(now())
 
-  @@id([topicId, ratingId, userId])
+  @@id([courseId, ratingId, userId])
 }
 
-model UserOnTopic {
-  topicId      Int         
-  userId       Int         
-  topic        Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
-  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+model UserOnCourse {
+  courseId      Int         
+  userId        Int         
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime     @default(now())
 
-  @@id([topicId, userId])
+  @@id([courseId, userId])
 }

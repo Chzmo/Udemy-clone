@@ -22,41 +22,33 @@ CREATE TABLE "Course" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "name" TEXT NOT NULL,
-    "categoryId" INTEGER NOT NULL,
-    CONSTRAINT "Course_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Topic" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "topicId" INTEGER NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "price" REAL NOT NULL DEFAULT 0,
     "revisedPrice" REAL NOT NULL DEFAULT 0,
     "thumbnail" TEXT NOT NULL,
     "authorId" INTEGER NOT NULL,
-    CONSTRAINT "Topic_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "categoryId" INTEGER NOT NULL,
+    CONSTRAINT "Course_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Course_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "Content" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "topicId" INTEGER NOT NULL,
+    "courseId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Content_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Content_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "Requirements" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "topicId" INTEGER NOT NULL,
+    "courseId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Requirements_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Requirements_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -68,26 +60,26 @@ CREATE TABLE "Rating" (
 
 -- CreateTable
 CREATE TABLE "UserOnCourseRating" (
-    "topicId" INTEGER NOT NULL,
+    "courseId" INTEGER NOT NULL,
     "ratingId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("topicId", "ratingId", "userId"),
-    CONSTRAINT "UserOnCourseRating_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY ("courseId", "ratingId", "userId"),
+    CONSTRAINT "UserOnCourseRating_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "UserOnCourseRating_ratingId_fkey" FOREIGN KEY ("ratingId") REFERENCES "Rating" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "UserOnCourseRating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
-CREATE TABLE "UserOnTopic" (
-    "topicId" INTEGER NOT NULL,
+CREATE TABLE "UserOnCourse" (
+    "courseId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("topicId", "userId"),
-    CONSTRAINT "UserOnTopic_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "UserOnTopic_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY ("courseId", "userId"),
+    CONSTRAINT "UserOnCourse_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "UserOnCourse_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -97,10 +89,7 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "Category_title_key" ON "Category"("title");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Topic_topicId_key" ON "Topic"("topicId");
+CREATE UNIQUE INDEX "Content_courseId_key" ON "Content"("courseId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Content_topicId_key" ON "Content"("topicId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Requirements_topicId_key" ON "Requirements"("topicId");
+CREATE UNIQUE INDEX "Requirements_courseId_key" ON "Requirements"("courseId");
