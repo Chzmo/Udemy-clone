@@ -1,7 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
 
-import * as ratingController from "./../controllers/ratingCourseController";
+import * as ratingController from "../controllers/ratingCourseController";
 import { authMiddleware } from "../../middleware/authMiddleware";
 import { ratingType } from "../utils/customTypes";
 

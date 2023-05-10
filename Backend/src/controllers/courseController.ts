@@ -48,6 +48,15 @@ export const createCourse = async (
 	return createdCourse;
 };
 
+export const enrollCourse = async (userId: number, courseId: number) => {
+	return await db.userOnCourse.create({
+		data: {
+			userId,
+			courseId,
+		},
+	});
+};
+
 export const getCoursesByCategory = async (categoryId: any) => {
 	const id = parseInt(categoryId.toString());
 

@@ -14,10 +14,6 @@ courseRouter.post(
 	authMiddleware,
 	async (request: Request, response: Response) => {
 		try {
-			// const data = Course.refine(data => data.authorId === data.categoryId, {
-			//     message: "fields should match",
-			//     path: ["fields should match"]
-			// })
 			const course = Course.parse(request.body);
 			const newCourse = await courseController.createCourse(
 				request.body.authorId,
@@ -26,6 +22,22 @@ courseRouter.post(
 			);
 			return response.status(200).json(newCourse);
 		} catch (error: any) {
+			return response.status(400).json(error);
+		}
+	}
+);
+courseRouter.post(
+	"/enroll",
+	authMiddleware,
+	async (request: Request, response: Response) => {
+		try {
+			const { userId, courseId }: any = request.body;
+			const enrolledCourse = await courseController.enrollCourse(
+				parseInt(userId),
+				parseInt(courseId)
+			);
+			return response.status(200).json(enrolledCourse);
+		} catch (error) {
 			return response.status(400).json(error);
 		}
 	}
