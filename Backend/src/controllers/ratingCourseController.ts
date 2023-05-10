@@ -48,12 +48,11 @@ export const createRating = async (courseRating: CourseRating) => {
 	}
 };
 
-export const deleteRating = async (courseRating: CourseRating) => {
-	const { courseId, userId, ratingId } = courseRating;
+export const deleteRating = async (ratingId: number) => {
 	try {
-		return await db.userOnCourseRating.deleteMany({
+		return await db.rating.delete({
 			where: {
-				AND: [{ ratingId }, { userId }, { courseId }],
+				id: ratingId,
 			},
 		});
 	} catch (error) {

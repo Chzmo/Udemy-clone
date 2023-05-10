@@ -22,3 +22,18 @@ ratingRouter.post(
 		}
 	}
 );
+
+ratingRouter.delete(
+	"/",
+	authMiddleware,
+	async (request: Request, response: Response) => {
+		try {
+			const ratingId: number = parseInt(request.params.retingId);
+			return response
+				.status(200)
+				.json(await ratingController.deleteRating(ratingId));
+		} catch (error: any) {
+			return response.status(400).json({ error });
+		}
+	}
+);
