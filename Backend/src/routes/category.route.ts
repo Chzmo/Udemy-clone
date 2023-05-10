@@ -11,6 +11,7 @@ categoryRouter.post(
 	"/",
 
 	body("title").isString(),
+	body("topCategoryId").isInt(),
 	authMiddleware,
 
 	async (request: Request, response: Response) => {
@@ -21,7 +22,10 @@ categoryRouter.post(
 		}
 
 		try {
-			const category = await categoryController.createCategory(request.body.title);
+			const category = await categoryController.createCategory(
+				request.body.title,
+				request.body.topCategoryId
+			);
 			return response.status(200).json(category);
 		} catch (error) {
 			return response.status(400).json(error);

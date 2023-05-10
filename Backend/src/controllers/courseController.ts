@@ -21,7 +21,6 @@ export const createCourse = async (
 	const revisedPrice = parseInt(course.revisedPrice.toString());
 	const createdCourse: object = await db.course.create({
 		data: {
-			name,
 			title,
 			description,
 			price,
@@ -34,7 +33,6 @@ export const createCourse = async (
 			id: true,
 			createdAt: true,
 			updatedAt: true,
-			name: true,
 			title: true,
 			description: true,
 			price: true,
@@ -71,7 +69,6 @@ export const getCoursesByCategory = async (categoryId: any) => {
 				id: true,
 				createdAt: true,
 				updatedAt: true,
-				name: true,
 				title: true,
 				description: true,
 				price: true,
@@ -114,7 +111,6 @@ export const getCourse = async (id: number) => {
 			id: true,
 			createdAt: true,
 			updatedAt: true,
-			name: true,
 			title: true,
 			description: true,
 			price: true,
@@ -154,7 +150,6 @@ export const updateCourse = async (course: Omit<Course, "id">, id: number) => {
 			id,
 		},
 		data: {
-			name,
 			title,
 			description,
 			price,
@@ -165,7 +160,6 @@ export const updateCourse = async (course: Omit<Course, "id">, id: number) => {
 			id: true,
 			createdAt: true,
 			updatedAt: true,
-			name: true,
 			title: true,
 			description: true,
 			price: true,

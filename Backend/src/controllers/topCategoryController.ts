@@ -1,4 +1,3 @@
-import { response } from "express";
 import { db } from "../utils/db.server";
 
 export const createTopCategory = async (title: string) => {

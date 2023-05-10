@@ -39,7 +39,6 @@ app.use("/api/courses", coursesRouter);
 app.use("/api/course", courseRouter);
 
 // TOP CATEGORIES ROUTES
-app.use("/api/topcategory", topCategoryRouter);
 app.use("/api/topcategories", topCategoryRouter);
 
 // CATEGORIES ROUTES
