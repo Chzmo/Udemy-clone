@@ -9,6 +9,7 @@ import {
 	loginRouter,
 	legisterRouter,
 } from "./routes/auth/auth.router";
+
 import { courseRouter, coursesRouter } from "./routes/course.route";
 
 import { categoryRouter } from "./routes/category.route";

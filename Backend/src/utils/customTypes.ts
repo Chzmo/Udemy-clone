@@ -26,9 +26,9 @@ export const CourseType = z.object({
 });
 
 export const ratingType = z.object({
-	userId: z.number(),
-	courseId: z.number(),
-	ratingId: z.number(),
+	userId: z.number().positive().gt(0),
+	courseId: z.number().positive().gt(0),
+	ratingId: z.number().positive().gt(0),
 	ratingScore: z.number(),
 	review: z.string(),
 });

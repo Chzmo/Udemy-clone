@@ -1,6 +1,6 @@
 import { response } from "express";
-// import { v4 as uuidv4 } from "uuid";
 import { db } from "../utils/db.server";
+// import { v4 as uuidv4 } from "uuid";
 
 type CourseRating = {
 	courseId: number;

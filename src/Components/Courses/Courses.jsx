@@ -131,7 +131,7 @@ function Courses({ globalState }) {
 							);
 						})}
 					{globalState.categories &&
-						globalState.categories[5].course?.map((_course, index) => {
+						globalState.categories[5]?.course?.map((_course, index) => {
 							return (
 								index < 2 && (
 									<p
