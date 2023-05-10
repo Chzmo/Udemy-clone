@@ -13,6 +13,7 @@ import {
 import { courseRouter, coursesRouter } from "./routes/course.route";
 
 import { categoryRouter } from "./routes/category.route";
+import { topCategoryRouter } from "./routes/topCategory.route";
 
 import { ratingRouter } from "./routes/rating.route";
 
@@ -36,6 +37,10 @@ app.use("/api/login", loginRouter);
 // COURSES ROUTES
 app.use("/api/courses", coursesRouter);
 app.use("/api/course", courseRouter);
+
+// TOP CATEGORIES ROUTES
+app.use("/api/topcategory", topCategoryRouter);
+app.use("/api/topcategories", topCategoryRouter);
 
 // CATEGORIES ROUTES
 app.use("/api/category", categoryRouter);

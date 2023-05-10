@@ -40,7 +40,6 @@ model Course {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  name          String
   title         String
   description   String
   price         Float       @default(0)
