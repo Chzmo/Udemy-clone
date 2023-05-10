@@ -14,7 +14,7 @@ model User {
   userName      String
   email         String   @unique
   password      String
-  course        Course[]
+  topic         Topic[]
   rating        UserOnCourseRating[]
   enrolled      UserOnTopic[]
 }
@@ -31,17 +31,14 @@ model Course {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  title         String
   name          String
-  authorId      Int
   categoryId    Int
-  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
   category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model Topic {
   id            Int         @id @default(autoincrement())
-  topicId      Int         @unique
+  topicId       Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   title         String
@@ -49,6 +46,8 @@ model Topic {
   price         Float       @default(0)
   revisedPrice  Float       @default(0)
   thumbnail     String
+  authorId      Int
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
@@ -60,7 +59,7 @@ model Content {
   topicId       Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 model Requirements{
@@ -68,7 +67,7 @@ model Requirements{
   topicId       Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
@@ -82,7 +81,7 @@ model UserOnCourseRating {
   topicId      Int         
   ratingId      Int         
   userId        Int         
-  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
   rating        Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt     DateTime    @default(now())
@@ -92,9 +91,9 @@ model UserOnCourseRating {
 
 model UserOnTopic {
   topicId      Int         
-  userId        Int         
-  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       Int         
+  topic        Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime     @default(now())
 
   @@id([topicId, userId])
