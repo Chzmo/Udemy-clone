@@ -18,7 +18,7 @@ ratingRouter.post(
 				.status(200)
 				.json(await ratingController.createRating(rating));
 		} catch (error: any) {
-			return response.status(400).json(error);
+			return response.status(400).json({ error });
 		}
 	}
 );

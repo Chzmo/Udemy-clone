@@ -15,6 +15,14 @@ export const createRating = async (courseRating: CourseRating) => {
 
 	try {
 		return await db.$transaction(async (txt) => {
+			const getRating = await txt.userOnCourseRating.findFirst({
+				where: {
+					AND: [{ userId }, { courseId }],
+				},
+			});
+
+			if (getRating) throw new Error("Cant create a dublicate key");
+
 			const rating = await txt.rating.create({
 				data: {
 					value: ratingScore,
@@ -36,7 +44,7 @@ export const createRating = async (courseRating: CourseRating) => {
 			return courseRating;
 		});
 	} catch (error) {
-		return response.send({ error });
+		return response.status(400).send({ error: error });
 	}
 };
 
