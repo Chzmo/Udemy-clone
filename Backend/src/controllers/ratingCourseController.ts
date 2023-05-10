@@ -23,7 +23,7 @@ export const createRating = async (courseRating: CourseRating) => {
 
 		if (getRating) throw new Error("Cant create a dublicate key");
 
-		const user = db.user.findUnique({
+		const user = await db.user.findUnique({
 			where: {
 				id: userId,
 			},
@@ -36,9 +36,7 @@ export const createRating = async (courseRating: CourseRating) => {
 			},
 		});
 
-		if (user[0]) {
-			return user[0];
-		} else {
+		if (!user || !user.enrolled[0] || !(user.enrolled[0].courseId === courseId)) {
 			throw new Error("Cant create a dublicate key");
 		}
 

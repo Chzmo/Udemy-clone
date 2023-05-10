@@ -1,10 +1,12 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
 model User {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
@@ -14,7 +16,7 @@ model User {
   password      String
   course        Course[]
   rating        UserOnCourseRating[]
-  enrolled      UserOnCourse[]
+  enrolled      UserOnTopic[]
 }
 
 model Category{
@@ -29,36 +31,44 @@ model Course {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  title         String
   name          String
+  authorId      Int
+  categoryId    Int
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+model Topic {
+  id            Int         @id @default(autoincrement())
+  topicId      Int         @unique
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   title         String
   description   String
   price         Float       @default(0)
   revisedPrice  Float       @default(0)
   thumbnail     String
-  authorId      Int
-  categoryId    Int
-  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   content       Content?
   requirements  Requirements[]
   rating        UserOnCourseRating[]
-  enrolledBy    UserOnCourse[]
+  enrolledBy    UserOnTopic[]
 }
 
 model Content {
   id            Int         @id @default(autoincrement())
-  courseId      Int         @unique
+  topicId       Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 model Requirements{
   id            Int         @id @default(autoincrement())
-  courseId      Int         @unique
+  topicId       Int         @unique
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
@@ -69,23 +79,23 @@ model Rating {
 }
 
 model UserOnCourseRating {
-  courseId      Int         
+  topicId      Int         
   ratingId      Int         
   userId        Int         
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
   rating        Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt     DateTime    @default(now())
 
-  @@id([courseId, ratingId, userId])
+  @@id([topicId, ratingId, userId])
 }
 
-model UserOnCourse {
-  courseId      Int         
+model UserOnTopic {
+  topicId      Int         
   userId        Int         
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topic         Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime     @default(now())
 
-  @@id([courseId, userId])
+  @@id([topicId, userId])
 }
