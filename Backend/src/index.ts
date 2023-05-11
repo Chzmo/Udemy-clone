@@ -16,6 +16,7 @@ import { categoryRouter } from "./routes/category.route";
 import { topCategoryRouter } from "./routes/topCategory.route";
 
 import { ratingRouter } from "./routes/rating.route";
+import { db } from "./utils/db.server";
 
 dotenv.config();
 
@@ -50,4 +51,50 @@ app.use("/api/rating", ratingRouter);
 
 app.listen(PORT, () => {
 	console.log("Listening on port ", PORT);
+});
+
+const courseData: any = [
+	{
+		id: 1,
+		createdAt: "2023-05-10T21:59:57.469Z",
+		updatedAt: "2023-05-10T21:59:57.469Z",
+		title: "Python For Dummies",
+		description: "You will Love Python For Dummies",
+		price: 1,
+		revisedPrice: 1,
+		thumbnail: "http://chzmo.com/image",
+	},
+];
+type Course = {
+	id: number;
+	title: string;
+	price: number;
+	authorId: number;
+	revisedPrice: number;
+	description: string;
+	thumbnail: string;
+	catergoryId: number;
+};
+courseData.forEach((course: Course) => {
+	return;
+	const {
+		price,
+		revisedPrice,
+		title,
+		authorId,
+		catergoryId,
+		description,
+		thumbnail,
+	} = course;
+	db.course.create({
+		data: {
+			title,
+			description,
+			price,
+			revisedPrice,
+			thumbnail,
+			authorId,
+			categoryId: catergoryId,
+		},
+	});
 });
