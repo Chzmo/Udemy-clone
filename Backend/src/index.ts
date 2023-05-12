@@ -56,15 +56,16 @@ app.listen(PORT, () => {
 const courseData: any = [
 	{
 		id: 1,
-		createdAt: "2023-05-10T21:59:57.469Z",
-		updatedAt: "2023-05-10T21:59:57.469Z",
 		title: "Python For Dummies",
-		description: "You will Love Python For Dummies",
 		price: 1,
+		authorId: 1,
 		revisedPrice: 1,
+		description: "You will Love Python For Dummies",
 		thumbnail: "http://chzmo.com/image",
+		catergoryId: 1,
 	},
 ];
+
 type Course = {
 	id: number;
 	title: string;
@@ -75,6 +76,7 @@ type Course = {
 	thumbnail: string;
 	catergoryId: number;
 };
+
 courseData.forEach((course: Course) => {
 	return;
 	const {
