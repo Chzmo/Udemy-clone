@@ -55,7 +55,6 @@ app.listen(PORT, () => {
 
 const courseData: any = [
 	{
-		id: 1,
 		title: "Python For Dummies",
 		price: 1,
 		authorId: 1,
@@ -67,7 +66,6 @@ const courseData: any = [
 ];
 
 type Course = {
-	id: number;
 	title: string;
 	price: number;
 	authorId: number;
