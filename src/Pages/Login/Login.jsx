@@ -9,8 +9,11 @@ import boxd from "./../../assets/icons/box-dark.svg";
 import volkswagen from "./../../assets/icons/volkswagen-dark.svg";
 import netapp from "./../../assets/icons/netapp-dark.svg";
 import nasdaq from "./../../assets/icons/nasdaq-dark.svg";
+import { useState } from "react";
 
 function Login() {
+	const [isEmailOpen, setIsEmailOpen] = useState(false);
+	const [isPasswordOpen, setIsPasswordOpen] = useState(false);
 	return (
 		<>
 			<div className='flex items-center justify-center py-12'>
@@ -29,12 +32,47 @@ function Login() {
 							<BsApple color='#1c1d1f' size={33} />
 							<h2 className='font-bold text-sm '>Continue with Apple</h2>
 						</div>
-						<div className='flex flex-col items-start px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'>
-							<p className='font-bold text-sm '>Email</p>
-							<input type='email' className='w-full outline-none' />
+						<div
+							onClick={() => setIsEmailOpen(true)}
+							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'
+						>
+							<p
+								className={`font-bold text-sm duration-900 ${
+									isEmailOpen && "text-slate-500"
+								}`}
+							>
+								Email
+							</p>
+							<input
+								onFocus={0}
+								tabIndex={0}
+								type='email'
+								name='email'
+								className={`w-full outline-none duration-900 ${
+									isEmailOpen ? "h-full" : "h-0"
+								}`}
+							/>
 						</div>
-						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer h-16 hover:bg-slate-100 xsm:w-[22rem]'>
-							<p className='font-bold text-sm '>Password</p>
+						<div
+							onClick={() => setIsPasswordOpen(true)}
+							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'
+						>
+							<p
+								className={`font-bold text-sm duration-900 ${
+									isPasswordOpen && "text-slate-500"
+								}`}
+							>
+								Password
+							</p>
+							<input
+								onFocus={0}
+								tabIndex={0}
+								type='password'
+								name='email'
+								className={`w-full outline-none duration-900 ${
+									isPasswordOpen ? "h-full" : "h-0"
+								}`}
+							/>
 						</div>
 					</div>
 					<div className='flex flex-col gap-2'>
@@ -62,7 +100,15 @@ function Login() {
 					</div>
 				</div>
 			</div>
-			<div className='flex flex-col gap-4 md:flex-row justify-between px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]'>
+
+			{/* FOOTER  */}
+			<div
+				onClick={() => {
+					setIsEmailOpen(false);
+					setIsPasswordOpen(false);
+				}}
+				className='flex flex-col gap-4 md:flex-row justify-between px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]'
+			>
 				<p className='text-xl font-bold text-white'>
 					Top companies choose{" "}
 					<HashLink className='text-purple-300 hover:underline'>
