@@ -14,10 +14,16 @@ import { useState } from "react";
 function Login() {
 	const [isEmailOpen, setIsEmailOpen] = useState(false);
 	const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+
+	const handleLogin = (email, password) => {
+		if (email && password) {
+		}
+	};
+
 	return (
 		<>
 			<div className='flex items-center justify-center py-12'>
-				<div className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'>
+				<form className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'>
 					<div className='flex flex-col gap-2'>
 						<h2 className='font-[700] text-sm'>Log in to your Udemy account</h2>
 						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
@@ -48,6 +54,7 @@ function Login() {
 								tabIndex={0}
 								type='email'
 								name='email'
+								required
 								className={`w-full outline-none duration-900 ${
 									isEmailOpen ? "h-full" : "h-0"
 								}`}
@@ -69,6 +76,7 @@ function Login() {
 								tabIndex={0}
 								type='password'
 								name='email'
+								required
 								className={`w-full outline-none duration-900 ${
 									isPasswordOpen ? "h-full" : "h-0"
 								}`}
@@ -76,8 +84,11 @@ function Login() {
 						</div>
 					</div>
 					<div className='flex flex-col gap-2'>
-						<button className='w-full bg-purple-700 py-3 font-bold text-white font-sm'>
-							Login
+						<button
+							type='submit'
+							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm'
+						>
+							Log in
 						</button>
 					</div>
 					<div className='flex flex-col gap-2 items-center'>
@@ -98,7 +109,7 @@ function Login() {
 							Log in with your organization
 						</HashLink>
 					</div>
-				</div>
+				</form>
 			</div>
 
 			{/* FOOTER  */}

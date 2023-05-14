@@ -89,7 +89,6 @@ model UserOnCourseRating {
 
   @@id([courseId, ratingId, userId])
 }
-
 model UserOnCourse {
   courseId      Int         
   userId        Int         
