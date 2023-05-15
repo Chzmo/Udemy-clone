@@ -10,36 +10,18 @@ export const fetchData = async (endPoint, id = "") => {
 	return data;
 };
 
-export const postData = async (endPoint, id = "", body = null) => {
+export const postData = async (endPoint, id = "", body = null, token = "") => {
 	const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-	const myHeaders = new Headers();
-	myHeaders.append("Accept", "application/json");
-	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-	var formData = new FormData();
-	formData.append("image", imageAsset);
-	formData.append("user_id", auth().user.id);
-	formData.append("description", content);
-	formData.append("project", project);
-
-	if (body) {
-		array.forEach((element) => {
-			formData.append(`${""}`);
-		});
-	}
-
-	const requestOptions = {
+	const options = {
 		method: "POST",
-		headers: myHeaders,
-		redirect: "follow",
-		body: formData,
+		headers: {
+			Authorization: token,
+		},
+		body,
 	};
 
-	const response = await fetch(
-		VITE_APP_BASE_URL + endPoint + id,
-		requestOptions
-	);
+	const response = await fetch(VITE_APP_BASE_URL + endPoint + id, options);
 	const data = await response.json();
 	return data;
 };
