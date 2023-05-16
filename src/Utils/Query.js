@@ -29,18 +29,16 @@ export const postData = async (endPoint, body = null, token = "", id = "") => {
 		body: formdata,
 		redirect: "follow",
 	};
-	// const options = {
-	// 	method: "POST",
-	// 	headers: {
-	// 		Authorization: token,
-	// 	},
-	// 	body,
-	// };
 
-	const response = await fetch(
-		VITE_APP_BASE_URL + endPoint + id,
-		requestOptions
-	);
+	const options = {
+		method: "POST",
+		headers: {
+			Authorization: token,
+		},
+		body: JSON.stringify(body),
+	};
+
+	const response = await fetch(VITE_APP_BASE_URL + endPoint + id, options);
 	const data = await response.json();
 	return data;
 };
