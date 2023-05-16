@@ -1,29 +1,45 @@
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { BsApple } from "react-icons/bs";
+
 import Footer from "../../Components/Footer/Footer";
-import { HashLink } from "react-router-hash-link/dist/react-router-hash-link.cjs.production";
+import { postData } from "../../Utils/Query";
 
 import eventbrite from "./../../assets/icons/eventbrite-dark.svg";
 import boxd from "./../../assets/icons/box-dark.svg";
 import volkswagen from "./../../assets/icons/volkswagen-dark.svg";
 import netapp from "./../../assets/icons/netapp-dark.svg";
 import nasdaq from "./../../assets/icons/nasdaq-dark.svg";
-import { useState } from "react";
+import { HashLink } from "react-router-hash-link";
 
 function Login() {
 	const [isEmailOpen, setIsEmailOpen] = useState(false);
 	const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+	const [password, setPassword] = useState("email");
+	const [email, setEmail] = useState("password");
+	const [loading, setLoading] = useState(false);
 
-	const handleLogin = (email, password) => {
+	const handleLogin = async (e) => {
+		e.preventDefault();
+
 		if (email && password) {
+			// setLoading(true);
+			const body = { email: "test@gmail.com", password: "password" };
+			const response = await postData("/api/login", body);
+			console.log(response);
+		} else {
+			alert("email and password");
 		}
 	};
 
 	return (
 		<>
 			<div className='flex items-center justify-center py-12'>
-				<form className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'>
+				<form
+					className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'
+					onSubmit={(e) => handleLogin(e)}
+				>
 					<div className='flex flex-col gap-2'>
 						<h2 className='font-[700] text-sm'>Log in to your Udemy account</h2>
 						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
@@ -77,7 +93,7 @@ function Login() {
 								type='password'
 								name='email'
 								required
-								className={`w-full outline-none duration-900 ${
+								className={`w-full outline-none duration-900 focus:bg-white ${
 									isPasswordOpen ? "h-full" : "h-0"
 								}`}
 							/>
@@ -86,7 +102,7 @@ function Login() {
 					<div className='flex flex-col gap-2'>
 						<button
 							type='submit'
-							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm'
+							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm '
 						>
 							Log in
 						</button>
