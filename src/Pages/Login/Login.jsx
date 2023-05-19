@@ -16,18 +16,23 @@ import { HashLink } from "react-router-hash-link";
 function Login() {
 	const [isEmailOpen, setIsEmailOpen] = useState(false);
 	const [isPasswordOpen, setIsPasswordOpen] = useState(false);
-	const [password, setPassword] = useState("email");
-	const [email, setEmail] = useState("password");
+	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
 	const [loading, setLoading] = useState(false);
 
-	const handleLogin = async (e) => {
+	const handleLogin = (e) => {
 		e.preventDefault();
 
 		if (email && password) {
-			// setLoading(true);
-			const body = { email: "test@gmail.com", password: "password" };
-			const response = await postData("/api/login", body);
-			console.log(response);
+			setLoading(true);
+			const body = { email, password };
+			console.log(body);
+			const response = postData("/api/login", body);
+
+			response.then((data) => {
+				setLoading(false);
+				console.log(data);
+			});
 		} else {
 			alert("email and password");
 		}
@@ -74,6 +79,9 @@ function Login() {
 								className={`w-full outline-none duration-900 ${
 									isEmailOpen ? "h-full" : "h-0"
 								}`}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
 							/>
 						</div>
 						<div
@@ -91,11 +99,13 @@ function Login() {
 								onFocus={0}
 								tabIndex={0}
 								type='password'
-								name='email'
+								name='password'
 								required
+								value={password}
 								className={`w-full outline-none duration-900 focus:bg-white ${
 									isPasswordOpen ? "h-full" : "h-0"
 								}`}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -104,7 +114,7 @@ function Login() {
 							type='submit'
 							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm '
 						>
-							Log in
+							{loading ? "Loading..." : "Log in"}
 						</button>
 					</div>
 					<div className='flex flex-col gap-2 items-center'>

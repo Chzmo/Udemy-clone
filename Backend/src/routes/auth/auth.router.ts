@@ -11,26 +11,15 @@ export const loginRouter = express.Router();
 export const legisterRouter = express.Router();
 
 // Auth: Login Routes
-loginRouter.post(
-	"/",
-	body("email").isString(),
-	body("password").isString(),
-	async (request: Request, response: Response) => {
-		const errors = validationResult(request);
-		if (!errors.isEmpty()) {
-			return response.status(400).json({ errors: errors.array() });
-		}
-
-		try {
-			const user = request.body;
-			const newUser = await authController.loginUser(user);
-			return response.status(200).json(newUser);
-		} catch (error: any) {
-			return response.status(200).json(request);
-			return response.status(401).json(error.message);
-		}
+loginRouter.post("/", async (request: Request, response: Response) => {
+	try {
+		const user = request.body;
+		const newUser = await authController.loginUser(user);
+		return response.status(200).json(newUser);
+	} catch (error: any) {
+		return response.status(401).json(error.message);
 	}
-);
+});
 
 // GET: List all Users
 usersRouter.get("/", async (request: Request, responce: Response) => {
