@@ -13,10 +13,6 @@ export const fetchData = async (endPoint, id = "") => {
 export const postData = async (endPoint, body, token = "", id = "") => {
 	const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-	if (token) {
-		myHeaders.append("Authorization", "Bearer " + token);
-	}
-
 	const options = {
 		method: "POST",
 		headers: {
@@ -26,6 +22,5 @@ export const postData = async (endPoint, body, token = "", id = "") => {
 		body: JSON.stringify(body),
 	};
 
-	const response = await fetch(VITE_APP_BASE_URL + endPoint + id, options);
-	return response;
+	return await fetch(VITE_APP_BASE_URL + endPoint + id, options);
 };
