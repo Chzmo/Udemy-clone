@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { HashLink } from "react-router-hash-link";
+
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { BsApple } from "react-icons/bs";
@@ -11,7 +14,6 @@ import boxd from "./../../assets/icons/box-dark.svg";
 import volkswagen from "./../../assets/icons/volkswagen-dark.svg";
 import netapp from "./../../assets/icons/netapp-dark.svg";
 import nasdaq from "./../../assets/icons/nasdaq-dark.svg";
-import { HashLink } from "react-router-hash-link";
 
 function Login() {
 	const [isEmailOpen, setIsEmailOpen] = useState(false);
@@ -19,20 +21,35 @@ function Login() {
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [loading, setLoading] = useState(false);
+	const signIn = useSignIn();
+	const isAuthenticated = useIsAuthenticated();
 
-	const handleLogin = (e) => {
+	const handleLogin = async (e) => {
 		e.preventDefault();
 
 		if (email && password) {
-			setLoading(true);
 			const body = { email, password };
-			console.log(body);
-			const response = postData("/api/login", body);
+			setLoading(true);
 
-			response.then((data) => {
+			try {
+				setLoading(true);
+				const response = await postData("/api/login", body);
+				const data = await response.json();
+
+				if (
+					signIn({
+						token: data.token,
+						tokenType: "Bearer",
+						expiresIn: 3600,
+						authState: { user: "user" },
+					})
+				) {
+					setLoading(false);
+				}
+			} catch (error) {
+				console.log(error);
 				setLoading(false);
-				console.log(data);
-			});
+			}
 		} else {
 			alert("email and password");
 		}
