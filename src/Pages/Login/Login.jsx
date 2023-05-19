@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import { HashLink } from "react-router-hash-link";
+import { useNavigate } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
@@ -23,7 +24,8 @@ function Login() {
 	const [loading, setLoading] = useState(false);
 	const signIn = useSignIn();
 	const isAuthenticated = useIsAuthenticated();
-
+	const navigate = useNavigate();
+	
 	const handleLogin = async (e) => {
 		e.preventDefault();
 
@@ -41,9 +43,14 @@ function Login() {
 						token: data.token,
 						tokenType: "Bearer",
 						expiresIn: 3600,
-						authState: { user: "user" },
+						authState: {
+							userName: data.userName,
+							email: data.email,
+							userId: data.id,
+						},
 					})
 				) {
+					navigate("/");
 					setLoading(false);
 				}
 			} catch (error) {
@@ -54,6 +61,10 @@ function Login() {
 			alert("email and password");
 		}
 	};
+
+	if (isAuthenticated) {
+		navigate("/");
+	}
 
 	return (
 		<>
