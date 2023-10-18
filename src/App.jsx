@@ -22,7 +22,6 @@ function App() {
 					<Route path='/*' element={<Container />} />
 					<Route path='/' element={<Container />}>
 						<Route path='/' element={<Home />} />
-						<Route path='/' element={<Home />} />
 						<Route path='/login' element={<Login />} />
 						<Route path='/search/:searchTerm' element={<Search />} />
 						<Route path='/paid-course/:courseName' element={<PaidCourses />} />

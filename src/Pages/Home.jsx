@@ -9,6 +9,7 @@ import Footer from "../Components/Footer/Footer";
 
 function Home() {
 	const { globalState } = useGlobalState();
+	console.log(globalState);
 	return (
 		<>
 			<Hero />

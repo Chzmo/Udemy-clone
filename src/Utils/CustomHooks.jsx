@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useIsDivTop = (ref) => {
     const [isTop, setIsTop] = useState(false)

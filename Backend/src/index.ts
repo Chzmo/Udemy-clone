@@ -76,7 +76,7 @@ type Course = {
 };
 
 courseData.forEach((course: Course) => {
-	return;
+	// return;
 	const {
 		price,
 		revisedPrice,
