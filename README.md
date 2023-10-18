@@ -25,7 +25,7 @@ This is a clone of Udemy, built using ReactJS + Vite, Prisma, Express, and Node.
    VITE_APP_BASE_URL = 'http://localhost:8000'
 ```
 
-7. Run `npm run dev` to start the server in both `root` and `Backend` directory.
+6. Run `npm run dev` to start the server in both `root` and `Backend` directory.
 ## Technologies Used
 
 - ReactJS
