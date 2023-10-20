@@ -33,7 +33,7 @@ usersRouter.get("/", async (request: Request, responce: Response) => {
 
 // GET: an Author by ID
 userRouter.get("/:id", async (request: Request, responce: Response) => {
-	const id: number = parseInt(request.params.id, 10);
+	const id: string = request.params.id
 
 	try {
 		const user = await userController.getUser(id);
@@ -79,7 +79,7 @@ userRouter.put(
 
 	async (request: Request, response: Response) => {
 		const errors = validationResult(request);
-		const id: number = parseInt(request.params.id, 10);
+		const id: string = request.params.id;
 
 		if (!errors.isEmpty()) {
 			return response.status(400).json({ errors: errors.array() });
@@ -97,7 +97,7 @@ userRouter.put(
 // DELETE: Delete an Author
 // Params: id
 userRouter.delete("/:id", async (request: Request, response: Response) => {
-	const id: number = parseInt(request.params.id, 10);
+	const id: string = request.params.id;
 
 	try {
 		await userController.deleteUser(id);

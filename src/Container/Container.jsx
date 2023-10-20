@@ -21,7 +21,6 @@ function Container() {
 	}
 
 	useEffect(() => {
-		console.log("start");
 		getData().finally(() => console.log("end"));
 	}, []);
 

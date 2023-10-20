@@ -30,9 +30,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/user", authMiddleware, userRouter);
-app.use("/api/users", authMiddleware, usersRouter);
+// AUTH ROUTES
+// app.use("/api/user", authMiddleware, userRouter);
+// app.use("/api/users", authMiddleware, usersRouter);
+app.use("/api/user", userRouter);
+app.use("/api/users", usersRouter);
+
+// REGISTER A NEW USER
 app.use("/api/register", legisterRouter);
+
+// LOGIN
 app.use("/api/login", loginRouter);
 
 // COURSES ROUTES
@@ -57,7 +64,7 @@ const courseData: any = [
 	{
 		title: "Python For Dummies",
 		price: 1,
-		authorId: 1,
+		authorId: '65324c693ef056bdd52e7a04',
 		revisedPrice: 1,
 		description: "You will Love Python For Dummies",
 		thumbnail: "http://chzmo.com/image",
@@ -68,15 +75,15 @@ const courseData: any = [
 type Course = {
 	title: string;
 	price: number;
-	authorId: number;
+	authorId: string;
 	revisedPrice: number;
 	description: string;
 	thumbnail: string;
-	catergoryId: number;
+	catergoryId: string;
 };
 
 courseData.forEach((course: Course) => {
-	// return;
+	return;
 	const {
 		price,
 		revisedPrice,

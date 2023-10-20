@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 import { db } from "../src/utils/db.server";
 
 export const authMiddleware =  async (request: Request, response: Response, next:any) => {
-    const userId: number = parseFloat(request.body.userId)
+    const userId: string = request.body.userId
     let token: string
 
     if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
@@ -15,7 +15,7 @@ export const authMiddleware =  async (request: Request, response: Response, next
             const decodeId: any = await jwt.verify(token, process.env.JWT_SECRET).id
             const user = await db.user.findUnique({
                 where:{
-                    id:parseInt(decodeId)
+                    id:decodeId
                 },
                 select:{
                     id:true

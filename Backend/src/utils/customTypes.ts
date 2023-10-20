@@ -18,17 +18,17 @@ export const CourseType = z.object({
 	name: z.string(),
 	title: z.string(),
 	price: z.number(),
-	categoryId: z.number(),
+	categoryId: z.string(),
 	revisedPrice: z.number(),
-	authorId: z.number().positive().gt(0),
+	authorId: z.string(),
 	thumbnail: z.string().url(),
 	description: z.string(),
 });
 
 export const ratingType = z.object({
-	userId: z.number().positive().gt(0),
-	courseId: z.number().positive().gt(0),
-	ratingId: z.number().positive().gt(0),
+	userId: z.string(),
+	courseId: z.string(),
+	ratingId: z.string(),
 	ratingScore: z.number(),
 	review: z.string(),
 });

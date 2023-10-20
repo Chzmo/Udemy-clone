@@ -9,7 +9,6 @@ export const categoryRouter = express.Router();
 // Auth: Category Routes
 categoryRouter.post(
 	"/",
-
 	body("title").isString(),
 	body("topCategoryId").isInt(),
 	authMiddleware,

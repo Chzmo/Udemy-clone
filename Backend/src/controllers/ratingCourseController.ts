@@ -4,11 +4,11 @@ import { db } from "../utils/db.server";
 // import { v4 as uuidv4 } from "uuid";
 
 type CourseRating = {
-	courseId: number;
-	userId: number;
+	courseId: string;
+	userId: string;
 	ratingScore: number;
 	review: string;
-	ratingId: number;
+	ratingId: string;
 };
 
 export const createRating = async (courseRating: CourseRating) => {
@@ -62,7 +62,7 @@ export const createRating = async (courseRating: CourseRating) => {
 	});
 };
 
-export const deleteRating = async (ratingId: number) => {
+export const deleteRating = async (ratingId: string) => {
 	return await db.rating.delete({
 		where: {
 			id: ratingId,

@@ -1,6 +1,6 @@
 import { db } from "../utils/db.server";
 
-export const createCategory = async (title: string, topCategoryId: number) => {
+export const createCategory = async (title: string, topCategoryId: string) => {
 	const createCategory: object = await db.category.create({
 		data: {
 			title,

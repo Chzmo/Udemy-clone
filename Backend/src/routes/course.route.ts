@@ -33,8 +33,8 @@ courseRouter.post(
 		try {
 			const { userId, courseId }: any = request.body;
 			const enrolledCourse = await courseController.enrollCourse(
-				parseInt(userId),
-				parseInt(courseId)
+				userId,
+				courseId
 			);
 			return response.status(200).json(enrolledCourse);
 		} catch (error) {
@@ -48,7 +48,7 @@ coursesRouter.get(
 	"/:categoryId",
 	async (request: Request, response: Response) => {
 		try {
-			const categoryId: number = parseInt(request.params.categoryId);
+			const categoryId: string = request.params.categoryId;
 			return response
 				.status(200)
 				.json(await courseController.getCoursesByCategory(categoryId));
@@ -61,7 +61,7 @@ coursesRouter.get(
 // GET: a Course by ID
 courseRouter.get("/:id", async (request: Request, responce: Response) => {
 	try {
-		const id: number = parseInt(request.params.id, 10);
+		const id: string = request.params.id;
 		return responce.status(200).json(await courseController.getCourse(id));
 	} catch (error: any) {
 		return responce.status(400).json({ message: "Bad request" });
@@ -78,7 +78,7 @@ courseRouter.put(
 			const course = Course.parse(request.body);
 			const updatedCourse = await courseController.updateCourse(
 				course,
-				parseInt(request.params.id)
+				request.params.id
 			);
 			return response.status(200).json(updatedCourse);
 		} catch (error: any) {
@@ -94,7 +94,7 @@ courseRouter.delete(
 	authMiddleware,
 	async (request: Request, response: Response) => {
 		try {
-			const id: number = parseInt(request.params.id, 10);
+			const id: string = request.params.id;
 			await courseController.deleteCourse(id);
 			return response
 				.status(200)

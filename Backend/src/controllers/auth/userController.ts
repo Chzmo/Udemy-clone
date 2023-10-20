@@ -18,7 +18,7 @@ export const listUsers = async () =>{
     });
 };
 
-export const getUser = async (id: number) =>{
+export const getUser = async (id: string) =>{
     return await db.user.findUnique({
         where:{
             id,
@@ -33,7 +33,7 @@ export const getUser = async (id: number) =>{
 };
 
 export const updatedUser = async (
-    user: Omit<createUserSchema, "id">, id: number, 
+    user: Omit<createUserSchema, "id">, id: string, 
 ) =>{
     const {email, userName, password} = user
     return db.user.update({
@@ -55,7 +55,7 @@ export const updatedUser = async (
 }
 
 export const deleteUser = async (
-    id:number
+    id:string
 ): Promise<void> =>{
     await db.user.delete({
         where:{

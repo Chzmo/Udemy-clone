@@ -28,7 +28,7 @@ ratingRouter.delete(
 	authMiddleware,
 	async (request: Request, response: Response) => {
 		try {
-			const ratingId: number = parseInt(request.params.ratingId);
+			const ratingId: string = request.params.ratingId;
 			return response
 				.status(200)
 				.json(await ratingController.deleteRating(ratingId));

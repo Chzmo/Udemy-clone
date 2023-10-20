@@ -3,98 +3,100 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
-  userName      String
-  email         String   @unique
-  password      String
-  course        Course[]
-  rating        UserOnCourseRating[]
-  enrolled      UserOnCourse[]
-}
-model TopCategory{
-  id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  title         String      @unique
-  category      Category[]
+  id        String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @default(now())
+  userName  String
+  email     String               @unique
+  password  String
+  course    Course[]
+  rating    UserOnCourseRating[]
+  enrolled  UserOnCourse[]
 }
 
-model Category{
-  id            Int         @id @default(autoincrement())
+model TopCategory {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  title     String     @unique
+  category  Category[]
+}
+
+model Category {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   title         String      @unique
-  topCategoryId Int
-  topCategory   TopCategory    @relation(fields: [topCategoryId], references: [id], onDelete: Cascade)
+  topCategoryId String      @db.ObjectId
+  topCategory   TopCategory @relation(fields: [topCategoryId], references: [id], onDelete: Cascade)
   course        Course[]
 }
 
 model Course {
-  id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  title         String
-  description   String
-  price         Float       @default(0)
-  revisedPrice  Float       @default(0)
-  thumbnail     String
-  authorId      Int
-  categoryId    Int
-  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  content       Content?
-  requirements  Requirements[]
-  rating        UserOnCourseRating[]
-  enrolledBy    UserOnCourse[]
+  id           String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  title        String
+  description  String
+  price        Float                @default(0)
+  revisedPrice Float                @default(0)
+  thumbnail    String
+  authorId     String?              @db.ObjectId
+  categoryId   String?              @db.ObjectId
+  author       User?                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category     Category?            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  content      Content?
+  requirements Requirements[]
+  rating       UserOnCourseRating[]
+  enrolledBy   UserOnCourse[]
 }
 
 model Content {
-  id            Int         @id @default(autoincrement())
-  courseId      Int         @unique
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
-model Requirements{
-  id            Int         @id @default(autoincrement())
-  courseId      Int         @unique
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+model Requirements {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
-  id          Int                   @id @default(autoincrement())
-  value       Float
-  review      String
-  course      UserOnCourseRating[]
+  id     String               @id @default(auto()) @map("_id") @db.ObjectId
+  value  Float
+  review String
+  course UserOnCourseRating[]
 }
 
 model UserOnCourseRating {
-  courseId      Int         
-  ratingId      Int         
-  userId        Int         
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  rating        Rating      @relation(fields: [ratingId], references: [id], onDelete: Cascade)
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt     DateTime    @default(now())
-
-  @@id([courseId, ratingId, userId])
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String   @db.ObjectId
+  ratingId  String   @db.ObjectId
+  userId    String   @db.ObjectId
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  rating    Rating   @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  // @@id([courseId, ratingId, userId])
 }
-model UserOnCourse {
-  courseId      Int         
-  userId        Int         
-  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt    DateTime     @default(now())
 
-  @@id([courseId, userId])
+model UserOnCourse {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String   @db.ObjectId
+  userId    String   @db.ObjectId
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  // @@id([courseId, userId])
 }

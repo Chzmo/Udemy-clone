@@ -2,7 +2,7 @@ import { response } from "express";
 import { db } from "../utils/db.server";
 
 type Course = {
-	id: number;
+	id: string;
 	name: string;
 	title: string;
 	price: number;
@@ -12,8 +12,8 @@ type Course = {
 };
 
 export const createCourse = async (
-	authorId: number,
-	catergoryId: number,
+	authorId: string,
+	catergoryId: string,
 	course: Omit<Course, "id">
 ) => {
 	const { name, title, description, thumbnail } = course;
@@ -46,7 +46,7 @@ export const createCourse = async (
 	return createdCourse;
 };
 
-export const enrollCourse = async (userId: number, courseId: number) => {
+export const enrollCourse = async (userId: string, courseId: string) => {
 	return await db.userOnCourse.create({
 		data: {
 			userId,
@@ -56,7 +56,7 @@ export const enrollCourse = async (userId: number, courseId: number) => {
 };
 
 export const getCoursesByCategory = async (categoryId: any) => {
-	const id = parseInt(categoryId.toString());
+	const id = categoryId.toString();
 
 	try {
 		return await db.course.findMany({
@@ -102,7 +102,7 @@ export const getCoursesByCategory = async (categoryId: any) => {
 	}
 };
 
-export const getCourse = async (id: number) => {
+export const getCourse = async (id: string) => {
 	return await db.course.findUnique({
 		where: {
 			id,
@@ -141,7 +141,7 @@ export const getCourse = async (id: number) => {
 	});
 };
 
-export const updateCourse = async (course: Omit<Course, "id">, id: number) => {
+export const updateCourse = async (course: Omit<Course, "id">, id: string) => {
 	const { name, title, description, thumbnail } = course;
 	const price = parseInt(course.price.toString());
 	const revisedPrice = parseInt(course.revisedPrice.toString());
@@ -169,7 +169,7 @@ export const updateCourse = async (course: Omit<Course, "id">, id: number) => {
 	});
 };
 
-export const deleteCourse = async (id: number) => {
+export const deleteCourse = async (id: string) => {
 	try {
 		return await db.course.delete({
 			where: {
