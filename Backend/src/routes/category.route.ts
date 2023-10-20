@@ -10,7 +10,7 @@ export const categoryRouter = express.Router();
 categoryRouter.post(
 	"/",
 	body("title").isString(),
-	body("topCategoryId").isInt(),
+	body("topCategoryId").isString(),
 	authMiddleware,
 
 	async (request: Request, response: Response) => {

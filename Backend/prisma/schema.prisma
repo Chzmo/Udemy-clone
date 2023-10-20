@@ -47,7 +47,7 @@ model Course {
   revisedPrice Float                @default(0)
   thumbnail    String
   authorId     String?              @db.ObjectId
-  categoryId   String?              @db.ObjectId
+  categoryId   String               @db.ObjectId
   author       User?                @relation(fields: [authorId], references: [id], onDelete: Cascade)
   category     Category?            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   content      Content?
