@@ -31,10 +31,8 @@ app.use(cors());
 app.use(express.json());
 
 // AUTH ROUTES
-// app.use("/api/user", authMiddleware, userRouter);
-// app.use("/api/users", authMiddleware, usersRouter);
-app.use("/api/user", userRouter);
-app.use("/api/users", usersRouter);
+app.use("/api/user", authMiddleware, userRouter);
+app.use("/api/users", authMiddleware, usersRouter);
 
 // REGISTER A NEW USER
 app.use("/api/register", legisterRouter);

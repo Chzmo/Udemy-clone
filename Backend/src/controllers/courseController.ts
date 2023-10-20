@@ -3,7 +3,6 @@ import { db } from "../utils/db.server";
 
 type Course = {
 	id: string;
-	name: string;
 	title: string;
 	price: number;
 	revisedPrice: number;
@@ -16,7 +15,7 @@ export const createCourse = async (
 	catergoryId: string,
 	course: Omit<Course, "id">
 ) => {
-	const { name, title, description, thumbnail } = course;
+	const { title, description, thumbnail } = course;
 	const price = parseInt(course.price.toString());
 	const revisedPrice = parseInt(course.revisedPrice.toString());
 	const createdCourse: object = await db.course.create({
@@ -142,7 +141,7 @@ export const getCourse = async (id: string) => {
 };
 
 export const updateCourse = async (course: Omit<Course, "id">, id: string) => {
-	const { name, title, description, thumbnail } = course;
+	const { title, description, thumbnail } = course;
 	const price = parseInt(course.price.toString());
 	const revisedPrice = parseInt(course.revisedPrice.toString());
 	return db.course.update({

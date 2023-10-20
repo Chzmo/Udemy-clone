@@ -16,7 +16,7 @@ function Container() {
 	};
 
 	async function getData() {
-		const data = await fetchData("/api/categories");
+		const data = await fetchData("/api/topcategories");
 		setCategories(data);
 	}
 

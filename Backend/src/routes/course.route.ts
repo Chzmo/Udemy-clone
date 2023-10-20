@@ -26,6 +26,8 @@ courseRouter.post(
 		}
 	}
 );
+
+// POST: Enroll Course
 courseRouter.post(
 	"/enroll",
 	authMiddleware,

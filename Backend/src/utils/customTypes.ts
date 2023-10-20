@@ -15,7 +15,6 @@ const createUserSchema = z.object({
 export type createUserSchema = z.infer<typeof createUserSchema>;
 
 export const CourseType = z.object({
-	name: z.string(),
 	title: z.string(),
 	price: z.number(),
 	categoryId: z.string(),

@@ -29,7 +29,7 @@ function AccordionItem(props) {
 			{isOpen && (
 				<div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden pb-3'>
 					{globalState.categories &&
-						globalState.categories[searchParam].course?.map((_course, index) => {
+						globalState?.categories[searchParam]?.course?.map((_course, index) => {
 							return (
 								<div className=''>
 									<CourseDetails
@@ -115,7 +115,7 @@ function Courses({ globalState }) {
 				</p>
 				<div className='flex gap-3 mt-3'>
 					{globalState.categories &&
-						globalState.categories[0].course?.map((_course, index) => {
+						globalState?.categories[0]?.course?.map((_course, index) => {
 							return (
 								index < 2 && (
 									<p
@@ -164,7 +164,7 @@ function Courses({ globalState }) {
 					<div className='mt-7'>
 						<Slider {...settings} className='w-scren'>
 							{globalState.categories &&
-								globalState.categories[searchParam].course?.map((_course, index) => {
+								globalState?.categories[searchParam]?.course?.map((_course, index) => {
 									return (
 										<div className=''>
 											<CourseDetails
