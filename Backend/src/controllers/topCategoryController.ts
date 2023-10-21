@@ -23,7 +23,14 @@ export const getTopCategories = async () => {
 			createdAt: true,
 			updatedAt: true,
 			title: true,
-			category: true,
+			category: {
+				select: {
+					id: true,
+					createdAt: true,
+					updatedAt: true,
+					title: true,
+				}
+			}
 		},
 	});
 

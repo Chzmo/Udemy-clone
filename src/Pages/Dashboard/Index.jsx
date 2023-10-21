@@ -9,8 +9,8 @@ function dashboard() {
         <DashboardTopNav />
         <div className='flex flex-col min-h-fit w-4/5 m-auto  my-8'>
             <div className="flex w-full gap-3 items-center text-[#6b7280] font-semibold ">
-                <Link to={'/dashboard'} className='text-[#5624d0]'>Account</Link>
-                <Link to={'/dashboard/Courses'} >Courses </Link>
+                <Link to={'/dashboard'} >Account</Link>
+                <Link to={'/dashboard/Courses'} className='text-[#5624d0]'>Courses </Link>
             </div>
             <div className="">
                 <Outlet />

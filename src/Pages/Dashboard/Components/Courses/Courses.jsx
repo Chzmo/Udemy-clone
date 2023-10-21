@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
+import { fetchData, postData } from '../../../../Utils/Query';
 
 function Courses() {
+    const id = '65324c693ef056bdd52e7a04';
+    const tocken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU​'
     const [createCourse, setCreateCourse] = useState(false);
     const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, category_id: '', })
-    const [errors, setErrors] = useState({validationError:null})
+    const [topCategories, setTopCategories] = useState(null)
+    const [errors, setErrors] = useState({ validationError: null })
 
     const handleChange = (e) => {
         setformInputs({
@@ -12,19 +16,39 @@ function Courses() {
         })
     }
 
-    const handleFormSubmit = (e) => {
+     const  handleFormSubmit = async (e) => {
+        e.preventDefault();
         if (formInputs.title === '' || formInputs.description === '' || formInputs.category_id === '') {
             alert('validate');
             return;
         }
-        e.preventDefault();
-        alert();
+        
+        try {
+            const courseDetails = await postData('', formInputs, tocken, id).json();
+            console.log(courseDetails);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    useEffect(() => {
-      console.log(formInputs)
-    }, [formInputs])
+    async function getData() {
+        try {
+            const data = await fetchData('/api/topcategories');
+            setTopCategories(data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
+    useEffect(() => {
+        getData().finally(() => {
+            console.log(topCategories) 
+        })
+    }, [])
+    
+    useEffect(() => {
+        setCreateCourse(false);
+    }, [])
     return (
         <>
             {createCourse ? (
