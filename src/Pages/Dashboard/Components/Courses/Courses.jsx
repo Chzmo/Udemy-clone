@@ -8,6 +8,7 @@ function Courses() {
     const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, category_id: '', })
     const [topCategories, setTopCategories] = useState(null)
     const [errors, setErrors] = useState({ validationError: null })
+    const [loadingStates, setLoadingStates] = useState({ topCategories: true })
 
     const handleChange = (e) => {
         setformInputs({
@@ -35,20 +36,23 @@ function Courses() {
         try {
             const data = await fetchData('/api/topcategories');
             setTopCategories(data);
+            console.log(data)
         } catch (error) {
             console.log(error)
         }
     }
     
     useEffect(() => {
-        getData().finally(() => {
+        getData().then(() => {
             console.log(topCategories) 
+            setLoadingStates({...loadingStates, topCategories:false})
         })
     }, [])
     
     useEffect(() => {
         setCreateCourse(false);
     }, [])
+    
     return (
         <>
             {createCourse ? (
