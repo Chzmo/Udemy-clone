@@ -8,6 +8,9 @@ import Search from "./Pages/Search/Search";
 import PaidCourses from "./Pages/PaidCources/PaidCourses";
 import FreeCourses from "./Pages/FreeCourses/FreeCourses";
 import Login from "./Pages/Login/Login";
+import Index from "./Pages/Dashboard/Index.jsx";
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import DashboardCourses from "./Pages/Dashboard/Components/Courses/Courses";
 
 function App() {
 	return (
@@ -26,6 +29,11 @@ function App() {
 						<Route path='/search/:searchTerm' element={<Search />} />
 						<Route path='/paid-course/:courseName' element={<PaidCourses />} />
 						<Route path='/free-course/:courseName' element={<FreeCourses />} />
+					</Route>
+					<Route path="/dashboard" element={<Index/>}>
+						<Route path='/dashboard*' element={<Dashboard />} />
+						<Route path='/dashboard' element={<Dashboard />} />
+						<Route path='/dashboard/courses' element={<DashboardCourses />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

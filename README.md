@@ -9,9 +9,9 @@ This is a clone of Udemy, built using ReactJS + Vite, Prisma, Express, and Node.
 ## Installation
 
 1. Clone the repository.
-2. Run `npm install` in both the root directory and the `Backend` directory.
-3. Create a `.env` file in the Backend directory and add the following variables:
-4. Run `npm run dev` to start the server and `Backend`.
+2. Run `npm install` in both the root directory and the `API` directory.
+3. Create a `.env` file in the API directory and add the following variables:
+4. Run `npm run dev` to start the server and `API`.
 
 ```
     DATABASE_URL="file:./dev.db"
@@ -25,7 +25,7 @@ This is a clone of Udemy, built using ReactJS + Vite, Prisma, Express, and Node.
    VITE_APP_BASE_URL = 'http://localhost:8000'
 ```
 
-6. Run `npm run dev` to start the server in both `root` and `Backend` directory.
+6. Run `npm run dev` to start the server in both `root` and `API` directory.
 ## Technologies Used
 
 - ReactJS

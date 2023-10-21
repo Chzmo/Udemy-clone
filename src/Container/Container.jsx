@@ -5,7 +5,7 @@ import { fetchData } from "../Utils/Query";
 import TopNav from "../Components/TopNav/TopNav";
 
 function Container() {
-	const [categories, setCategories] = useState(null);
+	const [categories, setCategories] = useState([null]);
 	const [loading, setLoading] = useState(false);
 
 	const globalState = {
@@ -17,7 +17,8 @@ function Container() {
 
 	async function getData() {
 		const data = await fetchData("/api/categories");
-		setCategories(data);
+		console.log(data)
+		setCategories([]);
 	}
 
 	useEffect(() => {
