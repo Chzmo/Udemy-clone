@@ -6,17 +6,18 @@ export const fetchData = async (endPoint, id = "") => {
 	return data;
 };
 
-export const postData = async (endPoint, body, token = "", id = "") => {
+export const postData = async (endPoint, body, token = "", courseId = "") => {
 	const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+	const customHeaders = new Headers();
+	customHeaders.append("Content-Type", "application/json");
+	customHeaders.append("Authorization", "Bearer " + token)
 
 	const options = {
 		method: "POST",
-		headers: {
-			"content-type": "application/json",
-			Authorization: "Bearer " + token,
-		},
+		headers:customHeaders,
 		body: JSON.stringify(body),
 	};
+	console.log(body);
 
-	return await fetch(VITE_APP_BASE_URL + endPoint + id, options);
+	return await fetch(VITE_APP_BASE_URL + endPoint + courseId, options);
 };

@@ -3,10 +3,10 @@ import { fetchData, postData } from '../../../../Utils/Query';
 import Spinner from '../Spinner/Spinner';
 
 function Courses() {
-    const id = '65324c693ef056bdd52e7a04';
-    const tocken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU​'
+    const userId = '65324c693ef056bdd52e7a04';
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU";
     const [createCourse, setCreateCourse] = useState(false);
-    const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, category_id: '', });
+    const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, categoryId: '', });
     const [topCategories, setTopCategories] = useState(null);
     const [categories, setCategories] = useState(null);
     const [errors, setErrors] = useState({ validationError: null });
@@ -21,13 +21,21 @@ function Courses() {
 
      const  handleFormSubmit = async (e) => {
         e.preventDefault();
-        if (formInputs.title === '' || formInputs.description === '' || formInputs.category_id === '') {
-            alert('validate');
+        if (formInputs.title === '' || formInputs.description === '' || formInputs.categoryId === '') {
+            alert('fill all required fields');
             return;
         }
         
+        // GET TOP CATEGORY ID
+        const topCategoryId = topCategories?.filter(item => {
+            if (item.category.length > 0) {
+                return item.category[0].id === formInputs.categoryId;
+            }
+            return false;
+        })[0]?.id;
+        //  console.log(topCategories, topCategoryId);
         try {
-            const courseDetails = await postData('', formInputs, tocken, id).json();
+            const courseDetails = await postData('/api/course', {...formInputs,  topCategoryId, userId, authorId:userId, thumbnail:'http://hello.com', price:parseInt(formInputs.price), revisedPrice:0}, token);
             console.log(courseDetails);
         } catch (error) {
             console.log(error)
@@ -47,7 +55,6 @@ function Courses() {
         getData()
             .then(() => {
                 setLoadingStates({ ...loadingStates, topCategories: false })
-                
             })
             .catch(error => {
                 console.log(error)
@@ -62,7 +69,6 @@ function Courses() {
             return acc;
         }, []);
         setCategories(data);
-        console.log(data) 
     }, [topCategories])
     
     useEffect(() => {
@@ -99,10 +105,10 @@ function Courses() {
                             <input type="number" min={0} name='price' value={formInputs.price} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' />
                         </div>
                         <div className="flex flex-col w-full gap-2">
-                            <label htmlFor="category_id" className='flex items-center gap-1'>
+                            <label htmlFor="categoryId" className='flex items-center gap-1'>
                                 <span>Course category</span><span className='text-red-600'>*</span>
                             </label>
-                            <select required name='category_id'onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' >
+                            <select required name='categoryId'onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' >
                                 <option key={'rnkdmi290snfjs'} className='bg-[#1b1f23] text-[#6b7280] ' value="" >Select a category</option>
                                 {categories &&
                                     categories?.map((category) => (
