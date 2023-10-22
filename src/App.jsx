@@ -10,7 +10,7 @@ import FreeCourses from "./Pages/FreeCourses/FreeCourses";
 import Login from "./Pages/Login/Login";
 import Index from "./Pages/Dashboard/Index.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
-import DashboardCourses from "./Pages/Dashboard/Components/Courses/Courses";
+import Courses from "./Pages/Dashboard/Components/Courses/Courses";
 
 function App() {
 	return (
@@ -33,7 +33,8 @@ function App() {
 					<Route path="/dashboard" element={<Index/>}>
 						<Route path='/dashboard*' element={<Dashboard />} />
 						<Route path='/dashboard' element={<Dashboard />} />
-						<Route path='/dashboard/courses' element={<DashboardCourses />} />
+						<Route path='/dashboard/courses' element={<Courses />} />
+						<Route path='/dashboard/courses/:courseId' element={<Courses />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
