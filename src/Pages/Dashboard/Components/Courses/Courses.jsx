@@ -6,10 +6,11 @@ function Courses() {
     const userId = '65324c693ef056bdd52e7a04';
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU";
     const [createCourse, setCreateCourse] = useState(false);
-    const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, categoryId: '', });
+    const initialFormInputs = { title: '', description: '', price: 0, categoryId: '', thumbnail:''};
+    const [formInputs, setformInputs] = useState(initialFormInputs);
     const [topCategories, setTopCategories] = useState(null);
     const [categories, setCategories] = useState(null);
-    const [errors, setErrors] = useState({ validationError: null });
+    const [errors, setErrors] = useState({ formValidationError: null });
     const [loadingStates, setLoadingStates] = useState({ topCategories: true });
 
     const handleChange = (e) => {
@@ -33,13 +34,14 @@ function Courses() {
             }
             return false;
         })[0]?.id;
-        //  console.log(topCategories, topCategoryId);
+         
         try {
-            const courseDetails = await postData('/api/course', {...formInputs,  topCategoryId, userId, authorId:userId, thumbnail:'http://hello.com', price:parseInt(formInputs.price), revisedPrice:0}, token);
+            const courseDetails = await postData('/api/course', { ...formInputs, topCategoryId, userId, authorId: userId, price: parseInt(formInputs.price), revisedPrice: 0 }, token);
             console.log(courseDetails);
         } catch (error) {
             console.log(error)
         }
+        setformInputs(initialFormInputs);
     }
 
     async function getData() {
@@ -89,26 +91,34 @@ function Courses() {
                             <label htmlFor="title" className='flex items-center gap-1'>
                                 <span>Title</span><span className='text-red-600'>*</span>
                             </label>
-                            <input type="text" name='title' onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' required/>
+                            <input type="text" name='title' value={formInputs.title} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' required/>
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="description" className='flex items-center gap-1'>
                                 <span>Description</span><span className='text-red-600'>*</span>
                             </label>
-                            <textarea name='description' onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent py-3 px-2 hover:border-[#5624d0] focus:border-[#5624d0] min-h-[150px]' required>
+                            <textarea name='description' value={formInputs.description} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent py-3 px-2 hover:border-[#5624d0] focus:border-[#5624d0] min-h-[100px]' required>
                             </textarea>
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                            <label htmlFor="thumbnail" className='flex items-center gap-1'>
+                                <span>Url thumbnail</span>
+                            </label>
+                            <input type="url" name='thumbnail' value={formInputs.thumbnail} onChange={handleChange} pattern="https?://.+" className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' required
+                            />
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="price" className='flex items-center gap-1'>
                                 <span>Price</span>
                             </label>
-                            <input type="number" min={0} name='price' value={formInputs.price} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' />
+                            <input type="number" min={0} name='price' value={formInputs.price} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]'
+                            />
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="categoryId" className='flex items-center gap-1'>
                                 <span>Course category</span><span className='text-red-600'>*</span>
                             </label>
-                            <select required name='categoryId'onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' >
+                            <select required name='categoryId' value={formInputs.categoryId} onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' >
                                 <option key={'rnkdmi290snfjs'} className='bg-[#1b1f23] text-[#6b7280] ' value="" >Select a category</option>
                                 {categories &&
                                     categories?.map((category) => (
@@ -125,12 +135,18 @@ function Courses() {
                         </div>
                     </form>
                 </>
-            ):( (!loadingStates.topCategories) &&(
-                <div className='w-full flex justify-end mt-9'>
-                    <button onClick={() => {setCreateCourse(true)}} className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
-                        CREATE COURSE
-                    </button>
-                </div>
+            ) : ((!loadingStates.topCategories) && (
+                    <>
+                        <div className='w-full flex justify-end mt-9'>
+                            <button onClick={() => {setCreateCourse(true)}} className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+                                CREATE COURSE
+                            </button>
+                        </div>
+
+                        <div className="flex min-h-[450px]">
+                            
+                        </div>
+                    </>
                 )
             )}
         </>
