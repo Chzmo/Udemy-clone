@@ -1,4 +1,4 @@
-import { GoPrimitiveDot } from 'react-icons/go'
+// import { GoPrimitiveDot } from 'react-icons/go'
 
 function Requirements() {
     return (
@@ -8,7 +8,7 @@ function Requirements() {
                 {["No AWS Cloud experience is necessary, we'll use the AWS Free Tier", "No IT prerequisites required"].map((rec)=>{
                     return (
                         <div key={rec} className="pl-3 flex items-center gap-3">
-                            <GoPrimitiveDot size={14}/> 
+                            {/* <GoPrimitiveDot size={14}/>  */}
                             <p className='text-sm'>{rec}</p>
                         </div>
                     )

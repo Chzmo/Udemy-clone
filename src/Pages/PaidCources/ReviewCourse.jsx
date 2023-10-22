@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdStarRate } from 'react-icons/md';
 import Rating from '../../Components/Rating';
-import { GoPrimitiveDot } from 'react-icons/go';
+// import {  } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 function ReviewCourse() {
@@ -13,7 +13,7 @@ function ReviewCourse() {
                     4.7 
                     <span className='hidden sm:flex items-center'>
                         course rating 
-                        <GoPrimitiveDot size={15} className='text-slate-700 mt-2'/> 
+                        {/* <GoPrimitiveDot size={15} className='text-slate-700 mt-2'/>  */}
                     </span>Ratings 18K
                 </h2>
             </div>

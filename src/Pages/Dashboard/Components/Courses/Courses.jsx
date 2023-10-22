@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchData, postData } from '../../../../Utils/Query';
+import Spinner from '../Spinner/Spinner';
 
 function Courses() {
     const id = '65324c693ef056bdd52e7a04';
@@ -43,10 +44,14 @@ function Courses() {
     }
     
     useEffect(() => {
-        getData().then(() => {
-            console.log(topCategories) 
-            setLoadingStates({...loadingStates, topCategories:false})
-        })
+        getData()
+            .then(() => {
+                console.log(topCategories) 
+                setLoadingStates({...loadingStates, topCategories:false})
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }, [])
     
     useEffect(() => {
@@ -55,7 +60,12 @@ function Courses() {
     
     return (
         <>
-            {createCourse ? (
+            {loadingStates.topCategories && (
+                <div className="flex min-h-[500px] w-full justify-center items-start">
+                    <Spinner />
+                </div>
+            )}
+            {(createCourse && !loadingStates.topCategories) ? (
                 <>
                     <form onSubmit={ handleFormSubmit } className="flex flex-col gap-3 w-full mt-9 text-[#6b7280] font-normal">
                         <div className="flex flex-col w-full gap-2">
@@ -98,12 +108,13 @@ function Courses() {
                         </div>
                     </form>
                 </>
-            ):(
+            ):( (!loadingStates.topCategories) &&(
                 <div className='w-full flex justify-end mt-9'>
                     <button onClick={() => {setCreateCourse(true)}} className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
                         CREATE COURSE
                     </button>
                 </div>
+                )
             )}
         </>
     )
