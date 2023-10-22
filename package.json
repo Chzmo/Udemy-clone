@@ -15,6 +15,7 @@
     "react-auth-kit": "^2.12.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.10.0",
     "react-router-hash-link": "^2.4.3",
     "react-slick": "^0.29.0",

@@ -54,6 +54,16 @@ model Course {
   requirements Requirements[]
   rating       UserOnCourseRating[]
   enrolledBy   UserOnCourse[]
+  objectives   Ojective[]
+}
+
+model Ojective {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String   @db.ObjectId
 }
 
 model Content {

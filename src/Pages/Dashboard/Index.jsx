@@ -1,24 +1,20 @@
-import React from 'react'
+import React from "react";
 import { Outlet, useOutletContext, Link } from "react-router-dom";
-import DashboardTopNav from './Components/DashboardTopNav'
+import DashboardTopNav from "./Components/DashboardTopNav";
 
 function dashboard() {
-  return (
-    <div className="flex flex-col w-full h-full bg-[#1b1f23] items-start justify-start">
-      <div className="flex w-[90%] m-auto flex-col">
-        <DashboardTopNav />
-        <div className='flex flex-col min-h-fit w-4/5 m-auto  my-8'>
-            <div className="flex w-full gap-3 items-center text-[#6b7280] font-semibold ">
-                <Link to={'/dashboard'} >Account</Link>
-                <Link to={'/dashboard/Courses'} className='text-[#5624d0]'>Courses </Link>
-            </div>
-            <div className="">
-                <Outlet />
-            </div>
-        </div>
-      </div>
-    </div>
-  )
+	return (
+		<div className='flex flex-col w-full h-full bg-[#1b1f23] items-start justify-start'>
+			<div className='flex w-[90%] m-auto flex-col'>
+				<DashboardTopNav />
+				<div className='flex flex-col min-h-fit w-4/5 m-auto  my-8'>
+					<div className=''>
+						<Outlet />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default dashboard
+export default dashboard;

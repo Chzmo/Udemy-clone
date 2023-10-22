@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 import Index from "./Pages/Dashboard/Index.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import Courses from "./Pages/Dashboard/Components/Courses/Courses";
+import CourseDetails from "./Pages/Dashboard/Components/Courses/CourseDetails";
 
 function App() {
 	return (
@@ -22,7 +23,6 @@ function App() {
 		>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/*' element={<Container />} />
 					<Route path='/' element={<Container />}>
 						<Route path='/' element={<Home />} />
 						<Route path='/login' element={<Login />} />
@@ -31,10 +31,9 @@ function App() {
 						<Route path='/free-course/:courseName' element={<FreeCourses />} />
 					</Route>
 					<Route path="/dashboard" element={<Index/>}>
-						<Route path='/dashboard*' element={<Dashboard />} />
 						<Route path='/dashboard' element={<Dashboard />} />
 						<Route path='/dashboard/courses' element={<Courses />} />
-						<Route path='/dashboard/courses/:courseId' element={<Courses />} />
+						<Route path='/dashboard/courses/:courseId' element={<CourseDetails />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
