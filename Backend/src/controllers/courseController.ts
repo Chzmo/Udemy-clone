@@ -127,6 +127,7 @@ export const getCourse = async (id: string) => {
 				},
 			},
 			requirements: true,
+			objective: true,
 			rating: {
 				select: {
 					rating: {

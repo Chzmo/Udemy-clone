@@ -54,7 +54,7 @@ model Course {
   requirements Requirements[]
   rating       UserOnCourseRating[]
   enrolledBy   UserOnCourse[]
-  objectives   Ojective[]
+  objective    Ojective[]
 }
 
 model Ojective {
