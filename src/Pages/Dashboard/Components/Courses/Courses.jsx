@@ -6,10 +6,11 @@ function Courses() {
     const id = '65324c693ef056bdd52e7a04';
     const tocken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU​'
     const [createCourse, setCreateCourse] = useState(false);
-    const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, category_id: '', })
-    const [topCategories, setTopCategories] = useState(null)
-    const [errors, setErrors] = useState({ validationError: null })
-    const [loadingStates, setLoadingStates] = useState({ topCategories: true })
+    const [formInputs, setformInputs] = useState({ title: '', description: '', price: 0, category_id: '', });
+    const [topCategories, setTopCategories] = useState(null);
+    const [categories, setCategories] = useState(null);
+    const [errors, setErrors] = useState({ validationError: null });
+    const [loadingStates, setLoadingStates] = useState({ topCategories: true });
 
     const handleChange = (e) => {
         setformInputs({
@@ -37,7 +38,6 @@ function Courses() {
         try {
             const data = await fetchData('/api/topcategories');
             setTopCategories(data);
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -46,13 +46,24 @@ function Courses() {
     useEffect(() => {
         getData()
             .then(() => {
-                console.log(topCategories) 
-                setLoadingStates({...loadingStates, topCategories:false})
+                setLoadingStates({ ...loadingStates, topCategories: false })
+                
             })
             .catch(error => {
                 console.log(error)
             })
     }, [])
+
+    useEffect(() => {
+        const data = topCategories?.reduce((acc, item) => {
+            if (item.category.length > 0) {
+                acc.push(...item.category);
+            }
+            return acc;
+        }, []);
+        setCategories(data);
+        console.log(data) 
+    }, [topCategories])
     
     useEffect(() => {
         setCreateCourse(false);
@@ -92,11 +103,11 @@ function Courses() {
                                 <span>Course category</span><span className='text-red-600'>*</span>
                             </label>
                             <select required name='category_id'onChange={handleChange} className='border-2 border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0]' >
-                                <option className='bg-[#1b1f23] text-[#6b7280] ' value="" >Select a category</option>
-                                {
-                                    [1, 2, 3, 4]?.map((index) => (
-                                        <option key={index} className='bg-[#1b1f23] text-[#6b7280] border-solid border-[#6b7280] hover:bg-[#5624d0] hover:text-[#1b1f23] mt-2' value={index}>
-                                            Select a {index}
+                                <option key={'rnkdmi290snfjs'} className='bg-[#1b1f23] text-[#6b7280] ' value="" >Select a category</option>
+                                {categories &&
+                                    categories?.map((category) => (
+                                        <option key={category.id} className='bg-[#1b1f23] text-[#6b7280] border-solid border-[#6b7280] hover:bg-[#5624d0] hover:text-[#1b1f23] mt-2' value={category?.id}>
+                                            {category.title} 
                                         </option>
                                     ))
                                 }
