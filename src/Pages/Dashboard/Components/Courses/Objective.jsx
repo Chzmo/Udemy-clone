@@ -25,11 +25,16 @@ function Objective({ objectives, setObjectives }) {
 
 	const submitObjectives = () => {
 		if (objectives.length > 0) {
-			console.log(objectives);
-			// const postObjectives = postData("/api/", JSON.stringify(objectives), "", "");
-			// postObjectives.then(() => {
-			// 	alert("ok");
-			// });
+			const postObjectives = postData(
+				"/api/courseobjectives",
+				{ hello: 1 },
+				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5Nzk1ODg0NSwiZXhwIjoxNjk4MDQ1MjQ1fQ.3X9Ey1sfhLONPVC6lDUjIGZur6lTLpcMIFS-LNTt6qI"
+			);
+			postObjectives
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((error) => console.log(error));
 		} else {
 			alert("error");
 		}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { fetchData, postData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
@@ -19,11 +19,16 @@ function Courses() {
 		categoryId: "",
 		thumbnail: "",
 	};
-	const [formInputs, setformInputs] = useState(initialFormInputs);
-	const [topCategories, setTopCategories] = useState(null);
+
+	const [courses, setCourses] = useState(null);
 	const [categories, setCategories] = useState(null);
+	const [topCategories, setTopCategories] = useState(null);
+	const [formInputs, setformInputs] = useState(initialFormInputs);
 	const [errors, setErrors] = useState({ formValidationError: null });
-	const [loadingStates, setLoadingStates] = useState({ topCategories: true });
+	const [loadingStates, setLoadingStates] = useState({
+		topCategories: true,
+		courses: true,
+	});
 
 	const handleChange = (e) => {
 		setformInputs({
@@ -80,6 +85,7 @@ function Courses() {
 		try {
 			const data = await fetchData("/api/topcategories");
 			setTopCategories(data);
+			console.log(data);
 		} catch (error) {
 			console.log(error);
 		}
@@ -106,6 +112,12 @@ function Courses() {
 	}, [topCategories]);
 
 	useEffect(() => {
+		const getCoursesByauthor = fetchData("/api/courses/author/", userId);
+		getCoursesByauthor
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => console.log(error));
 		setCreateCourse(false);
 	}, []);
 
@@ -139,8 +151,11 @@ function Courses() {
 								CREATE COURSE
 							</button>
 						</div>
-
-						<div className='flex min-h-[500px]'></div>
+						<div className='grid grid-cols-3 gap-4 min-h-[500px]'>
+							{topCategories?.course && (
+								<Link to={"/dashboard/"}>jjjjjjjjjjjjjjjjjjjjjjjjjjjj</Link>
+							)}
+						</div>
 					</>
 				)
 			)}

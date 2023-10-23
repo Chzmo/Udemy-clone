@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { PiFloppyDiskFill } from "react-icons/pi";
 
 import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
@@ -38,13 +39,13 @@ function CourseDetails() {
 							<h3>{courseDetails.title}</h3>
 							<p>{courseDetails.description}</p>
 						</div>
-						<div className='flex'>
-							<input
-								type='button'
-								value={"PUBLISH"}
+						<div className='flex gap-1'>
+							<button
 								onClick={() => {}}
-								className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'
-							/>
+								className='flex gap-2 items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+								<PiFloppyDiskFill size={18} />
+								<span>PUBLISH</span>
+							</button>
 						</div>
 					</div>
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />

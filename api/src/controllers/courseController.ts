@@ -54,6 +54,47 @@ export const enrollCourse = async (userId: string, courseId: string) => {
 	});
 };
 
+export const getCourseByAuthor = async (authorId: string) => {
+	try {
+		return await db.course.findMany({
+			where: {
+				authorId,
+			},
+			select: {
+				id: true,
+				createdAt: true,
+				updatedAt: true,
+				title: true,
+				description: true,
+				price: true,
+				revisedPrice: true,
+				thumbnail: true,
+				author: {
+					select: {
+						id: true,
+						userName: true,
+					},
+				},
+				category: {
+					select: {
+						title: true,
+					},
+				},
+				requirements: true,
+				rating: {
+					select: {
+						rating: {
+							select: {
+								value: true,
+							},
+						},
+					},
+				},
+			},
+		});
+	} catch (error) {}
+};
+
 export const getCoursesByCategory = async (categoryId: any) => {
 	const id = categoryId.toString();
 

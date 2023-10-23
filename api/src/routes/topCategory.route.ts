@@ -34,6 +34,6 @@ topCategoryRouter.get("/", async (request: Request, response: Response) => {
 		const topCategories = await topCategoryController.getTopCategories();
 		return response.status(200).json(topCategories);
 	} catch (error) {
-		return response.status(401).json(error);
+		return response.status(400).json(error);
 	}
 });

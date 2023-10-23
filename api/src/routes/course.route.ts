@@ -34,10 +34,7 @@ courseRouter.post(
 	async (request: Request, response: Response) => {
 		try {
 			const { userId, courseId }: any = request.body;
-			const enrolledCourse = await courseController.enrollCourse(
-				userId,
-				courseId
-			);
+			const enrolledCourse = await courseController.enrollCourse(userId, courseId);
 			return response.status(200).json(enrolledCourse);
 		} catch (error) {
 			return response.status(400).json(error);
@@ -69,6 +66,21 @@ courseRouter.get("/:id", async (request: Request, responce: Response) => {
 		return responce.status(400).json({ message: "Bad request" });
 	}
 });
+
+// GET: a Course by AUTHOR ID
+coursesRouter.get(
+	"/author/:authorId",
+	async (request: Request, responce: Response) => {
+		try {
+			const authorId: string = request.params.authorId;
+			return responce
+				.status(200)
+				.json(await courseController.getCourseByAuthor(authorId));
+		} catch (error: any) {
+			return responce.status(400).json({ message: "Bad request" });
+		}
+	}
+);
 
 // PUT: UPDATE Course
 // Params: CourseId

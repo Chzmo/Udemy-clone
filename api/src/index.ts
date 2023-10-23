@@ -12,10 +12,11 @@ import {
 
 import { courseRouter, coursesRouter } from "./routes/course.route";
 
+import { ratingRouter } from "./routes/rating.route";
 import { categoryRouter } from "./routes/category.route";
 import { topCategoryRouter } from "./routes/topCategory.route";
+import { courseobjectivesRouter } from "./routes/objectives.route";
 
-import { ratingRouter } from "./routes/rating.route";
 import { db } from "./utils/db.server";
 
 dotenv.config();
@@ -44,6 +45,9 @@ app.use("/api/login", loginRouter);
 app.use("/api/courses", coursesRouter);
 app.use("/api/course", courseRouter);
 
+// COURSES OBJECTS ROUTES (what tou will learn routes)
+app.use("/api/courseobjectives", courseobjectivesRouter);
+
 // TOP CATEGORIES ROUTES
 app.use("/api/topcategories", topCategoryRouter);
 
@@ -58,48 +62,48 @@ app.listen(PORT, () => {
 	console.log("Listening on port ", PORT);
 });
 
-const courseData: any = [
-	{
-		title: "Python For Dummies",
-		price: 1,
-		authorId: '65324c693ef056bdd52e7a04',
-		revisedPrice: 1,
-		description: "You will Love Python For Dummies",
-		thumbnail: "http://chzmo.com/image",
-		catergoryId: 1,
-	},
-];
+// const courseData: any = [
+// 	{
+// 		title: "Python For Dummies",
+// 		price: 1,
+// 		authorId: "65324c693ef056bdd52e7a04",
+// 		revisedPrice: 1,
+// 		description: "You will Love Python For Dummies",
+// 		thumbnail: "http://chzmo.com/image",
+// 		catergoryId: 1,
+// 	},
+// ];
 
-type Course = {
-	title: string;
-	price: number;
-	authorId: string;
-	revisedPrice: number;
-	description: string;
-	thumbnail: string;
-	catergoryId: string;
-};
+// type Course = {
+// 	title: string;
+// 	price: number;
+// 	authorId: string;
+// 	revisedPrice: number;
+// 	description: string;
+// 	thumbnail: string;
+// 	catergoryId: string;
+// };
 
-courseData.forEach((course: Course) => {
-	return;
-	const {
-		price,
-		revisedPrice,
-		title,
-		authorId,
-		catergoryId,
-		description,
-		thumbnail,
-	} = course;
-	db.course.create({
-		data: {
-			title,
-			description,
-			price,
-			revisedPrice,
-			thumbnail,
-			authorId,
-			categoryId: catergoryId,
-		},
-	});
-});
+// courseData.forEach((course: Course) => {
+// 	return;
+// 	const {
+// 		price,
+// 		revisedPrice,
+// 		title,
+// 		authorId,
+// 		catergoryId,
+// 		description,
+// 		thumbnail,
+// 	} = course;
+// 	db.course.create({
+// 		data: {
+// 			title,
+// 			description,
+// 			price,
+// 			revisedPrice,
+// 			thumbnail,
+// 			authorId,
+// 			categoryId: catergoryId,
+// 		},
+// 	});
+// });

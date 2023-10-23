@@ -16,7 +16,6 @@ export const postData = async (endPoint, body, token = "", courseId = "") => {
 		headers: customHeaders,
 		body: JSON.stringify(body),
 	};
-	console.log(body);
 
 	return (await fetch(VITE_APP_BASE_URL + endPoint + courseId, options)).json();
 };
