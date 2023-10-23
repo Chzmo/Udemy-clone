@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { AiOutlinePlus } from "react-icons/ai";
 
 import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
+import Objective from "./Objective";
 
 function CourseDetails() {
 	const { courseId } = useParams();
 	const [courseDetails, setCourseDetails] = useState(null);
+	const [objectives, setObjectives] = useState(null);
 	const [loadingStates, setLoadingStates] = useState({ course: true });
 
 	useEffect(() => {
@@ -15,6 +16,7 @@ function CourseDetails() {
 		courseData.then((responce) => {
 			setCourseDetails(responce);
 			setLoadingStates({ ...loadingStates, course: false });
+			setObjectives(responce.objective);
 			console.log(responce);
 		});
 	}, [courseId]);
@@ -48,27 +50,11 @@ function CourseDetails() {
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
 					<div className='flex gap-1 w-full text-[#6b7280]'>
 						<div className='flex flex-col gap-3 w-1/4'>
-							<div className='flex cursor-pointer font-semibold'>
+							<div className='flex cursor-pointer font-semibold '>
 								<h4>What you'll learn</h4>
 							</div>
 						</div>
-            <div className='w-3/4 flex flex-col gap-2'>
-              {}
-							<div className='flex items-center gap-2'></div>
-							<div className='flex items-center gap-2'>
-								<input
-									type='text'
-									name='title'
-									value={""}
-									// onChange={handleChange}
-									className='border-[1px] border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0] w-full'
-									required
-								/>
-								<div className='flex items-center justify-center border-[1px] border-[#6b7280] border-solid outline-none p-2 hover:border-[#5624d0] hover:text-[#1b1f23] hover:bg-[#5624d0]'>
-									<AiOutlinePlus size={25} />
-								</div>
-							</div>
-						</div>
+						<Objective objectives={objectives} setObjectives={setObjectives} />
 					</div>
 				</div>
 			)}
