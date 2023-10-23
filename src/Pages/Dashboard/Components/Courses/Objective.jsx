@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
+import { postData } from "../../../../Utils/Query";
 
 function Objective({ objectives, setObjectives }) {
 	const [newObjective, setNewObjective] = useState("");
@@ -24,7 +25,13 @@ function Objective({ objectives, setObjectives }) {
 
 	const submitObjectives = () => {
 		if (objectives.length > 0) {
-			alert();
+			console.log(objectives);
+			// const postObjectives = postData("/api/", JSON.stringify(objectives), "", "");
+			// postObjectives.then(() => {
+			// 	alert("ok");
+			// });
+		} else {
+			alert("error");
 		}
 	};
 
@@ -66,7 +73,7 @@ function Objective({ objectives, setObjectives }) {
 			</form>
 			<div className='flex items-center justify-end w-full'>
 				<button
-					onClick={() => {}}
+					onClick={submitObjectives}
 					className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
 					SAVE
 				</button>
