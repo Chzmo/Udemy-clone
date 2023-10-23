@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
+import uuid from "react-uuid";
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
@@ -10,7 +11,7 @@ function Objective({ objectives, setObjectives }) {
 		e.preventDefault();
 		if (newObjective != "") {
 			// The id is used to separate the old ones from the new ones
-			setObjectives([...objectives, { title: newObjective, id: "newObjective" }]);
+			setObjectives([...objectives, { title: newObjective, id: uuid() }]);
 			setNewObjective("");
 		}
 	};
@@ -27,16 +28,14 @@ function Objective({ objectives, setObjectives }) {
 		if (objectives.length > 0) {
 			const postObjectives = postData(
 				"/api/courseobjectives",
-				{ hello: 1 },
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5Nzk1ODg0NSwiZXhwIjoxNjk4MDQ1MjQ1fQ.3X9Ey1sfhLONPVC6lDUjIGZur6lTLpcMIFS-LNTt6qI"
+				objectives,
+				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE"
 			);
 			postObjectives
 				.then((response) => {
 					console.log(response);
 				})
 				.catch((error) => console.log(error));
-		} else {
-			alert("error");
 		}
 	};
 
@@ -45,13 +44,14 @@ function Objective({ objectives, setObjectives }) {
 			{objectives &&
 				objectives?.map((objective, index) => {
 					return (
-						<div className='flex items-end justify-between'>
-							<div key={objective.id + index} className='flex items-start gap-2 '>
+						<div
+							key={objective.id + index}
+							className='flex items-end justify-between'>
+							<div className='flex items-start gap-2 '>
 								<BiCheck size={20} />
 								<div>{objective.title}</div>
 							</div>
 							<div
-								key={objective.id + index}
 								onClick={() => removeObjective(index)}
 								className='flex items-center justify-center cursor-pointer hover:text-[#5624d0]'>
 								<AiOutlineDelete size={20} />

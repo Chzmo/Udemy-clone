@@ -8,6 +8,7 @@ function CourseForm(props) {
 		categories,
 		setCreateCourse,
 	} = props;
+
 	return (
 		<form
 			onSubmit={handleFormSubmit}
