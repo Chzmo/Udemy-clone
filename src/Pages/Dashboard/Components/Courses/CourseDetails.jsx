@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PiFloppyDiskFill } from "react-icons/pi";
+import { BsArrowLeft } from "react-icons/bs";
 
 import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
@@ -33,8 +34,11 @@ function CourseDetails() {
 				<div className='flex flex-col w-full'>
 					<div className='flex w-full justify-between items-end gap-3'>
 						<div className='flex flex-col gap-1 text-[#6b7280] font-semibold'>
-							<Link to={"/dashboard/courses"} className='flex items-center gap-2'>
-								Courses
+							<Link
+								to={"/dashboard/courses"}
+								className='flex items-center gap-2 hover:text-[#5624d0] font-light text-lg w-fit'>
+								<BsArrowLeft />
+								<span>Back to courses</span>
 							</Link>
 							<h3>{courseDetails.title}</h3>
 							<p>{courseDetails.description}</p>

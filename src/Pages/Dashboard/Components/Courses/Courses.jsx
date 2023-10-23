@@ -10,7 +10,7 @@ function Courses() {
 	const navigate = useNavigate();
 	const userId = "65324c693ef056bdd52e7a04";
 	const token =
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5NzkyNzYwOSwiZXhwIjoxNjk4MDE0MDA5fQ.PwhCrg0SS5iux1GPdqb3POoWpCKLGp400ERg6XXmeOU";
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE";
 	const [createCourse, setCreateCourse] = useState(false);
 	const initialFormInputs = {
 		title: "",
@@ -25,10 +25,8 @@ function Courses() {
 	const [topCategories, setTopCategories] = useState(null);
 	const [formInputs, setformInputs] = useState(initialFormInputs);
 	const [errors, setErrors] = useState({ formValidationError: null });
-	const [loadingStates, setLoadingStates] = useState({
-		topCategories: true,
-		courses: true,
-	});
+	const [loadingCourses, setLoadingCourses] = useState(true);
+	const [loadingTopCategories, setLoadingTopCategories] = useState(true);
 
 	const handleChange = (e) => {
 		setformInputs({
@@ -81,23 +79,30 @@ function Courses() {
 			});
 	};
 
-	async function getData() {
-		try {
-			const data = await fetchData("/api/topcategories");
-			setTopCategories(data);
-			console.log(data);
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
 	useEffect(() => {
-		getData()
-			.then(() => {
-				setLoadingStates({ ...loadingStates, topCategories: false });
+		const getTopCategories = fetchData("/api/topcategories");
+		getTopCategories
+			.then((response) => {
+				setTopCategories(response);
+				setLoadingTopCategories(false);
+				console.log(response);
 			})
 			.catch((error) => {
 				console.log(error);
+				setLoadingTopCategories(false);
+			});
+	}, []);
+
+	useEffect(() => {
+		const getCoursesByauthor = fetchData("/api/courses/author/", userId);
+		getCoursesByauthor
+			.then((response) => {
+				setCourses(response);
+				setLoadingCourses(false);
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoadingCourses(false);
 			});
 	}, []);
 
@@ -111,25 +116,15 @@ function Courses() {
 		setCategories(data);
 	}, [topCategories]);
 
-	useEffect(() => {
-		const getCoursesByauthor = fetchData("/api/courses/author/", userId);
-		getCoursesByauthor
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => console.log(error));
-		setCreateCourse(false);
-	}, []);
-
 	return (
 		<>
 			<DashboardNav />
-			{loadingStates.topCategories && (
+			{loadingTopCategories && (
 				<div className='flex min-h-[600px] w-full justify-center items-center'>
 					<Spinner />
 				</div>
 			)}
-			{createCourse && !loadingStates.topCategories ? (
+			{createCourse && !loadingTopCategories ? (
 				<>
 					<CourseForm
 						formInputs={formInputs}
@@ -140,7 +135,7 @@ function Courses() {
 					/>
 				</>
 			) : (
-				!loadingStates.topCategories && (
+				!loadingTopCategories && (
 					<>
 						<div className='w-full flex justify-end mt-9'>
 							<button
@@ -151,11 +146,24 @@ function Courses() {
 								CREATE COURSE
 							</button>
 						</div>
-						<div className='grid grid-cols-3 gap-4 min-h-[500px]'>
-							{topCategories?.course && (
-								<Link to={"/dashboard/"}>jjjjjjjjjjjjjjjjjjjjjjjjjjjj</Link>
-							)}
-						</div>
+						{loadingCourses ? (
+							<div className='flex min-h-[500px] w-full justify-center items-center'>
+								<Spinner />
+							</div>
+						) : (
+							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[500px] w-full mt-3'>
+								{courses &&
+									courses?.map((course) => (
+										<Link
+											to={"/dashboard/courses/" + course.id}
+											key={course.id}
+											className='flex flex-col gap-3 p-4 border border-solid border-[#6b7280] text-[#6b7280]'>
+											<h3 className='text-[#5624d0] font-semibold'>{course.title}</h3>
+											<p>{course.description}</p>
+										</Link>
+									))}
+							</div>
+						)}
 					</>
 				)
 			)}
