@@ -10,19 +10,22 @@ function Objective({ objectives, setObjectives }) {
 		if (newObjective != "") {
 			// The id is used to separate the old ones from the new ones
 			setObjectives([...objectives, { title: newObjective, id: "newObjective" }]);
-			e.target.value = "";
+			setNewObjective("");
 		}
 	};
 
 	const removeObjective = (index) => {
 		// Remove an element and sets assign it to objectives
-		// setObjectives(objectives.splice(index, 1));
-		// console.log(objectives.splice(index, 1));
-		const updatedObjective = [
+		setObjectives([
 			...objectives.slice(0, index),
 			...objectives.slice(index + 1),
-		];
-		setObjectives(updatedObjective);
+		]);
+	};
+
+	const submitObjectives = () => {
+		if (objectives.length > 0) {
+			alert();
+		}
 	};
 
 	return (
@@ -31,7 +34,7 @@ function Objective({ objectives, setObjectives }) {
 				objectives?.map((objective, index) => {
 					return (
 						<div className='flex items-end justify-between'>
-							<div key={objective.id + index} className='flex items-center gap-2 '>
+							<div key={objective.id + index} className='flex items-start gap-2 '>
 								<BiCheck size={20} />
 								<div>{objective.title}</div>
 							</div>
@@ -61,6 +64,13 @@ function Objective({ objectives, setObjectives }) {
 					<AiOutlinePlus size={25} />
 				</button>
 			</form>
+			<div className='flex items-center justify-end w-full'>
+				<button
+					onClick={() => {}}
+					className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+					SAVE
+				</button>
+			</div>
 		</div>
 	);
 }
