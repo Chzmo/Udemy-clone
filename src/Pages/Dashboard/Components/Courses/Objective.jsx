@@ -1,15 +1,28 @@
 import { useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
+import { BiCheck } from "react-icons/bi";
 
 function Objective({ objectives, setObjectives }) {
-	const [newObjective, setNewObjective] = useState(null);
+	const [newObjective, setNewObjective] = useState("");
 
 	const addObjective = (e) => {
 		e.preventDefault();
-		if (newObjective != null) {
+		if (newObjective != "") {
 			// The id is used to separate the old ones from the new ones
 			setObjectives([...objectives, { title: newObjective, id: "newObjective" }]);
+			e.target.value = "";
 		}
+	};
+
+	const removeObjective = (index) => {
+		// Remove an element and sets assign it to objectives
+		// setObjectives(objectives.splice(index, 1));
+		// console.log(objectives.splice(index, 1));
+		const updatedObjective = [
+			...objectives.slice(0, index),
+			...objectives.slice(index + 1),
+		];
+		setObjectives(updatedObjective);
 	};
 
 	return (
@@ -17,9 +30,17 @@ function Objective({ objectives, setObjectives }) {
 			{objectives &&
 				objectives?.map((objective, index) => {
 					return (
-						<div key={objective.id + index} className='flex items-center gap-2 '>
-							<AiOutlinePlus />
-							<div>{objective.title}</div>
+						<div className='flex items-end justify-between'>
+							<div key={objective.id + index} className='flex items-center gap-2 '>
+								<BiCheck size={20} />
+								<div>{objective.title}</div>
+							</div>
+							<div
+								key={objective.id + index}
+								onClick={() => removeObjective(index)}
+								className='flex items-center justify-center cursor-pointer hover:text-[#5624d0]'>
+								<AiOutlineDelete size={20} />
+							</div>
 						</div>
 					);
 				})}
