@@ -21,6 +21,7 @@ export const createRating = async (courseRating: CourseRating) => {
 			},
 		});
 
+		// It should return null
 		if (getRating) throw new Error("Cant create a dublicate key");
 
 		const user = await db.user.findUnique({

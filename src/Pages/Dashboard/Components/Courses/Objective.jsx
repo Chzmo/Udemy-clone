@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 import uuid from "react-uuid";
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
 function Objective({ objectives, setObjectives }) {
+	const { courseId } = useParams();
 	const [newObjective, setNewObjective] = useState("");
 
 	const addObjective = (e) => {
 		e.preventDefault();
 		if (newObjective != "") {
 			// The id is used to separate the old ones from the new ones
-			setObjectives([...objectives, { title: newObjective, id: uuid() }]);
+			setObjectives([...objectives, { title: newObjective, courseId }]);
 			setNewObjective("");
 		}
 	};
@@ -45,7 +47,7 @@ function Objective({ objectives, setObjectives }) {
 				objectives?.map((objective, index) => {
 					return (
 						<div
-							key={objective.id + index}
+							key={"courseObjective_" + index}
 							className='flex items-end justify-between'>
 							<div className='flex items-start gap-2 '>
 								<BiCheck size={20} />
