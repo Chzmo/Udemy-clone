@@ -8,15 +8,16 @@ datasource db {
 }
 
 model User {
-  id        String               @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime             @default(now())
-  updatedAt DateTime             @default(now())
-  userName  String
-  email     String               @unique
-  password  String
-  course    Course[]
-  rating    UserOnCourseRating[]
-  enrolled  UserOnCourse[]
+  id             String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @default(now())
+  userName       String
+  email          String               @unique
+  password       String
+  course         Course[]
+  rating         UserOnCourseRating[]
+  enrolled       UserOnCourse[]
+  ContentSection ContentSection[]
 }
 
 model TopCategory {
@@ -38,23 +39,24 @@ model Category {
 }
 
 model Course {
-  id           String               @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt    DateTime             @default(now())
-  updatedAt    DateTime             @updatedAt
-  title        String
-  description  String
-  price        Float                @default(0)
-  revisedPrice Float                @default(0)
-  thumbnail    String
-  authorId     String?              @db.ObjectId
-  categoryId   String               @db.ObjectId
-  author       User?                @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  category     Category?            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  content      Content?
-  requirements Requirements[]
-  rating       UserOnCourseRating[]
-  enrolledBy   UserOnCourse[]
-  objective    Ojective[]
+  id              String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  title           String
+  description     String
+  fullDescription String
+  price           Float                @default(0)
+  revisedPrice    Float                @default(0)
+  thumbnail       String
+  authorId        String?              @db.ObjectId
+  categoryId      String               @db.ObjectId
+  author          User?                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category        Category?            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  content         Content?
+  requirements    Requirements[]
+  rating          UserOnCourseRating[]
+  enrolledBy      UserOnCourse[]
+  objective       Ojective[]
 }
 
 model Ojective {
@@ -67,15 +69,30 @@ model Ojective {
 }
 
 model Content {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  courseId       String           @unique @db.ObjectId
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  contentSection ContentSection[]
+  course         Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model ContentSection {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  courseId  String   @unique @db.ObjectId
+  title     String
+  url       String
+  authorId  String   @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  Content   Content? @relation(fields: [contentId], references: [id])
+  contentId String?  @db.ObjectId
 }
 
 model Requirements {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
   courseId  String   @unique @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
