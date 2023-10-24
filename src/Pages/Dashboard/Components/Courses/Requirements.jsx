@@ -44,10 +44,11 @@ function Requirements({
 
 	const submitCourseRequirements = () => {
 		if (requirements.length > 0 && submitRequirements) {
-			setLoadingObjectiveSubmission(true);
+			setLoadingRequirements(true);
+			// console.log(requirements);
 			const postRequirements = postData(
-				"/api/courseobjectives/",
-				{ requirements, userId },
+				"/api/courseRequirements/",
+				{ courseRequirements: requirements, userId },
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE",
 				courseId
 			);
@@ -94,6 +95,7 @@ function Requirements({
 					type='text'
 					name='title'
 					value={newRequirement}
+					autoFocus
 					placeholder='Add requirements or prerequisites...'
 					onChange={(e) => {
 						setNewRequirement(e.target.value);

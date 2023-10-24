@@ -19,6 +19,7 @@ function FullDescriptionForm({ fullDescription, setFullDescription }) {
 					<textarea
 						name='fullDescription'
 						value={newFullDescription}
+						autoFocus
 						placeholder='Provide full Description about the whole Course here...'
 						onChange={(e) => setNewFullDescription(e.target.value)}
 						className='border-2 border-[#6b7280] border-solid outline-none bg-transparent py-3 px-2 hover:border-[#5624d0] focus:border-[#5624d0] min-h-[200px]'
