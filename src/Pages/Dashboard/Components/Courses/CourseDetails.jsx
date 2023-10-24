@@ -6,10 +6,12 @@ import { BsArrowLeft } from "react-icons/bs";
 import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import Objective from "./Objective";
+import { AiOutlineFileText } from "react-icons/ai";
 
 function CourseDetails() {
 	const { courseId } = useParams();
 	const [courseDetails, setCourseDetails] = useState(null);
+	const [tabSwitch, setTabSwitch] = useState(null);
 	const [objectives, setObjectives] = useState(null);
 	const [loadingCourse, setLoadingCourse] = useState(true);
 
@@ -22,6 +24,10 @@ function CourseDetails() {
 			console.log(responce);
 		});
 	}, [courseId]);
+
+	const switchTabSection = (tabIndex) => {
+		setTabSwitch(tabIndex);
+	};
 
 	return (
 		<>
@@ -55,11 +61,34 @@ function CourseDetails() {
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
 					<div className='flex gap-1 w-full text-[#6b7280] min-h-[600px] '>
 						<div className='flex flex-col gap-3 w-1/4'>
-							<div className='flex cursor-pointer font-semibold '>
+							<div
+								onClick={() => switchTabSection(null)}
+								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+									!tabSwitch ? "text-[#5624d0]" : ""
+								}`}>
+								<AiOutlineFileText />
 								<h4>What you'll learn</h4>
 							</div>
+							<div
+								onClick={() => switchTabSection("requirements")}
+								className={`flex  gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+									tabSwitch == "requirements" ? "text-[#5624d0]" : ""
+								}`}>
+								<AiOutlineFileText />
+								<h4>Requirements</h4>
+							</div>
+							<div
+								onClick={() => switchTabSection("description")}
+								className={`flex  gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+									tabSwitch == "description" ? "text-[#5624d0]" : ""
+								}`}>
+								<AiOutlineFileText />
+								<h4>Full Description</h4>
+							</div>
 						</div>
-						<Objective objectives={objectives} setObjectives={setObjectives} />
+						{!tabSwitch && (
+							<Objective objectives={objectives} setObjectives={setObjectives} />
+						)}
 					</div>
 				</div>
 			)}
