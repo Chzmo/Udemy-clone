@@ -8,59 +8,57 @@ import {
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
-function Objective({ objectives, setObjectives }) {
+function Requirements({ requirements, setRequirements }) {
 	const userId = "65324c693ef056bdd52e7a04";
 
 	const { courseId } = useParams();
-	const [newObjective, setNewObjective] = useState("");
-	const [submitCourseObjectives, setSetSubmitCoursesObjectives] =
-		useState(false);
-	const [loadingObjectiveSubmission, setLoadingObjectiveSubmission] =
-		useState(false);
+	const [newRequirement, setNewRequirement] = useState("");
+	const [submitRequirements, setSubmitRequirements] = useState(false);
+	const [loadingRequirements, setLoadingRequirements] = useState(false);
 
-	const addObjective = (e) => {
+	const addRequirement = (e) => {
 		e.preventDefault();
-		if (newObjective != "") {
+		if (newRequirement != "") {
 			// The id is used to separate the old ones from the new ones
-			setObjectives([...objectives, { title: newObjective, courseId }]);
-			setNewObjective("");
-			setSetSubmitCoursesObjectives(true);
+			setRequirements([...requirements, { title: newRequirement, courseId }]);
+			newRequirement("");
+			setSubmitRequirements(true);
 		}
 	};
 
-	const removeObjective = (index) => {
-		if (objectives.length <= 1) {
+	const removeRequirement = (index) => {
+		if (requirements.length <= 1) {
 			return;
 		}
-		// Remove an element and sets assign it to objectives
-		setObjectives([
-			...objectives.slice(0, index),
-			...objectives.slice(index + 1),
+		// Remove an element and sets assign it to requirements
+		setRequirements([
+			...requirements.slice(0, index),
+			...requirements.slice(index + 1),
 		]);
-		setSetSubmitCoursesObjectives(true);
+		setSubmitRequirements(true);
 	};
 
-	const submitObjectives = () => {
-		if (objectives.length > 0 && submitCourseObjectives) {
+	const submitCourseRequirements = () => {
+		if (requirements.length > 0 && submitRequirements) {
 			setLoadingObjectiveSubmission(true);
-			const postObjectives = postData(
+			const postRequirements = postData(
 				"/api/courseobjectives/",
-				{ courseObjectives: objectives, userId },
+				{ requirements, userId },
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE",
 				courseId
 			);
-			postObjectives
+			postRequirements
 				.then((response) => {
 					console.log(response);
-					setSetSubmitCoursesObjectives(false);
-					setLoadingObjectiveSubmission(false);
+					setSubmitRequirements(false);
+					setLoadingRequirements(false);
 				})
 				.catch((error) => {
 					console.log(error);
-					setSetSubmitCoursesObjectives(true);
-					setLoadingObjectiveSubmission(false);
+					setSubmitRequirements(true);
+					setLoadingRequirements(false);
 				});
-			setSetSubmitCoursesObjectives(false);
+			setSubmitRequirements(false);
 		} else {
 			alert("add stuff man");
 		}
@@ -68,18 +66,18 @@ function Objective({ objectives, setObjectives }) {
 
 	return (
 		<div className='w-3/4 flex flex-col gap-2'>
-			{objectives &&
-				objectives?.map((objective, index) => {
+			{requirements &&
+				requirements?.map((requirement, index) => {
 					return (
 						<div
 							key={"courseObjective_" + index}
 							className='flex items-end justify-between'>
 							<div className='flex items-start gap-2 '>
 								<BiCheck size={20} />
-								<div>{objective.title}</div>
+								<div>{requirement.title}</div>
 							</div>
 							<div
-								onClick={() => removeObjective(index)}
+								onClick={() => removeRequirement(index)}
 								className='flex items-center justify-center cursor-pointer hover:text-[#5624d0]'>
 								<AiOutlineDelete size={20} />
 							</div>
@@ -93,7 +91,7 @@ function Objective({ objectives, setObjectives }) {
 					name='title'
 					value={newObjective}
 					onChange={(e) => {
-						setNewObjective(e.target.value);
+						setNewRequirement(e.target.value);
 					}}
 					className='border-[1px] border-[#6b7280] border-solid outline-none bg-transparent p-2 hover:border-[#5624d0] focus:border-[#5624d0] w-full'
 				/>
@@ -104,14 +102,14 @@ function Objective({ objectives, setObjectives }) {
 				</button>
 			</form>
 			<div className='flex items-center justify-end w-full'>
-				{submitCourseObjectives && (
+				{submitRequirements && (
 					<button
-						onClick={submitObjectives}
+						onClick={submitCourseRequirements}
 						className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
 						SAVE
 					</button>
 				)}
-				{loadingObjectiveSubmission && (
+				{loadingRequirements && (
 					<button>
 						<AiOutlineLoading3Quarters
 							size={15}
@@ -124,4 +122,4 @@ function Objective({ objectives, setObjectives }) {
 	);
 }
 
-export default Objective;
+export default Requirements;
