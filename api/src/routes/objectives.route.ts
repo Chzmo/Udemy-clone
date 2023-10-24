@@ -14,12 +14,12 @@ export const courseobjectivesRouter = express.Router();
 courseobjectivesRouter.post(
 	"/:courseId",
 	validateRequest,
-	// authMiddleware,
+	authMiddleware,
 	// body("topCategoryId").isString(),
 
 	async (request: Request, response: Response) => {
 		const courseId: string = request.params.courseId;
-		const errors = validationResult(request);
+		const errors = validationResult(request.body.courseObjectives);
 		if (!errors.isEmpty()) {
 			return response.status(400).json({ errors: errors.array() });
 		}
@@ -27,7 +27,7 @@ courseobjectivesRouter.post(
 		try {
 			const courseObjectives =
 				await courseObjectivesController.createCourseObjective(
-					request.body,
+					request.body.courseObjectives,
 					courseId
 				);
 			console.log(request.body);

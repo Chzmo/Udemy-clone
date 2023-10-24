@@ -10,6 +10,8 @@ import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
 function Objective({ objectives, setObjectives }) {
+	const userId = "65324c693ef056bdd52e7a04";
+
 	const { courseId } = useParams();
 	const [newObjective, setNewObjective] = useState("");
 	const [submitCourseObjectives, setSetSubmitCoursesObjectives] =
@@ -41,7 +43,7 @@ function Objective({ objectives, setObjectives }) {
 			setLoadingObjectiveSubmission(true);
 			const postObjectives = postData(
 				"/api/courseobjectives/",
-				objectives,
+				{ courseObjectives: objectives, userId },
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE",
 				courseId
 			);
