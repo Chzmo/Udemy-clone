@@ -6,23 +6,24 @@ type CoursesObjectives = Array<{
 }>;
 
 export const createCourseObjective = async (
-	coursesObjectives: CoursesObjectives
+	coursesObjectives: CoursesObjectives,
+	courseId: string
 ) => {
-	return await db.$transaction(async (txt) => {
-		const deletedCourseObjectives = await txt.ojective.deleteMany({
-			where: {
-				courseId: "6534d70ae87ef79d4b6bcdcc",
-			},
+	// return await db.$transaction(async (txt) => {
+	const deletedCourseObjectives = await db.ojective.deleteMany({
+		where: {
+			courseId,
+		},
+	});
+
+	if (deletedCourseObjectives) {
+		const coursesObjectivesData = await db.ojective.createMany({
+			data: coursesObjectives,
 		});
 
-		if (deletedCourseObjectives.count >= 0) {
-			const coursesObjectivesData = await txt.ojective.createMany({
-				data: coursesObjectives,
-			});
+		return coursesObjectivesData;
+	}
 
-			return coursesObjectivesData;
-		}
-
-		throw new Error("Failed to create objectives");
-	});
+	throw new Error("Failed to create objectives");
+	// });
 };
