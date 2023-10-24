@@ -11,13 +11,13 @@ function CourseDetails() {
 	const { courseId } = useParams();
 	const [courseDetails, setCourseDetails] = useState(null);
 	const [objectives, setObjectives] = useState(null);
-	const [loadingStates, setLoadingStates] = useState({ course: true });
+	const [loadingCourse, setLoadingCourse] = useState(true);
 
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
 		courseData.then((responce) => {
 			setCourseDetails(responce);
-			setLoadingStates({ ...loadingStates, course: false });
+			setLoadingCourse(false);
 			setObjectives(responce.objective);
 			console.log(responce);
 		});
@@ -25,7 +25,7 @@ function CourseDetails() {
 
 	return (
 		<>
-			{loadingStates.course && (
+			{loadingCourse && (
 				<div className='flex min-h-[600px] w-full justify-center items-center'>
 					<Spinner />
 				</div>
@@ -53,7 +53,7 @@ function CourseDetails() {
 						</div>
 					</div>
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
-					<div className='flex gap-1 w-full text-[#6b7280]'>
+					<div className='flex gap-1 w-full text-[#6b7280] min-h-[600px] '>
 						<div className='flex flex-col gap-3 w-1/4'>
 							<div className='flex cursor-pointer font-semibold '>
 								<h4>What you'll learn</h4>
