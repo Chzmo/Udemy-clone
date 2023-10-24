@@ -8,13 +8,17 @@ import {
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
-function Objective({ objectives, setObjectives }) {
+function Objective({
+	objectives,
+	setObjectives,
+	setSubmitCoursesObjectives,
+	submitCourseObjectives,
+}) {
 	const userId = "65324c693ef056bdd52e7a04";
 
 	const { courseId } = useParams();
 	const [newObjective, setNewObjective] = useState("");
-	const [submitCourseObjectives, setSetSubmitCoursesObjectives] =
-		useState(false);
+
 	const [loadingObjectiveSubmission, setLoadingObjectiveSubmission] =
 		useState(false);
 
@@ -24,7 +28,7 @@ function Objective({ objectives, setObjectives }) {
 			// The id is used to separate the old ones from the new ones
 			setObjectives([...objectives, { title: newObjective, courseId }]);
 			setNewObjective("");
-			setSetSubmitCoursesObjectives(true);
+			setSubmitCoursesObjectives(true);
 		}
 	};
 
@@ -37,7 +41,7 @@ function Objective({ objectives, setObjectives }) {
 			...objectives.slice(0, index),
 			...objectives.slice(index + 1),
 		]);
-		setSetSubmitCoursesObjectives(true);
+		setSubmitCoursesObjectives(true);
 	};
 
 	const submitObjectives = () => {
@@ -52,15 +56,15 @@ function Objective({ objectives, setObjectives }) {
 			postObjectives
 				.then((response) => {
 					console.log(response);
-					setSetSubmitCoursesObjectives(false);
+					setSubmitCoursesObjectives(false);
 					setLoadingObjectiveSubmission(false);
 				})
 				.catch((error) => {
 					console.log(error);
-					setSetSubmitCoursesObjectives(true);
+					setSubmitCoursesObjectives(true);
 					setLoadingObjectiveSubmission(false);
 				});
-			setSetSubmitCoursesObjectives(false);
+			setSubmitCoursesObjectives(false);
 		} else {
 			alert("add stuff man");
 		}
@@ -92,6 +96,8 @@ function Objective({ objectives, setObjectives }) {
 					type='text'
 					name='title'
 					value={newObjective}
+					autoFocus
+					placeholder='Add objectives and learning outcomes...'
 					onChange={(e) => {
 						setNewObjective(e.target.value);
 					}}

@@ -8,12 +8,16 @@ import {
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
 
-function Requirements({ requirements, setRequirements }) {
+function Requirements({
+	requirements,
+	setRequirements,
+	submitRequirements,
+	setSubmitRequirements,
+}) {
 	const userId = "65324c693ef056bdd52e7a04";
 
 	const { courseId } = useParams();
 	const [newRequirement, setNewRequirement] = useState("");
-	const [submitRequirements, setSubmitRequirements] = useState(false);
 	const [loadingRequirements, setLoadingRequirements] = useState(false);
 
 	const addRequirement = (e) => {
@@ -21,7 +25,7 @@ function Requirements({ requirements, setRequirements }) {
 		if (newRequirement != "") {
 			// The id is used to separate the old ones from the new ones
 			setRequirements([...requirements, { title: newRequirement, courseId }]);
-			newRequirement("");
+			setNewRequirement("");
 			setSubmitRequirements(true);
 		}
 	};
@@ -85,11 +89,12 @@ function Requirements({ requirements, setRequirements }) {
 					);
 				})}
 
-			<form onSubmit={addObjective} className='flex items-center gap-2'>
+			<form onSubmit={addRequirement} className='flex items-center gap-2'>
 				<input
 					type='text'
 					name='title'
-					value={newObjective}
+					value={newRequirement}
+					placeholder='Add requirements or prerequisites...'
 					onChange={(e) => {
 						setNewRequirement(e.target.value);
 					}}

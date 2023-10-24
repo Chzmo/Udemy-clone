@@ -7,13 +7,19 @@ import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import Objective from "./Objective";
 import { AiOutlineFileText } from "react-icons/ai";
+import Requirements from "./Requirements";
+import FullDescriptionForm from "./FullDescriptionForm";
 
 function CourseDetails() {
 	const { courseId } = useParams();
 	const [courseDetails, setCourseDetails] = useState(null);
 	const [tabSwitch, setTabSwitch] = useState(null);
 	const [objectives, setObjectives] = useState(null);
+	const [requirements, setRequirements] = useState(null);
 	const [loadingCourse, setLoadingCourse] = useState(true);
+	const [submitRequirements, setSubmitRequirements] = useState(false);
+	const [submitCourseObjectives, setSubmitCoursesObjectives] = useState(false);
+	const [fullDescription, setFullDescription] = useState(null);
 
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
@@ -21,6 +27,8 @@ function CourseDetails() {
 			setCourseDetails(responce);
 			setLoadingCourse(false);
 			setObjectives(responce.objective);
+			setRequirements(responce.requirements);
+			setFullDescription(responce.fullDescription);
 			console.log(responce);
 		});
 	}, [courseId]);
@@ -63,7 +71,7 @@ function CourseDetails() {
 						<div className='flex flex-col gap-3 w-1/4'>
 							<div
 								onClick={() => switchTabSection(null)}
-								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit hover:text-[#5624d0] ${
 									!tabSwitch ? "text-[#5624d0]" : ""
 								}`}>
 								<AiOutlineFileText />
@@ -71,7 +79,7 @@ function CourseDetails() {
 							</div>
 							<div
 								onClick={() => switchTabSection("requirements")}
-								className={`flex  gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit hover:text-[#5624d0] ${
 									tabSwitch == "requirements" ? "text-[#5624d0]" : ""
 								}`}>
 								<AiOutlineFileText />
@@ -79,15 +87,35 @@ function CourseDetails() {
 							</div>
 							<div
 								onClick={() => switchTabSection("description")}
-								className={`flex  gap-2 items-center cursor-pointer font-semibold text-lg w-fit ${
+								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit hover:text-[#5624d0] ${
 									tabSwitch == "description" ? "text-[#5624d0]" : ""
 								}`}>
 								<AiOutlineFileText />
 								<h4>Full Description</h4>
 							</div>
 						</div>
+						{/* Switch Tabs based on conditions*/}
 						{!tabSwitch && (
-							<Objective objectives={objectives} setObjectives={setObjectives} />
+							<Objective
+								objectives={objectives}
+								setObjectives={setObjectives}
+								submitCourseObjectives={submitCourseObjectives}
+								setSubmitCoursesObjectives={setSubmitCoursesObjectives}
+							/>
+						)}
+						{tabSwitch == "requirements" && (
+							<Requirements
+								requirements={requirements}
+								setRequirements={setRequirements}
+								submitRequirements={submitRequirements}
+								setSubmitRequirements={setSubmitRequirements}
+							/>
+						)}
+						{tabSwitch == "description" && (
+							<FullDescriptionForm
+								fullDescription={fullDescription}
+								setFullDescription={setFullDescription}
+							/>
 						)}
 					</div>
 				</div>
