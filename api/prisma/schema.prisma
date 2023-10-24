@@ -44,7 +44,7 @@ model Course {
   updatedAt       DateTime             @updatedAt
   title           String
   description     String
-  fullDescription String
+  fullDescription String?
   price           Float                @default(0)
   revisedPrice    Float                @default(0)
   thumbnail       String
