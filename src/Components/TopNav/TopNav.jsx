@@ -3,12 +3,13 @@ import { AiOutlineSearch, AiOutlineGlobal } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { useIsAuthenticated } from "react-auth-kit";
+import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 
 import logo from "../../assets/logo/logo-udemy.svg";
 import SideNav from "../SideNav/SideNav";
 import SearchInput from "../../Pages/Search/SearchInput";
 import CategoryNav from "./CategoryNav";
+import { GoogleLogin } from "@react-oauth/google";
 
 function TopNav({ globalState }) {
 	const [isSideNavOpen, setIsSideNavOpen] = useState(false);
@@ -16,8 +17,60 @@ function TopNav({ globalState }) {
 	const [isCatergoryNavOpen, setIsCatergoryNavOpen] = useState(false);
 	const [searchTearm, setSearchTearm] = useState("");
 
-	const navigate = useNavigate();
+	const signIn = useSignIn();
 	const isAuthenticated = useIsAuthenticated();
+	const navigate = useNavigate();
+
+	const responseGoogle = (response) => {
+		localStorage.setItem("user", JSON.stringify(response.credential));
+		const decode = jwtDecode(localStorage.getItem("user"));
+		const { name, sub, picture, email } = decode;
+		const doc = {
+			_id: sub,
+			_type: "user",
+			userName: name,
+			image: picture,
+			email: email,
+		};
+
+		console.log(doc);
+	};
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+
+		if (email && password) {
+			const body = { email, password };
+			setLoading(true);
+
+			try {
+				setLoading(true);
+				const response = await postData("/api/login", body);
+				const data = await response.json();
+
+				if (
+					signIn({
+						token: data.token,
+						tokenType: "Bearer",
+						expiresIn: 3600,
+						authState: {
+							userName: data.userName,
+							email: data.email,
+							userId: data.id,
+						},
+					})
+				) {
+					navigate("/");
+					setLoading(false);
+				}
+			} catch (error) {
+				console.log(error);
+				setLoading(false);
+			}
+		} else {
+			alert("email and password");
+		}
+	};
 
 	const handleSideNav = useCallback(() => {
 		if (isSideNavOpen) {
@@ -50,8 +103,7 @@ function TopNav({ globalState }) {
 					onClick={() => {
 						setIsSideNavOpen(true);
 						handleSideNav();
-					}}
-				>
+					}}>
 					<RxHamburgerMenu />
 				</div>
 				<Link to={`/`}>
@@ -61,8 +113,7 @@ function TopNav({ globalState }) {
 					className='hidden sm:flex relative'
 					onMouseEnter={() => {
 						setIsCatergoryNavOpen(true);
-					}}
-				>
+					}}>
 					<p className='hover:text-purple-800 hover:cursor-pointer h-full'>
 						Categories
 					</p>
@@ -83,8 +134,7 @@ function TopNav({ globalState }) {
                         border 
                         border-slate-700 
                         py-2 px-4
-                        bg-slate-100'
-				>
+                        bg-slate-100'>
 					<AiOutlineSearch />
 					<form onSubmit={handleSearchSubmit} className='w-full'>
 						<input
@@ -101,7 +151,7 @@ function TopNav({ globalState }) {
 				<Link className='hidden lg:flex'> Teach on Udemy</Link>
 				<MdOutlineShoppingCart size={23} className='hidden font-semibold sm:flex' />
 				<div className='gap-2 items-center hidden sm:flex'>
-					{isAuthenticated ? (
+					{isAuthenticated() ? (
 						<>
 							<Link className='border border-black py-1.5 font-semibold px-4'>
 								Log out
@@ -109,17 +159,17 @@ function TopNav({ globalState }) {
 						</>
 					) : (
 						<>
-							<Link className='border border-black py-1.5 font-semibold px-4'>
-								Log In
-							</Link>
-							<Link className='border border-black py-1.5 px-4 bg-black font-semibold text-white'>
-								Sign Up
-							</Link>
-							<button className='border border-black p-2.5'>
-								<AiOutlineGlobal />
-							</button>
+							<GoogleLogin
+								className=' text-slate-900'
+								onSuccess={(response) => responseGoogle(response)}
+								onFailure={(response) => console.log(response)}
+								cookiePolicy='single_host_origin'
+							/>
 						</>
 					)}
+					<button className='border border-black p-2.5'>
+						<AiOutlineGlobal />
+					</button>
 				</div>
 				<div className='flex items-center gap-2 sm:hidden'>
 					<AiOutlineSearch

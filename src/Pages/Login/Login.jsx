@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import { HashLink } from "react-router-hash-link";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { useClickOutside } from "@mantine/hooks";
+import jwtDecode from "jwt-decode";
 
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
@@ -25,7 +28,22 @@ function Login() {
 	const signIn = useSignIn();
 	const isAuthenticated = useIsAuthenticated();
 	const navigate = useNavigate();
-	
+
+	const responseGoogle = (response) => {
+		localStorage.setItem("user", JSON.stringify(response.credential));
+		const decode = jwtDecode(localStorage.getItem("user"));
+		const { name, sub, picture, email } = decode;
+		const doc = {
+			_id: sub,
+			_type: "user",
+			userName: name,
+			image: picture,
+			email: email,
+		};
+
+		console.log(doc);
+	};
+
 	const handleLogin = async (e) => {
 		e.preventDefault();
 
@@ -69,33 +87,34 @@ function Login() {
 	return (
 		<>
 			<div className='flex items-center justify-center py-12'>
-				<form
-					className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'
-					onSubmit={(e) => handleLogin(e)}
-				>
+				<div className='flex flex-col gap-3 w-full px-6 sm:px-0 xsm:w-auto'>
 					<div className='flex flex-col gap-2'>
-						<h2 className='font-[700] text-sm'>Log in to your Udemy account</h2>
-						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
+						<h2 className='font-[700] text-md'>Log in to your Udemy account</h2>
+						{/* <div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
 							<FcGoogle size={33} />
 							<h2 className='font-bold text-sm '>Continue with Google</h2>
-						</div>
-						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
+						</div> */}
+						<GoogleLogin
+							className=' text-slate-900'
+							onSuccess={(response) => responseGoogle(response)}
+							onFailure={(response) => console.log(response)}
+							cookiePolicy='single_host_origin'
+						/>
+						{/* <div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
 							<SiFacebook color='#4267b2' size={33} />
 							<h2 className='font-bold text-sm '>Continue with Facebook</h2>
 						</div>
 						<div className='flex px-3 py-2 gap-3 border border-black items-center hover:cursor-pointer hover:bg-slate-100 xsm:w-[22rem]'>
 							<BsApple color='#1c1d1f' size={33} />
 							<h2 className='font-bold text-sm '>Continue with Apple</h2>
-						</div>
-						<div
+						</div> */}
+						{/* <div
 							onClick={() => setIsEmailOpen(true)}
-							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'
-						>
+							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'>
 							<p
 								className={`font-bold text-sm duration-900 ${
 									isEmailOpen && "text-slate-500"
-								}`}
-							>
+								}`}>
 								Email
 							</p>
 							<input
@@ -111,16 +130,14 @@ function Login() {
 									setEmail(e.target.value);
 								}}
 							/>
-						</div>
-						<div
+						</div> */}
+						{/* <div
 							onClick={() => setIsPasswordOpen(true)}
-							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'
-						>
+							className='flex flex-col justify-center px-3 py-2 gap-1 border border-black hover:cursor-pointer h-16 xsm:w-[22rem]'>
 							<p
 								className={`font-bold text-sm duration-900 ${
 									isPasswordOpen && "text-slate-500"
-								}`}
-							>
+								}`}>
 								Password
 							</p>
 							<input
@@ -135,13 +152,12 @@ function Login() {
 								}`}
 								onChange={(e) => setPassword(e.target.value)}
 							/>
-						</div>
+						</div> */}
 					</div>
-					<div className='flex flex-col gap-2'>
+					{/* <div className='flex flex-col gap-2'>
 						<button
 							type='submit'
-							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm '
-						>
+							className='w-full bg-[#a435f0] py-3 font-bold text-white font-sm '>
 							{loading ? "Loading..." : "Log in"}
 						</button>
 					</div>
@@ -162,8 +178,8 @@ function Login() {
 						<HashLink className='text-sm text-[#8243d0] font-bold'>
 							Log in with your organization
 						</HashLink>
-					</div>
-				</form>
+					</div> */}
+				</div>
 			</div>
 
 			{/* FOOTER  */}
@@ -172,8 +188,7 @@ function Login() {
 					setIsEmailOpen(false);
 					setIsPasswordOpen(false);
 				}}
-				className='flex flex-col gap-4 md:flex-row justify-between px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]'
-			>
+				className='flex flex-col gap-4 md:flex-row justify-between px-7 py-7 border-b border-slate-500 bg-[#1c1d1f]'>
 				<p className='text-xl font-bold text-white'>
 					Top companies choose{" "}
 					<HashLink className='text-purple-300 hover:underline'>
