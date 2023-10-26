@@ -80,7 +80,7 @@ function Objective({
 							className='flex items-end justify-between'>
 							<div className='flex items-start gap-2 '>
 								<BiCheck size={20} />
-								<div>{objective.title}</div>
+								<div className='flex flex-1'>{objective.title}</div>
 							</div>
 							<div
 								onClick={() => removeObjective(index)}

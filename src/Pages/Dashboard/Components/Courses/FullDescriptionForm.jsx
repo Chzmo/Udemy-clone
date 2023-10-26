@@ -13,7 +13,7 @@ function FullDescriptionForm({
 	const { courseId } = useParams();
 	const userId = "65324c693ef056bdd52e7a04";
 	const token =
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODIzOTA5NCwiZXhwIjoxNjk4MzI1NDk0fQ.WNh5OMoQlmBZgwGSEHzbckcGii0ggD_zMhB_04IXkeg";
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODMyNjIzNSwiZXhwIjoxNjk4NDEyNjM1fQ.WN2l5MEzYH9cVP9RRNBfLCxGX5RAe0j_G4J-zH-PqZk";
 
 	const [submitStatus, setSetsubmitStatus] = useState(
 		fullDescription?.length > 0 ? true : false
@@ -91,11 +91,20 @@ function FullDescriptionForm({
 								/>
 							</button>
 						) : (
-							<button
-								type='submit'
-								className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 hover:text-[#5624d0] bg-[#5624d0] hover:bg-transparent text-[#1b1f23]'>
-								SAVE
-							</button>
+							<div className='flex gap-3'>
+								<button
+									onClick={() => {
+										setSetsubmitStatus(!submitStatus);
+									}}
+									className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 hover:text-[#5624d0] bg-[#5624d0] hover:bg-transparent text-[#1b1f23]'>
+									CANCEL
+								</button>
+								<button
+									type='submit'
+									className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] bg-[#1b1f23] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+									SAVE
+								</button>
+							</div>
 						)}
 					</div>
 				</form>
@@ -107,7 +116,7 @@ function FullDescriptionForm({
 							type='submit'
 							value={"EDIT"}
 							onClick={() => {
-								setSetsubmitStatus(false);
+								setSetsubmitStatus(!submitStatus);
 							}}
 							className='text-sm font-semibold cursor-pointer border-[#5624d0] border-2 border-solid px-3 py-2 hover:text-[#5624d0] bg-[#5624d0] hover:bg-transparent text-[#1b1f23]'
 						/>

@@ -23,7 +23,7 @@ export const createCourse = async (
 		data: {
 			title,
 			description,
-			fullDescription: "halla",
+			fullDescription: "",
 			price,
 			revisedPrice,
 			thumbnail,
@@ -167,6 +167,19 @@ export const getCourse = async (id: string) => {
 			thumbnail: true,
 			categoryId: true,
 			authorId: true,
+			content: {
+				select: {
+					id: true,
+					title: true,
+					contentSection: {
+						select: {
+							id: true,
+							url: true,
+							title: true,
+						},
+					},
+				},
+			},
 			author: {
 				select: {
 					id: true,

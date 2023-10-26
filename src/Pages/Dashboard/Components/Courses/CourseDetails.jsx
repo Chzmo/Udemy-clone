@@ -9,6 +9,8 @@ import Objective from "./Objective";
 import { AiOutlineFileText, AiOutlinePlus } from "react-icons/ai";
 import Requirements from "./Requirements";
 import FullDescriptionForm from "./FullDescriptionForm";
+import SectionForm from "./SectionForm";
+import MainLectureForm from "./MainLectureForm";
 
 function CourseDetails() {
 	const { courseId } = useParams();
@@ -93,10 +95,21 @@ function CourseDetails() {
 								<AiOutlineFileText />
 								<h4>Full Description</h4>
 							</div>
+							{courseDetails?.content &&
+								courseDetails?.content.map((content) => (
+									<div
+										onClick={() => switchTabSection(content.id)}
+										key={content.id}
+										className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit hover:text-[#5624d0] ${
+											tabSwitch == content.id ? "text-[#5624d0]" : ""
+										}`}>
+										<AiOutlineFileText />
+										<h4>Full Description</h4>
+									</div>
+								))}
 							<div className='flex'>
 								<button
-									onClick={() => {}}
-									disabled
+									onClick={() => switchTabSection("lecture")}
 									className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
 									<AiOutlinePlus size={18} />
 									<span>ANOTHER SECTION</span>
@@ -127,6 +140,7 @@ function CourseDetails() {
 								setFullDescription={setFullDescription}
 							/>
 						)}
+						{tabSwitch == "lecture" && <MainLectureForm />}
 					</div>
 				</div>
 			)}
