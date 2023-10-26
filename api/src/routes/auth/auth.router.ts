@@ -10,17 +10,6 @@ export const usersRouter = express.Router();
 export const loginRouter = express.Router();
 export const legisterRouter = express.Router();
 
-// Auth: Login Routes
-loginRouter.post("/", async (request: Request, response: Response) => {
-	try {
-		const user = request.body;
-		const newUser = await authController.loginUser(user);
-		return response.status(200).json(newUser);
-	} catch (error: any) {
-		return response.status(401).json(error.message);
-	}
-});
-
 // GET: List all Users
 usersRouter.get("/", async (request: Request, responce: Response) => {
 	try {
@@ -33,7 +22,7 @@ usersRouter.get("/", async (request: Request, responce: Response) => {
 
 // GET: an Author by ID
 userRouter.get("/:id", async (request: Request, responce: Response) => {
-	const id: string = request.params.id
+	const id: string = request.params.id;
 
 	try {
 		const user = await userController.getUser(id);

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 type User = {
 	userName: string;
 	email: string;
-	password: string;
+	image: string;
 };
 
 // GENERATE A LOGIN TOKEN
@@ -26,51 +26,49 @@ const getUserbByEmail = async (email: string) => {
 			id: true,
 			email: true,
 			userName: true,
-			password: true,
+			image: true,
 		},
 	});
 };
 
-// LOGIN USER INTO THE SYSTEM
-export const loginUser = async (user: Omit<User, "userName">) => {
-	const { email, password } = user;
-	const authUser = await getUserbByEmail(email);
+// // LOGIN USER INTO THE SYSTEM
+// export const loginUser = async (user: Omit<User, "userName">) => {
+// 	const { email, password } = user;
+// 	const authUser = await getUserbByEmail(email);
 
-	if (authUser && (await bcrypt.compare(password, authUser.password))) {
-		return {
-			...authUser,
-			token: generateToken(authUser.id.toString()),
-		};
-	} else {
-		throw new Error("Invalid credentials");
-	}
-};
+// 	if (authUser && (await bcrypt.compare(password, authUser.password))) {
+// 		return {
+// 			...authUser,
+// 			token: generateToken(authUser.id.toString()),
+// 		};
+// 	} else {
+// 		throw new Error("Invalid credentials");
+// 	}
+// };
 
 // REGISTER NEW USER INTO THE SYSTEM
 export const registerUser = async (user: Omit<createUserSchema, "id">) => {
-	const { userName, email, password } = user;
+	const { userName, email, image } = user;
 
 	const userExists = await getUserbByEmail(email);
+	const { existUserId }: any = userExists;
 
 	if (userExists) {
-		throw new Error("Email is already taken");
+		return { ...userExists, token: generateToken(existUserId) };
 	}
-
-	const salt = await bcrypt.genSalt(10);
-	const hashedPassword = await bcrypt.hash(password, salt);
 
 	const registeredUser: object = await db.user.create({
 		data: {
 			userName,
 			email,
-			password: hashedPassword,
+			image,
 		},
 
 		select: {
 			id: true,
 			email: true,
 			userName: true,
-			password: false,
+			image: true,
 			createdAt: true,
 			updatedAt: true,
 		},

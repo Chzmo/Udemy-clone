@@ -9,7 +9,7 @@ const createUserSchema = z.object({
 		})
 		.email(),
 	userName: z.string(),
-	password: z.string(),
+	image: z.string(),
 });
 
 export type createUserSchema = z.infer<typeof createUserSchema>;
