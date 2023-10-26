@@ -4,6 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useIsAuthenticated, useSignIn } from "react-auth-kit";
+import jwtDecode from "jwt-decode";
 
 import logo from "../../assets/logo/logo-udemy.svg";
 import SideNav from "../SideNav/SideNav";
@@ -27,7 +28,6 @@ function TopNav({ globalState }) {
 		const { name, sub, picture, email } = decode;
 		const doc = {
 			_id: sub,
-			_type: "user",
 			userName: name,
 			image: picture,
 			email: email,
@@ -37,8 +37,6 @@ function TopNav({ globalState }) {
 	};
 
 	const handleLogin = async (e) => {
-		e.preventDefault();
-
 		if (email && password) {
 			const body = { email, password };
 			setLoading(true);
