@@ -161,6 +161,7 @@ export const getCourse = async (id: string) => {
 			updatedAt: true,
 			title: true,
 			description: true,
+			fullDescription: true,
 			price: true,
 			revisedPrice: true,
 			thumbnail: true,

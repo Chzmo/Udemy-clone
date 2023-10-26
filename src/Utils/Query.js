@@ -32,5 +32,5 @@ export const updateData = async (endPoint, body, token = "", courseId = "") => {
 		body: JSON.stringify(body),
 	};
 
-	return (await fetch(VITE_APP_BASE_URL + endPoint + courseId, options)).json();
+	return await fetch(VITE_APP_BASE_URL + endPoint + courseId, options);
 };

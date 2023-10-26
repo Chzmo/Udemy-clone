@@ -23,13 +23,13 @@ function CourseDetails() {
 
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
-		courseData.then((responce) => {
-			setCourseDetails(responce);
+		courseData.then((response) => {
+			setCourseDetails(response);
 			setLoadingCourse(false);
-			setObjectives(responce.objective);
-			setRequirements(responce.requirements);
-			setFullDescription(responce.fullDescription);
-			console.log(responce);
+			setObjectives(response.objective);
+			setRequirements(response.requirements);
+			setFullDescription(response.fullDescription);
+			console.log(response);
 		});
 	}, [courseId]);
 

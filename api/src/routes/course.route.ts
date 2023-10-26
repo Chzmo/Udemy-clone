@@ -93,6 +93,7 @@ courseRouter.put(
 				course,
 				request.params.id
 			);
+			console.log(updatedCourse);
 			return response.status(200).json(updatedCourse);
 		} catch (error: any) {
 			return response.status(400).json(error);
