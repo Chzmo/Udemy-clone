@@ -16,13 +16,14 @@ This is a clone of Udemy, built using ReactJS + Vite, Prisma, Express, and Node.
 ```
     DATABASE_URL="file:./dev.db"
     PORT=8000
-    JWT_SECRET="SECRET_KEY"
+    JWT_SECRET="YOUR_SECRET_KEY"
 ```
 
 5. Create a `.env` file in the root directory and add the following variables:
 
 ```
    VITE_APP_BASE_URL = 'http://localhost:8000'
+   VITE_OAUTH_CLIENT_ID = 'YOUR GOOGLE OAUTH CLIENT ID'
 ```
 
 6. Run `npm run dev` to start the server in both `root` and `API` directory.
