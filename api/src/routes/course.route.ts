@@ -67,15 +67,14 @@ courseRouter.get("/:id", async (request: Request, responce: Response) => {
 	}
 });
 
-// GET: a Course by AUTHOR ID
+// GET: Courses by AUTHOR ID
 coursesRouter.get(
 	"/author/:authorId",
 	async (request: Request, responce: Response) => {
 		try {
 			const authorId: string = request.params.authorId;
-			return responce
-				.status(200)
-				.json(await courseController.getCourseByAuthor(authorId));
+			const courses = await courseController.getCourseByAuthor(authorId);
+			return responce.status(200).json(courses);
 		} catch (error: any) {
 			return responce.status(400).json({ message: "Bad request" });
 		}

@@ -1,10 +1,48 @@
 import React, { useState } from "react";
+import { updateData } from "../../../../Utils/Query";
+import { useParams } from "react-router-dom";
 
-function FullDescriptionForm({ fullDescription, setFullDescription }) {
+function FullDescriptionForm({
+	fullDescription,
+	setFullDescription,
+	courseDetails,
+}) {
+	const { courseId } = useParams();
+	const userId = "65324c693ef056bdd52e7a04";
+	const token =
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODIzOTA5NCwiZXhwIjoxNjk4MzI1NDk0fQ.WNh5OMoQlmBZgwGSEHzbckcGii0ggD_zMhB_04IXkeg";
+
 	const [newFullDescription, setNewFullDescription] = useState(fullDescription);
+	const [loadingFullDeescription, setLoadingFullDeescription] = useState(false);
 
 	const submitFullDescription = (e) => {
 		e.preventDefault();
+		if (newFullDescription == null || newFullDescription.length < 1) {
+			alert("validation error");
+		} else {
+			setLoadingFullDeescription(true);
+			const updateCourseDescription = updateData(
+				"/api/course/",
+				{
+					...courseDetails,
+					fullDescription: newFullDescription,
+					userId,
+				},
+				token,
+				courseId
+			);
+
+			updateCourseDescription
+				.then((response) => {
+					setLoadingFullDeescription(true);
+					setFullDescription(response.fullDescription);
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+					setLoadingFullDeescription(false);
+				});
+		}
 	};
 	return (
 		<>

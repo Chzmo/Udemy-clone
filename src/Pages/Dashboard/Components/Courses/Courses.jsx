@@ -97,6 +97,7 @@ function Courses() {
 		const getCoursesByauthor = fetchData("/api/courses/author/", userId);
 		getCoursesByauthor
 			.then((response) => {
+				console.log(response);
 				setCourses(response);
 				setLoadingCourses(false);
 			})

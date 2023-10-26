@@ -7,12 +7,13 @@ type Course = {
 	price: number;
 	revisedPrice: number;
 	description: string;
+	fullDescription: string;
 	thumbnail: string;
 };
 
 export const createCourse = async (
 	authorId: string,
-	catergoryId: string,
+	categoryId: string,
 	course: Omit<Course, "id">
 ) => {
 	const { title, description, thumbnail } = course;
@@ -22,11 +23,12 @@ export const createCourse = async (
 		data: {
 			title,
 			description,
+			fullDescription: "halla",
 			price,
 			revisedPrice,
 			thumbnail,
 			authorId,
-			categoryId: catergoryId,
+			categoryId: categoryId,
 		},
 		select: {
 			id: true,
@@ -34,6 +36,7 @@ export const createCourse = async (
 			updatedAt: true,
 			title: true,
 			description: true,
+			fullDescription: true,
 			price: true,
 			revisedPrice: true,
 			thumbnail: true,
@@ -66,6 +69,7 @@ export const getCourseByAuthor = async (authorId: string) => {
 				updatedAt: true,
 				title: true,
 				description: true,
+				fullDescription: true,
 				price: true,
 				revisedPrice: true,
 				thumbnail: true,
@@ -92,7 +96,10 @@ export const getCourseByAuthor = async (authorId: string) => {
 				},
 			},
 		});
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+		response.send();
+	}
 };
 
 export const getCoursesByCategory = async (categoryId: any) => {
@@ -111,6 +118,7 @@ export const getCoursesByCategory = async (categoryId: any) => {
 				updatedAt: true,
 				title: true,
 				description: true,
+				fullDescription: true,
 				price: true,
 				revisedPrice: true,
 				thumbnail: true,
@@ -156,6 +164,8 @@ export const getCourse = async (id: string) => {
 			price: true,
 			revisedPrice: true,
 			thumbnail: true,
+			categoryId: true,
+			authorId: true,
 			author: {
 				select: {
 					id: true,
@@ -164,6 +174,7 @@ export const getCourse = async (id: string) => {
 			},
 			category: {
 				select: {
+					id: true,
 					title: true,
 				},
 			},
@@ -183,7 +194,7 @@ export const getCourse = async (id: string) => {
 };
 
 export const updateCourse = async (course: Omit<Course, "id">, id: string) => {
-	const { title, description, thumbnail } = course;
+	const { title, description, thumbnail, fullDescription } = course;
 	const price = parseInt(course.price.toString());
 	const revisedPrice = parseInt(course.revisedPrice.toString());
 	return db.course.update({
@@ -193,6 +204,7 @@ export const updateCourse = async (course: Omit<Course, "id">, id: string) => {
 		data: {
 			title,
 			description,
+			fullDescription,
 			price,
 			revisedPrice,
 			thumbnail,
@@ -203,9 +215,12 @@ export const updateCourse = async (course: Omit<Course, "id">, id: string) => {
 			updatedAt: true,
 			title: true,
 			description: true,
+			fullDescription: true,
 			price: true,
 			revisedPrice: true,
 			thumbnail: true,
+			categoryId: true,
+			authorId: true,
 		},
 	});
 };

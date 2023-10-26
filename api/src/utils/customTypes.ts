@@ -22,6 +22,7 @@ export const CourseType = z.object({
 	authorId: z.string(),
 	thumbnail: z.string().url(),
 	description: z.string(),
+	fullDescription: z.string(),
 });
 
 export const ratingType = z.object({

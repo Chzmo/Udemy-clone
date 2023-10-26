@@ -6,7 +6,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import Objective from "./Objective";
-import { AiOutlineFileText } from "react-icons/ai";
+import { AiOutlineFileText, AiOutlinePlus } from "react-icons/ai";
 import Requirements from "./Requirements";
 import FullDescriptionForm from "./FullDescriptionForm";
 
@@ -67,7 +67,7 @@ function CourseDetails() {
 						</div>
 					</div>
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
-					<div className='flex gap-1 w-full text-[#6b7280] min-h-[600px] '>
+					<div className='flex gap-3 w-full text-[#6b7280] min-h-[600px] '>
 						<div className='flex flex-col gap-3 w-1/4'>
 							<div
 								onClick={() => switchTabSection(null)}
@@ -93,6 +93,15 @@ function CourseDetails() {
 								<AiOutlineFileText />
 								<h4>Full Description</h4>
 							</div>
+							<div className='flex'>
+								<button
+									onClick={() => {}}
+									disabled
+									className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+									<AiOutlinePlus size={18} />
+									<span>ANOTHER SECTION</span>
+								</button>
+							</div>
 						</div>
 						{/* Switch Tabs based on conditions*/}
 						{!tabSwitch && (
@@ -113,6 +122,7 @@ function CourseDetails() {
 						)}
 						{tabSwitch == "description" && (
 							<FullDescriptionForm
+								courseDetails={courseDetails}
 								fullDescription={fullDescription}
 								setFullDescription={setFullDescription}
 							/>
