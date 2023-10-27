@@ -23,7 +23,6 @@ export const createCourse = async (
 		data: {
 			title,
 			description,
-			fullDescription: "",
 			price,
 			revisedPrice,
 			thumbnail,

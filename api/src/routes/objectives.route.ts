@@ -9,9 +9,9 @@ const validateRequest = [
 	check("*.courseId").notEmpty().withMessage("Course is required"),
 ];
 
-export const courseobjectivesRouter = express.Router();
+export const courseObjectivesRouter = express.Router();
 
-courseobjectivesRouter.post(
+courseObjectivesRouter.post(
 	"/:courseId",
 	validateRequest,
 	authMiddleware,
