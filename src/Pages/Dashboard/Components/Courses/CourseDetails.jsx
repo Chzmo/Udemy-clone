@@ -22,6 +22,23 @@ function CourseDetails() {
 	const [submitRequirements, setSubmitRequirements] = useState(false);
 	const [submitCourseObjectives, setSubmitCoursesObjectives] = useState(false);
 	const [fullDescription, setFullDescription] = useState(null);
+	const [contentId, setContentId] = useState(null);
+	const [x, setX] = useState(false);
+
+	const switchTabSection = (tabIndex) => {
+		setTabSwitch(tabIndex);
+	};
+
+	const addSection = () => {
+		const content = courseDetails?.content;
+		switchTabSection("lecture");
+		setTabSwitch("random_id");
+		setContentId("random_id");
+		setCourseDetails({
+			...courseDetails,
+			content: [...content, { title: "Untitled Topic", id: "random_id" }],
+		});
+	};
 
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
@@ -39,11 +56,7 @@ function CourseDetails() {
 				console.log(response);
 			}
 		});
-	}, [courseId]);
-
-	const switchTabSection = (tabIndex) => {
-		setTabSwitch(tabIndex);
-	};
+	}, []);
 
 	return (
 		<>
@@ -110,12 +123,16 @@ function CourseDetails() {
 											tabSwitch == content.id ? "text-[#5624d0]" : ""
 										}`}>
 										<AiOutlineFileText />
-										<h4>Full Description</h4>
+										<h4>
+											{content?.title.length > 23
+												? `${content?.title?.slice(0, 23)} ...`
+												: content?.title}
+										</h4>
 									</div>
 								))}
 							<div className='flex'>
 								<button
-									onClick={() => switchTabSection("lecture")}
+									onClick={addSection}
 									className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
 									<AiOutlinePlus size={18} />
 									<span>ANOTHER SECTION</span>
@@ -147,7 +164,26 @@ function CourseDetails() {
 								setFullDescription={setFullDescription}
 							/>
 						)}
-						{tabSwitch == "lecture" && <MainLectureForm />}
+						{tabSwitch == "lecture" && (
+							<MainLectureForm
+								contentId={contentId}
+								courseDetails={courseDetails}
+								setCourseDetails={setCourseDetails}
+							/>
+						)}
+						{courseDetails?.content &&
+							courseDetails?.content.map((content) => {
+								if (tabSwitch == content.id) {
+									return (
+										<MainLectureForm
+											key={content.id}
+											contentId={content.id}
+											courseDetails={courseDetails}
+											setCourseDetails={setCourseDetails}
+										/>
+									);
+								}
+							})}
 					</div>
 				</div>
 			)}
