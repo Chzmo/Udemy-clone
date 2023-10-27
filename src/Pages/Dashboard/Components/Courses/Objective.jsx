@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import {
 	AiOutlinePlus,
 	AiOutlineDelete,
@@ -7,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { postData } from "../../../../Utils/Query";
+import jwtDecode from "jwt-decode";
 
 function Objective({
 	objectives,
@@ -14,13 +16,16 @@ function Objective({
 	setSubmitCoursesObjectives,
 	submitCourseObjectives,
 }) {
-	const userId = "65324c693ef056bdd52e7a04";
-
+	const token = localStorage.getItem("_auth");
+	const userId = jwtDecode(localStorage.getItem("_auth_state"))?.id;
 	const { courseId } = useParams();
-	const [newObjective, setNewObjective] = useState("");
 
+	const [newObjective, setNewObjective] = useState("");
 	const [loadingObjectiveSubmission, setLoadingObjectiveSubmission] =
 		useState(false);
+
+	const successNotify = () => toast.success("Success ");
+	const errorNotify = () => toast.warn("Failed to update course objectives");
 
 	const addObjective = (e) => {
 		e.preventDefault();
@@ -50,17 +55,19 @@ function Objective({
 			const postObjectives = postData(
 				"/api/courseobjectives/",
 				{ courseObjectives: objectives, userId },
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE",
+				token,
 				courseId
 			);
 			postObjectives
 				.then((response) => {
 					console.log(response);
+					successNotify();
 					setSubmitCoursesObjectives(false);
 					setLoadingObjectiveSubmission(false);
 				})
 				.catch((error) => {
 					console.log(error);
+					errorNotify();
 					setSubmitCoursesObjectives(true);
 					setLoadingObjectiveSubmission(false);
 				});
@@ -90,7 +97,6 @@ function Objective({
 						</div>
 					);
 				})}
-
 			<form onSubmit={addObjective} className='flex items-center gap-2'>
 				<input
 					type='text'
@@ -109,6 +115,7 @@ function Objective({
 					<AiOutlinePlus size={25} />
 				</button>
 			</form>
+
 			<div className='flex items-center justify-end w-full'>
 				{submitCourseObjectives && (
 					<button
@@ -126,6 +133,8 @@ function Objective({
 					</button>
 				)}
 			</div>
+
+			<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 		</div>
 	);
 }

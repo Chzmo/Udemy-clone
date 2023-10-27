@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { updateData } from "../../../../Utils/Query";
 import { useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -11,9 +12,8 @@ function FullDescriptionForm({
 	courseDetails,
 }) {
 	const { courseId } = useParams();
-	const userId = "65324c693ef056bdd52e7a04";
-	const token =
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODMyNjIzNSwiZXhwIjoxNjk4NDEyNjM1fQ.WN2l5MEzYH9cVP9RRNBfLCxGX5RAe0j_G4J-zH-PqZk";
+	const token = localStorage.getItem("_auth");
+	const userId = jwtDecode(localStorage.getItem("_auth_state"))?.id;
 
 	const [submitStatus, setSetsubmitStatus] = useState(
 		fullDescription?.length > 0 ? true : false

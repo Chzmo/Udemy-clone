@@ -1,65 +1,64 @@
 import { db } from "../../utils/db.server";
-import { createUserSchema } from '../../utils/customTypes'
+import { createUserSchema } from "../../utils/customTypes";
 
 type User = {
-    userName: string;
-    email:string;
-    password:string;
-}
-
-export const listUsers = async () =>{
-    return db.user.findMany({
-        select:{
-            id: true,
-            email: true,
-            userName: true,
-            password: false,
-        },
-    });
+	userName: string;
+	email: string;
+	image: string;
 };
 
-export const getUser = async (id: string) =>{
-    return await db.user.findUnique({
-        where:{
-            id,
-        },
-        select:{
-            id: true,
-            email: true,
-            userName: true,
-            password: false,
-        }
-    });
+export const listUsers = async () => {
+	return db.user.findMany({
+		select: {
+			id: true,
+			email: true,
+			userName: true,
+			image: true,
+		},
+	});
+};
+
+export const getUser = async (id: string) => {
+	return await db.user.findUnique({
+		where: {
+			id,
+		},
+		select: {
+			id: true,
+			email: true,
+			userName: true,
+			image: true,
+		},
+	});
 };
 
 export const updatedUser = async (
-    user: Omit<createUserSchema, "id">, id: string, 
-) =>{
-    const {email, userName, password} = user
-    return db.user.update({
-        where:{
-            id,
-        },
-        data:{
-            userName,
-            email,
-            password,
-        }, 
-        select:{
-            id: true,
-            email: true,
-            userName: true,
-            password: false,
-        }
-    });
-}
+	user: Omit<createUserSchema, "id">,
+	id: string
+) => {
+	const { email, userName, image } = user;
+	return db.user.update({
+		where: {
+			id,
+		},
+		data: {
+			userName,
+			email,
+			image,
+		},
+		select: {
+			id: true,
+			email: true,
+			userName: true,
+			image: true,
+		},
+	});
+};
 
-export const deleteUser = async (
-    id:string
-): Promise<void> =>{
-    await db.user.delete({
-        where:{
-            id
-        }
-    })
-}
+export const deleteUser = async (id: string): Promise<void> => {
+	await db.user.delete({
+		where: {
+			id,
+		},
+	});
+};

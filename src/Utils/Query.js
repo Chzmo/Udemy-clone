@@ -1,8 +1,6 @@
 export const fetchData = async (endPoint, id = "") => {
 	const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-	const response = await fetch(VITE_APP_BASE_URL + endPoint + id);
-	const data = await response.json();
-	return data;
+	return await fetch(VITE_APP_BASE_URL + endPoint + id);
 };
 
 export const postData = async (endPoint, body, token = "", courseId = "") => {
@@ -17,7 +15,7 @@ export const postData = async (endPoint, body, token = "", courseId = "") => {
 		body: JSON.stringify(body),
 	};
 
-	return (await fetch(VITE_APP_BASE_URL + endPoint + courseId, options)).json();
+	return await fetch(VITE_APP_BASE_URL + endPoint + courseId, options);
 };
 
 export const updateData = async (endPoint, body, token = "", courseId = "") => {

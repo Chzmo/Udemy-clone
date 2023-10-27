@@ -51,10 +51,10 @@ export const registerUser = async (user: Omit<createUserSchema, "id">) => {
 	const { userName, email, image } = user;
 
 	const userExists = await getUserbByEmail(email);
-	const { existUserId }: any = userExists;
 
 	if (userExists) {
-		return { ...userExists, token: generateToken(existUserId) };
+		const { id }: any = userExists;
+		return { ...userExists, token: generateToken(id) };
 	}
 
 	const registeredUser: object = await db.user.create({

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
 import {
 	AiOutlinePlus,
 	AiOutlineDelete,
@@ -14,7 +16,8 @@ function Requirements({
 	submitRequirements,
 	setSubmitRequirements,
 }) {
-	const userId = "65324c693ef056bdd52e7a04";
+	const token = localStorage.getItem("_auth");
+	const userId = jwtDecode(localStorage.getItem("_auth_state"))?.id;
 
 	const { courseId } = useParams();
 	const [newRequirement, setNewRequirement] = useState("");
@@ -42,6 +45,9 @@ function Requirements({
 		setSubmitRequirements(true);
 	};
 
+	const successNotify = () => toast.success("Success ");
+	const errorNotify = () => toast.warn("Failed to update Requirements");
+
 	const submitCourseRequirements = () => {
 		if (requirements.length > 0 && submitRequirements) {
 			setLoadingRequirements(true);
@@ -49,17 +55,19 @@ function Requirements({
 			const postRequirements = postData(
 				"/api/courseRequirements/",
 				{ courseRequirements: requirements, userId },
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE",
+				token,
 				courseId
 			);
 			postRequirements
 				.then((response) => {
 					console.log(response);
+					successNotify();
 					setSubmitRequirements(false);
 					setLoadingRequirements(false);
 				})
 				.catch((error) => {
 					console.log(error);
+					errorNotify();
 					setSubmitRequirements(true);
 					setLoadingRequirements(false);
 				});
@@ -125,6 +133,7 @@ function Requirements({
 					</button>
 				)}
 			</div>
+			<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 		</div>
 	);
 }

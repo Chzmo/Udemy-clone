@@ -11,12 +11,14 @@ import SideNav from "../SideNav/SideNav";
 import SearchInput from "../../Pages/Search/SearchInput";
 import CategoryNav from "./CategoryNav";
 import { GoogleLogin } from "@react-oauth/google";
+import { postData } from "../../Utils/Query";
 
 function TopNav({ globalState }) {
 	const [isSideNavOpen, setIsSideNavOpen] = useState(false);
 	const [isSeachInputOpen, setIsSeachInputOpen] = useState(false);
 	const [isCatergoryNavOpen, setIsCatergoryNavOpen] = useState(false);
 	const [searchTearm, setSearchTearm] = useState("");
+	const [loading, setLoading] = useState("");
 
 	const signIn = useSignIn();
 	const isAuthenticated = useIsAuthenticated();
@@ -25,49 +27,42 @@ function TopNav({ globalState }) {
 	const responseGoogle = (response) => {
 		localStorage.setItem("user", JSON.stringify(response.credential));
 		const decode = jwtDecode(localStorage.getItem("user"));
-		const { name, sub, picture, email } = decode;
-		const doc = {
-			_id: sub,
-			userName: name,
-			image: picture,
-			email: email,
-		};
-
-		console.log(doc);
+		const { name, email, picture } = decode;
+		handleLogin(name, email, picture);
 	};
 
-	const handleLogin = async (e) => {
-		if (email && password) {
-			const body = { email, password };
-			setLoading(true);
-
-			try {
-				setLoading(true);
-				const response = await postData("/api/login", body);
-				const data = await response.json();
-
-				if (
-					signIn({
-						token: data.token,
-						tokenType: "Bearer",
-						expiresIn: 3600,
-						authState: {
-							userName: data.userName,
-							email: data.email,
-							userId: data.id,
-						},
-					})
-				) {
-					navigate("/");
-					setLoading(false);
-				}
-			} catch (error) {
-				console.log(error);
-				setLoading(false);
+	const handleLogin = async (userName, email, picture) => {
+		setLoading(true);
+		const response = postData("/api/register", {
+			userName,
+			email,
+			image: picture,
+		});
+		response.then((response) => {
+			console.log(response);
+			if (response.status == 200) {
+				response.json().then((data) => {
+					if (
+						signIn({
+							token: data.token,
+							tokenType: "Bearer",
+							expiresIn: 3600,
+							authState: {
+								token: data.token,
+								userName: data.userName,
+								email: data.email,
+								picture: data.picture,
+								userId: data.id,
+							},
+						})
+					) {
+						setLoading(false);
+					}
+				});
+			} else {
+				console.log(response.json);
 			}
-		} else {
-			alert("email and password");
-		}
+		});
 	};
 
 	const handleSideNav = useCallback(() => {

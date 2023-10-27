@@ -26,12 +26,18 @@ function CourseDetails() {
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
 		courseData.then((response) => {
-			setCourseDetails(response);
-			setLoadingCourse(false);
-			setObjectives(response.objective);
-			setRequirements(response.requirements);
-			setFullDescription(response.fullDescription);
-			console.log(response);
+			if (response.ok) {
+				response.json().then((data) => {
+					setCourseDetails(data);
+					setLoadingCourse(false);
+					setObjectives(data.objective);
+					setRequirements(data.requirements);
+					setFullDescription(data.fullDescription);
+					console.log(data);
+				});
+			} else {
+				console.log(response);
+			}
 		});
 	}, [courseId]);
 
@@ -116,6 +122,7 @@ function CourseDetails() {
 								</button>
 							</div>
 						</div>
+
 						{/* Switch Tabs based on conditions*/}
 						{!tabSwitch && (
 							<Objective

@@ -41,7 +41,7 @@ legisterRouter.post(
 
 	body("userName").isString(),
 	body("email").isString(),
-	body("password").isString(),
+	body("image").isString(),
 
 	async (request: Request, response: Response) => {
 		const errors = validationResult(request);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 import { fetchData, postData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
@@ -8,9 +9,9 @@ import DashboardNav from "../DashboardNav/DashboardNav";
 
 function Courses() {
 	const navigate = useNavigate();
-	const userId = "65324c693ef056bdd52e7a04";
-	const token =
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI0YzY5M2VmMDU2YmRkNTJlN2EwNCIsImlhdCI6MTY5ODA5MjcxNywiZXhwIjoxNjk4MTc5MTE3fQ.mMRP1eWlGm9nCBvAs3ZkzJy9YSXvbGJD7GQ03Wvz3wE";
+	const authUser = jwtDecode(localStorage.getItem("_auth_state"));
+	const token = localStorage.getItem("_auth");
+	const userId = authUser?.id;
 	const [createCourse, setCreateCourse] = useState(false);
 	const initialFormInputs = {
 		title: "",
@@ -20,7 +21,7 @@ function Courses() {
 		thumbnail: "",
 	};
 
-	const [courses, setCourses] = useState(null);
+	const [courses, setCourses] = useState([]);
 	const [categories, setCategories] = useState(null);
 	const [topCategories, setTopCategories] = useState(null);
 	const [formInputs, setformInputs] = useState(initialFormInputs);
@@ -64,47 +65,53 @@ function Courses() {
 				authorId: userId,
 				price: parseInt(formInputs.price),
 				revisedPrice: 0,
+				fullDescription: "",
 			},
 			token
 		);
 		setformInputs(initialFormInputs);
 
-		fetchCourseDetails
-			.then((response) => {
-				console.log(response);
-				navigate("/dashboard/courses/" + response?.id);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		fetchCourseDetails.then((response) => {
+			if (response.status == 200) {
+				response.json().then((data) => {
+					navigate("/dashboard/courses/" + data?.id);
+					console.log(data);
+				});
+			} else {
+				console.log(response.json());
+			}
+		});
 	};
 
 	useEffect(() => {
 		const getTopCategories = fetchData("/api/topcategories");
-		getTopCategories
-			.then((response) => {
-				setTopCategories(response);
+		getTopCategories.then((response) => {
+			if (response.status == 200) {
+				response.json().then((data) => {
+					setTopCategories(data);
+					setLoadingTopCategories(false);
+				});
+			} else {
 				setLoadingTopCategories(false);
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-				setLoadingTopCategories(false);
-			});
+				console.log(response.json());
+			}
+		});
 	}, []);
 
 	useEffect(() => {
 		const getCoursesByauthor = fetchData("/api/courses/author/", userId);
-		getCoursesByauthor
-			.then((response) => {
+		getCoursesByauthor.then((response) => {
+			if (response.status == 200) {
+				response.json().then((data) => {
+					setCourses(data);
+					setLoadingCourses(false);
+					console.log(data);
+				});
+			} else {
 				console.log(response);
-				setCourses(response);
 				setLoadingCourses(false);
-			})
-			.catch((error) => {
-				console.log(error);
-				setLoadingCourses(false);
-			});
+			}
+		});
 	}, []);
 
 	useEffect(() => {
@@ -116,6 +123,10 @@ function Courses() {
 		}, []);
 		setCategories(data);
 	}, [topCategories]);
+
+	if (!authUser) {
+		//redirect
+	}
 
 	return (
 		<>
