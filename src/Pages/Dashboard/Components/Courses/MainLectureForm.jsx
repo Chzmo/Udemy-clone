@@ -1,11 +1,12 @@
 import jwtDecode from "jwt-decode";
 import React, { useState, useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 
 import { postData } from "../../../../Utils/Query";
 
 function MainLectureForm({
+	tabSwitch,
 	contentId,
 	courseDetails,
 	setCourseDetails,
@@ -31,33 +32,37 @@ function MainLectureForm({
 
 	const submitLecture = (e) => {
 		e.preventDefault();
-		const courseContent = postData(
-			"/api/coursecontent/",
-			{ title: newTitle, userId },
-			token,
-			courseId
-		);
-		courseContent.then((response) => {
-			if (response.ok) {
-				response.json().then((data) => {
-					successNotify();
+		if (newTitle.length < 10)
+			toast.warn("Topic must have at least 10 characters");
+		if (tabSwitch == "random_id") {
+			const courseContent = postData(
+				"/api/coursecontent/",
+				{ title: newTitle, userId },
+				token,
+				courseId
+			);
+			courseContent.then((response) => {
+				if (response.ok) {
+					response.json().then((data) => {
+						successNotify();
+						setLoadingContentSubmission(false);
+						const newObject = { id: data?.id, title: data?.title };
+						const index = courseDetails?.content?.findIndex(
+							(item) => item.id === contentId
+						);
+						const newContent = [...courseDetails?.content];
+						newContent[index] = newObject;
+						setCourseDetails({ ...courseDetails, content: newContent });
+						setTabSwitch(data?.id);
+						console.log(data);
+					});
+				} else {
+					errorNotify();
 					setLoadingContentSubmission(false);
-					const newObject = { id: data?.id, title: data?.title };
-					const index = courseDetails?.content?.findIndex(
-						(item) => item.id === contentId
-					);
-					const newContent = [...courseDetails?.content];
-					newContent[index] = newObject;
-					setCourseDetails({ ...courseDetails, content: newContent });
-					setTabSwitch(data?.id);
-					console.log(data);
-				});
-			} else {
-				errorNotify();
-				setLoadingContentSubmission(false);
-				console.log(response);
-			}
-		});
+					console.log(response);
+				}
+			});
+		}
 	};
 
 	useEffect(() => {

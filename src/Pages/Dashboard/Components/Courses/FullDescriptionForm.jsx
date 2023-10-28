@@ -75,7 +75,7 @@ function FullDescriptionForm({
 						</label>
 						<textarea
 							name='fullDescription'
-							value={fullDescription}
+							value={fullDescription ? fullDescription : ""}
 							autoFocus
 							placeholder='Provide full Description about the whole Course here...'
 							onChange={(e) => setFullDescription(e.target.value)}

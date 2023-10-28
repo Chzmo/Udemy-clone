@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PiFloppyDiskFill } from "react-icons/pi";
+import { MdOndemandVideo } from "react-icons/md";
 import { BsArrowLeft } from "react-icons/bs";
 
 import { fetchData } from "../../../../Utils/Query";
@@ -34,13 +35,19 @@ function CourseDetails() {
 		if (tabSwitch == "random_id") {
 			return;
 		}
+		const index = courseDetails?.content?.findIndex(
+			(item) => item.id == "random_id"
+		);
+
+		if (index == -1) {
+			setCourseDetails({
+				...courseDetails,
+				content: [...content, { title: "Untitled Topic", id: "random_id" }],
+			});
+		}
 		switchTabSection("lecture");
 		setTabSwitch("random_id");
 		setContentId("random_id");
-		setCourseDetails({
-			...courseDetails,
-			content: [...content, { title: "Untitled Topic", id: "random_id" }],
-		});
 	};
 
 	useEffect(() => {
@@ -53,7 +60,6 @@ function CourseDetails() {
 					setObjectives(data.objective);
 					setRequirements(data.requirements);
 					setFullDescription(data.fullDescription);
-					console.log(data);
 				});
 			} else {
 				console.log(response);
@@ -172,6 +178,7 @@ function CourseDetails() {
 								contentId={contentId}
 								courseDetails={courseDetails}
 								setCourseDetails={setCourseDetails}
+								tabSwitch={tabSwitch}
 								setTabSwitch={setTabSwitch}
 							/>
 						)}
@@ -184,6 +191,7 @@ function CourseDetails() {
 											contentId={content.id}
 											courseDetails={courseDetails}
 											setCourseDetails={setCourseDetails}
+											tabSwitch={tabSwitch}
 											setTabSwitch={setTabSwitch}
 										/>
 									);
