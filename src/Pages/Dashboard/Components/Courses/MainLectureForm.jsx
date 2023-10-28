@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 
 import { postData } from "../../../../Utils/Query";
 
-function MainLectureForm({ contentId, courseDetails, setCourseDetails }) {
+function MainLectureForm({
+	contentId,
+	courseDetails,
+	setCourseDetails,
+	setTabSwitch,
+}) {
 	const title = courseDetails?.content?.reduce((accumulator, currentItem) => {
 		if (currentItem.id == contentId) {
 			accumulator.push(currentItem);
@@ -36,13 +41,15 @@ function MainLectureForm({ contentId, courseDetails, setCourseDetails }) {
 			if (response.ok) {
 				response.json().then((data) => {
 					successNotify();
-					const content = courseContent?.content;
-					content[content.length] = data;
-					setCourseDetails({
-						...courseDetails,
-						content: content,
-					});
 					setLoadingContentSubmission(false);
+					const newObject = { id: data?.id, title: data?.title };
+					const index = courseDetails?.content?.findIndex(
+						(item) => item.id === contentId
+					);
+					const newContent = [...courseDetails?.content];
+					newContent[index] = newObject;
+					setCourseDetails({ ...courseDetails, content: newContent });
+					setTabSwitch(data?.id);
 					console.log(data);
 				});
 			} else {
@@ -86,7 +93,6 @@ function MainLectureForm({ contentId, courseDetails, setCourseDetails }) {
 						</button>
 					</div>
 				</form>
-				<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 			</div>
 		</>
 	);

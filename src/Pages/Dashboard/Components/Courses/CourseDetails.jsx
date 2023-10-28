@@ -11,6 +11,7 @@ import Requirements from "./Requirements";
 import FullDescriptionForm from "./FullDescriptionForm";
 import SectionForm from "./SectionForm";
 import MainLectureForm from "./MainLectureForm";
+import { ToastContainer } from "react-toastify";
 
 function CourseDetails() {
 	const { courseId } = useParams();
@@ -23,7 +24,6 @@ function CourseDetails() {
 	const [submitCourseObjectives, setSubmitCoursesObjectives] = useState(false);
 	const [fullDescription, setFullDescription] = useState(null);
 	const [contentId, setContentId] = useState(null);
-	const [x, setX] = useState(false);
 
 	const switchTabSection = (tabIndex) => {
 		setTabSwitch(tabIndex);
@@ -31,6 +31,9 @@ function CourseDetails() {
 
 	const addSection = () => {
 		const content = courseDetails?.content;
+		if (tabSwitch == "random_id") {
+			return;
+		}
 		switchTabSection("lecture");
 		setTabSwitch("random_id");
 		setContentId("random_id");
@@ -124,8 +127,8 @@ function CourseDetails() {
 										}`}>
 										<AiOutlineFileText />
 										<h4>
-											{content?.title.length > 23
-												? `${content?.title?.slice(0, 23)} ...`
+											{content?.title.length > 20
+												? `${content?.title?.slice(0, 20)}...`
 												: content?.title}
 										</h4>
 									</div>
@@ -169,6 +172,7 @@ function CourseDetails() {
 								contentId={contentId}
 								courseDetails={courseDetails}
 								setCourseDetails={setCourseDetails}
+								setTabSwitch={setTabSwitch}
 							/>
 						)}
 						{courseDetails?.content &&
@@ -180,6 +184,7 @@ function CourseDetails() {
 											contentId={content.id}
 											courseDetails={courseDetails}
 											setCourseDetails={setCourseDetails}
+											setTabSwitch={setTabSwitch}
 										/>
 									);
 								}
@@ -187,6 +192,7 @@ function CourseDetails() {
 					</div>
 				</div>
 			)}
+			<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 		</>
 	);
 }
