@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PiFloppyDiskFill } from "react-icons/pi";
 import { GoVideo } from "react-icons/go";
 import { BsArrowLeft } from "react-icons/bs";
+import { fetchData } from "../../../../Utils/Query";
+import Spinner from "../Spinner/Spinner";
+import Objective from "./Objective";
 import {
-	AiFillDelete,
 	AiOutlineDelete,
 	AiOutlineFileText,
 	AiOutlinePlus,
 } from "react-icons/ai";
-
-import { fetchData } from "../../../../Utils/Query";
-import Spinner from "../Spinner/Spinner";
-import Objective from "./Objective";
-
-import { ToastContainer } from "react-toastify";
 import Requirements from "./Requirements";
 import FullDescriptionForm from "./FullDescriptionForm";
 import MainLectureForm from "./MainLectureForm";
+import { ToastContainer } from "react-toastify";
 import TopicForm from "./TopicForm";
 
-function CourseDetails() {
+export function CourseDetails() {
 	const { courseId } = useParams();
 	const [courseDetails, setCourseDetails] = useState(null);
 	const [tabSwitch, setTabSwitch] = useState(null);
@@ -60,13 +57,14 @@ function CourseDetails() {
 	};
 
 	const addTopic = () => {
-		if (tabSwitch == "topic") {
+		if (tabSwitch == "random_topic_id") {
 			// A TOPIC EXISTS ALREADY JUST RETURN
 			return;
 		}
+
 		switchTabSection("topic");
-		setTabSwitch("topic");
-		setTopicId("topic");
+		setTabSwitch("random_section_id");
+		setTopicId("random_section_id");
 	};
 
 	useEffect(() => {
@@ -170,7 +168,7 @@ function CourseDetails() {
 											/>
 										</div>
 										<div className='w-full pl-7 flex flex-col gap-1'>
-											{content?.contentSection?.length > 0 && (
+											{!content?.contentSection?.length > 0 && (
 												<div className='flex justify-between items-center'>
 													<div className='flex items-center gap-2'>
 														<GoVideo />
@@ -241,8 +239,8 @@ function CourseDetails() {
 						{tabSwitch == "topic" && (
 							<TopicForm
 								topicId={topicId}
-								courseDetails={courseDetails}
-								setCourseDetails={setCourseDetails}
+								// courseDetails={courseDetails}
+								// setCourseDetails={setCourseDetails}
 								tabSwitch={tabSwitch}
 								setTabSwitch={setTabSwitch}
 							/>
@@ -269,14 +267,15 @@ function CourseDetails() {
 										<TopicForm
 											key={topic.id}
 											topicId={topic.id}
-											courseDetails={courseDetails}
-											setCourseDetails={setCourseDetails}
+											// courseDetails={courseDetails}
+											// setCourseDetails={setCourseDetails}
 											tabSwitch={tabSwitch}
 											setTabSwitch={setTabSwitch}
 										/>
 									);
 								}
 							})}
+
 						{/* END SWITCH RIGHT TABS BASED ON CONDITIONS*/}
 					</div>
 				</div>
@@ -285,5 +284,3 @@ function CourseDetails() {
 		</>
 	);
 }
-
-export default CourseDetails;

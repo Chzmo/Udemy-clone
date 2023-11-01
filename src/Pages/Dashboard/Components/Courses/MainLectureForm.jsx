@@ -34,7 +34,7 @@ function MainLectureForm({
 		e.preventDefault();
 		if (newTitle.length < 10)
 			toast.warn("Topic must have at least 10 characters");
-		if (tabSwitch == "random_id") {
+		if (tabSwitch == "random_section_id") {
 			const courseContent = postData(
 				"/api/coursecontent/",
 				{ title: newTitle, userId },
