@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { postData } from "../../../../Utils/Query";
+import jwtDecode from "jwt-decode";
 
-function TopicForm({ courseDetails, setCourseDetails }) {
+function TopicForm({
+	courseDetails,
+	setCourseDetails,
+	setTabSwitch,
+	tabSwitch,
+	topicId,
+	contentSectionId,
+	setContentSectionId,
+}) {
 	const initialFormInputs = {
 		title: "",
-		thumbnail: "",
+		url: "",
 	};
 
 	const authUser = jwtDecode(localStorage.getItem("_auth_state"));
@@ -17,14 +26,38 @@ function TopicForm({ courseDetails, setCourseDetails }) {
 	const [formInputs, setFormInputs] = useState(initialFormInputs);
 	const [loadingForm, setLoadingForm] = useState(false);
 
-	const handleFormSubmit = () => {
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+
+		const index = courseDetails?.content?.findIndex(
+			(item) => item.id == contentSectionId
+		);
+
 		setLoadingForm(true);
 		const body = {
 			userId,
+			...formInputs,
+			contentId: contentSectionId,
+			contentId: courseDetails?.content[index]?.id,
 		};
-		console.log(setCourseDetails?.content);
-		return;
-		const response = postData("/api/course/", body, token, courseId);
+
+		console.log(body);
+		const createTopic = postData("/api/course/topic/", body, token, courseId);
+
+		createTopic.then((response) => {
+			if (response.ok) {
+				response.json().then((data) => {
+					setLoadingForm(false);
+					console.log(data);
+					// setCourseDetails({
+					// 	...courseDetails,
+					// 	content: [...courseDetails?.content, courseDetails?.content[index]],
+					// });
+				});
+			} else {
+				setLoadingForm(false);
+			}
+		});
 	};
 
 	const handleChange = (e) => {
@@ -54,14 +87,14 @@ function TopicForm({ courseDetails, setCourseDetails }) {
 					/>
 				</div>
 				<div className='flex flex-col w-full gap-2'>
-					<label htmlFor='thumbnail' className='flex items-center gap-1'>
+					<label htmlFor='url' className='flex items-center gap-1'>
 						<span>Url thumbnail</span>
 						<span className='text-red-600'>*</span>
 					</label>
 					<input
 						type='url'
-						name='thumbnail'
-						value={formInputs.thumbnail}
+						name='url'
+						value={formInputs.url}
 						onChange={handleChange}
 						pattern='https?://.+'
 						className='border-2 border-[#6b7280] border-solid outline-none bg-transparent focus:bg-[#1b1f23] p-2 hover:border-[#5624d0] focus:border-[#5624d0]'

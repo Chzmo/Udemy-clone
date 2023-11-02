@@ -14,10 +14,11 @@ import { courseRouter, coursesRouter } from "./routes/course.route";
 
 import { ratingRouter } from "./routes/rating.route";
 import { categoryRouter } from "./routes/category.route";
+import { courseTopicRouter } from "./routes/courseTopic.route";
 import { topCategoryRouter } from "./routes/topCategory.route";
+import { courseContentRouter } from "./routes/courseContent.route";
 import { courseObjectivesRouter } from "./routes/objectives.route";
 import { courseRequirementsRouter } from "./routes/courseRequirements.route";
-import { courseContentRouter } from "./routes/courseContent.route";
 
 dotenv.config();
 
@@ -44,15 +45,10 @@ app.use("/api/login", loginRouter);
 // COURSE ROUTES
 app.use("/api/courses", coursesRouter);
 app.use("/api/course", courseRouter);
-
-// COURSE OBJECTS ROUTES (what tou will learn routes)
-app.use("/api/courseobjectives", courseObjectivesRouter);
-
-// COURSE CONTENT ROUTES (Topics to cover)
+app.use("/api/course/topic", courseTopicRouter);
 app.use("/api/coursecontent", courseContentRouter);
-
-// COURSE REQUIREMENTS ROUTES (Requirements)
-app.use("/api/courseRequirements", courseRequirementsRouter);
+app.use("/api/courseobjectives", courseObjectivesRouter);
+app.use("/api/courserequirements", courseRequirementsRouter);
 
 // TOP CATEGORIES ROUTES
 app.use("/api/topcategories", topCategoryRouter);

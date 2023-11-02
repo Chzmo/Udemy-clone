@@ -32,6 +32,7 @@ function CourseDetails() {
 	const [fullDescription, setFullDescription] = useState(null);
 	const [contentId, setContentId] = useState(null);
 	const [topicId, setTopicId] = useState(null);
+	const [contentSectionId, setContentSectionId] = useState(null);
 
 	const switchTabSection = (tabIndex) => {
 		setTabSwitch(tabIndex);
@@ -66,7 +67,7 @@ function CourseDetails() {
 		}
 		switchTabSection("topic");
 		setTabSwitch("topic");
-		setTopicId("topic");
+		setTopicId("random_section_id");
 	};
 
 	useEffect(() => {
@@ -186,7 +187,10 @@ function CourseDetails() {
 												</div>
 											)}
 											<button
-												onClick={addTopic}
+												onClick={(e) => {
+													setContentSectionId(content?.id);
+													addTopic(e);
+												}}
 												className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
 												<AiOutlinePlus size={18} />
 												<span>ADD TOPIC</span>
@@ -245,6 +249,8 @@ function CourseDetails() {
 								setCourseDetails={setCourseDetails}
 								tabSwitch={tabSwitch}
 								setTabSwitch={setTabSwitch}
+								contentSectionId={contentSectionId}
+								setContentSectionId={setContentSectionId}
 							/>
 						)}
 						{courseDetails?.content &&
