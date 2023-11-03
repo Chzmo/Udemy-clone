@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { postData } from "../../../../Utils/Query";
 import jwtDecode from "jwt-decode";
+import { AiOutlineFileText, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { postData, updateData } from "../../../../Utils/Query";
 
 function TopicForm({
 	courseDetails,
@@ -13,27 +12,28 @@ function TopicForm({
 	contentSectionId,
 	setContentSectionId,
 }) {
-	const initialFormInputs = {
-		title: "",
-		url: "",
-	};
+	const initialFormInputs =
+		topicId == "random_topic_id"
+			? {
+					title: "",
+					url: "",
+			  }
+			: {};
 
 	const authUser = jwtDecode(localStorage.getItem("_auth_state"));
 	const token = localStorage.getItem("_auth");
 	const userId = authUser?.id;
-	const { courseId } = useParams();
 
 	const [formInputs, setFormInputs] = useState(initialFormInputs);
 	const [loadingForm, setLoadingForm] = useState(false);
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-
+		console.log(courseDetails);
 		const index = courseDetails?.content?.findIndex(
 			(item) => item.id == contentSectionId
 		);
 
-		setLoadingForm(true);
 		const body = {
 			userId,
 			...formInputs,
@@ -41,23 +41,56 @@ function TopicForm({
 			contentId: courseDetails?.content[index]?.id,
 		};
 
-		console.log(body);
-		const createTopic = postData("/api/course/topic/", body, token, courseId);
+		setLoadingForm(true);
 
-		createTopic.then((response) => {
-			if (response.ok) {
-				response.json().then((data) => {
-					setLoadingForm(false);
-					console.log(data);
-					// setCourseDetails({
-					// 	...courseDetails,
-					// 	content: [...courseDetails?.content, courseDetails?.content[index]],
-					// });
-				});
-			} else {
+		if (topicId == "random_topic_id") {
+			const createTopic = postData(
+				"/api/course/topic/",
+				body,
+				token,
+				contentSectionId
+			);
+			createTopic.then((response) => {
+				if (response.ok) {
+					response.json().then((data) => {
+						const updatedContent = courseDetails?.content;
+						updatedContent[index] = data;
+						setCourseDetails({
+							...courseDetails,
+							content: [...updatedContent],
+						});
+
+						console.log(data);
+						setFormInputs(initialFormInputs);
+						setLoadingForm(false);
+					});
+				} else {
+				}
 				setLoadingForm(false);
-			}
-		});
+			});
+		} else {
+			const createTopic = updateData(
+				"/api/course/topic/",
+				body,
+				token,
+				contentSectionId
+			);
+			createTopic.then((response) => {
+				if (response.ok) {
+					response.json().then((data) => {
+						setLoadingForm(false);
+						setFormInputs(initialFormInputs);
+						console.log(data);
+						// setCourseDetails({
+						// 	...courseDetails,
+						// 	content: [...courseDetails?.content, courseDetails?.content[index]],
+						// });
+					});
+				} else {
+				}
+				setLoadingForm(false);
+			});
+		}
 	};
 
 	const handleChange = (e) => {
@@ -71,7 +104,18 @@ function TopicForm({
 		<>
 			<form
 				onSubmit={handleFormSubmit}
-				className='flex flex-col gap-3 w-3/4 mt-9 text-[#6b7280] font-normal'>
+				className='flex flex-col gap-3 w-3/4 text-[#6b7280] font-normal'>
+				<div className='flex gap-2 items-center text-lg font-bold'>
+					<AiOutlineFileText size={20} />
+					<span>
+						{
+							// THIS GETS THE HEADING OF THE SECTION
+							courseDetails?.content[
+								courseDetails?.content?.findIndex((item) => item.id == contentSectionId)
+							].title
+						}
+					</span>
+				</div>
 				<div className='flex flex-col w-full gap-2'>
 					<label htmlFor='title' className='flex items-center gap-1'>
 						<span>Title</span>

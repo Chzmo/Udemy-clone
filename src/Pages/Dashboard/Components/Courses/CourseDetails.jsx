@@ -67,7 +67,7 @@ function CourseDetails() {
 		}
 		switchTabSection("topic");
 		setTabSwitch("topic");
-		setTopicId("random_section_id");
+		setTopicId("random_topic_id");
 	};
 
 	useEffect(() => {
@@ -87,6 +87,7 @@ function CourseDetails() {
 		});
 	}, []);
 
+	console.log(courseDetails);
 	return (
 		<>
 			{loadingCourse && (
@@ -119,7 +120,7 @@ function CourseDetails() {
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
 					<div className='flex gap-3 w-full text-[#6b7280] min-h-[600px] '>
 						{/* START LEFT NAVIGATON */}
-						<div className='flex flex-col gap-3 w-1/4'>
+						<div key={"no_need_key"} className='flex flex-col gap-3 w-1/4'>
 							<div
 								onClick={() => switchTabSection(null)}
 								className={`flex gap-2 items-center cursor-pointer font-semibold text-lg w-fit hover:text-[#5624d0] ${
@@ -171,21 +172,29 @@ function CourseDetails() {
 											/>
 										</div>
 										<div className='w-full pl-7 flex flex-col gap-1'>
-											{content?.contentSection?.length > 0 && (
-												<div className='flex justify-between items-center'>
-													<div className='flex items-center gap-2'>
-														<GoVideo />
-														<span className='text-sm'>halla</span>
-													</div>
-													<AiOutlineDelete
-														size={20}
-														className='self-center justify-self-end hover:text-red-600'
-														onClick={() => {
-															alert();
-														}}
-													/>
-												</div>
-											)}
+											{content?.contentSection?.length > 0 &&
+												content?.contentSection?.map((topic) => {
+													return (
+														<div
+															key={topic.id}
+															className='flex justify-between items-center cursor-pointer'>
+															<div
+																className={`flex items-center gap-2 hover:text-[#5624d0] ${
+																	tabSwitch == topic.id ? "text-[#5624d0]" : ""
+																}`}>
+																<GoVideo />
+																<span className='text-sm'>{topic.title}</span>
+															</div>
+															<AiOutlineDelete
+																size={18}
+																className='self-center justify-self-end hover:text-red-600'
+																onClick={() => {
+																	alert();
+																}}
+															/>
+														</div>
+													);
+												})}
 											<button
 												onClick={(e) => {
 													setContentSectionId(content?.id);

@@ -1,4 +1,5 @@
 import { db } from "../utils/db.server";
+import { getCourseContent } from "./courseContentController";
 
 type CourseTopic = {
 	title: string;
@@ -12,7 +13,8 @@ export const createCourseTopic = async (
 	contentId: string
 ) => {
 	const { title, url, userId } = courseTopic;
-	const coursesTopicData = await db.contentSection.create({
+
+	await db.contentSection.create({
 		data: {
 			title,
 			url,
@@ -28,7 +30,13 @@ export const createCourseTopic = async (
 		},
 	});
 
-	return coursesTopicData;
+	return await getCourseContent(contentId);
+
+	// return await db.contentSection.findMany({
+	// 	where: {
+	// 		id,
+	// 	},
+	// });
 };
 
 export const updateCourseTopic = async (

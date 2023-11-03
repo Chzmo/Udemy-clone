@@ -64,8 +64,8 @@ model Ojective {
   title     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Course    Course   @relation(fields: [courseId], references: [id])
   courseId  String   @db.ObjectId
+  Course    Course   @relation(fields: [courseId], references: [id])
 }
 
 model Content {
@@ -74,20 +74,20 @@ model Content {
   courseId       String           @db.ObjectId
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
-  contentSection ContentSection[]
   course         Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  contentSection ContentSection[]
 }
 
 model ContentSection {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
-  url       String
+  url       String   @unique
   authorId  String   @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  contentId String   @db.ObjectId
+  content   Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
   author    User?    @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  Content   Content? @relation(fields: [contentId], references: [id])
-  contentId String?  @db.ObjectId
 }
 
 model Requirements {

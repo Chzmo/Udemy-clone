@@ -72,6 +72,7 @@ export const getCourseByAuthor = async (authorId: string) => {
 				price: true,
 				revisedPrice: true,
 				thumbnail: true,
+				requirements: true,
 				author: {
 					select: {
 						id: true,
@@ -83,7 +84,6 @@ export const getCourseByAuthor = async (authorId: string) => {
 						title: true,
 					},
 				},
-				requirements: true,
 				rating: {
 					select: {
 						rating: {
@@ -91,6 +91,14 @@ export const getCourseByAuthor = async (authorId: string) => {
 								value: true,
 							},
 						},
+					},
+				},
+				content: {
+					select: {
+						id: true,
+						title: true,
+						createdAt: true,
+						contentSection: true,
 					},
 				},
 			},
@@ -170,11 +178,13 @@ export const getCourse = async (id: string) => {
 				select: {
 					id: true,
 					title: true,
+					createdAt: true,
 					contentSection: {
 						select: {
 							id: true,
 							url: true,
 							title: true,
+							authorId: true,
 						},
 					},
 				},
