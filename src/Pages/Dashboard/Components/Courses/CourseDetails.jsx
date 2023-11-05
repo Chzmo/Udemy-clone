@@ -216,7 +216,7 @@ function CourseDetails() {
 															<span className='text-sm'>
 																{topic?.title.length > 20
 																	? `${topic?.title?.slice(0, 20)}...`
-																	: content?.title}
+																	: topic?.title}
 															</span>
 														</div>
 														<AiOutlineDelete
