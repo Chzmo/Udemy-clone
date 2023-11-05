@@ -1,9 +1,10 @@
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { PiFloppyDiskFill } from "react-icons/pi";
 import { GoVideo } from "react-icons/go";
 import { BsArrowLeft } from "react-icons/bs";
+import { PiFloppyDiskFill } from "react-icons/pi";
+import { ToastContainer } from "react-toastify";
+import { Link, useParams } from "react-router-dom";
 import {
 	AiOutlineDelete,
 	AiOutlineFileText,
@@ -14,7 +15,6 @@ import { deleteData, fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import Objective from "./Objective";
 
-import { ToastContainer } from "react-toastify";
 import Requirements from "./Requirements";
 import FullDescriptionForm from "./FullDescriptionForm";
 import MainLectureForm from "./MainLectureForm";
