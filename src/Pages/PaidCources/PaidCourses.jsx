@@ -49,7 +49,7 @@ function PaidCourses() {
 					<Companies />
 					<CourseContent course={course} loadindCourse={loadindCourse} />
 					<Requirements course={course} loadindCourse={loadindCourse} />
-					<Description course={course} />
+					<Description course={course} loadindCourse={loadindCourse} />
 					<Related course={course} />
 					<Instructor course={course} />
 					<ReviewCourse course={course} />
