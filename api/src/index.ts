@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { authMiddleware } from "../middleware/authMiddleware";
