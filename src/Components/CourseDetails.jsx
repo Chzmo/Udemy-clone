@@ -35,7 +35,9 @@ function CourseDetails({ course, setIsOpen, setTooltipData }) {
 	return (
 		<>
 			<HashLink
-				to={`/${course?.price > 0 ? "paid-course" : "free-course"}/${course.id}`}
+				to={
+					`/${course?.price > 0 ? "paid-course" : "free-course"}/${course.id}` + "#"
+				}
 				data-tooltip-id={`my-tooltip`}
 				// data-tooltip-content= {[<p>fdgdgd</p>]}
 				onMouseEnter={() => {
