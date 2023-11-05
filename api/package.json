@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "node-prisma",
   "version": "1.0.0",
   "description": "Backend project for Udemy clone Project",
