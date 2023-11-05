@@ -1,4 +1,4 @@
-// import { GoPrimitiveDot } from 'react-icons/go'
+import { BsDot } from "react-icons/bs";
 
 function Requirements({ course, loadindCourse }) {
 	return (
@@ -8,7 +8,7 @@ function Requirements({ course, loadindCourse }) {
 				{course?.requirements?.map((requirement) => {
 					return (
 						<div key={requirement.id} className='pl-3 flex items-center gap-3'>
-							{/* <GoPrimitiveDot size={14}/>  */}
+							<BsDot size={14} />
 							<p className='text-sm'>{requirement?.title}</p>
 						</div>
 					);
