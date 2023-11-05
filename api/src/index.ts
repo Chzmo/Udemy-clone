@@ -32,6 +32,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+	res.send("Hello, World! This is a Udemy Clone api");
+});
+
 // AUTH ROUTES
 app.use("/api/user", authMiddleware, userRouter);
 app.use("/api/users", authMiddleware, usersRouter);
