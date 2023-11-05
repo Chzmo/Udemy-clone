@@ -1,16 +1,16 @@
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PiFloppyDiskFill } from "react-icons/pi";
 import { GoVideo } from "react-icons/go";
 import { BsArrowLeft } from "react-icons/bs";
 import {
-	AiFillDelete,
 	AiOutlineDelete,
 	AiOutlineFileText,
 	AiOutlinePlus,
 } from "react-icons/ai";
 
-import { fetchData } from "../../../../Utils/Query";
+import { deleteData, fetchData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import Objective from "./Objective";
 
@@ -70,6 +70,29 @@ function CourseDetails() {
 		setTopicId("random_topic_id");
 	};
 
+	const deleteTopic = () => {
+		Swal.fire({
+			text: "You won't be able to revert this!",
+			theme: "Dark",
+			showDenyButton: true,
+			confirmButtonText: "Yes, delete it!?",
+			denyButtonText: `No, cancel!`,
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				const deleteTopic = deleteData("/api/course/topic/", token, topicId);
+
+				deleteTopic.then((response) => {
+					if (response.ok) {
+						response.json().then((data) => {});
+					}
+				});
+			} else if (result.isDenied) {
+				return;
+			}
+		});
+	};
+
 	useEffect(() => {
 		const courseData = fetchData("/api/course/", courseId);
 		courseData.then((response) => {
@@ -82,6 +105,7 @@ function CourseDetails() {
 					setFullDescription(data.fullDescription);
 				});
 			} else {
+				setLoadingCourse(false);
 				console.log(response);
 			}
 		});
@@ -97,6 +121,7 @@ function CourseDetails() {
 			)}
 			{courseDetails && (
 				<div className='flex flex-col w-full'>
+					{/* TOP NAVIGATION*/}
 					<div className='flex w-full justify-between items-end gap-3'>
 						<div className='flex flex-col gap-1 text-[#6b7280] font-semibold'>
 							<Link
@@ -118,6 +143,8 @@ function CourseDetails() {
 						</div>
 					</div>
 					<hr className='border-t-[1px] border-[#6b7280] my-5 ' />
+					{/* END TOP NAVIGATION*/}
+
 					<div className='flex gap-3 w-full text-[#6b7280] min-h-[600px] '>
 						{/* START LEFT NAVIGATON */}
 						<div key={"no_need_key"} className='flex flex-col gap-3 w-1/4'>
@@ -148,6 +175,7 @@ function CourseDetails() {
 							{courseDetails?.content &&
 								courseDetails?.content.map((content) => (
 									<>
+										{/* CONTENT/LECTURE TITLE */}
 										<div
 											key={content.id}
 											className={`flex justify-between w-full items-center cursor-pointer font-semibold text-lg`}>
@@ -166,44 +194,51 @@ function CourseDetails() {
 											<AiOutlineDelete
 												size={20}
 												className='self-center justify-self-end hover:text-red-600'
-												onClick={() => {
-													alert();
-												}}
+												onClick={deleteTopic}
 											/>
 										</div>
+
+										{/* TOPIC TITLE */}
 										<div className='w-full pl-7 flex flex-col gap-1'>
-											{content?.contentSection?.length > 0 &&
-												content?.contentSection?.map((topic) => {
-													return (
+											{content?.contentSection?.map((topic) => {
+												return (
+													<div
+														key={topic.id}
+														className='flex justify-between items-center cursor-pointer'>
 														<div
-															key={topic.id}
-															className='flex justify-between items-center cursor-pointer'>
-															<div
-																className={`flex items-center gap-2 hover:text-[#5624d0] ${
-																	tabSwitch == topic.id ? "text-[#5624d0]" : ""
-																}`}>
-																<GoVideo />
-																<span className='text-sm'>{topic.title}</span>
-															</div>
-															<AiOutlineDelete
-																size={18}
-																className='self-center justify-self-end hover:text-red-600'
-																onClick={() => {
-																	alert();
-																}}
-															/>
+															onClick={() => {
+																switchTabSection(topic.id);
+															}}
+															className={`flex items-center gap-2 hover:text-[#5624d0] ${
+																tabSwitch == topic.id ? "text-[#5624d0]" : ""
+															}`}>
+															<GoVideo />
+															<span className='text-sm'>
+																{topic?.title.length > 20
+																	? `${topic?.title?.slice(0, 20)}...`
+																	: content?.title}
+															</span>
 														</div>
-													);
-												})}
-											<button
-												onClick={(e) => {
-													setContentSectionId(content?.id);
-													addTopic(e);
-												}}
-												className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
-												<AiOutlinePlus size={18} />
-												<span>ADD TOPIC</span>
-											</button>
+														<AiOutlineDelete
+															size={18}
+															className='self-center justify-self-end hover:text-red-600'
+															onClick={deleteTopic}
+														/>
+													</div>
+												);
+											})}
+
+											{contentId != "random_section_id" && (
+												<button
+													onClick={(e) => {
+														setContentSectionId(content?.id);
+														addTopic(e);
+													}}
+													className='flex gap-2 w-full items-center text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>
+													<AiOutlinePlus size={18} />
+													<span>ADD TOPIC</span>
+												</button>
+											)}
 										</div>
 									</>
 								))}
@@ -264,8 +299,8 @@ function CourseDetails() {
 						)}
 						{courseDetails?.content &&
 							courseDetails?.content.map((content) => {
-								if (tabSwitch == content.id) {
-									return (
+								return (
+									tabSwitch == content.id && (
 										<MainLectureForm
 											key={content.id}
 											contentId={content.id}
@@ -274,24 +309,29 @@ function CourseDetails() {
 											tabSwitch={tabSwitch}
 											setTabSwitch={setTabSwitch}
 										/>
-									);
-								}
+									)
+								);
 							})}
-						{courseDetails?.content?.contentSection &&
-							courseDetails?.content?.contentSection.map((topic) => {
-								if (tabSwitch == topic.id) {
+						{courseDetails?.content &&
+							courseDetails?.content.map((content) => {
+								return content?.contentSection?.map((topic) => {
 									return (
-										<TopicForm
-											key={topic.id}
-											topicId={topic.id}
-											courseDetails={courseDetails}
-											setCourseDetails={setCourseDetails}
-											tabSwitch={tabSwitch}
-											setTabSwitch={setTabSwitch}
-										/>
+										tabSwitch === topic.id && (
+											<TopicForm
+												key={topic.id}
+												topicId={topic.id}
+												courseDetails={courseDetails}
+												setCourseDetails={setCourseDetails}
+												tabSwitch={tabSwitch}
+												setTabSwitch={setTabSwitch}
+												contentSectionId={content.id}
+												setContentSectionId={setContentSectionId}
+											/>
+										)
 									);
-								}
+								});
 							})}
+
 						{/* END SWITCH RIGHT TABS BASED ON CONDITIONS*/}
 					</div>
 				</div>

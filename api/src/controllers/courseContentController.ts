@@ -39,3 +39,25 @@ export const getCourseContent = async (contentId: string) => {
 
 	return courseContent;
 };
+
+// UPDATE COURSE CONTENT
+export const updateCourseContent = async (title: string, id: string) => {
+	const courseContent = await db.content.update({
+		where: { id },
+		data: { title },
+		select: {
+			id: true,
+			title: true,
+			contentSection: {
+				select: {
+					id: true,
+					title: true,
+					url: true,
+					author: true,
+				},
+			},
+		},
+	});
+
+	return courseContent;
+};

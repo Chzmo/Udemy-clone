@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import jwtDecode from "jwt-decode";
 import { AiOutlineFileText, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { toast } from "react-toastify";
 import { postData, updateData } from "../../../../Utils/Query";
 
 function TopicForm({
@@ -12,14 +13,20 @@ function TopicForm({
 	contentSectionId,
 	setContentSectionId,
 }) {
+	const index = courseDetails?.content?.findIndex(
+		(item) => item.id == contentSectionId
+	);
 	const initialFormInputs =
 		topicId == "random_topic_id"
 			? {
 					title: "",
 					url: "",
 			  }
-			: {};
-
+			: {
+					...courseDetails?.content[index]?.contentSection.filter(
+						(topic) => topic.id == topicId
+					)[0],
+			  };
 	const authUser = jwtDecode(localStorage.getItem("_auth_state"));
 	const token = localStorage.getItem("_auth");
 	const userId = authUser?.id;
@@ -29,11 +36,6 @@ function TopicForm({
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		console.log(courseDetails);
-		const index = courseDetails?.content?.findIndex(
-			(item) => item.id == contentSectionId
-		);
-
 		const body = {
 			userId,
 			...formInputs,
@@ -69,22 +71,24 @@ function TopicForm({
 				setLoadingForm(false);
 			});
 		} else {
-			const createTopic = updateData(
-				"/api/course/topic/",
-				body,
-				token,
-				contentSectionId
-			);
-			createTopic.then((response) => {
+			const updateTopic = updateData("/api/course/topic/", body, token, topicId);
+			updateTopic.then((response) => {
 				if (response.ok) {
 					response.json().then((data) => {
-						setLoadingForm(false);
-						setFormInputs(initialFormInputs);
+						const updatedContent = [...courseDetails?.content];
+						const topicIndex = updatedContent[index].contentSection.findIndex(
+							(item) => item.id == topicId
+						);
+
+						updatedContent[index].contentSection[topicIndex] = data;
+						console.log(updatedContent[index].contentSection);
+						setCourseDetails({
+							...courseDetails,
+							content: [...updatedContent],
+						});
+
 						console.log(data);
-						// setCourseDetails({
-						// 	...courseDetails,
-						// 	content: [...courseDetails?.content, courseDetails?.content[index]],
-						// });
+						setLoadingForm(false);
 					});
 				} else {
 				}
@@ -112,7 +116,7 @@ function TopicForm({
 							// THIS GETS THE HEADING OF THE SECTION
 							courseDetails?.content[
 								courseDetails?.content?.findIndex((item) => item.id == contentSectionId)
-							].title
+							]?.title
 						}
 					</span>
 				</div>
@@ -159,16 +163,8 @@ function TopicForm({
 						<>
 							<input
 								type='submit'
-								value={"CREATE"}
+								value={topicId == "random_topic_id" ? "CREATE" : "UPDATE"}
 								className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 hover:text-[#5624d0] bg-[#5624d0] hover:bg-transparent text-[#1b1f23]'
-							/>
-							<input
-								type='button'
-								value={"CANCEL"}
-								onClick={() => {
-									setCreateCourse(false);
-								}}
-								className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'
 							/>
 						</>
 					)}

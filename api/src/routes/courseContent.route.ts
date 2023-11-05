@@ -35,3 +35,28 @@ courseContentRouter.post(
 		}
 	}
 );
+
+courseContentRouter.put(
+	"/:id",
+	validateRequest,
+	authMiddleware,
+
+	async (request: Request, response: Response) => {
+		const id: string = request.params.id;
+		const errors = validationResult(request.body);
+		if (!errors.isEmpty()) {
+			return response.status(400).json({ errors: errors.array() });
+		}
+
+		try {
+			const courseContent = await courseContentController.updateCourseContent(
+				request.body.title,
+				id
+			);
+			console.log(request.body);
+			return response.status(200).json(courseContent);
+		} catch (error) {
+			return response.status(400).json(error);
+		}
+	}
+);

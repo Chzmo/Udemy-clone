@@ -32,5 +32,8 @@
     "nodemon": "^2.0.22",
     "prisma": "^5.5.0",
     "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": "^19"
   }
 }

@@ -6,6 +6,7 @@ import { fetchData, postData } from "../../../../Utils/Query";
 import Spinner from "../Spinner/Spinner";
 import CourseForm from "./CourseForm";
 import DashboardNav from "../DashboardNav/DashboardNav";
+import { ToastContainer } from "react-toastify";
 
 function Courses() {
 	const navigate = useNavigate();
@@ -179,6 +180,7 @@ function Courses() {
 					</>
 				)
 			)}
+			<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 		</>
 	);
 }

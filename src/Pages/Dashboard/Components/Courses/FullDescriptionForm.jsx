@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { updateData } from "../../../../Utils/Query";
 import { useParams } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
@@ -63,7 +63,6 @@ function FullDescriptionForm({
 
 	return (
 		<>
-			<ToastContainer hideProgressBar={true} theme='dark' autoClose={2000} />
 			{!submitStatus ? (
 				<form
 					onSubmit={submitFullDescription}

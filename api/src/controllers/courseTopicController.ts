@@ -31,12 +31,6 @@ export const createCourseTopic = async (
 	});
 
 	return await getCourseContent(contentId);
-
-	// return await db.contentSection.findMany({
-	// 	where: {
-	// 		id,
-	// 	},
-	// });
 };
 
 export const updateCourseTopic = async (
@@ -52,6 +46,13 @@ export const updateCourseTopic = async (
 			title,
 			url,
 			authorId: userId,
+		},
+		select: {
+			id: true,
+			title: true,
+			url: true,
+			contentId: true,
+			authorId: true,
 		},
 	});
 };
