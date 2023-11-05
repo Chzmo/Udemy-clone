@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import CourseDetails from "../CourseDetails";
 import DataTooltip from "../DataTooltip";
+import { fetchData } from "../../Utils/Query";
+import { data } from "autoprefixer";
 
 function AccordionItem(props) {
 	const { defaultOpen, title, globalState, searchParam } = props;
@@ -29,7 +31,7 @@ function AccordionItem(props) {
 			{isOpen && (
 				<div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden pb-3'>
 					{globalState.categories &&
-						globalState?.categories[searchParam]?.course?.map((_course, index) => {
+						globalState?.categories[searchParam]?.course?.map((course, index) => {
 							return (
 								<div className=''>
 									<CourseDetails
@@ -70,6 +72,7 @@ function SamplePrevArrow(props) {
 
 function Courses({ globalState }) {
 	const [course, setCourse] = useState("Python");
+	const [courses, setCourses] = useState(null);
 	const [searchParam, setSearchParam] = useState(0);
 	const [tooltipData, setTooltipData] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
@@ -102,7 +105,18 @@ function Courses({ globalState }) {
 	];
 
 	useEffect(() => {
-		// console.log(globalState?.categories && globalState?.categories[0]?.course)
+		const courseData = fetchData("/api/courses/");
+		courseData.then((response) => {
+			if (response.ok) {
+				response.json().then((data) => {
+					setCourses(data);
+				});
+			}
+		});
+	}, []);
+
+	useEffect(() => {
+		console.log("halla");
 	}, [course]);
 
 	return (
@@ -114,34 +128,32 @@ function Courses({ globalState }) {
 					month
 				</p>
 				<div className='flex gap-3 mt-3'>
-					{globalState.categories &&
-						globalState?.categories[0]?.course?.map((_course, index) => {
+					{courses &&
+						courses?.map((course, index) => {
 							return (
 								index < 2 && (
 									<p
 										key={index}
 										onClick={(e) => setCourse(e.target.innerText)}
 										className={`font-bold text-lg hover:text-black cursor-pointer ${
-											_course.name === course ? "text-black" : "text-slate-500"
-										}`}
-									>
-										{_course.name}
+											course.title === course ? "text-black" : "text-slate-500"
+										}`}>
+										{/* {course.title} */}
 									</p>
 								)
 							);
 						})}
-					{globalState.categories &&
-						globalState.categories[5]?.course?.map((_course, index) => {
+					{courses &&
+						courses?.map((course, index) => {
 							return (
-								index < 2 && (
+								2 < index < 5 && (
 									<p
 										key={index}
 										onClick={(e) => setCourse(e.target.innerText)}
 										className={`font-bold text-lg hover:text-black cursor-pointer ${
-											_course.name === course ? "text-black" : "text-slate-500"
-										}`}
-									>
-										{_course.name}
+											course.name === course ? "text-black" : "text-slate-500"
+										}`}>
+										{/* {course.title} */}
 									</p>
 								)
 							);
@@ -163,14 +175,13 @@ function Courses({ globalState }) {
 					</Link>
 					<div className='mt-7'>
 						<Slider {...settings} className='w-scren'>
-							{globalState.categories &&
-								globalState?.categories[searchParam]?.course?.map((_course, index) => {
+							{courses &&
+								courses?.map((course, index) => {
 									return (
 										<div className=''>
 											<CourseDetails
 												key={index}
-												globalState={globalState}
-												course={_course}
+												course={course}
 												isOpen={isOpen}
 												setIsOpen={setIsOpen}
 												setTooltipData={setTooltipData}
@@ -198,7 +209,7 @@ function Courses({ globalState }) {
 							content={item.content}
 							defaultOpen={index === 0}
 							globalState={globalState}
-							_course={course}
+							course={course}
 							searchParam={searchParam}
 						/>
 						<hr className='my-3' />

@@ -51,8 +51,8 @@ app.use("/api/courses", coursesRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/course/topic", courseTopicRouter);
 app.use("/api/course/content", courseContentRouter);
+app.use("/api/course/requirements", courseRequirementsRouter);
 app.use("/api/courseobjectives", courseObjectivesRouter);
-app.use("/api/courserequirements", courseRequirementsRouter);
 
 // TOP CATEGORIES ROUTES
 app.use("/api/topcategories", topCategoryRouter);

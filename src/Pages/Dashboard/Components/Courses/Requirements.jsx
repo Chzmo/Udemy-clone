@@ -30,6 +30,7 @@ function Requirements({
 			setRequirements([...requirements, { title: newRequirement, courseId }]);
 			setNewRequirement("");
 			setSubmitRequirements(true);
+			console.log(requirements);
 		}
 	};
 
@@ -51,27 +52,26 @@ function Requirements({
 	const submitCourseRequirements = () => {
 		if (requirements.length > 0 && submitRequirements) {
 			setLoadingRequirements(true);
-			// console.log(requirements);
 			const postRequirements = postData(
-				"/api/courseRequirements/",
+				"/api/course/requirements/",
 				{ courseRequirements: requirements, userId },
 				token,
 				courseId
 			);
-			postRequirements
-				.then((response) => {
-					console.log(response);
-					successNotify();
-					setSubmitRequirements(false);
-					setLoadingRequirements(false);
-				})
-				.catch((error) => {
-					console.log(error);
+			postRequirements.then((response) => {
+				if (response.ok) {
+					response.json().then((data) => {
+						console.log(data);
+						successNotify();
+						setSubmitRequirements(false);
+						setLoadingRequirements(false);
+					});
+				} else {
 					errorNotify();
 					setSubmitRequirements(true);
 					setLoadingRequirements(false);
-				});
-			setSubmitRequirements(false);
+				}
+			});
 		} else {
 			alert("add stuff man");
 		}
@@ -84,10 +84,10 @@ function Requirements({
 					return (
 						<div
 							key={"courseObjective_" + index}
-							className='flex items-end justify-between'>
+							className='flex items-start justify-between'>
 							<div className='flex items-start gap-2 '>
 								<BiCheck size={20} />
-								<div>{requirement.title}</div>
+								<div className='flex flex-1'>{requirement.title}</div>
 							</div>
 							<div
 								onClick={() => removeRequirement(index)}
@@ -117,7 +117,7 @@ function Requirements({
 				</button>
 			</form>
 			<div className='flex items-center justify-end w-full'>
-				{submitRequirements && (
+				{submitRequirements && !loadingRequirements && (
 					<button
 						onClick={submitCourseRequirements}
 						className='text-sm font-semibold border-[#5624d0] border-2 border-solid px-3 py-2 text-[#5624d0] hover:bg-[#5624d0] hover:text-[#1b1f23]'>

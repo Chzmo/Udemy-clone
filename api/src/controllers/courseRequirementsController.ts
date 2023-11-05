@@ -17,7 +17,7 @@ export const createCourseRequirements = async (
 	});
 
 	if (deletedCourseRequirements) {
-		const courseRequirementsData = await db.ojective.createMany({
+		const courseRequirementsData = await db.requirements.createMany({
 			data: courseRequirements,
 		});
 

@@ -57,6 +57,17 @@ coursesRouter.get(
 	}
 );
 
+// GET: List all Courses
+coursesRouter.get("/", async (request: Request, response: Response) => {
+	try {
+		return response
+			.status(200)
+			.json(await courseController.getAllCourses());
+	} catch (error: any) {
+		return response.status(400).json({ message: "Bad request" });
+	}
+});
+
 // GET: a Course by ID
 courseRouter.get("/:id", async (request: Request, responce: Response) => {
 	try {

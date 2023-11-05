@@ -21,7 +21,7 @@ function CourseDetails({ course, setIsOpen, setTooltipData }) {
 			],
 		},
 	];
-	const rating = course?.rating?.length | 0;
+	const rating = course?.rating?.length | 4.5;
 	const Stars = (props) => {
 		let stars = [];
 
@@ -31,19 +31,18 @@ function CourseDetails({ course, setIsOpen, setTooltipData }) {
 
 		return <div className='flex items-center text-slate-500'>{stars}</div>;
 	};
-	console.log(course);
+
 	return (
 		<>
 			<HashLink
-				to={`/${course?.revisedPrice ? "paid-course" : "free-course"}/python#`}
+				to={`/${course?.price > 0 ? "paid-course" : "free-course"}/${course.id}`}
 				data-tooltip-id={`my-tooltip`}
 				// data-tooltip-content= {[<p>fdgdgd</p>]}
 				onMouseEnter={() => {
 					setIsOpen(true);
 					setTooltipData(data);
 				}}
-				onMouseLeave={() => setIsOpen(false)}
-			>
+				onMouseLeave={() => setIsOpen(false)}>
 				<div className='h-32'>
 					<img
 						src={`https://source.unsplash.com/600x499/?programming/${course?.title}`}
@@ -56,7 +55,7 @@ function CourseDetails({ course, setIsOpen, setTooltipData }) {
 				<div className='flex gap-2'>
 					<h2>{rating}</h2>
 					<Stars stars={rating} />
-					<p>({`${course?.rating?.length}`})</p>
+					<p>({`${course?.rating?.length | 40}`})</p>
 				</div>
 				<p className='flex gap-1'>
 					<span className='font-bold'>{`${
