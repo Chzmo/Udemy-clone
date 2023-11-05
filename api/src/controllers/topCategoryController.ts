@@ -24,7 +24,7 @@ export const getTopCategories = async () => {
 			updatedAt: true,
 			title: true,
 			category: true,
-		}
+		},
 	});
 
 	return getTopCategories;

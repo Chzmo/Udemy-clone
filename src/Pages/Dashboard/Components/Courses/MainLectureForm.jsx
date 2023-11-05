@@ -101,15 +101,15 @@ function MainLectureForm({
 		}
 	};
 
-	useEffect(() => {
-		const index = courseDetails?.content?.findIndex(
-			(item) => item.id === contentId
-		);
-		const newContent = courseDetails?.content;
-		newContent[index].title = newTitle;
-		setCourseDetails({ ...courseDetails, content: newContent });
-		console.log(newContent);
-	}, [newTitle]);
+	// useEffect(() => {
+	// 	const index = courseDetails?.content?.findIndex(
+	// 		(item) => item.id === contentId
+	// 	);
+	// 	const newContent = courseDetails?.content;
+	// 	newContent[index].title = newTitle;
+	// 	setCourseDetails({ ...courseDetails, content: newContent });
+	// 	console.log(newContent);
+	// }, [newTitle]);
 
 	return (
 		<>

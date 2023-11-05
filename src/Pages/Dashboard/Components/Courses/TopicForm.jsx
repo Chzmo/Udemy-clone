@@ -62,13 +62,13 @@ function TopicForm({
 							content: [...updatedContent],
 						});
 
-						console.log(data);
+						toast.success("Success ");
 						setFormInputs(initialFormInputs);
 						setLoadingForm(false);
 					});
 				} else {
+					setLoadingForm(false);
 				}
-				setLoadingForm(false);
 			});
 		} else {
 			const updateTopic = updateData("/api/course/topic/", body, token, topicId);
@@ -87,12 +87,12 @@ function TopicForm({
 							content: [...updatedContent],
 						});
 
-						console.log(data);
+						toast.success("Success ");
 						setLoadingForm(false);
 					});
 				} else {
+					setLoadingForm(false);
 				}
-				setLoadingForm(false);
 			});
 		}
 	};

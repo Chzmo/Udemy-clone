@@ -76,7 +76,7 @@ function TopNav({ globalState }) {
 		e.preventDefault();
 		if (searchTearm) navigate("/search/" + searchTearm);
 	};
-	console.log(globalState.categories);
+
 	return (
 		<>
 			<SideNav

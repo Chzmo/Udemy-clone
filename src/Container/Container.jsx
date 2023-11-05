@@ -5,24 +5,27 @@ import { fetchData } from "../Utils/Query";
 import TopNav from "../Components/TopNav/TopNav";
 
 function Container() {
-	const [categories, setCategories] = useState([null]);
+	const [topCategories, setTopCategories] = useState([null]);
 	const [loading, setLoading] = useState(false);
 
 	const globalState = {
 		loading,
 		setLoading,
-		categories,
-		setCategories,
+		topCategories,
+		setTopCategories,
 	};
 
-	async function getData() {
-		const data = await fetchData("/api/categories");
-		console.log(data);
-		setCategories([]);
-	}
-
 	useEffect(() => {
-		getData().finally(() => console.log("end"));
+		const categoriesData = fetchData("/api/topcategories");
+
+		categoriesData.then((response) => {
+			if (response.ok) {
+				response.json().then((data) => {
+					console.log(data);
+					setTopCategories(data);
+				});
+			}
+		});
 	}, []);
 
 	return (

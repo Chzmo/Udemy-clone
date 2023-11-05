@@ -37,6 +37,6 @@ categoryRouter.get("/", async (request: Request, response: Response) => {
 		const categories = await categoryController.getCategories();
 		return response.status(200).json(categories);
 	} catch (error) {
-		return response.status(401).json(error);
+		return response.status(400).json(error);
 	}
 });

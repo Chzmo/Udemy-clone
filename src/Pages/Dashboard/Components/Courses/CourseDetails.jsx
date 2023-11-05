@@ -111,7 +111,6 @@ function CourseDetails() {
 		});
 	}, []);
 
-	console.log(courseDetails);
 	return (
 		<>
 			{loadingCourse && (
