@@ -49,10 +49,7 @@ function AccordionItem(props) {
 						<>
 							<div className='flex flex-col w-full'>
 								<div className='h-32'>
-									<img
-										alt={`course`}
-										className='h-full w-full object-cover animate-pulse  bg-slate-200'
-									/>
+									<div className='h-full w-full object-cover animate-pulse  bg-slate-200'></div>
 								</div>
 								<h2 className='w-full h-6 font-bold bg-slate-200 animate-pulse mt-3'></h2>
 								<h2 className='w-52 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
@@ -194,10 +191,7 @@ function Courses({ globalState }) {
 										return (
 											<>
 												<div key={index} className='h-32'>
-													<img
-														alt={`course`}
-														className='h-full w-full object-cover animate-pulse  bg-slate-200'
-													/>
+													<div className='h-full w-full object-cover animate-pulse  bg-slate-200'></div>
 												</div>
 												<h2 className='w-64 h-6 font-bold bg-slate-200 animate-pulse mt-3'></h2>
 												<h2 className='w-52 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
