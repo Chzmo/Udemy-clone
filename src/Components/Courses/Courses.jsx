@@ -73,6 +73,7 @@ function SamplePrevArrow(props) {
 function Courses({ globalState }) {
 	const [course, setCourse] = useState("Python");
 	const [courses, setCourses] = useState(null);
+	const [loadingCourse, setLoadingCourse] = useState(false);
 	const [searchParam, setSearchParam] = useState(0);
 	const [tooltipData, setTooltipData] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
@@ -83,8 +84,8 @@ function Courses({ globalState }) {
 		slidesToShow: 4,
 		slidesToScroll: 4,
 		initialSlide: 0,
-		nextArrow: <SampleNextArrow />,
-		prevArrow: <SamplePrevArrow />,
+		// nextArrow: <SampleNextArrow />,
+		// prevArrow: <SamplePrevArrow />,
 		responsive: [
 			{
 				breakpoint: 1124,
@@ -105,18 +106,23 @@ function Courses({ globalState }) {
 	];
 
 	useEffect(() => {
+		setLoadingCourse(true);
 		const courseData = fetchData("/api/courses/");
 		courseData.then((response) => {
 			if (response.ok) {
 				response.json().then((data) => {
+					setLoadingCourse(false);
 					setCourses(data);
 				});
+			} else {
+				setLoadingCourse(false);
+				setCourses([]);
 			}
 		});
 	}, []);
 
 	useEffect(() => {
-		console.log("halla");
+		// console.log("halla");
 	}, [course]);
 
 	return (
@@ -175,20 +181,36 @@ function Courses({ globalState }) {
 					</Link>
 					<div className='mt-7'>
 						<Slider {...settings} className='w-scren'>
-							{courses &&
-								courses?.map((course, index) => {
-									return (
-										<div className=''>
-											<CourseDetails
-												key={index}
-												course={course}
-												isOpen={isOpen}
-												setIsOpen={setIsOpen}
-												setTooltipData={setTooltipData}
-											/>
-										</div>
-									);
-								})}
+							{!loadingCourse && courses
+								? courses?.map((course, index) => {
+										return (
+											<div className=''>
+												<CourseDetails
+													key={index}
+													course={course}
+													isOpen={isOpen}
+													setIsOpen={setIsOpen}
+													setTooltipData={setTooltipData}
+												/>
+											</div>
+										);
+								  })
+								: [1, 2, 3, 4].map((index) => {
+										return (
+											<>
+												<div key={index} className='h-32'>
+													<img
+														alt={`course`}
+														className='h-full w-full object-cover animate-pulse  bg-slate-200'
+													/>
+												</div>
+												<h2 className='w-64 h-6 font-bold bg-slate-200 animate-pulse mt-3'></h2>
+												<h2 className='w-52 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+												<h2 className='w-48 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+												<h2 className='w-64 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+											</>
+										);
+								  })}
 						</Slider>
 					</div>
 					<DataTooltip

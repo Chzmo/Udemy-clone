@@ -52,7 +52,11 @@ function CourseDetails({ course, setIsOpen, setTooltipData }) {
 						className='h-full w-full bg-slate-100 object-cover'
 					/>
 				</div>
-				<h2 className='w-64 font-bold text-xl'>{course?.title}</h2>
+				<h2 className='w-64 font-bold text-xl'>
+					{course?.title?.length > 40
+						? course?.title.slice(0, 40) + "..."
+						: course?.title}
+				</h2>
 				<small className=' text-slate-500'>{course?.author?.userName}</small>
 				<div className='flex gap-2'>
 					<h2>{rating}</h2>
