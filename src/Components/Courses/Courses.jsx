@@ -30,7 +30,7 @@ function AccordionItem(props) {
 
 			{isOpen && (
 				<div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden pb-3'>
-					{courses &&
+					{courses ? (
 						courses?.map((course, index) => {
 							return (
 								<div className=''>
@@ -44,7 +44,23 @@ function AccordionItem(props) {
 									/>
 								</div>
 							);
-						})}
+						})
+					) : (
+						<>
+							<div className='flex flex-col w-full'>
+								<div className='h-32'>
+									<img
+										alt={`course`}
+										className='h-full w-full object-cover animate-pulse  bg-slate-200'
+									/>
+								</div>
+								<h2 className='w-full h-6 font-bold bg-slate-200 animate-pulse mt-3'></h2>
+								<h2 className='w-52 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+								<h2 className='w-48 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+								<h2 className='w-64 h-6 font-bold bg-slate-100 animate-pulse mt-3'></h2>
+							</div>
+						</>
+					)}
 				</div>
 			)}
 		</div>
