@@ -12,7 +12,7 @@ import { fetchData } from "../../Utils/Query";
 import { data } from "autoprefixer";
 
 function AccordionItem(props) {
-	const { defaultOpen, title, globalState, searchParam } = props;
+	const { defaultOpen, title, courses, searchParam } = props;
 	const [isOpen, setIsOpen] = useState(defaultOpen);
 
 	const handleToggle = () => {
@@ -30,14 +30,17 @@ function AccordionItem(props) {
 
 			{isOpen && (
 				<div className='flex gap-3 h-full mt-7 overflow-x-scroll overflow-y-hidden pb-3'>
-					{globalState.categories &&
-						globalState?.categories[searchParam]?.course?.map((course, index) => {
+					{courses &&
+						courses?.map((course, index) => {
 							return (
 								<div className=''>
 									<CourseDetails
 										key={index}
-										globalState={globalState}
-										course={_course}
+										// globalState={globalState}
+										course={course}
+										isOpen={isOpen}
+										setIsOpen={setIsOpen}
+										// setTooltipData={setTooltipData}
 									/>
 								</div>
 							);
@@ -45,28 +48,6 @@ function AccordionItem(props) {
 				</div>
 			)}
 		</div>
-	);
-}
-
-function SampleNextArrow(props) {
-	const { className, style, onClick } = props;
-	return (
-		<div
-			className={className}
-			style={{ ...style, display: "block", background: "green" }}
-			onClick={onClick}
-		/>
-	);
-}
-
-function SamplePrevArrow(props) {
-	const { className, style, onClick } = props;
-	return (
-		<div
-			className={`bg-black`}
-			style={{ ...style, display: "block", background: "green" }}
-			onClick={onClick}
-		/>
 	);
 }
 
@@ -84,8 +65,6 @@ function Courses({ globalState }) {
 		slidesToShow: 4,
 		slidesToScroll: 4,
 		initialSlide: 0,
-		// nextArrow: <SampleNextArrow />,
-		// prevArrow: <SamplePrevArrow />,
 		responsive: [
 			{
 				breakpoint: 1124,
@@ -230,7 +209,7 @@ function Courses({ globalState }) {
 							title={item.title}
 							content={item.content}
 							defaultOpen={index === 0}
-							globalState={globalState}
+							courses={courses}
 							course={course}
 							searchParam={searchParam}
 						/>
