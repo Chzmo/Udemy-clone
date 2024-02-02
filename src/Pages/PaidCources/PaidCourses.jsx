@@ -51,7 +51,7 @@ function PaidCourses() {
 					<Requirements course={course} loadindCourse={loadindCourse} />
 					<Description course={course} loadindCourse={loadindCourse} />
 					<Related course={course} />
-					<Instructor course={course} />
+					<Instructor course={course} loadindCourse={loadindCourse} />
 					<ReviewCourse course={course} />
 				</div>
 				<CartDetails course={course} />

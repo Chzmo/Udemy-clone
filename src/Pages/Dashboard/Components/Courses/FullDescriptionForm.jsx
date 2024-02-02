@@ -3,8 +3,8 @@ import { updateData } from "../../../../Utils/Query";
 import { useParams } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import "react-toastify/dist/ReactToastify.css";
 
 function FullDescriptionForm({
 	fullDescription,
@@ -19,6 +19,7 @@ function FullDescriptionForm({
 		fullDescription?.length > 0 ? true : false
 	);
 	const [loadingFullDescription, setLoadingFullDescription] = useState(false);
+	// const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
 	const successNotify = () => toast.success("Success ");
 	const erorNotify = () => toast.warn("Failed to update full Description");
@@ -80,6 +81,11 @@ function FullDescriptionForm({
 							onChange={(e) => setFullDescription(e.target.value)}
 							className='border-2 border-[#6b7280] border-solid outline-none bg-transparent py-3 px-2 hover:border-[#5624d0] focus:border-[#5624d0] min-h-[200px]'
 							required></textarea>
+						{/* <Editor
+							editorState={editorState}
+							wrapperClassName='demo-wrapper'
+							editorClassName='demo-editor'
+						/> */}
 					</div>
 					<div className='flex w-full justify-end'>
 						{loadingFullDescription ? (

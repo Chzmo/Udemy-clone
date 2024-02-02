@@ -10,8 +10,11 @@ function Description({ course, loadindCourse }) {
 					<h2 className='bold font-bold text-2xl'>Description</h2>
 					<div className='space-y-2'>
 						<div
-							className={`w-full space-y-2 ${!isOpen && "h-[242px] overflow-hidden"}`}>
-							<p>{course?.fullDescription}</p>
+							className={`w-full space-y-2 ${
+								!isOpen && "max-h-[242px] overflow-hidden"
+							}`}>
+							<div dangerouslySetInnerHTML={{ __html: course?.fullDescription }} />
+							{/* <p>{course?.fullDescription}</p> */}
 						</div>
 						<p
 							className=' flex gap-1 items-center'
